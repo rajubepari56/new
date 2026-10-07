@@ -1,1 +1,53 @@
-PLACEHOLDER
+# ---- Edit these values; everything else reads from here ----
+title: Raju Bepari
+tagline: Google Ads, Conversion Tracking & Web Analytics Specialist
+description: Google Ads, GA4, GTM and server-side tracking for US, UK and AU businesses. 7+ years of hands-on experience. Message me on WhatsApp.
+lang: en
+url: "https://rajubepari56.github.io"
+baseurl: ""
+
+author:
+  name: Raju Bepari
+  email: rajubepari56@gmail.com
+  twitter: Raju_seo_
+
+# WhatsApp number: country code + number, no "+" (TODO: set real number)
+whatsapp: "8801710992866"
+email: rajubepari56@gmail.com
+experience: "7+ years"
+timezone: "UTC+6 (Bangladesh)"
+reply_time: "TODO: set reply time"   # shown on /contact/ as "Usually replies within ..."
+
+# Tracking IDs. Leave empty to disable. GTM loads only if gtm_id is set.
+gtm_id: ""            # e.g. GTM-XXXXXXX
+ga4_id: ""            # e.g. G-XXXXXXXXXX (reference only; configure GA4 inside GTM)
+google_site_verification: ""   # Search Console meta tag content
+
+socials:
+  upwork: "https://www.upwork.com/freelancers/~016342bc13e6f8ffb5"
+  linkedin: "https://www.linkedin.com/in/rajubepari0-seo-expert/"
+  facebook: "https://www.facebook.com/rajubepari0/"
+  instagram: "https://www.instagram.com/rajubepari0"
+  x: "https://x.com/Raju_seo_"
+  threads: "https://www.threads.com/@rajubepari0"
+  medium: "https://medium.com/@rajubepari56"
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+twitter:
+  username: Raju_seo_
+  card: summary_large_image
+social:
+  name: Raju Bepari
+  links:
+    - "https://www.linkedin.com/in/rajubepari0-seo-expert/"
+
+defaults:
+  - scope: { path: "" }
+    values: { layout: "default", image: "/assets/images/og-image.png" }
+  - scope: { path: "services", type: "pages" }
+    values: { layout: "service" }
+
+exclude: [netlify.toml, BRIEF.md, TODO.md, QA-REPORT.md, README.md, scripts, Gemfile, Gemfile.lock, vendor]
