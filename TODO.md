@@ -4,7 +4,7 @@
 - [x] WhatsApp number set (8801710992866)
 - [x] `url` set to https://rajubepari56.github.io (repo must be named rajubepari56.github.io)
 - [ ] `_config.yml`: set `reply_time` (shown on /contact/)
-- [ ] Upload `raju-hero.jpg` and `raju-avatar.png` to the repo root, then run `python3 scripts/optimize_images.py` (current WebP/OG files are generated placeholders)
+- [x] Photos added (hero, avatar, og-image generated)
 - [ ] `_config.yml`: `gtm_id`, `ga4_id`, `google_site_verification` (optional)
 
 ## Content placeholders (search for `TODO:`)
