@@ -1,0 +1,145 @@
+---
+title: Google Ads & Conversion Tracking Specialist
+crumb: Home
+description: Google Ads, GA4, GTM and server-side tracking specialist with 7+ years of experience. Accurate lead and sales tracking for US, UK and AU businesses.
+body_class: home
+faqs:
+  - q: How is your price set?
+    a: It depends on the service, the size of your account or store, and how much needs fixing. Message me on WhatsApp with your goal and I will send a clear quote before any work starts.
+  - q: How long does a tracking project take?
+    a: A GA4 or GTM fix often takes a few days. A full setup with server-side tracking or CRM imports can take one to two weeks.
+  - q: Which platforms do you work with?
+    a: Shopify, WooCommerce, Wix, WordPress and custom sites. For ads, I work with Google Ads and Meta.
+  - q: What time zone do you work in?
+    a: I am in Bangladesh (UTC+6). I overlap with US, UK and Australian working hours, and I reply on WhatsApp quickly.
+  - q: Do you work with agencies?
+    a: Yes. I do white-label tracking and Google Ads work for agencies, with clear documentation your team can reuse.
+  - q: Do you guarantee results?
+    a: No honest specialist can promise ad results. I do promise careful setup, testing and clear reporting so you know what is working.
+---
+<section class="hero hero--home">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow reveal">&gt; {{ site.experience }} of hands-on digital marketing experience</p>
+      <h1 class="reveal">Google Ads, Conversion Tracking &amp; Web Analytics Specialist</h1>
+      <p class="lead reveal">I make sure every lead and sale from your ads is tracked accurately, so you know exactly what's working.</p>
+      <div class="btn-row reveal">
+        <a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text='Hi Raju, I need help with Google Ads and conversion tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="hero" data-service="General">{% include icon-wa.html %} WhatsApp Me</a>
+        <a class="btn btn--ghost btn--lg" href="/services/" data-event="cta_click" data-cta-text="See Services" data-link-location="hero">See Services</a>
+      </div>
+      <p class="trust reveal">{{ site.experience }} &middot; <a href="{{ site.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="hero">View my Upwork profile</a></p>
+    </div>
+    <div class="hero__media reveal">
+      <img class="hero__photo" src="/assets/images/raju-hero.webp" width="640" height="640" alt="Raju Bepari, Google Ads and conversion tracking specialist, smiling in a blazer">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap narrow">
+    <h2 class="reveal">Your ads say one number. Your CRM says another.</h2>
+    <p class="lead reveal">If you have seen this, your tracking is leaking money.</p>
+    <ul class="sign">
+      <li class="glass reveal"><strong>Reports do not match.</strong> Google Ads, GA4 and your shop each show different leads or sales.</li>
+      <li class="glass reveal"><strong>Smart Bidding feels random.</strong> It is learning from bad or missing conversions.</li>
+      <li class="glass reveal"><strong>Meta and iOS lost your sales.</strong> Purchases show up late, double, or not at all.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--alt" id="dataflow">
+  <div class="wrap">
+    <h2 class="reveal">How I track every conversion</h2>
+    <p class="lead reveal">A lead leaves your site once. I make sure every platform that needs it gets it, cleanly.</p>
+    <div class="diagram glass reveal" data-dataflow>
+      <ol class="diagram__nodes">
+        <li class="diagram__node"><span>Website</span></li>
+        <li class="diagram__node"><span>Web GTM</span></li>
+        <li class="diagram__node"><span>Server GTM</span></li>
+        <li class="diagram__node"><span>GA4 · Google Ads · Meta CAPI</span></li>
+      </ol>
+      <p class="muted center" style="margin:18px 0 0"><code>page_view</code> &rarr; <code>generate_lead</code> &rarr; <code>purchase</code></p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <h2 class="reveal">Services</h2>
+    <div class="cards">
+      {% for s in site.data.services %}
+      <a class="card glass tilt reveal" href="{{ s.url }}"><span class="pill pill--{{ s.color }}">{{ s.tag }}</span><h3>{{ s.name }}</h3><p>{{ s.short }}</p></a>
+      {% endfor %}
+    </div>
+    <div class="stats">
+      <div class="stat glass reveal"><b data-count="7" data-suffix="+">7+</b><span>years of experience</span></div>
+      <div class="stat glass reveal"><b data-count="8">8</b><span>focused services</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" id="dashboard">
+  <div class="wrap">
+    <h2 class="reveal">What clean data looks like</h2>
+    <div class="grid-2">
+      <div class="glass card reveal"><span class="pill pill--red">Before</span><h3>Messy tracking</h3><ul class="ticks ticks--red"><li>Duplicate and missing events</li><li>Leads without a source</li><li>Bidding on the wrong goals</li></ul></div>
+      <div class="glass card reveal"><span class="pill pill--green">After</span><h3>Clean tracking</h3><ul class="ticks"><li>One event, one count</li><li>Every lead tied to its campaign</li><li>Bidding on real outcomes</li></ul></div>
+    </div>
+    <p class="demo-note">Interactive demo with illustrative data arrives in the next release.</p>
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="wrap">
+    <h2 class="reveal">How we work together</h2>
+    <ol class="steps">
+      <li class="glass reveal"><span class="steps__n">1</span><h3>Audit</h3><p>I check what is tracked now and what is broken.</p></li>
+      <li class="glass reveal"><span class="steps__n">2</span><h3>Plan</h3><p>We agree on goals, events and the fix list.</p></li>
+      <li class="glass reveal"><span class="steps__n">3</span><h3>Implement</h3><p>I set up tags, conversions and campaigns.</p></li>
+      <li class="glass reveal"><span class="steps__n">4</span><h3>QA</h3><p>I test every event before it goes live.</p></li>
+      <li class="glass reveal"><span class="steps__n">5</span><h3>Report</h3><p>You get plain-English results and next steps.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section--alt" id="results">
+  <div class="wrap">
+    <h2 class="reveal">Results</h2>
+    <div class="cards">
+      <!-- TODO: real case study -->
+      <div class="card glass card--soon reveal"><span class="pill pill--yellow">Coming soon</span><h3>Case study</h3><p>Real client results will appear here once confirmed.</p></div>
+      <!-- TODO: real case study -->
+      <div class="card glass card--soon reveal"><span class="pill pill--yellow">Coming soon</span><h3>Case study</h3><p>Real client results will appear here once confirmed.</p></div>
+    </div>
+    <p class="reveal"><a href="/results/" data-event="cta_click" data-cta-text="See all results" data-link-location="home_results">See the results page &rarr;</a></p>
+  </div>
+</section>
+
+<div class="marquee" aria-label="Tools I work with">
+  <div class="marquee__track">
+    {% assign tools = "Google Ads,GA4,Google Tag Manager,Meta,Shopify,WooCommerce,Wix,WordPress" | split: "," %}
+    {% for i in (1..2) %}{% for t in tools %}<span class="pill" {% if i == 2 %}aria-hidden="true"{% endif %}>{{ t }}</span>{% endfor %}{% endfor %}
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap grid-2">
+    <div class="reveal"><img class="hero__photo" loading="lazy" src="/assets/images/raju-avatar.webp" width="420" height="420" alt="Raju Bepari, circular portrait with a four-color ring"></div>
+    <div class="reveal">
+      <h2>Hi, I'm Raju.</h2>
+      <p>I have {{ site.experience }} of hands-on digital marketing experience. I work from Bangladesh with clients in the US, UK and Australia.</p>
+      <p>I like clear numbers, honest advice and work that is finished on time.</p>
+      <a class="btn btn--ghost" href="/about/" data-event="cta_click" data-cta-text="More about me" data-link-location="home_about">More about me</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap narrow">
+    <h2 class="reveal">Frequently asked questions</h2>
+    {% include faq.html items=page.faqs %}
+  </div>
+</section>
+
+{% include cta.html service="Google Ads and conversion tracking" loc="home_cta" %}

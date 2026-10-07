@@ -1,0 +1,36 @@
+---
+layout: default
+title: About Raju Bepari
+crumb: About
+description: Raju Bepari is a Google Ads and conversion tracking specialist from Bangladesh with 7+ years of experience, working with US, UK and AU clients.
+permalink: /about/
+---
+<section class="hero hero--sub"><div class="wrap grid-2">
+  <div>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>About</span></nav>
+    <h1 class="reveal">About Raju Bepari</h1>
+    <p class="lead reveal">{{ site.experience }} of hands-on digital marketing experience. Google Ads, tracking and analytics are what I do every day.</p>
+  </div>
+  <div class="reveal"><img class="hero__photo" src="/assets/images/raju-avatar.webp" width="420" height="420" alt="Raju Bepari, circular portrait with a four-color ring"></div>
+</div></section>
+<section class="section"><div class="wrap narrow page-content">
+  <h2>My story</h2>
+  <p>I help businesses understand where their leads and sales really come from. I started in digital marketing and kept going deeper into the data, because good ads need good measurement.</p>
+  <p>Today I work with local service businesses, online stores and agencies. I fix tracking, run Google Ads and make reports simple to read.</p>
+  <!-- TODO: add personal story details in Raju's own words -->
+  <h2>How I work</h2>
+  <ul class="cards-list">
+    <li class="glass"><strong>On-time delivery.</strong> Clear dates, and I keep them.</li>
+    <li class="glass"><strong>Transparent pricing.</strong> You see the quote before work starts.</li>
+    <li class="glass"><strong>Open communication.</strong> Quick WhatsApp replies and plain updates.</li>
+    <li class="glass"><strong>High workmanship.</strong> Every setup is tested before handover.</li>
+  </ul>
+  <h2>Time zone</h2>
+  <p>I am based in Bangladesh ({{ site.timezone }}). I overlap with the end of the UK day, the evening in Australia and the US morning, so we can talk during your working hours.</p>
+  <!-- TODO: confirm exact overlap hours -->
+  <h2>Find me online</h2>
+  <ul class="socials" aria-label="Social profiles">
+    {% for s in site.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="about" aria-label="{{ s[0] | capitalize }}">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</a></li>{% endfor %}
+  </ul>
+</div></section>
+{% include cta.html service="Google Ads and tracking" loc="about" %}

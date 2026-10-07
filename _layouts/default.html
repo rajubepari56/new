@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0B1E">
+  {% if site.google_site_verification != "" %}<meta name="google-site-verification" content="{{ site.google_site_verification }}">{% endif %}
+  {% include gtm-head.html %}
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/images/raju-avatar.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  {% seo %}
+  {% include schema.html %}
+</head>
+<body class="{{ page.body_class }}">
+  {% include gtm-body.html %}
+  {% include header.html %}
+  <main id="main">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  {% include consent-banner.html %}
+  <script src="/assets/js/main.js" defer></script>
+  {% if page.url == "/" %}<script src="/assets/js/home.js" defer></script>{% endif %}
+</body>
+</html>

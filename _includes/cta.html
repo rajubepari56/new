@@ -1,0 +1,11 @@
+{%- assign svc = include.service | default: "Tracking & Google Ads" -%}
+<section class="cta section" data-glow>
+  <div class="wrap cta__in reveal">
+    <h2>{{ include.title | default: "Let's fix your tracking" }}</h2>
+    <p class="lead">{{ include.text | default: "Tell me what you run and what you want to measure. I reply on WhatsApp, usually within a few hours." }}</p>
+    <div class="btn-row center">
+      <a class="btn btn--wa btn--lg magnetic" href="{% capture t %}Hi Raju, I need help with {{ svc }}{% endcapture %}{% include wa.html text=t %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="{{ include.loc | default: 'cta' }}" data-service="{{ svc }}">{% include icon-wa.html %} Message me on WhatsApp</a>
+      <a class="btn btn--ghost btn--lg" href="mailto:{{ site.email }}?subject={{ svc | uri_escape }}" data-event="email_click" data-link-location="cta">Email me</a>
+    </div>
+  </div>
+</section>

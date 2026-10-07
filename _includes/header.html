@@ -1,0 +1,21 @@
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" id="site-header">
+  <div class="wrap site-header__in">
+    <a class="brand" href="/" aria-label="Raju Bepari, home">{% include logo.html %}<span class="brand__name">Raju Bepari</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
+      <div class="nav__dd">
+        <a href="/services/"{% if page.url contains "/services/" %} aria-current="page"{% endif %}>Services</a>
+        <button class="nav__dd-btn" type="button" aria-expanded="false" aria-label="Show services list"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <ul class="nav__menu">
+          {% for s in site.data.services %}<li><a href="{{ s.url }}">{{ s.name }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      <a href="/results/"{% if page.url contains "/results/" %} aria-current="page"{% endif %}>Results</a>
+      <a href="/about/"{% if page.url contains "/about/" %} aria-current="page"{% endif %}>About</a>
+      <a href="/contact/"{% if page.url contains "/contact/" %} aria-current="page"{% endif %}>Contact</a>
+      <a class="btn btn--wa btn--sm magnetic" href="{% include wa.html text='Hi Raju, I found your website and need help with tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="header" data-service="General">{% include icon-wa.html %} WhatsApp Me</a>
+    </nav>
+  </div>
+</header>

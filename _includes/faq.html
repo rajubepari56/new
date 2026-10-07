@@ -1,0 +1,8 @@
+<div class="faq">
+  {% for f in include.items %}
+  <details class="faq__item reveal" data-faq="{{ f.q | escape }}">
+    <summary>{{ f.q }}</summary>
+    <p>{{ f.a }}</p>
+  </details>
+  {% endfor %}
+</div>

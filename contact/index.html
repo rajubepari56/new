@@ -1,0 +1,22 @@
+---
+layout: default
+title: Contact Raju Bepari
+crumb: Contact
+description: Contact Raju Bepari on WhatsApp or email for Google Ads, GA4, GTM and conversion tracking help. Or hire me on Upwork.
+permalink: /contact/
+---
+<section class="hero hero--sub"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Contact</span></nav>
+  <h1 class="reveal">Let's Talk About Your Tracking</h1>
+  <p class="lead reveal">WhatsApp is the fastest way. Usually replies within {{ site.reply_time }}.</p>
+  <!-- TODO: set reply_time in _config.yml -->
+  <div class="btn-row"><a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text='Hi Raju, I found your website and need help with tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="contact" data-service="General">{% include icon-wa.html %} Message me on WhatsApp</a></div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="contact-grid">
+    <div class="glass"><h2>Email</h2><p class="muted">For longer briefs and files.</p><a class="btn btn--ghost" href="mailto:{{ site.email }}" data-event="email_click" data-link-location="contact">{{ site.email }}</a></div>
+    <div class="glass"><h2>Hire on Upwork</h2><p class="muted">Prefer a protected contract? Hire me there.</p><a class="btn btn--ghost" href="{{ site.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="contact">Open Upwork profile</a></div>
+    <div class="glass"><h2>Time zone</h2><p class="muted">{{ site.timezone }}. I work with US, UK and AU clients.</p></div>
+  </div>
+  <p class="muted" style="margin-top:24px">There is no contact form on purpose. This site is static, and WhatsApp or email gets you a faster answer.</p>
+</div></section>

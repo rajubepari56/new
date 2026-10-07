@@ -1,0 +1,56 @@
+- slug: google-ads
+  name: Google Ads Management
+  group: Ads
+  tag: Google Ads
+  short: Search, Shopping and Performance Max campaigns built around real leads and sales, not clicks.
+  url: /services/google-ads/
+  color: blue
+- slug: merchant-center
+  name: Google Merchant Center
+  group: Ads
+  tag: Merchant Center
+  short: Fix suspensions and product disapprovals. Set up feeds that get approved and stay approved.
+  url: /services/merchant-center/
+  color: yellow
+- slug: ga4
+  name: GA4 Setup & Audit
+  group: Tracking
+  tag: GA4
+  short: Clean GA4 data you can trust, with key events set up for the actions that make you money.
+  url: /services/ga4/
+  color: blue
+- slug: google-tag-manager
+  name: Google Tag Manager
+  group: Tracking
+  tag: GTM
+  short: A tidy GTM container with clear tags, triggers and a data layer your team can maintain.
+  url: /services/google-tag-manager/
+  color: green
+- slug: meta-pixel-capi
+  name: Meta Pixel & Conversions API
+  group: Tracking
+  tag: Meta CAPI
+  short: Browser plus server events for Meta, deduplicated, so your ads see the sales they drive.
+  url: /services/meta-pixel-capi/
+  color: red
+- slug: server-side-tracking
+  name: Server-Side Tracking (sGTM)
+  group: Tracking
+  tag: sGTM
+  short: Server-side GTM that sends cleaner data to your ad platforms and survives browser limits.
+  url: /services/server-side-tracking/
+  color: green
+- slug: enhanced-offline-conversions
+  name: Enhanced & Offline Conversions
+  group: Tracking
+  tag: Enhanced Conversions
+  short: Send hashed first-party data and CRM outcomes back to Google Ads so bidding learns from real revenue.
+  url: /services/enhanced-offline-conversions/
+  color: yellow
+- slug: local-seo
+  name: Local SEO
+  group: SEO
+  tag: Local SEO
+  short: Google Business Profile, citations and local pages that put you in the map pack.
+  url: /services/local-seo/
+  color: red

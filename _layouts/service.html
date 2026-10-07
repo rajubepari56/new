@@ -1,0 +1,57 @@
+---
+layout: default
+---
+{%- assign svc = page.service_name -%}
+<section class="hero hero--sub">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/services/">Services</a> / <span>{{ svc }}</span></nav>
+    <h1 class="reveal">{{ page.h1 }}</h1>
+    <p class="lead reveal">{{ page.outcome }}</p>
+    <div class="btn-row reveal">
+      <a class="btn btn--wa btn--lg magnetic" href="{% capture t %}Hi Raju, I need help with {{ svc }}{% endcapture %}{% include wa.html text=t %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="service_page" data-service="{{ svc }}">{% include icon-wa.html %} Ask about {{ page.short_name | default: svc }}</a>
+      <a class="btn btn--ghost btn--lg" href="#included" data-event="cta_click" data-cta-text="See what's included" data-link-location="service_page">See what's included</a>
+    </div>
+  </div>
+</section>
+
+<section class="section"><div class="wrap grid-2">
+  <div class="reveal"><h2>{{ page.who_title }}</h2>
+    <ul class="cards-list">{% for w in page.who %}<li class="glass">{{ w }}</li>{% endfor %}</ul></div>
+  <div class="reveal"><h2>{{ page.problems_title }}</h2>
+    <ul class="ticks ticks--red">{% for p in page.problems %}<li>{{ p }}</li>{% endfor %}</ul></div>
+</div></section>
+
+<section class="section section--alt" id="included"><div class="wrap">
+  <h2 class="reveal">{{ page.included_title }}</h2>
+  <ul class="ticks ticks--green cols-2">{% for i in page.included %}<li class="reveal">{{ i }}</li>{% endfor %}</ul>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <h2 class="reveal">{{ page.diagram_title }}</h2>
+  <div class="diagram glass reveal" data-diagram="{{ page.diagram | join: '|' }}" aria-label="{{ page.diagram_title }}">
+    <ol class="diagram__nodes">{% for d in page.diagram %}<li class="diagram__node"><span>{{ d }}</span></li>{% endfor %}</ol>
+  </div>
+</div></section>
+
+<section class="section section--alt"><div class="wrap">
+  <h2 class="reveal">{{ page.process_title }}</h2>
+  <p class="lead reveal">Typical timeline: {{ page.timeline }}</p>
+  <ol class="steps">{% for s in page.process %}<li class="glass reveal"><span class="steps__n">{{ forloop.index }}</span><h3>{{ s.t }}</h3><p>{{ s.d }}</p></li>{% endfor %}</ol>
+</div></section>
+
+<section class="section"><div class="wrap narrow">
+  <h2 class="reveal">{{ page.faq_title }}</h2>
+  {% include faq.html items=page.faqs %}
+</div></section>
+
+<section class="section section--alt"><div class="wrap">
+  <h2 class="reveal">Related services</h2>
+  <div class="cards">
+    {% for slug in page.related %}{% assign r = site.data.services | where: "slug", slug | first %}
+    <a class="card glass tilt reveal" href="{{ r.url }}"><span class="pill pill--{{ r.color }}">{{ r.tag }}</span><h3>{{ r.name }}</h3><p>{{ r.short }}</p></a>
+    {% endfor %}
+  </div>
+</div></section>
+
+{{ content }}
+{% include cta.html service=svc title=page.cta_title loc="service_page" %}
