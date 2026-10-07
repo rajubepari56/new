@@ -6,18 +6,18 @@ short_name: Merchant Center
 keyword: Merchant Center suspension fix
 h1: Google Merchant Center Suspension Fix and Setup
 outcome: Get your account approved, your products live and your feed clean, so Shopping ads can run.
-who_title: Who this is for
+who_title: Who needs Merchant Center help
 who:
 - Stores with a suspended Merchant Center account.
 - Shops with many disapproved products.
 - New stores setting up Shopping for the first time.
-problems_title: Typical issues
+problems_title: Typical suspension and feed issues
 problems:
 - Misrepresentation or policy suspension.
 - Missing GTIN, price or availability mismatch.
 - Website missing return, shipping or contact details.
 - Feed errors that keep products out of Shopping.
-included_title: What's included
+included_title: What a Merchant Center fix includes
 included:
 - Account and policy review
 - Website compliance checklist
@@ -64,6 +64,7 @@ related:
 - ga4
 - local-seo
 cta_title: Get your products back on Google
+related_title: Services around Shopping ads
 crumb: Google Merchant Center
 permalink: /services/merchant-center/
 ---

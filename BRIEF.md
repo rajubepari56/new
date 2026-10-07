@@ -6,7 +6,7 @@
 - Experience wording: "7+ years of hands-on digital marketing experience"
 - Based in Bangladesh, UTC+6; works with US/UK/AU clients
 - Target clients: local service businesses, ecommerce stores (Shopify, WooCommerce, Wix), and agencies (white-label)
-- Contact: WhatsApp 8801XXXXXXXXX (primary CTA), email rajubepari56@gmail.com
+- Contact: WhatsApp 8801710992866 (primary CTA), email rajubepari56@gmail.com
 - Socials: Upwork https://www.upwork.com/freelancers/~016342bc13e6f8ffb5 | LinkedIn https://www.linkedin.com/in/rajubepari0-seo-expert/ | Facebook https://www.facebook.com/rajubepari0/ | Instagram https://www.instagram.com/rajubepari0 | X https://x.com/Raju_seo_ | Threads https://www.threads.com/@rajubepari0 | Medium https://medium.com/@rajubepari56
 - Site URL: https://YOUR-USERNAME.github.io (GitHub Pages user site)
 - Photos are in the repo root: raju-hero.jpg (hero), raju-avatar.png (about, favicon, og image). Move them to assets/images/ and create optimized WebP versions.
@@ -57,7 +57,7 @@ Performance rules: respect prefers-reduced-motion (disable Three.js and heavy mo
 ## Content rules
 - English only. Short sentences, problem -> result language, no jargon walls.
 - NEVER invent testimonials, client names, logos, statistics or results. Where real data is missing, insert a clearly marked placeholder: <!-- TODO: real case study --> and a visible "Coming soon" card. Keep a TODO.md list of every placeholder.
-- Every page ends with a WhatsApp CTA. WhatsApp links use https://wa.me/8801XXXXXXXXX?text=... with a prefilled message that names the page's service.
+- Every page ends with a WhatsApp CTA. WhatsApp links use https://wa.me/8801710992866?text=... with a prefilled message that names the page's service.
 - Service page template: Hero (H1 + one-line outcome + WhatsApp) -> Who it's for -> Problems I solve -> What's included (checklist) -> small animated diagram -> Process & timeline -> FAQ (4-5, specific to the service) -> Related services (2-3 internal links) -> CTA.
 - Home: Hero -> Problem -> Data-flow -> Services grid -> Dashboard -> Process -> Results (placeholders) -> Tools marquee -> About teaser -> FAQ -> Final CTA.
 - About: story, 7+ years, values (on-time delivery, transparent pricing, open communication, high workmanship), time-zone overlap with US/UK, all socials.

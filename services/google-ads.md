@@ -6,18 +6,18 @@ short_name: Google Ads
 keyword: Google Ads management freelancer
 h1: Google Ads Management Freelancer for Leads and Sales
 outcome: Campaigns built around the actions that make you money, with tracking you can trust.
-who_title: Who this is for
+who_title: Who gets the most from Google Ads help
 who:
 - Local service businesses that need calls and booked jobs, not just clicks.
 - Online stores that want profitable Shopping and Performance Max campaigns.
 - Agencies that need a reliable white-label Google Ads specialist.
-problems_title: Problems I solve
+problems_title: Where Google Ads money leaks
 problems:
 - Budget burns on search terms that never convert.
 - Smart Bidding learns from the wrong conversions.
 - Reports show clicks, but nobody knows which leads were real.
 - Campaigns were set up once and never reviewed.
-included_title: What's included
+included_title: Inside my Google Ads service
 included:
 - Account and tracking audit
 - Campaign structure and keyword plan
@@ -64,6 +64,7 @@ related:
 - enhanced-offline-conversions
 - merchant-center
 cta_title: Ready to get more from Google Ads?
+related_title: Services that pair with Google Ads
 crumb: Google Ads Management
 permalink: /services/google-ads/
 ---

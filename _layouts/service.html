@@ -45,7 +45,7 @@ layout: default
 </div></section>
 
 <section class="section section--alt"><div class="wrap">
-  <h2 class="reveal">Related services</h2>
+  <h2 class="reveal">{{ page.related_title }}</h2>
   <div class="cards">
     {% for slug in page.related %}{% assign r = site.data.services | where: "slug", slug | first %}
     <a class="card glass tilt reveal" href="{{ r.url }}"><span class="pill pill--{{ r.color }}">{{ r.tag }}</span><h3>{{ r.name }}</h3><p>{{ r.short }}</p></a>

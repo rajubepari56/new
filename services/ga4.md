@@ -17,7 +17,7 @@ problems:
 - Internal traffic and spam skew the numbers.
 - Key events are not marked, so reports show nothing useful.
 - Ads and GA4 are not linked, so imports fail.
-included_title: What you get
+included_title: What you get from a GA4 audit
 included:
 - Full property and data stream audit
 - Event and parameter plan
@@ -64,6 +64,7 @@ related:
 - google-ads
 - server-side-tracking
 cta_title: Want GA4 you can rely on?
+related_title: Next steps after your GA4 audit
 crumb: GA4 Setup & Audit
 permalink: /services/ga4/
 ---

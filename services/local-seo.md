@@ -6,18 +6,18 @@ short_name: Local SEO
 keyword: local SEO freelancer
 h1: Local SEO Freelancer for Service Businesses
 outcome: Show up when nearby customers search, and turn those views into calls and bookings.
-who_title: Who this is for
+who_title: Who needs local SEO
 who:
 - Home service and trade businesses serving a city or region.
 - Multi-location businesses that need consistent listings.
 - Owners who rank well in one town but not the next.
-problems_title: Common local SEO problems
+problems_title: Why local customers cannot find you
 problems:
 - Google Business Profile is incomplete or suspended.
 - Name, address and phone differ across listings.
 - No pages for each service or area.
 - Few reviews and no process to get more.
-included_title: What's included
+included_title: What local SEO work covers
 included:
 - Google Business Profile audit and optimisation
 - Category, service and photo review
@@ -64,6 +64,7 @@ related:
 - ga4
 - merchant-center
 cta_title: Get found in your area
+related_title: Pair local SEO with these
 crumb: Local SEO
 permalink: /services/local-seo/
 ---

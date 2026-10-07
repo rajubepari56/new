@@ -6,7 +6,7 @@ short_name: GTM
 keyword: Google Tag Manager expert
 h1: Google Tag Manager Expert for Clean, Reliable Tracking
 outcome: One tidy container that fires the right tags at the right time, and that your team can understand.
-who_title: Who this is for
+who_title: Who needs a GTM clean-up
 who:
 - Sites with an old container full of unknown tags.
 - Marketers waiting on developers for every tracking change.
@@ -17,7 +17,7 @@ problems:
 - Nobody knows what each tag does.
 - Old pixels slow the site down.
 - Changes go live without testing.
-included_title: What's included
+included_title: What a tidy GTM build includes
 included:
 - Container audit and cleanup
 - Naming convention and folders
@@ -64,6 +64,7 @@ related:
 - meta-pixel-capi
 - server-side-tracking
 cta_title: Let's tidy up your tags
+related_title: Other tools that work with GTM
 crumb: Google Tag Manager
 permalink: /services/google-tag-manager/
 ---

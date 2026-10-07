@@ -6,18 +6,18 @@ short_name: Enhanced Conversions
 keyword: Google Ads enhanced conversions setup
 h1: Google Ads Enhanced Conversions Setup
 outcome: Send hashed first-party data and real CRM outcomes back to Google Ads so bidding learns from what matters.
-who_title: Who this is for
+who_title: Who needs enhanced and offline data
 who:
 - Lead businesses that close deals offline or by phone.
 - Stores that want better web conversion matching.
 - Advertisers who see leads but not which ones became customers.
-problems_title: What I fix
+problems_title: Gaps in Google Ads conversion data
 problems:
 - Google Ads counts every form fill the same.
 - Conversions are missed when cookies are lost.
 - CRM sales never reach the ad account.
 - Imports fail because of formatting or GCLID gaps.
-included_title: What's included
+included_title: What I set up for conversion imports
 included:
 - Enhanced conversions for web
 - Enhanced conversions for leads
@@ -64,6 +64,7 @@ related:
 - server-side-tracking
 - ga4
 cta_title: Teach Google Ads from real sales
+related_title: More ways to feed Google Ads
 crumb: Enhanced & Offline Conversions
 permalink: /services/enhanced-offline-conversions/
 ---

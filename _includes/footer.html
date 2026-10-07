@@ -1,7 +1,7 @@
 <footer class="site-footer">
   <div class="wrap footer__grid">
     <div>
-      <a class="brand" href="/" aria-label="Raju Bepari, home">{% include logo.html %}<span class="brand__name">Raju Bepari</span></a>
+      <a class="brand" href="/">{% include logo.html %}<span class="brand__name">Raju Bepari</span></a>
       <p class="muted">{{ site.tagline }}. {{ site.experience }} of hands-on digital marketing experience.</p>
       <p class="muted">{{ site.timezone }}</p>
       <ul class="socials" aria-label="Social profiles">
@@ -23,4 +23,4 @@
   </div>
   <div class="wrap footer__bar"><span>&copy; {{ "now" | date: "%Y" }} Raju Bepari. All rights reserved.</span></div>
 </footer>
-<a class="wa-float" href="{% include wa.html text='Hi Raju, I found your website and need help with tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="floating" data-service="General" aria-label="Chat on WhatsApp">{% include icon-wa.html %}</a>
+<aside aria-label="Quick contact"><a class="wa-float" href="{% include wa.html text='Hi Raju, I found your website and need help with tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="floating" data-service="General" aria-label="Chat on WhatsApp">{% include icon-wa.html %}</a></aside>

@@ -22,7 +22,8 @@ faqs:
   <div class="wrap">
     <div>
       <p class="eyebrow reveal">&gt; {{ site.experience }} of hands-on digital marketing experience</p>
-      <h1 class="reveal">Google Ads, Conversion Tracking &amp; Web Analytics Specialist</h1>
+      <p class="rotor-line reveal" aria-hidden="true">I fix <span class="rotor" data-words="Google Ads|GA4|Server-Side Tracking|Meta CAPI">Google Ads</span> tracking</p>
+      <h1 id="hero-h1">Google Ads, Conversion Tracking &amp; Web Analytics Specialist</h1>
       <p class="lead reveal">I make sure every lead and sale from your ads is tracked accurately, so you know exactly what's working.</p>
       <div class="btn-row reveal">
         <a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text='Hi Raju, I need help with Google Ads and conversion tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="hero" data-service="General">{% include icon-wa.html %} WhatsApp Me</a>
@@ -31,7 +32,8 @@ faqs:
       <p class="trust reveal">{{ site.experience }} &middot; <a href="{{ site.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="hero">View my Upwork profile</a></p>
     </div>
     <div class="hero__media reveal">
-      <img class="hero__photo" src="/assets/images/raju-hero.webp" width="640" height="640" alt="Raju Bepari, Google Ads and conversion tracking specialist, smiling in a blazer">
+      <img class="hero__photo" src="/assets/images/raju-hero.webp" width="640" height="640" fetchpriority="high" alt="Raju Bepari, Google Ads and conversion tracking specialist, smiling in a blazer">
+      <span class="chip chip--blue" style="--d:0" aria-hidden="true">GA4</span><span class="chip chip--green" style="--d:1" aria-hidden="true">GTM</span><span class="chip chip--yellow" style="--d:2" aria-hidden="true">Google Ads</span><span class="chip chip--red" style="--d:3" aria-hidden="true">Meta</span>
     </div>
   </div>
 </section>
@@ -82,17 +84,21 @@ faqs:
 <section class="section section--alt" id="dashboard">
   <div class="wrap">
     <h2 class="reveal">What clean data looks like</h2>
+    <div id="dash-root">
     <div class="grid-2">
       <div class="glass card reveal"><span class="pill pill--red">Before</span><h3>Messy tracking</h3><ul class="ticks ticks--red"><li>Duplicate and missing events</li><li>Leads without a source</li><li>Bidding on the wrong goals</li></ul></div>
       <div class="glass card reveal"><span class="pill pill--green">After</span><h3>Clean tracking</h3><ul class="ticks"><li>One event, one count</li><li>Every lead tied to its campaign</li><li>Bidding on real outcomes</li></ul></div>
     </div>
-    <p class="demo-note">Interactive demo with illustrative data arrives in the next release.</p>
+    </div>
+    <p class="demo-note">Illustrative demo. Not real client data.</p>
   </div>
 </section>
 
 <section class="section" id="process">
+  <div class="process__pin">
   <div class="wrap">
     <h2 class="reveal">How we work together</h2>
+  </div>
     <ol class="steps">
       <li class="glass reveal"><span class="steps__n">1</span><h3>Audit</h3><p>I check what is tracked now and what is broken.</p></li>
       <li class="glass reveal"><span class="steps__n">2</span><h3>Plan</h3><p>We agree on goals, events and the fix list.</p></li>

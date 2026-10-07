@@ -6,18 +6,18 @@ short_name: Meta CAPI
 keyword: Meta Conversions API setup
 h1: Meta Conversions API Setup With Pixel Deduplication
 outcome: Browser and server events working together, so Meta can optimise on the sales your ads really drive.
-who_title: Who this is for
+who_title: Who needs Meta CAPI
 who:
 - Advertisers who lost signal after iOS and browser privacy changes.
 - Stores whose Meta purchases are far below the shop's orders.
 - Lead businesses that want better lead quality from Meta.
-problems_title: What I fix
+problems_title: Meta tracking problems I fix
 problems:
 - Purchases missing or counted twice in Events Manager.
 - Low event match quality.
 - Pixel fires before consent.
 - CAPI sends events with no matching Pixel event ID.
-included_title: What's included
+included_title: What a CAPI setup includes
 included:
 - Pixel and Events Manager audit
 - Standard event setup (Lead, Purchase and more)
@@ -64,6 +64,7 @@ related:
 - google-tag-manager
 - ga4
 cta_title: Get Meta seeing your real sales
+related_title: Related tracking for Meta ads
 crumb: Meta Pixel & Conversions API
 permalink: /services/meta-pixel-capi/
 ---

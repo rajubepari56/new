@@ -1,7 +1,8 @@
 # TODO: placeholders to fill
 
 ## Must do before launch
-- [ ] `_config.yml`: replace `YOUR-USERNAME` in `url`; set `whatsapp` (e.g. 8801XXXXXXXXX, no +)
+- [x] WhatsApp number set (8801710992866)
+- [ ] `_config.yml`: replace `YOUR-USERNAME` in `url`
 - [ ] `_config.yml`: set `reply_time` (shown on /contact/)
 - [ ] Upload `raju-hero.jpg` and `raju-avatar.png` to the repo root, then run `python3 scripts/optimize_images.py` (current WebP/OG files are generated placeholders)
 - [ ] `_config.yml`: `gtm_id`, `ga4_id`, `google_site_verification` (optional)

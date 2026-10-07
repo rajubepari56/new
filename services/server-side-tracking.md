@@ -6,18 +6,18 @@ short_name: sGTM
 keyword: server-side tracking expert
 h1: 'Server-Side Tracking Expert: sGTM Setup'
 outcome: A server container on your own domain that sends cleaner data to your ad platforms.
-who_title: Who this is for
+who_title: Who should consider sGTM
 who:
 - Stores losing data to ad blockers and browser limits.
 - Teams that want more control over what data leaves the site.
 - Businesses sending data to several platforms at once.
-problems_title: Problems it addresses
+problems_title: Problems server-side tracking addresses
 problems:
 - Third-party scripts are blocked or limited by browsers.
 - Too many tags slow the page.
 - Cookie lifetimes are cut short.
 - Platforms get different data for the same event.
-included_title: What's included
+included_title: What an sGTM build covers
 included:
 - Server GTM container setup
 - Custom tracking domain
@@ -63,6 +63,7 @@ related:
 - google-tag-manager
 - enhanced-offline-conversions
 cta_title: Move your tracking server-side
+related_title: Where sGTM fits in your stack
 crumb: Server-Side Tracking (sGTM)
 permalink: /services/server-side-tracking/
 ---
