@@ -5,7 +5,7 @@
   w.dataLayer=w.dataLayer||[];
   function push(o){w.dataLayer.push(o);}
   var mq=function(q){return w.matchMedia(q).matches;};
-  var reduce=mq('(prefers-reduced-motion: reduce)');
+  var reduce=root.classList.contains('rm');
   var fine=mq('(hover: hover) and (pointer: fine)');
   var CDN='https://cdn.jsdelivr.net/npm/';
   var RB=w.RB={reduce:reduce,fine:fine,mobile:mq('(max-width: 860px)'),CDN:CDN,lenis:null,_cbs:[]};
@@ -65,6 +65,13 @@
     if(b)setConsent(b.getAttribute('data-consent')==='accept'?'granted':'denied');
     if(e.target.closest('[data-consent-open]')&&banner)banner.hidden=false;
   });
+
+  /* ---- motion switch (overrides the device setting) ---- */
+  var mt=d.querySelector('[data-motion-toggle]');
+  if(mt){
+    mt.textContent=reduce?'Turn animations on':'Reduce animations';
+    mt.addEventListener('click',function(){try{localStorage.setItem('rb_motion',reduce?'full':'reduced');}catch(_){}location.reload();});
+  }
 
   /* ---- nav ---- */
   var tog=d.querySelector('.nav-toggle'),nav=d.getElementById('nav');

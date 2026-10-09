@@ -185,11 +185,10 @@ body.cursor-on,body.cursor-on a,body.cursor-on button,body.cursor-on summary{cur
 .cta[data-glow]:after{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,60%),rgba(66,133,244,.22),transparent 65%);pointer-events:none}
 .cta .wrap{position:relative;z-index:1}
 @media (max-width:860px){.hero__media{--R:135px;padding:16px}.kpis{grid-template-columns:1fr}.chip{font-size:.7rem}}
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .js .reveal{opacity:1;translate:none}
-  .marquee__track{flex-wrap:wrap;width:auto;justify-content:center}.marquee .pill[aria-hidden]{display:none}
-  .chip{position:static;margin:4px;display:inline-block}.hero__media{display:block;text-align:center}
-  .hero{background:radial-gradient(ellipse at 20% 0,rgba(43,47,199,.55),transparent 60%),radial-gradient(ellipse at 90% 80%,rgba(52,168,83,.15),transparent 50%),var(--bg)}
-  #preloader,#wipe{display:none!important}
-}
+html.rm *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html.rm .js .reveal,html.rm.js .reveal{opacity:1;translate:none}
+html.rm .marquee__track{flex-wrap:wrap;width:auto;justify-content:center}html.rm .marquee .pill[aria-hidden]{display:none}
+html.rm .chip{position:static;margin:4px;display:inline-block}html.rm .hero__media{display:block;text-align:center}
+html.rm .hero{background:radial-gradient(ellipse at 20% 0,rgba(43,47,199,.55),transparent 60%),radial-gradient(ellipse at 90% 80%,rgba(52,168,83,.15),transparent 50%),var(--bg)}
+html.rm #preloader,html.rm #wipe{display:none!important}
+.motion-toggle{margin-left:12px}
