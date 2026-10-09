@@ -112,13 +112,19 @@ faqs:
 <section class="section section--alt" id="results">
   <div class="wrap">
     <h2 class="reveal">Results</h2>
-    <div class="cards">
-      <!-- TODO: real case study -->
-      <div class="card glass card--soon reveal"><span class="pill pill--yellow">Coming soon</span><h3>Case study</h3><p>Real client results will appear here once confirmed.</p></div>
-      <!-- TODO: real case study -->
-      <div class="card glass card--soon reveal"><span class="pill pill--yellow">Coming soon</span><h3>Case study</h3><p>Real client results will appear here once confirmed.</p></div>
+    {% assign c = site.data.case_studies.first %}
+    <article class="glass case reveal">
+      <span class="pill pill--green">Case study</span>
+      <h3>{{ c.title }}</h3>
+      <div class="stats">{% for r in c.results %}<div class="stat glass"><b>{{ r.n }}</b><span>{{ r.l }}</span></div>{% endfor %}</div>
+      <p class="muted">{{ c.client }}</p>
+    </article>
+    <div class="quotes">
+      {% for r in site.data.reviews limit:3 %}
+      <figure class="glass quote reveal"><p class="quote__stars" aria-label="5.0 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733; <span>5.0</span></p><blockquote><p>&ldquo;{{ r.text | truncate: 230 }}&rdquo;</p></blockquote><figcaption>Upwork review &middot; {{ r.date }}</figcaption></figure>
+      {% endfor %}
     </div>
-    <p class="reveal"><a href="/results/" data-event="cta_click" data-cta-text="See all results" data-link-location="home_results">See the results page &rarr;</a></p>
+    <p class="reveal"><a href="/results/" data-event="cta_click" data-cta-text="See all results" data-link-location="home_results">See the full case study and all 7 reviews &rarr;</a></p>
   </div>
 </section>
 

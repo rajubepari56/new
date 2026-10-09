@@ -1,0 +1,17 @@
+# Only figures taken from the case-study slides. Client name is withheld.
+- title: 4x ROAS and 120% sales growth for an e-commerce roofing and insulation supplier
+  client: E-commerce roofing and insulation supplier, Belgium
+  tools: [Google Ads, Shopping, Performance Max, Search, Merchant Center, tROAS bidding]
+  challenge: Grow online sales for a supplier that serves both professional contractors and individual customers, while keeping ad spend profitable.
+  work:
+    - Rebuilt the account around the product catalog and search intent after a full audit.
+    - Optimized the Merchant Center feed with rewritten titles, richer attributes and custom labels based on product margin and stock levels.
+    - Split Shopping and Performance Max campaigns by product family and margin tier, using Performance Max only where it added conversions.
+    - Launched non-brand Search campaigns for best-selling products, with strict negative lists and ROAS guardrails on competitor terms.
+    - Switched to value-based bidding (tROAS) fed with first-party audience signals and high-intent segments.
+    - Tightened geo-targeting and ad scheduling to top-converting provinces and the hours contractors are most active.
+  results:
+    - { n: "120%", l: "improvement in sales" }
+    - { n: "4x", l: "average ROAS" }
+    - { n: "17%", l: "decrease in CPA" }
+  metrics: "Over about 5 months: 59.8K clicks, 3.73M impressions, 1.79K conversions, €54.9K cost."

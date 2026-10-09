@@ -192,3 +192,8 @@ html.rm .chip{position:static;margin:4px;display:inline-block}html.rm .hero__med
 html.rm .hero{background:radial-gradient(ellipse at 20% 0,rgba(43,47,199,.55),transparent 60%),radial-gradient(ellipse at 90% 80%,rgba(52,168,83,.15),transparent 50%),var(--bg)}
 html.rm #preloader,html.rm #wipe{display:none!important}
 .motion-toggle{margin-left:12px}
+
+.case{padding:28px;margin-bottom:22px}.case h3{font-size:1.5rem}.case h4{margin:22px 0 8px;font:600 1.05rem var(--hf)}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin:26px 0}
+.quote{margin:0;padding:22px;display:flex;flex-direction:column;gap:10px}.quote blockquote{margin:0}.quote blockquote p{margin:0;color:var(--text)}
+.quote figcaption{margin-top:auto;font-size:.85rem;color:var(--muted)}.quote__stars{margin:0;color:var(--yellow);letter-spacing:2px}.quote__stars span{color:var(--muted);letter-spacing:0;font-size:.85rem;margin-left:6px}

@@ -8,24 +8,38 @@ permalink: /results/
 <section class="hero hero--sub"><div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Results</span></nav>
   <h1 class="reveal">Results and Case Studies</h1>
-  <p class="lead reveal">I only publish real numbers. Case studies are being prepared with client approval.</p>
+  <p class="lead reveal">Real numbers and real reviews only. Client names are kept private.</p>
 </div></section>
 <section class="section"><div class="wrap">
   <h2 class="reveal">Case studies</h2>
-  <p class="muted">Each case study will cover: client type and country, the challenge, what I did, the real result, and tools used.</p>
-  <div class="cards">
-    <!-- TODO: real case study -->
-    <div class="card glass card--soon reveal"><span class="pill pill--yellow">Coming soon</span><h3>Case study 1</h3><p>Client type, challenge, work done, result and tools.</p></div>
-    <!-- TODO: real case study -->
-    <div class="card glass card--soon reveal"><span class="pill pill--yellow">Coming soon</span><h3>Case study 2</h3><p>Client type, challenge, work done, result and tools.</p></div>
-    <!-- TODO: real case study -->
-    <div class="card glass card--soon reveal"><span class="pill pill--yellow">Coming soon</span><h3>Case study 3</h3><p>Client type, challenge, work done, result and tools.</p></div>
-  </div>
+  {% for c in site.data.case_studies %}
+  <article class="glass case reveal">
+    <span class="pill pill--green">Google Ads &middot; E-commerce</span>
+    <h3>{{ c.title }}</h3>
+    <p class="muted"><strong>Client:</strong> {{ c.client }}</p>
+    <div class="stats">{% for r in c.results %}<div class="stat glass"><b>{{ r.n }}</b><span>{{ r.l }}</span></div>{% endfor %}</div>
+    <h4>The challenge</h4><p>{{ c.challenge }}</p>
+    <h4>What I did</h4>
+    <ul class="ticks">{% for w in c.work %}<li>{{ w }}</li>{% endfor %}</ul>
+    <p class="muted">{{ c.metrics }}</p>
+    <p>{% for t in c.tools %}<span class="pill pill--blue">{{ t }}</span> {% endfor %}</p>
+  </article>
+  {% endfor %}
+  <!-- TODO: add more case studies to _data/case_studies.yml once figures are confirmed -->
+  <div class="card glass card--soon reveal"><span class="pill pill--yellow">More coming</span><p>More case studies will be added here.</p></div>
 </div></section>
 <section class="section section--alt"><div class="wrap">
-  <h2 class="reveal">Client reviews</h2>
-  <!-- TODO: real Upwork reviews (exact text) -->
-  <div class="card glass card--soon reveal"><span class="pill pill--yellow">Coming soon</span><p>Real reviews from my Upwork profile will be shown here.</p>
-  <div class="btn-row"><a class="btn btn--primary" href="{{ site.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="results">See my Upwork profile</a><a class="btn btn--ghost" href="{{ site.socials.linkedin }}" target="_blank" rel="noopener me" data-event="social_click" data-platform="linkedin" data-link-location="results">See my LinkedIn profile</a></div></div>
+  <h2 class="reveal">Client reviews from Upwork</h2>
+  <p class="muted reveal">Seven reviews from my Upwork profile. Client names are not shown. Two clients came back for a second or third project.</p>
+  <div class="quotes">
+    {% for r in site.data.reviews %}
+    <figure class="glass quote reveal">
+      <p class="quote__stars" aria-label="5.0 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733; <span>5.0</span></p>
+      <blockquote><p>&ldquo;{{ r.text }}&rdquo;</p></blockquote>
+      <figcaption>{{ r.project }} &middot; {{ r.date }}{% if r.repeat %} &middot; {{ r.repeat }}{% endif %}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  <div class="btn-row"><a class="btn btn--primary" href="{{ site.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="results">See my Upwork profile</a><a class="btn btn--ghost" href="{{ site.socials.linkedin }}" target="_blank" rel="noopener me" data-event="social_click" data-platform="linkedin" data-link-location="results">See my LinkedIn profile</a></div>
 </div></section>
 {% include cta.html service="a case study like these" loc="results" %}
