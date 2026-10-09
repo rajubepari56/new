@@ -54,3 +54,10 @@
   short: Google Business Profile, citations and local pages that put you in the map pack.
   url: /services/local-seo/
   color: red
+- slug: ai-search-optimization
+  name: AI Search Optimization (AEO, GEO & LLM)
+  group: SEO
+  tag: AEO · GEO
+  short: Get your business understood and cited by AI answers in Google, ChatGPT, Perplexity and more.
+  url: /services/ai-search-optimization/
+  color: green

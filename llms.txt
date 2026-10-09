@@ -1,0 +1,19 @@
+---
+layout: null
+permalink: /llms.txt
+---
+# Raju Bepari
+
+> Google Ads, conversion tracking and web analytics specialist with 7+ years of hands-on experience. Works with US, UK and Australian businesses from Bangladesh (UTC+6).
+
+## Services
+{% for s in site.data.services %}- [{{ s.name }}]({{ site.url }}{{ s.url }}): {{ s.short }}
+{% endfor %}
+## Key pages
+- [Results and case studies]({{ site.url }}/results/)
+- [About]({{ site.url }}/about/)
+- [Contact]({{ site.url }}/contact/)
+
+## Contact
+- WhatsApp: https://wa.me/{{ site.whatsapp }}
+- Email: {{ site.email }}

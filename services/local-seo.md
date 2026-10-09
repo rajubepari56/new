@@ -27,6 +27,7 @@ included:
 - Review request process
 - Call and direction tracking
 - Monthly local report
+- AI search check (see AEO, GEO and LLM optimization)
 diagram_title: How local visibility builds
 diagram:
 - Business profile
@@ -60,9 +61,9 @@ faqs:
 - q: Do you track results?
   a: Yes. I set up call, click and direction tracking so you see real actions.
 related:
+- ai-search-optimization
 - google-ads
 - ga4
-- merchant-center
 cta_title: Get found in your area
 related_title: Pair local SEO with these
 crumb: Local SEO

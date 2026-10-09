@@ -2,18 +2,18 @@
 layout: default
 title: Google Ads & Tracking Services
 crumb: Services
-description: "Eight focused services: Google Ads, GA4, GTM, Meta CAPI, server-side tracking, enhanced conversions, Merchant Center and Local SEO."
+description: "Google Ads, GA4, GTM, Meta CAPI, server-side tracking, enhanced conversions, Merchant Center, Local SEO and AI search optimization (AEO, GEO, LLM)."
 permalink: /services/
 ---
 <section class="hero hero--sub"><div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Services</span></nav>
   <h1 class="reveal">Services for Accurate Ads and Analytics</h1>
-  <p class="lead reveal">Eight focused services in three groups. Pick one, or combine them for a complete setup.</p>
+  <p class="lead reveal">{{ site.data.services | size }} focused services in three groups. Pick one, or combine them for a complete setup.</p>
 </div></section>
 {% assign groups = "Ads,Tracking,SEO" | split: "," %}
 {% for g in groups %}
 <section class="section{% if forloop.index0 == 1 %} section--alt{% endif %}"><div class="wrap">
-  <h2 class="reveal">{% case g %}{% when "Ads" %}Ads and shopping{% when "Tracking" %}Tracking and analytics{% else %}Search visibility{% endcase %}</h2>
+  <h2 class="reveal">{% case g %}{% when "Ads" %}Ads and shopping{% when "Tracking" %}Tracking and analytics{% else %}Search visibility and AI search{% endcase %}</h2>
   <div class="cards">
     {% for s in site.data.services %}{% if s.group == g %}
     <a class="card glass tilt reveal" href="{{ s.url }}"><span class="pill pill--{{ s.color }}">{{ s.tag }}</span><h3>{{ s.name }}</h3><p>{{ s.short }}</p></a>
