@@ -14,7 +14,7 @@ permalink: /results/
   <h2 class="reveal">Case studies</h2>
   {% for c in site.data.case_studies %}
   <article class="glass case reveal">
-    <span class="pill pill--green">Google Ads &middot; E-commerce</span>
+    <span class="pill pill--green">{{ c.tag }}</span>
     <h3>{{ c.title }}</h3>
     <p class="muted"><strong>Client:</strong> {{ c.client }}</p>
     <div class="stats">{% for r in c.results %}<div class="stat glass"><b>{{ r.n }}</b><span>{{ r.l }}</span></div>{% endfor %}</div>
@@ -30,7 +30,7 @@ permalink: /results/
 </div></section>
 <section class="section section--alt"><div class="wrap">
   <h2 class="reveal">Client reviews from Upwork</h2>
-  <p class="muted reveal">Seven reviews from my Upwork profile. Client names are not shown. Two clients came back for a second or third project.</p>
+  <p class="muted reveal">{{ site.data.reviews | size }} reviews from my Upwork profile. Client names are not shown. Some clients came back for a second or third project.</p>
   <div class="quotes">
     {% for r in site.data.reviews %}
     <figure class="glass quote reveal">

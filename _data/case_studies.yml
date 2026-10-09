@@ -1,5 +1,6 @@
 # Only figures taken from the case-study slides. Client name is withheld.
-- title: 4x ROAS and 120% sales growth for an e-commerce roofing and insulation supplier
+- tag: "Google Ads · E-commerce"
+  title: 4x ROAS and 120% sales growth for an e-commerce roofing and insulation supplier
   client: E-commerce roofing and insulation supplier, Belgium
   tools: [Google Ads, Shopping, Performance Max, Search, Merchant Center, tROAS bidding]
   challenge: Grow online sales for a supplier that serves both professional contractors and individual customers, while keeping ad spend profitable.
@@ -15,3 +16,23 @@
     - { n: "4x", l: "average ROAS" }
     - { n: "17%", l: "decrease in CPA" }
   metrics: "Over about 5 months: 59.8K clicks, 3.73M impressions, 1.79K conversions, €54.9K cost."
+
+- tag: "Google Ads · Local business"
+  title: Local Google Ads for a Sydney café, with more store visits at a lower cost
+  client: Café in Surry Hills, Sydney, Australia
+  tools: [Google Ads, Search, Performance Max, Smart campaigns, Google Business Profile, GA4, Looker Studio]
+  challenge: The café already ran a Google Smart Campaign (about $1,200 spent, about $39 a day, 2.39% CTR) that was not delivering the results the owner wanted. The goal was more bookings, calls, directions and store visits, backed by real sales data.
+  work:
+    - Audited the account first, covering structure, targeting, locations, search terms, bidding, budget, ad copy, schedule and competitors, and wrote a campaign plan the owner approved before launch.
+    - Built a new local Search campaign with UTM tracking, location targeting around the café, and an ad schedule that follows opening hours.
+    - Added dedicated ad groups for lunch and breakfast "near me" searches, plus a bid adjustment for the 8 to 10am breakfast window.
+    - Tested Performance Max for store visits, then split it into focused campaigns by theme.
+    - Kept the original Smart Campaign running at the owner's budget while testing, to protect day-to-day trade.
+    - Reviewed conversion tracking, found a Google auto-applied bidding change and reversed it, and flagged the gaps (form submits, click-to-call, enhanced conversions).
+    - Linked Google Analytics and the Business Profile to Google Ads, and cleaned up search terms and AI Max traffic with negative keywords.
+    - Compared weekly sales data from the café with ad results, and built a free Looker Studio dashboard for the owner.
+  results:
+    - { n: "1.5x", l: "weekday daily revenue vs. August (client-reported)" }
+    - { n: "A$0.20", l: "average CPC, down from A$0.37 after the Search rebuild" }
+    - { n: "A$6.64", l: "cost per store visit with Performance Max, vs A$9.13 on Smart (14 days)" }
+  metrics: "Search clicks rose from 328 to 466 across the two-week comparison. Trade figures come from the client's own weekly sales reports; many factors affect trade, and ad spend is one of them."

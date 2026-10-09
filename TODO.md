@@ -22,3 +22,7 @@
 - [ ] Roofing supplier testimonial contains template text ("JDG", "[Your Name]"); not used
 - [ ] Testimonials with names (David V., Jenna T.) not used until confirmed real
 - [ ] PrintifyPro, global sourcing and DTC coffee slides not yet reviewed in full
+
+## Dad and the Frog (Sydney café) case study
+- [ ] Confirm the client agrees to the case study (name is hidden) and that the figures match your reports
+- [ ] Unidentified Google Ads screenshot (Oct 25, 2023 – Oct 9, 2026, $24.8K cost) not used: it predates this engagement

@@ -129,19 +129,22 @@ faqs:
 <section class="section section--alt" id="results">
   <div class="wrap">
     <h2 class="reveal">Results</h2>
-    {% assign c = site.data.case_studies.first %}
-    <article class="glass case reveal">
-      <span class="pill pill--green">Case study</span>
-      <h3>{{ c.title }}</h3>
-      <div class="stats">{% for r in c.results %}<div class="stat glass"><b>{{ r.n }}</b><span>{{ r.l }}</span></div>{% endfor %}</div>
-      <p class="muted">{{ c.client }}</p>
-    </article>
-    <div class="quotes">
-      {% for r in site.data.reviews limit:3 %}
-      <figure class="glass quote reveal"><p class="quote__stars" aria-label="5.0 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733; <span>5.0</span></p><blockquote><p>&ldquo;{{ r.text | truncate: 230 }}&rdquo;</p></blockquote><figcaption>Upwork review &middot; {{ r.date }}</figcaption></figure>
+    <div class="cases">
+      {% for c in site.data.case_studies %}
+      <article class="glass case reveal">
+        <span class="pill pill--green">{{ c.tag }}</span>
+        <h3>{{ c.title }}</h3>
+        <div class="stats">{% for r in c.results %}<div class="stat glass"><b>{{ r.n }}</b><span>{{ r.l }}</span></div>{% endfor %}</div>
+        <p class="muted">{{ c.client }}</p>
+      </article>
       {% endfor %}
     </div>
-    <p class="reveal"><a href="/results/" data-event="cta_click" data-cta-text="See all results" data-link-location="home_results">See the full case study and all 7 reviews &rarr;</a></p>
+    <div class="quotes">
+      {% for r in site.data.reviews limit:3 %}
+      <figure class="glass quote reveal"><p class="quote__stars" aria-label="5.0 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733; <span>5.0</span></p><blockquote><p>&ldquo;{{ r.text | truncatewords: 28 }}&rdquo;</p></blockquote><figcaption>Upwork review &middot; {{ r.date }}</figcaption></figure>
+      {% endfor %}
+    </div>
+    <p class="reveal"><a href="/results/" data-event="cta_click" data-cta-text="See all results" data-link-location="home_results">See the full case studies and all {{ site.data.reviews | size }} reviews &rarr;</a></p>
   </div>
 </section>
 

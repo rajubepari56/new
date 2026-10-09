@@ -206,3 +206,5 @@ html.rm #preloader,html.rm #wipe{display:none!important}
 .hstat:nth-child(2) .bar i{background:linear-gradient(90deg,var(--yellow),var(--green))}.hstat:nth-child(3) .bar i{background:linear-gradient(90deg,var(--green),var(--blue))}
 html.rm .hero-stats .bar i{transform:none!important}
 .addons{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:26px}.addons__h{margin:36px 0 0}
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:22px;margin-bottom:8px}.cases .case{margin-bottom:0}
+.stat b{font-size:clamp(1.5rem,3vw,2.2rem)}
