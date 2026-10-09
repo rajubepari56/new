@@ -24,7 +24,7 @@ included:
 - dataLayer plan and developer spec
 - Triggers, variables and tags
 - Click, form, scroll and call tracking
-- Consent-aware tag firing
+- Consent Mode v2 setup and testing
 - Preview-mode testing
 - Documentation of every tag
 diagram_title: Inside a GTM container

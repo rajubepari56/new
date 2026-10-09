@@ -1,0 +1,15 @@
+- name: Server-side tracking
+  tag: sGTM
+  color: green
+  url: /services/server-side-tracking/
+  text: Data is sent from your own server, so it is cleaner and less affected by browser limits.
+- name: CRM integration
+  tag: CRM
+  color: yellow
+  url: /services/enhanced-offline-conversions/
+  text: Closed deals and lead stages go back to Google Ads and Meta, so bidding learns from real sales.
+- name: Consent Mode v2
+  tag: Privacy
+  color: blue
+  url: /services/google-tag-manager/
+  text: Tags follow each visitor's cookie choice, with consent signals set up and tested before launch.

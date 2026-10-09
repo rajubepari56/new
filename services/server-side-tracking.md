@@ -25,7 +25,7 @@ included:
 - GA4, Google Ads and Meta CAPI clients and tags
 - First-party cookie setup
 - Data cleaning before sending
-- Consent handling
+- Consent Mode v2 handling
 - Monitoring and handover guide
 diagram_title: How server-side tracking flows
 diagram:

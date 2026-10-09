@@ -1,6 +1,7 @@
 # TODO: placeholders to fill
 
 ## Must do before launch
+- [ ] `_config.yml` hero_stats: add your real "Client revenue generated" figure (hidden until set); confirm 200+ projects and 180 five-star reviews
 - [x] WhatsApp number set (8801710992866)
 - [x] `url` set to https://rajubepari.netlify.app (repo must be named rajubepari56.github.io)
 - [ ] `_config.yml`: set `reply_time` (shown on /contact/)

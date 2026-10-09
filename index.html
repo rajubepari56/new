@@ -29,6 +29,14 @@ faqs:
         <a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text='Hi Raju, I need help with Google Ads and conversion tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="hero" data-service="General">{% include icon-wa.html %} WhatsApp Me</a>
         <a class="btn btn--ghost btn--lg" href="/services/" data-event="cta_click" data-cta-text="See Services" data-link-location="hero">See Services</a>
       </div>
+      <div class="hero-stats glass reveal" aria-label="Track record">
+        {% for st in site.hero_stats %}{% if st.count or st.display != "" %}
+        <div class="hstat">
+          <div class="hstat__top"><b{% if st.count %} data-count="{{ st.count }}"{% if st.suffix %} data-suffix="{{ st.suffix }}"{% endif %}{% endif %}>{% if st.count %}{{ st.count }}{{ st.suffix }}{% else %}{{ st.display }}{% endif %}</b><span>{{ st.label }}</span></div>
+          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ st.percent }}" aria-label="{{ st.label }}"><i style="--w:{{ st.percent }}%"></i></div>
+        </div>
+        {% endif %}{% endfor %}
+      </div>
       <p class="trust reveal">{{ site.experience }} &middot; <a href="{{ site.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="hero">View my Upwork profile</a></p>
     </div>
     <div class="hero__media reveal">
@@ -57,11 +65,16 @@ faqs:
     <div class="diagram glass reveal" data-dataflow>
       <ol class="diagram__nodes">
         <li class="diagram__node"><span>Website</span></li>
+        <li class="diagram__node"><span>Consent Mode v2</span></li>
         <li class="diagram__node"><span>Web GTM</span></li>
         <li class="diagram__node"><span>Server GTM</span></li>
         <li class="diagram__node"><span>GA4 · Google Ads · Meta CAPI</span></li>
+        <li class="diagram__node"><span>CRM sales</span></li>
       </ol>
-      <p class="muted center" style="margin:18px 0 0"><code>page_view</code> &rarr; <code>generate_lead</code> &rarr; <code>purchase</code></p>
+      <p class="muted center" style="margin:18px 0 0"><code>page_view</code> &rarr; <code>generate_lead</code> &rarr; <code>purchase</code> &rarr; <code>crm_sale</code></p>
+    </div>
+    <div class="addons">
+      {% for a in site.data.addons %}<a class="card glass tilt reveal" href="{{ a.url }}"><span class="pill pill--{{ a.color }}">{{ a.tag }}</span><h3>{{ a.name }}</h3><p>{{ a.text }}</p></a>{% endfor %}
     </div>
   </div>
 </section>
@@ -73,6 +86,10 @@ faqs:
       {% for s in site.data.services %}
       <a class="card glass tilt reveal" href="{{ s.url }}"><span class="pill pill--{{ s.color }}">{{ s.tag }}</span><h3>{{ s.name }}</h3><p>{{ s.short }}</p></a>
       {% endfor %}
+    </div>
+    <h3 class="addons__h reveal">Built into every tracking setup</h3>
+    <div class="addons">
+      {% for a in site.data.addons %}<a class="card glass tilt reveal" href="{{ a.url }}"><span class="pill pill--{{ a.color }}">{{ a.tag }}</span><h3>{{ a.name }}</h3><p>{{ a.text }}</p></a>{% endfor %}
     </div>
     <div class="stats">
       <div class="stat glass reveal"><b data-count="7" data-suffix="+">7+</b><span>years of experience</span></div>

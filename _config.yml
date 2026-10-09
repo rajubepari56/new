@@ -23,6 +23,12 @@ gtm_id: ""            # e.g. GTM-XXXXXXX
 ga4_id: ""            # e.g. G-XXXXXXXXXX (reference only; configure GA4 inside GTM)
 google_site_verification: ""   # Search Console meta tag content
 
+# Hero progress bars. Set display/count to your real numbers; empty items are hidden.
+hero_stats:
+  - { count: 200, suffix: "+", label: "Projects completed", percent: 100 }
+  - { count: 180, suffix: "", label: "Five-star reviews", percent: 90 }
+  - { display: "", label: "Client revenue generated", percent: 100 }   # TODO: add your real figure, e.g. "$1.2M+"
+
 socials:
   upwork: "https://www.upwork.com/freelancers/~016342bc13e6f8ffb5"
   linkedin: "https://www.linkedin.com/in/rajubepari0-seo-expert/"

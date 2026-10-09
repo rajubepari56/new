@@ -25,7 +25,7 @@ included:
 - Event ID deduplication
 - Customer data matching, hashed
 - Test Events verification
-- Consent-aware firing
+- Consent Mode v2 aware firing
 - Handover notes
 diagram_title: Pixel plus Conversions API
 diagram:

@@ -26,6 +26,7 @@ included:
 - Google Ads and Search Console links
 - Internal traffic and referral exclusions
 - Custom reports and explorations
+- Consent Mode v2 settings check
 - Written findings with a fix list
 diagram_title: From site action to GA4 report
 diagram:
