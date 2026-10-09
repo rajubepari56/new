@@ -2,7 +2,7 @@
 
 ## Must do before launch
 - [x] WhatsApp number set (8801710992866)
-- [x] `url` set to https://rajubepari56.github.io (repo must be named rajubepari56.github.io)
+- [x] `url` set to https://rajubepari.netlify.app (repo must be named rajubepari56.github.io)
 - [ ] `_config.yml`: set `reply_time` (shown on /contact/)
 - [x] Photos added (hero, avatar, og-image generated)
 - [ ] `_config.yml`: `gtm_id`, `ga4_id`, `google_site_verification` (optional)
