@@ -68,4 +68,4 @@ related_title: Services that pair with Google Ads
 crumb: Google Ads Management
 permalink: /services/google-ads/
 ---
-<section class="section"><div class="wrap narrow"><p class="reveal">Working in a specific industry? See <a href="/google-ads-for-junk-removal/">Google Ads management for junk removal companies</a>.</p></div></section>
+<section class="section"><div class="wrap narrow"><p class="reveal">Working in a specific industry? See Google Ads management for {% for i in site.data.industries %}{% if forloop.first %}{% elsif forloop.last %} and {% else %}, {% endif %}<a href="{{ i.url }}">{{ i.name | downcase }}</a>{% endfor %}.</p></div></section>

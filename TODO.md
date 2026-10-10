@@ -36,3 +36,7 @@
 - [ ] Add real certifications to `certifications` in _config.yml (never list Google Partner unless you are one)
 - [ ] Add a real junk removal case study to _data/case_studies.yml when you have one (the page currently says results come from other industries)
 - [ ] Confirm the free strategy call offer and the FAQ answers match how you work
+
+## Contractors landing page (/google-ads-for-contractors/)
+- [ ] Add a real contractor case study to _data/case_studies.yml when available (page says results are from other industries)
+- [ ] Both landing pages now share _layouts/landing.html; new industries = one new page with front matter + an entry in _data/industries.yml
