@@ -87,6 +87,10 @@ faqs:
       <a class="card glass tilt reveal" href="{{ s.url }}"><span class="pill pill--{{ s.color }}">{{ s.tag }}</span><h3>{{ s.name }}</h3><p>{{ s.short }}</p></a>
       {% endfor %}
     </div>
+    <h3 class="addons__h reveal">Services by industry</h3>
+    <div class="addons">
+      {% for i in site.data.industries %}<a class="card glass tilt reveal" href="{{ i.url }}"><span class="pill pill--{% if i.type == 'seo' %}green{% else %}blue{% endif %}">{% if i.type == 'seo' %}Local SEO{% else %}Google Ads{% endif %}</span><h3>{{ i.name }}</h3><p>{{ i.short }}</p></a>{% endfor %}
+    </div>
     <h3 class="addons__h reveal">Built into every tracking setup</h3>
     <div class="addons">
       {% for a in site.data.addons %}<a class="card glass tilt reveal" href="{{ a.url }}"><span class="pill pill--{{ a.color }}">{{ a.tag }}</span><h3>{{ a.name }}</h3><p>{{ a.text }}</p></a>{% endfor %}

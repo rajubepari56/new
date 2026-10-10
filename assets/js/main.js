@@ -104,8 +104,10 @@
   /* ---- nav ---- */
   var tog=d.querySelector('.nav-toggle'),nav=d.getElementById('nav');
   if(tog)tog.addEventListener('click',function(){var o=nav.classList.toggle('open');tog.setAttribute('aria-expanded',o);});
-  var ddb=d.querySelector('.nav__dd-btn');
-  if(ddb)ddb.addEventListener('click',function(){var o=ddb.parentNode.classList.toggle('open');ddb.setAttribute('aria-expanded',o);});
+  d.querySelectorAll('.nav__dd-btn').forEach(function(ddb){
+    ddb.addEventListener('click',function(){var o=ddb.parentNode.classList.toggle('open');ddb.setAttribute('aria-expanded',o);});
+  });
+  d.addEventListener('click',function(e){d.querySelectorAll('.nav__dd.open').forEach(function(x){if(!x.contains(e.target)&&!nav.classList.contains('open')){x.classList.remove('open');var b=x.querySelector('.nav__dd-btn');if(b)b.setAttribute('aria-expanded','false');}});});
 
   /* ---- scroll reveal (stagger via --i among siblings) ---- */
   var items=d.querySelectorAll('.reveal');

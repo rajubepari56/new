@@ -20,6 +20,12 @@
           {% for s in site.data.services %}<li><a href="{{ s.url }}">{{ s.name }}</a></li>{% endfor %}
         </ul>
       </div>
+      <div class="nav__dd">
+        <button class="nav__dd-btn nav__dd-btn--text" type="button" aria-expanded="false" aria-haspopup="true">Industries <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <ul class="nav__menu">
+          {% for i in site.data.industries %}<li><a href="{{ i.url }}"{% if page.url == i.url %} aria-current="page"{% endif %}>{{ i.name }}</a></li>{% endfor %}
+        </ul>
+      </div>
       <a href="/results/"{% if page.url contains "/results/" %} aria-current="page"{% endif %}>Results</a>
       <a href="/about/"{% if page.url contains "/about/" %} aria-current="page"{% endif %}>About</a>
       <a href="/contact/"{% if page.url contains "/contact/" %} aria-current="page"{% endif %}>Contact</a>

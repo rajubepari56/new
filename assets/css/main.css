@@ -297,3 +297,9 @@ html.rm .hero-stats .bar i{transform:none!important}
 .snap figcaption{padding:18px 20px 20px;display:grid;gap:12px}.snap strong{font:700 1.15rem var(--hf)}
 .snap__stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;margin:0}.snap__stats div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:6px}
 .snap__stats dt{color:var(--muted);font-size:.9rem}.snap__stats dd{margin:0;font-weight:700}
+
+.nav__dd-btn--text{display:inline-flex;align-items:center;gap:6px;color:var(--text);font:500 .95rem var(--bf)}
+.footer__grid{grid-template-columns:1.4fr 1fr 1fr 1fr}
+@media (max-width:1100px) and (min-width:861px){.nav{gap:14px}.nav>a,.nav__dd>a,.nav__dd-btn--text{font-size:.9rem}}
+@media (max-width:860px){.footer__grid{grid-template-columns:1fr}}
+@media (min-width:861px){.nav__menu{min-width:340px}}

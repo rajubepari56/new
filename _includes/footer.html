@@ -13,6 +13,10 @@
       <ul class="footer__list">{% for s in site.data.services %}<li><a href="{{ s.url }}">{{ s.name }}</a></li>{% endfor %}</ul>
     </div>
     <div>
+      <h2 class="footer__h">Industries</h2>
+      <ul class="footer__list">{% for i in site.data.industries %}<li><a href="{{ i.url }}">{{ i.name }}</a></li>{% endfor %}</ul>
+    </div>
+    <div>
       <h2 class="footer__h">Site</h2>
       <ul class="footer__list">
         <li><a href="/">Home</a></li><li><a href="/services/">Services</a></li><li><a href="/results/">Results</a></li><li><a href="/about/">About</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy Policy</a></li>
