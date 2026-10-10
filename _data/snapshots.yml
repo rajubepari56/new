@@ -15,3 +15,15 @@
   alt: "Google Ads overview for July 1 to 31, 2026, showing 28 conversions, $32.76 cost per conversion, 15 lead form submissions and 6 phone call leads."
   headline: "28 conversions: 15 forms and 6 calls"
   stats: [["Conversions", "28"], ["Cost / conv.", "$32.76"], ["Lead form submits", "15"], ["Phone call leads", "6"]]
+- img: /assets/images/ads-snapshot-5.webp
+  alt: "Google Ads overview for July 1 to 31, 2026, showing cost $983, cost per conversion $61.44, 16 conversions and 26 phone calls."
+  headline: "16 conversions and 26 phone calls"
+  stats: [["Cost", "$983"], ["Conversions", "16"], ["Phone calls", "26"], ["Cost / conv.", "$61.44"]]
+- img: /assets/images/ads-snapshot-6.webp
+  alt: "Google Ads overview for July 1 to 31, 2026, showing cost $2.71K, 197 phone calls, 75 purchases or sales and 487.99 conversions."
+  headline: "75 purchases and 197 phone calls"
+  stats: [["Cost", "$2.71K"], ["Phone calls", "197"], ["Purchases/Sales", "75"], ["Conversions", "487.99"]]
+- img: /assets/images/ads-snapshot-7.webp
+  alt: "Google Ads overview for July 1 to 31, 2026, showing cost $1.6K, 22 conversions, 55 phone calls and $72.95 cost per conversion."
+  headline: "22 conversions and 55 phone calls"
+  stats: [["Cost", "$1.6K"], ["Conversions", "22"], ["Phone calls", "55"], ["Cost / conv.", "$72.95"]]
