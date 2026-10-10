@@ -73,6 +73,20 @@
     mt.addEventListener('click',function(){try{localStorage.setItem('rb_motion',reduce?'full':'reduced');}catch(_){}location.reload();});
   }
 
+  /* ---- floating message widget ---- */
+  var mw=d.getElementById('msgw'),mb=d.getElementById('msgw-btn'),mp=d.getElementById('msgw-panel');
+  if(mw&&mb&&mp){
+    var setOpen=function(o,focus){
+      mp.hidden=!o;mb.setAttribute('aria-expanded',o?'true':'false');
+      if(o){var f=mp.querySelector('a');if(f&&focus)f.focus();}else if(focus)mb.focus();
+    };
+    mb.addEventListener('click',function(){setOpen(mp.hidden,true);});
+    mp.querySelector('.msgw__close').addEventListener('click',function(){setOpen(false,true);});
+    d.addEventListener('keydown',function(e){if(e.key==='Escape'&&!mp.hidden)setOpen(false,true);});
+    d.addEventListener('click',function(e){if(!mp.hidden&&!mw.contains(e.target))setOpen(false,false);});
+    mp.addEventListener('click',function(e){if(e.target.closest('a'))setTimeout(function(){setOpen(false,false);},50);});
+  }
+
   /* ---- nav ---- */
   var tog=d.querySelector('.nav-toggle'),nav=d.getElementById('nav');
   if(tog)tog.addEventListener('click',function(){var o=nav.classList.toggle('open');tog.setAttribute('aria-expanded',o);});

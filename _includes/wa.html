@@ -1,1 +1,1 @@
-{%- assign _t = include.text | default: "Hi Raju, I need help with Google Ads" -%}https://wa.me/{{ site.whatsapp }}?text={{ _t | uri_escape }}
+{%- assign _t = include.text | default: "Hi Raju, I need help with Google Ads" -%}https://wa.me/{{ site.whatsapp }}?text={{ _t | uri_escape | replace: "&", "%26" | replace: "#", "%23" }}
