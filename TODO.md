@@ -49,3 +49,4 @@
 - [ ] Tell me the industry and country of each of the 4 snapshots (and whether you can say it) so I can add context
 - [ ] The "Feb 21, 2002 - Jun 16, 2025 / 12.2M clicks" screenshot was NOT used (impossible start date, duplicated Clicks tile)
 - [ ] "Clark Boyd Consulting" account screenshot (Apr 2015 - Feb 2025, $1.65M, 455.62% ROAS) NOT used: it is not your account name and starts before your engagement. If it is a client account you manage, tell me since when, what you did and whether the client allows it (name and email would be cropped)
+- [ ] Café case study: replace/add the all-time screenshots with engagement-period ones (Jul 23 - Oct 10, 2026) when available

@@ -36,3 +36,8 @@
     - { n: "A$0.20", l: "average CPC, down from A$0.37 after the Search rebuild" }
     - { n: "A$6.64", l: "cost per store visit with Performance Max, vs A$9.13 on Smart (14 days)" }
   metrics: "Search clicks rose from 328 to 466 across the two-week comparison. Trade figures come from the client's own weekly sales reports; many factors affect trade, and ad spend is one of them."
+  screens_title: "Account overview, all time (Oct 25, 2023 – Oct 10, 2026)"
+  screens_note: "These are the account's all-time totals. They include the owner's earlier campaigns, before my work began on Jul 23, 2026, so they are not the result of my work alone."
+  screens:
+    - { img: /assets/images/cafe-account-1.webp, w: 881, h: 519, alt: "Google Ads overview, all time Oct 25, 2023 to Oct 10, 2026, showing 6.45M impressions, 99.3K clicks, 27.6K conversions and $24.9K cost.", cap: "6.45M impressions · 99.3K clicks · 27.6K conversions · $24.9K cost" }
+    - { img: /assets/images/cafe-account-2.webp, w: 881, h: 519, alt: "Google Ads overview, all time Oct 25, 2023 to Oct 10, 2026, showing 27.6K conversions, 3.64K store visits, $0.25 average CPC and $24.9K cost.", cap: "27.6K conversions · 3.64K store visits · $0.25 average CPC · $24.9K cost" }

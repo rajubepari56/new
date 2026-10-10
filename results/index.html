@@ -22,6 +22,11 @@ permalink: /results/
     <h4>What I did</h4>
     <ul class="ticks">{% for w in c.work %}<li>{{ w }}</li>{% endfor %}</ul>
     <p class="muted">{{ c.metrics }}</p>
+    {% if c.screens %}
+    <h4>{{ c.screens_title }}</h4>
+    <p class="muted">{{ c.screens_note }}</p>
+    <div class="snaps">{% for sc in c.screens %}<figure class="glass snap"><img src="{{ sc.img }}" width="{{ sc.w }}" height="{{ sc.h }}" loading="lazy" alt="{{ sc.alt }}"><figcaption><span class="muted">{{ sc.cap }}</span></figcaption></figure>{% endfor %}</div>
+    {% endif %}
     <p>{% for t in c.tools %}<span class="pill pill--blue">{{ t }}</span> {% endfor %}</p>
   </article>
   {% endfor %}
