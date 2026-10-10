@@ -1,0 +1,29 @@
+---
+layout: default
+title: Thank You
+crumb: Thank You
+description: Thanks for contacting Raju Bepari. Your message was sent.
+permalink: /thank-you/
+noindex: true
+sitemap: false
+---
+<section class="hero hero--sub"><div class="wrap narrow">
+  <p class="eyebrow">&gt; message_sent</p>
+  <h1 id="ty-title">Thank you, your message was sent</h1>
+  <p class="lead" id="ty-lead">I will reply to you personally{% if site.reply_time != "" %}, usually within {{ site.reply_time }}{% endif %}. For the fastest answer you can also message me on WhatsApp.</p>
+</div></section>
+<section class="section"><div class="wrap narrow">
+  <div class="glass form-card" id="ty-box" hidden>
+    <h2>Your details</h2>
+    <p class="muted">This is what you sent me.</p>
+    <dl class="entries" id="ty-entries"></dl>
+  </div>
+  <div id="ty-empty" class="glass form-card" hidden>
+    <p>There are no form details to show here. If you just sent a message, it was received. If not, you can send one from the contact page.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text='Hi Raju, I just sent the contact form on your website' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="thank_you" data-service="General">{% include icon-wa.html %} Message me on WhatsApp</a>
+    <a class="btn btn--ghost btn--lg" href="/" data-event="cta_click" data-cta-text="Back to Home" data-link-location="thank_you">Back to Home</a>
+  </div>
+</div></section>
+<script src="/assets/js/thank-you.js" defer></script>

@@ -208,3 +208,19 @@ html.rm .hero-stats .bar i{transform:none!important}
 .addons{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:26px}.addons__h{margin:36px 0 0}
 .cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:22px;margin-bottom:8px}.cases .case{margin-bottom:0}
 .stat b{font-size:clamp(1.5rem,3vw,2.2rem)}
+
+/* contact form */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.contact-wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start}.contact-side{display:grid;gap:18px}.contact-side .glass{padding:24px}
+.form-card{padding:clamp(20px,3vw,34px)}.form-card h2{margin-bottom:6px}
+.f{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f label{font-weight:500;font-size:.95rem}.f label b{color:var(--yellow)}.f small{color:var(--muted);font-size:.8rem}
+.f input:not([type=checkbox]),.f select,.f textarea{width:100%;background:rgba(10,11,30,.7);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit}
+.f select{appearance:auto}.f textarea{resize:vertical;min-height:130px}
+.f input:focus,.f select:focus,.f textarea:focus{outline:3px solid var(--yellow);outline-offset:1px;border-color:transparent}
+.f input:user-invalid,.f select:user-invalid,.f textarea:user-invalid{border-color:var(--red)}
+.f--check{flex-direction:row;align-items:flex-start;gap:10px}.f--check input{margin-top:5px;width:18px;height:18px;flex:none;accent-color:var(--green)}
+.hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+.form-status{margin:0 0 14px;padding:12px 14px;border-radius:12px;background:rgba(234,67,53,.15);border:1px solid var(--red)}
+.entries{display:grid;grid-template-columns:minmax(120px,200px) 1fr;gap:10px 18px;margin:18px 0 0}.entries dt{color:var(--muted)}.entries dd{margin:0;overflow-wrap:anywhere;white-space:pre-wrap}
+@media (max-width:860px){.contact-wrap,.f-row{grid-template-columns:1fr}.entries{grid-template-columns:1fr;gap:2px}.entries dd{margin-bottom:10px}}

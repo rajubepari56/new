@@ -26,3 +26,8 @@
 ## Dad and the Frog (Sydney café) case study
 - [ ] Confirm the client agrees to the case study (name is hidden) and that the figures match your reports
 - [ ] Unidentified Google Ads screenshot (Oct 25, 2023 – Oct 9, 2026, $24.8K cost) not used: it predates this engagement
+
+## Contact form (Netlify Forms)
+- [ ] After deploying, open Netlify > Forms and confirm the form "contact" is detected
+- [ ] Netlify > Forms > Settings & usage > Form notifications > Add notification > Email to rajubepari56@gmail.com
+- [ ] Add GTM trigger for dataLayer event `generate_lead` (params: form_name, service_name) and mark it a GA4 Key Event

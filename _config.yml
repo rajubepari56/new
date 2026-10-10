@@ -16,7 +16,7 @@ whatsapp: "8801710992866"
 email: rajubepari56@gmail.com
 experience: "7+ years"
 timezone: "UTC+6 (Bangladesh)"
-reply_time: "TODO: set reply time"   # shown on /contact/ as "Usually replies within ..."
+reply_time: ""   # e.g. "a few hours". Leave empty to hide the "Usually replies within ..." line
 
 # Tracking IDs. Leave empty to disable. GTM loads only if gtm_id is set.
 gtm_id: ""            # e.g. GTM-XXXXXXX

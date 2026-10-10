@@ -54,4 +54,5 @@ layout: default
 </div></section>
 
 {{ content }}
-{% include cta.html service=svc title=page.cta_title loc="service_page" %}
+{% assign slug = page.url | split: "/" | last %}
+{% include cta.html service=svc title=page.cta_title loc="service_page" form_slug=slug %}
