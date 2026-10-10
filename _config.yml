@@ -30,7 +30,6 @@ hero_stats:
   - { display: "", label: "Client revenue generated", percent: 100 }   # TODO: add your real figure, e.g. "$1.2M+"
 
 socials:
-  upwork: "https://www.upwork.com/freelancers/~016342bc13e6f8ffb5"
   linkedin: "https://www.linkedin.com/in/rajubepari0-seo-expert/"
   facebook: "https://www.facebook.com/rajubepari0/"
   instagram: "https://www.instagram.com/rajubepari0"
