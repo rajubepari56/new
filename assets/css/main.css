@@ -142,8 +142,19 @@ html.wipe-cover #wipe{transform:none;transition:none}
 .cursor-dot,.cursor-ring{position:fixed;left:0;top:0;z-index:300;pointer-events:none;border-radius:50%;will-change:transform}
 .cursor-dot{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--yellow)}
 .cursor-ring{width:34px;height:34px;margin:-17px 0 0 -17px;border:1.5px solid rgba(245,246,255,.6);transition:width .2s,height .2s,margin .2s,background .2s}
-.cursor-ring.hot{width:56px;height:56px;margin:-28px 0 0 -28px;background:rgba(66,133,244,.15)}
-body.cursor-on,body.cursor-on a,body.cursor-on button,body.cursor-on summary{cursor:none}
+.cursor-ring{display:grid;place-items:center;transition:width .2s,height .2s,margin .2s,background .2s,opacity .15s,border-color .2s}
+.cursor-ring:after{content:"";width:26px;height:26px;background:center/contain no-repeat;opacity:0;transition:opacity .15s}
+.cursor-ring[data-state=card]{width:56px;height:56px;margin:-28px 0 0 -28px;background:rgba(66,133,244,.15)}
+.cursor-ring[data-state=link],.cursor-ring[data-state=ext],.cursor-ring[data-state=select]{width:54px;height:54px;margin:-27px 0 0 -27px;background:var(--yellow);border-color:transparent}
+.cursor-ring[data-state=link]:after{opacity:1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230A0B1E'%3E%3Cpath d='M9 11.24V7.5a2.5 2.5 0 0 1 5 0v3.74c1.21-.81 2-2.18 2-3.74a4.5 4.5 0 0 0-9 0c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26a1.2 1.2 0 0 0-.54-.11H13v-6a1.5 1.5 0 0 0-3 0v10.74l-3.43-.72a1 1 0 0 0-.24-.03c-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.77-5.21c.01-.05.01-.1.01-.16 0-.61-.34-1.13-.84-1.4z'/%3E%3C/svg%3E")}
+.cursor-ring[data-state=ext]:after{opacity:1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A0B1E' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17L17 7M8 7h9v9'/%3E%3C/svg%3E")}
+.cursor-ring[data-state=select]:after{opacity:1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A0B1E' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")}
+.cursor-ring[data-state=text]{opacity:0!important}
+body:has(.cursor-ring[data-state=text]) .cursor-dot{opacity:0!important}
+.cursor-ring.down{width:40px;height:40px;margin:-20px 0 0 -20px}
+body.cursor-on,body.cursor-on a,body.cursor-on button,body.cursor-on summary,body.cursor-on label,body.cursor-on [role=button]{cursor:none}
+body.cursor-on input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]),body.cursor-on textarea{cursor:text}
+body.cursor-on select,body.cursor-on input[type=checkbox],body.cursor-on input[type=radio],body.cursor-on input[type=submit]{cursor:pointer}
 /* tilt + glow */
 .tilt{position:relative;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .15s ease-out,box-shadow .25s,border-color .25s;transform-style:preserve-3d}
 .tilt:before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(66,133,244,.22),transparent 60%);opacity:0;transition:opacity .25s;pointer-events:none}
