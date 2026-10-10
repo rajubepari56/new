@@ -33,7 +33,6 @@
     var ev=el.getAttribute('data-event'),loc=el.getAttribute('data-link-location')||'',p={event:ev};
     if(ev==='whatsapp_click'){p.link_location=loc;p.service_name=el.getAttribute('data-service')||'General';p.page_path=location.pathname;}
     else if(ev==='email_click'){p.link_location=loc;p.page_path=location.pathname;}
-    else if(ev==='upwork_click'){p.link_location=loc;}
     else if(ev==='social_click'){p.platform=el.getAttribute('data-platform')||'';}
     else if(ev==='cta_click'){p.cta_text=el.getAttribute('data-cta-text')||el.textContent.trim();p.link_location=loc;}
     else return;
