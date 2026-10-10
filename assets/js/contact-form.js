@@ -15,10 +15,15 @@
     }
   } catch (e) {}
 
+  try {
+    var src = new URLSearchParams(location.search).get('source');
+    if (src) form.elements['source'].value = src.replace(/[^a-z0-9_-]/gi, '').slice(0, 60);
+  } catch (e) {}
+
   var LABELS = {
     name: 'Full name', email: 'Email', phone: 'WhatsApp / phone', country: 'Country',
     company: 'Business or company', website: 'Website', service: 'Service needed',
-    preferred_contact: 'Best way to reach you', budget: 'Monthly marketing budget', message: 'Project details', consent: 'Agreed to be contacted'
+    preferred_contact: 'Best way to reach you', budget: 'Monthly marketing budget', message: 'Project details', source: 'Came from', consent: 'Agreed to be contacted'
   };
 
   function say(msg) { status.textContent = msg; status.hidden = !msg; }

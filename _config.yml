@@ -29,6 +29,9 @@ hero_stats:
   - { count: 180, suffix: "", label: "Five-star reviews", percent: 90 }
   - { display: "", label: "Client revenue generated", percent: 100 }   # TODO: add your real figure, e.g. "$1.2M+"
 
+# Real certifications only, e.g. "Google Ads Search certified". Never list Google Partner unless you are one.
+certifications: []
+
 socials:
   upwork: "https://www.upwork.com/freelancers/~016342bc13e6f8ffb5"
   linkedin: "https://www.linkedin.com/in/rajubepari0-seo-expert/"

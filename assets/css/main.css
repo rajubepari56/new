@@ -279,3 +279,15 @@ html.rm .hero-stats .bar i{transform:none!important}
 .totop__bar{fill:none;stroke:var(--yellow);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100}
 .totop__arrow{position:relative}
 @media (max-width:860px){.totop{right:18px;bottom:88px;width:44px;height:44px}}
+
+/* landing page */
+.hero--landing h1{max-width:18ch}.flowcard{padding:26px}
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:14px;position:relative}
+.flow li{display:flex;gap:14px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(10,11,30,.5)}
+.flow li:not(:last-child):after{content:"";position:absolute;left:31px;margin-top:62px;width:2px;height:16px;background:linear-gradient(var(--blue),var(--green))}
+.flow__n{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--indigo);font:700 .95rem var(--hf)}
+.flow small{display:block;color:var(--muted)}
+.trust-list{margin-top:28px}.quote-card{padding:28px}
+.benefits{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.benefits .glass{padding:22px;text-align:left}
+.benefits h3{margin-bottom:6px}
+.flowcard{align-self:center}
