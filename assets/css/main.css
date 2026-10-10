@@ -269,3 +269,13 @@ html.rm .hero-stats .bar i{transform:none!important}
 .form-status a{color:var(--yellow);font-weight:600;text-decoration:underline}
 .form-note{font-size:.85rem;margin:4px 0 16px}
 .form-note a,.form-status a{text-decoration:underline}
+
+/* back to top */
+.totop{position:fixed;right:22px;bottom:98px;z-index:54;width:48px;height:48px;border:0;border-radius:50%;background:var(--bg-2);color:var(--text);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 26px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s,background .2s}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop:hover{background:var(--indigo)}
+.totop__ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.totop__track{fill:none;stroke:rgba(167,169,214,.25);stroke-width:2.5}
+.totop__bar{fill:none;stroke:var(--yellow);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100}
+.totop__arrow{position:relative}
+@media (max-width:860px){.totop{right:18px;bottom:88px;width:44px;height:44px}}

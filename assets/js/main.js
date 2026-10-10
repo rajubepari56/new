@@ -87,6 +87,20 @@
     mp.addEventListener('click',function(e){if(e.target.closest('a'))setTimeout(function(){setOpen(false,false);},50);});
   }
 
+  /* ---- back to top ---- */
+  var tt=d.getElementById('totop');
+  if(tt){
+    var bar=tt.querySelector('.totop__bar'),tick=false;
+    var upd=function(){tick=false;var y=w.pageYOffset||root.scrollTop,h=root.scrollHeight-w.innerHeight;
+      tt.classList.toggle('show',y>500);if(bar&&h>0)bar.style.strokeDashoffset=String(100-Math.min(100,y/h*100));};
+    w.addEventListener('scroll',function(){if(!tick){tick=true;w.requestAnimationFrame(upd);}},{passive:true});
+    upd();
+    tt.addEventListener('click',function(){
+      if(RB.lenis)RB.lenis.scrollTo(0,{duration:1.1});else w.scrollTo({top:0,behavior:'smooth'});
+      var s=d.getElementById('skip-top')||d.querySelector('.skip');if(s)setTimeout(function(){tt.blur();},300);
+    });
+  }
+
   /* ---- nav ---- */
   var tog=d.querySelector('.nav-toggle'),nav=d.getElementById('nav');
   if(tog)tog.addEventListener('click',function(){var o=nav.classList.toggle('open');tog.setAttribute('aria-expanded',o);});
