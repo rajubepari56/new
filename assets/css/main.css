@@ -224,3 +224,14 @@ html.rm .hero-stats .bar i{transform:none!important}
 .form-status{margin:0 0 14px;padding:12px 14px;border-radius:12px;background:rgba(234,67,53,.15);border:1px solid var(--red)}
 .entries{display:grid;grid-template-columns:minmax(120px,200px) 1fr;gap:10px 18px;margin:18px 0 0}.entries dt{color:var(--muted)}.entries dd{margin:0;overflow-wrap:anywhere;white-space:pre-wrap}
 @media (max-width:860px){.contact-wrap,.f-row{grid-template-columns:1fr}.entries{grid-template-columns:1fr;gap:2px}.entries dd{margin-bottom:10px}}
+
+/* header top bar */
+.topbar{background:#07081a;border-bottom:1px solid var(--line)}
+.topbar__in{display:flex;align-items:center;justify-content:space-between;min-height:38px}
+.topbar__mail{color:var(--muted);font-size:.85rem}
+.socials--top{margin:0;gap:6px}.socials--top a{width:30px;height:30px;border-color:transparent;color:var(--muted)}.socials--top a:hover{color:var(--text);border-color:var(--line)}
+.socials--top .ico{width:16px;height:16px}
+@media (max-width:860px){
+  .topbar__mail{display:none}.topbar__in{justify-content:center}
+  .nav{inset:107px 0 auto 0;max-height:calc(100vh - 107px)}
+}

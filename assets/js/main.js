@@ -172,7 +172,7 @@
         RB._cbs.forEach(function(f){f(l);});
         d.addEventListener('click',function(e){
           var a=e.target.closest('a[href^="#"]');if(!a||a.getAttribute('href').length<2)return;
-          var t=d.querySelector(a.getAttribute('href'));if(t){e.preventDefault();l.scrollTo(t,{offset:-80});}
+          var t=d.querySelector(a.getAttribute('href'));if(t){e.preventDefault();l.scrollTo(t,{offset:-120});}
         });
       }).catch(function(){});
     });

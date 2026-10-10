@@ -5,13 +5,6 @@
   short: Search, Shopping and Performance Max campaigns built around real leads and sales, not clicks.
   url: /services/google-ads/
   color: blue
-- slug: merchant-center
-  name: Google Merchant Center
-  group: Ads
-  tag: Merchant Center
-  short: Fix suspensions and product disapprovals. Set up feeds that get approved and stay approved.
-  url: /services/merchant-center/
-  color: yellow
 - slug: ga4
   name: GA4 Setup & Audit
   group: Tracking
@@ -46,6 +39,13 @@
   tag: Enhanced Conversions
   short: Send hashed first-party data and CRM outcomes back to Google Ads so bidding learns from real revenue.
   url: /services/enhanced-offline-conversions/
+  color: yellow
+- slug: merchant-center
+  name: Google Merchant Center
+  group: Ads
+  tag: Merchant Center
+  short: Fix suspensions and product disapprovals. Set up feeds that get approved and stay approved.
+  url: /services/merchant-center/
   color: yellow
 - slug: local-seo
   name: Local SEO

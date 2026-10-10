@@ -33,8 +33,7 @@ permalink: /contact/
       <div class="f-row">
         <div class="f"><label for="f-service">Service you need <b>*</b></label>
           <select id="f-service" name="service" required>
-            <option value="" selected disabled>Choose a service</option>
-            {% for s in site.data.services %}<option value="{{ s.name | escape }}" data-slug="{{ s.slug }}">{{ s.name }}</option>{% endfor %}
+            {% for s in site.data.services %}<option value="{{ s.name | escape }}" data-slug="{{ s.slug }}"{% if forloop.first %} selected{% endif %}>{{ s.name }}</option>{% endfor %}
             <option value="Not sure yet / something else">Not sure yet / something else</option>
           </select></div>
         <div class="f"><label for="f-contact">Best way to reach you <b>*</b></label>
@@ -43,6 +42,15 @@ permalink: /contact/
             <option>WhatsApp</option><option>Email</option><option>Either is fine</option>
           </select></div>
       </div>
+      <div class="f"><label for="f-budget">Monthly marketing budget</label>
+        <select id="f-budget" name="budget">
+          <option value="" selected>Prefer not to say (optional)</option>
+          <option value="$1,000 / month">$1,000 / month</option>
+          <option value="$2,000 / month">$2,000 / month</option>
+          <option value="$5,000 / month">$5,000 / month</option>
+          <option value="$10,000 / month">$10,000 / month</option>
+          <option value="More than $10,000 / month">More than $10,000 / month</option>
+        </select><small>Optional. Roughly what you plan to spend on marketing or ads each month.</small></div>
       <div class="f"><label for="f-msg">Tell me about your project <b>*</b></label><textarea id="f-msg" name="message" rows="6" required minlength="10" placeholder="What do you sell, what do you want to track or improve, and which tools do you use today?"></textarea></div>
       <div class="f f--check"><input id="f-consent" name="consent" type="checkbox" value="Agreed" required><label for="f-consent">I agree that Raju may use these details to reply to me. See the <a href="/privacy/">Privacy Policy</a>. <b>*</b></label></div>
       <p id="form-status" class="form-status" role="alert" aria-live="assertive" hidden></p>
