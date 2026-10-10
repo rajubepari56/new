@@ -5,8 +5,8 @@ layout: default
 <section class="hero hero--sub hero--landing">
   <div class="wrap grid-2">
     <div>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/services/google-ads/">Google Ads</a> / <span>{{ page.crumb }}</span></nav>
-      <p class="eyebrow">&gt; google_ads --industry={{ page.industry_key }}</p>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="{{ page.parent_url | default: '/services/google-ads/' }}">{{ page.parent_label | default: 'Google Ads' }}</a> / <span>{{ page.crumb }}</span></nav>
+      <p class="eyebrow">&gt; {{ page.cmd | default: "google_ads" }} --industry={{ page.industry_key }}</p>
       <h1 class="reveal">{{ page.h1 }}</h1>
       <p class="lead reveal">{{ page.lead }}</p>
       <div class="btn-row reveal">
@@ -15,7 +15,7 @@ layout: default
       </div>
       <p class="trust">{{ site.experience }} of hands-on experience &middot; {{ site.hero_stats[0].count }}{{ site.hero_stats[0].suffix }} projects &middot; {{ site.hero_stats[1].count }} five-star reviews</p>
     </div>
-    <div class="glass reveal flowcard" aria-label="How a search becomes a booked job">
+    <div class="glass reveal flowcard" aria-label="{{ page.flow_label | default: 'How a search becomes a booked job' }}">
       <ol class="flow">
         {% for f in page.flow %}<li><span class="flow__n">{{ forloop.index }}</span><div><strong>{{ f.t }}</strong><small>{{ f.s }}</small></div></li>{% endfor %}
       </ol>
@@ -31,10 +31,10 @@ layout: default
     <div class="stat glass reveal"><b>{{ site.hero_stats[1].count }}</b><span>five-star reviews</span></div>
   </div>
   <ul class="ticks cols-2 trust-list">
-    <li class="reveal">Real Google Ads work for local service businesses and online stores</li>
+    {% if page.trust_points %}{% for t in page.trust_points %}<li class="reveal">{{ t }}</li>{% endfor %}{% else %}<li class="reveal">Real Google Ads work for local service businesses and online stores</li>
     <li class="reveal">Tracking specialist: calls, forms and bookings, not just clicks</li>
     <li class="reveal">Clear weekly or monthly reports in plain English</li>
-    <li class="reveal">Your ad account stays in your name, with full access for you</li>
+    <li class="reveal">Your ad account stays in your name, with full access for you</li>{% endif %}
     {% for c in site.certifications %}<li class="reveal">{{ c }}</li>{% endfor %}
   </ul>
 </div></section>
@@ -59,37 +59,51 @@ layout: default
 <section class="section section--alt" id="services"><div class="wrap">
   <h2 class="reveal">What is included</h2>
   <div class="cards">
-    <div class="card glass reveal"><span class="pill pill--blue">Google Ads</span><h3>Google Ads management</h3><p>{{ page.svc_ads }}</p></div>
+    {% if page.services %}{% for c in page.services %}<div class="card glass reveal"><span class="pill pill--{{ c.color }}">{{ c.pill }}</span><h3>{{ c.t }}</h3><p>{{ c.d }}</p></div>{% endfor %}
+    {% else %}<div class="card glass reveal"><span class="pill pill--blue">Google Ads</span><h3>Google Ads management</h3><p>{{ page.svc_ads }}</p></div>
     <div class="card glass reveal"><span class="pill pill--blue">Research</span><h3>Keyword research</h3><p>{{ page.svc_keywords }}</p></div>
     <div class="card glass reveal"><span class="pill pill--green">Tracking</span><h3>Conversion tracking</h3><p>Calls, click-to-call and quote forms tracked in Google Ads and GA4 with Google Tag Manager.</p></div>
     <div class="card glass reveal"><span class="pill pill--yellow">Budget</span><h3>Budget optimisation</h3><p>Spend moves toward the areas, hours and keywords that bring real jobs.</p></div>
-    <div class="card glass reveal"><span class="pill pill--red">Pages</span><h3>Landing page recommendations</h3><p>Clear advice to turn more visitors into calls and quote requests.</p></div>
+    <div class="card glass reveal"><span class="pill pill--red">Pages</span><h3>Landing page recommendations</h3><p>Clear advice to turn more visitors into calls and quote requests.</p></div>{% endif %}
   </div>
-  <p class="reveal"><a href="/services/google-ads/">See the full Google Ads Management service &rarr;</a></p>
+  <p class="reveal"><a href="{{ page.main_service_url | default: '/services/google-ads/' }}">See the full {{ page.main_service_name | default: 'Google Ads Management' }} service &rarr;</a></p>
 </div></section>
 
 <section class="section" id="benefits"><div class="wrap">
   <h2 class="reveal">What you get</h2>
   <div class="stats benefits">
-    <div class="glass reveal"><h3>More qualified leads</h3><p class="muted">Ads aimed at people ready to book, in your area.</p></div>
+    {% if page.benefits %}{% for x in page.benefits %}<div class="glass reveal"><h3>{{ x.t }}</h3><p class="muted">{{ x.d }}</p></div>{% endfor %}
+    {% else %}<div class="glass reveal"><h3>More qualified leads</h3><p class="muted">Ads aimed at people ready to book, in your area.</p></div>
     <div class="glass reveal"><h3>Better budget control</h3><p class="muted">Clear daily budgets and limits, with no surprise spend.</p></div>
     <div class="glass reveal"><h3>Accurate tracking</h3><p class="muted">See which campaigns and keywords bring calls and forms.</p></div>
-    <div class="glass reveal"><h3>Data-driven optimisation</h3><p class="muted">Changes follow results, not guesses.</p></div>
+    <div class="glass reveal"><h3>Data-driven optimisation</h3><p class="muted">Changes follow results, not guesses.</p></div>{% endif %}
   </div>
 </div></section>
 
 <section class="section section--alt" id="how-it-works"><div class="wrap">
   <h2 class="reveal">How it works</h2>
   <ol class="steps">
-    <li class="glass reveal"><span class="steps__n">1</span><h3>Audit your account</h3><p>I review spend, keywords, locations, ads and tracking.</p></li>
+    {% if page.steps %}{% for x in page.steps %}<li class="glass reveal"><span class="steps__n">{{ forloop.index }}</span><h3>{{ x.t }}</h3><p>{{ x.d }}</p></li>{% endfor %}
+    {% else %}<li class="glass reveal"><span class="steps__n">1</span><h3>Audit your account</h3><p>I review spend, keywords, locations, ads and tracking.</p></li>
     <li class="glass reveal"><span class="steps__n">2</span><h3>Build your strategy</h3><p>We agree on areas, services, budget and goals.</p></li>
     <li class="glass reveal"><span class="steps__n">3</span><h3>Launch or optimise</h3><p>I build new campaigns or fix the ones you have.</p></li>
     <li class="glass reveal"><span class="steps__n">4</span><h3>Track results</h3><p>Calls and forms are tracked back to the ad and keyword.</p></li>
-    <li class="glass reveal"><span class="steps__n">5</span><h3>Improve performance</h3><p>I trim waste and put budget where jobs come from.</p></li>
+    <li class="glass reveal"><span class="steps__n">5</span><h3>Improve performance</h3><p>I trim waste and put budget where jobs come from.</p></li>{% endif %}
   </ol>
 </div></section>
 
 <section class="section" id="results"><div class="wrap">
+  {% if page.results_mode == "measure" %}
+  <h2 class="reveal">{{ page.results_title }}</h2>
+  <p class="muted reveal">{{ page.results_note }}</p>
+  <div class="cards">{% for m in page.measure %}<div class="card glass reveal"><span class="pill pill--{{ m.color }}">{{ m.pill }}</span><h3>{{ m.t }}</h3><p>{{ m.d }}</p></div>{% endfor %}</div>
+  <div class="quotes">
+    {% for r in site.data.reviews limit:3 %}
+    <figure class="glass quote reveal"><p class="quote__stars" aria-label="5.0 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733; <span>5.0</span></p><blockquote><p>&ldquo;{{ r.text | truncatewords: 32 }}&rdquo;</p></blockquote><figcaption>Upwork review &middot; {{ r.date }}</figcaption></figure>
+    {% endfor %}
+  </div>
+  <p class="reveal"><a href="/results/" data-event="cta_click" data-cta-text="See all results" data-link-location="landing_results">See all case studies and reviews &rarr;</a></p>
+  {% else %}
   <h2 class="reveal">Real Google Ads results</h2>
   <p class="muted reveal">{{ page.results_note }}</p>
   <div class="cases">
@@ -109,6 +123,7 @@ layout: default
     {% endif %}{% endfor %}
   </div>
   <p class="reveal"><a href="/results/" data-event="cta_click" data-cta-text="See all results" data-link-location="landing_results">See all case studies and reviews &rarr;</a></p>
+  {% endif %}
 </div></section>
 
 <section class="section section--alt" id="faq"><div class="wrap narrow">
@@ -117,20 +132,19 @@ layout: default
 </div></section>
 
 <section class="section" id="industries"><div class="wrap">
-  <h2 class="reveal">Google Ads by industry</h2>
+  <h2 class="reveal">More by industry</h2>
   <div class="cards">
-    {% for i in site.data.industries %}{% if i.url != page.url %}<a class="card glass tilt reveal" href="{{ i.url }}"><span class="pill pill--blue">Google Ads</span><h3>{{ i.name }}</h3><p>{{ i.short }}</p></a>{% endif %}{% endfor %}
-    <a class="card glass tilt reveal" href="/services/google-ads/"><span class="pill pill--green">Service</span><h3>Google Ads Management</h3><p>The full service for any local or online business.</p></a>
+    {% for i in site.data.industries %}{% if i.url != page.url %}<a class="card glass tilt reveal" href="{{ i.url }}"><span class="pill pill--{% if i.type == 'seo' %}green{% else %}blue{% endif %}">{% if i.type == 'seo' %}Local SEO{% else %}Google Ads{% endif %}</span><h3>{{ i.name }}</h3><p>{{ i.short }}</p></a>{% endif %}{% endfor %}
   </div>
 </div></section>
 
 <section class="cta section" data-glow>
   <div class="wrap cta__in reveal">
-    <h2>Ready to get more leads from Google Ads?</h2>
-    <p class="lead">Book a free Google Ads strategy call. Let's review your campaigns and find opportunities to improve.</p>
+    <h2>{{ page.cta_title | default: "Ready to get more leads from Google Ads?" }}</h2>
+    <p class="lead">{{ page.cta_text | default: "Book a free Google Ads strategy call. Let's review your campaigns and find opportunities to improve." }}</p>
     <div class="btn-row center">
       <a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text=wa_text %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="landing_cta" data-service="{{ page.service_name }}">{% include icon-wa.html %} Book a free strategy call</a>
-      <a class="btn btn--ghost btn--lg" href="/contact/?service=google-ads&source={{ page.source }}" data-event="cta_click" data-cta-text="Use the contact form" data-link-location="landing_cta">Use the contact form</a>
+      <a class="btn btn--ghost btn--lg" href="/contact/?service={{ page.form_service | default: 'google-ads' }}&source={{ page.source }}" data-event="cta_click" data-cta-text="Use the contact form" data-link-location="landing_cta">Use the contact form</a>
     </div>
   </div>
 </section>

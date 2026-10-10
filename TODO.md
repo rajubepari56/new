@@ -40,3 +40,7 @@
 ## Contractors landing page (/google-ads-for-contractors/)
 - [ ] Add a real contractor case study to _data/case_studies.yml when available (page says results are from other industries)
 - [ ] Both landing pages now share _layouts/landing.html; new industries = one new page with front matter + an entry in _data/industries.yml
+
+## Local SEO landing pages
+- [ ] /local-seo-for-contractors/ and /local-seo-for-home-service-businesses/ have no Local SEO case studies yet (the pages say so). Send real Local SEO results (GBP calls, rankings, Search Console) to add them
+- [ ] Confirm the free strategy call offer, FAQ answers and the "Manager access" requirement match how you work

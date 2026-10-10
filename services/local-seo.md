@@ -69,3 +69,4 @@ related_title: Pair local SEO with these
 crumb: Local SEO
 permalink: /services/local-seo/
 ---
+<section class="section"><div class="wrap narrow"><p class="reveal">Working in a specific industry? See {% assign seo = site.data.industries | where: "type", "seo" %}{% for i in seo %}{% if forloop.first %}{% elsif forloop.last %} and {% else %}, {% endif %}<a href="{{ i.url }}">{{ i.name | downcase }}</a>{% endfor %}.</p></div></section>

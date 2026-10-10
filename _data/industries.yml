@@ -1,6 +1,16 @@
-- name: Junk removal businesses
+- name: Google Ads for junk removal businesses
+  type: ads
   url: /google-ads-for-junk-removal/
   short: More qualified calls and booked jobs, with call and form tracking.
-- name: Contractors
+- name: Google Ads for contractors
+  type: ads
   url: /google-ads-for-contractors/
   short: More estimate requests and booked jobs from homeowners ready to hire.
+- name: Local SEO for contractors
+  type: seo
+  url: /local-seo-for-contractors/
+  short: Show up in the map pack and local search when homeowners need a contractor.
+- name: Local SEO for home service businesses
+  type: seo
+  url: /local-seo-for-home-service-businesses/
+  short: Be found for "near me" searches and get more calls and bookings from Google Maps.
