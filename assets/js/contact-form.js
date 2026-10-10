@@ -33,10 +33,28 @@
     say(msg); bad.focus(); return false;
   }
 
+  function showFallback(entries, why) {
+    var text = 'New enquiry from the website\n\n' + entries.map(function (p) { return p[0] + ': ' + p[1]; }).join('\n');
+    status.textContent = '';
+    var msg = document.createElement('span');
+    msg.textContent = 'Sorry, the form could not send right now' + (why ? ' (' + why + ')' : '') + '. Your details are safe on this page. Send them in one tap instead: ';
+    status.appendChild(msg);
+    var mail = document.createElement('a');
+    mail.href = 'mailto:' + (form.getAttribute('data-mail') || '') + '?subject=' + encodeURIComponent('Website enquiry') + '&body=' + encodeURIComponent(text);
+    mail.textContent = 'Email it';
+    var wa = document.createElement('a');
+    wa.href = 'https://wa.me/' + (form.getAttribute('data-wa') || '') + '?text=' + encodeURIComponent(text.slice(0, 1500));
+    wa.target = '_blank'; wa.rel = 'noopener'; wa.textContent = 'WhatsApp it';
+    status.appendChild(mail); status.appendChild(document.createTextNode(' or ')); status.appendChild(wa); status.appendChild(document.createTextNode('.'));
+    status.hidden = false;
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     say('');
     if (!validate()) return;
+    var web = form.elements['website'];
+    if (web && web.value.trim() && !/^https?:\/\//i.test(web.value.trim())) web.value = 'https://' + web.value.trim();
     var data = new FormData(form);
     if (data.get('bot-field')) return;          // honeypot filled: silently stop
     var entries = [];
@@ -49,13 +67,13 @@
     data.forEach(function (v, k) { body.append(k, v); });
     fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
       .then(function (res) {
-        if (!res.ok) throw new Error('bad status ' + res.status);
+        if (!res.ok) throw new Error('error ' + res.status);
         try { sessionStorage.setItem(KEY, JSON.stringify({ t: Date.now(), service: data.get('service') || '', entries: entries })); } catch (_) {}
         location.href = '/thank-you/';
       })
-      .catch(function () {
+      .catch(function (err) {
         btn.disabled = false; btn.textContent = 'Send message';
-        say('Sorry, your message could not be sent. Please try again, or message me on WhatsApp or by email.');
+        showFallback(entries, err && err.message ? err.message : '');
       });
   });
 })();

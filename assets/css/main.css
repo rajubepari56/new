@@ -255,3 +255,6 @@ html.rm .hero-stats .bar i{transform:none!important}
 .msgw__item--wa{background:#16763a;border-color:#16763a}.msgw__item--wa small{color:#e6ffee}.msgw__item--wa:hover{background:#1b8a45}
 @media (max-width:860px){.msgw{right:14px;bottom:14px}.msgw__label{display:none}.msgw__btn{padding:16px}}
 @media (max-width:860px){.consent{right:84px;margin-inline:0;bottom:14px;max-width:none}}
+.form-status a{color:var(--yellow);font-weight:600;text-decoration:underline}
+.form-note{font-size:.85rem;margin:4px 0 16px}
+.form-note a,.form-status a{text-decoration:underline}
