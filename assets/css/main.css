@@ -291,3 +291,9 @@ html.rm .hero-stats .bar i{transform:none!important}
 .benefits{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.benefits .glass{padding:22px;text-align:left}
 .benefits h3{margin-bottom:6px}
 .flowcard{align-self:center}
+
+.snaps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:20px;margin-top:22px}
+.snap{margin:0;overflow:hidden}.snap img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+.snap figcaption{padding:18px 20px 20px;display:grid;gap:12px}.snap strong{font:700 1.15rem var(--hf)}
+.snap__stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;margin:0}.snap__stats div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.snap__stats dt{color:var(--muted);font-size:.9rem}.snap__stats dd{margin:0;font-weight:700}

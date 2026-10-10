@@ -44,3 +44,7 @@
 ## Local SEO landing pages
 - [ ] /local-seo-for-contractors/ and /local-seo-for-home-service-businesses/ have no Local SEO case studies yet (the pages say so). Send real Local SEO results (GBP calls, rankings, Search Console) to add them
 - [ ] Confirm the free strategy call offer, FAQ answers and the "Manager access" requirement match how you work
+
+## July 2026 Google Ads snapshots (Results page)
+- [ ] Tell me the industry and country of each of the 4 snapshots (and whether you can say it) so I can add context
+- [ ] The "Feb 21, 2002 - Jun 16, 2025 / 12.2M clicks" screenshot was NOT used (impossible start date, duplicated Clicks tile)

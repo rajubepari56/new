@@ -29,6 +29,21 @@ permalink: /results/
   <div class="card glass card--soon reveal"><span class="pill pill--yellow">More coming</span><p>More case studies will be added here.</p></div>
 </div></section>
 <section class="section section--alt"><div class="wrap">
+  <h2 class="reveal">Recent Google Ads results</h2>
+  <p class="muted reveal">Screenshots from recent work, all campaigns, July 1 to 31, 2026. Client names and industries are not shown. "Conversions" are the actions each account tracks, such as calls, lead forms or purchases, so they differ from account to account.</p>
+  <div class="snaps">
+    {% for s in site.data.snapshots %}
+    <figure class="glass snap reveal">
+      <img src="{{ s.img }}" width="1280" height="476" loading="lazy" alt="{{ s.alt }}">
+      <figcaption><strong>{{ s.headline }}</strong>
+        <dl class="snap__stats">{% for st in s.stats %}<div><dt>{{ st[0] }}</dt><dd>{{ st[1] }}</dd></div>{% endfor %}</dl>
+        <span class="muted">Google Ads &middot; All campaigns &middot; Jul 1&ndash;31, 2026</span>
+      </figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</div></section>
+<section class="section"><div class="wrap">
   <h2 class="reveal">Client reviews from Upwork</h2>
   <p class="muted reveal">A selection of my {{ site.hero_stats[1].count }} five-star reviews, quoted exactly from my Upwork profile. Client names are not shown. Some clients came back for a second or third project.</p>
   <div class="quotes">
