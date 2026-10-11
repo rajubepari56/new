@@ -50,3 +50,7 @@
 - [ ] The "Feb 21, 2002 - Jun 16, 2025 / 12.2M clicks" screenshot was NOT used (impossible start date, duplicated Clicks tile)
 - [ ] "Clark Boyd Consulting" account screenshot (Apr 2015 - Feb 2025, $1.65M, 455.62% ROAS) NOT used: it is not your account name and starts before your engagement. If it is a client account you manage, tell me since when, what you did and whether the client allows it (name and email would be cropped)
 - [ ] Café case study: replace/add the all-time screenshots with engagement-period ones (Jul 23 - Oct 10, 2026) when available
+
+## Blog (/blog/) and /admin
+- [ ] Read the 7 posts once and edit anything that does not match how you work (they are general guides, no client numbers)
+- [ ] /admin (Decap CMS) needs: Netlify site deployed from GitHub + GitHub OAuth app set in Netlify > Site configuration > Access & security > OAuth. Until then, ask me to add or edit posts

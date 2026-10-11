@@ -303,3 +303,12 @@ html.rm .hero-stats .bar i{transform:none!important}
 @media (max-width:1100px) and (min-width:861px){.nav{gap:14px}.nav>a,.nav__dd>a,.nav__dd-btn--text{font-size:.9rem}}
 @media (max-width:860px){.footer__grid{grid-template-columns:1fr}}
 @media (min-width:861px){.nav__menu{min-width:340px}}
+
+/* blog */
+.post-hero h1{max-width:22ch}.post-meta{font-size:.9rem;margin:6px 0 0}
+.prose{font-size:1.08rem;line-height:1.8}.prose h2{margin:2.2em 0 .5em;font-size:clamp(1.4rem,3vw,1.9rem)}.prose h3{margin:1.6em 0 .4em}
+.prose p,.prose ul,.prose ol{margin:0 0 1.1em}.prose li{margin-bottom:.4em}.prose a{text-decoration:underline}
+.prose code{font-family:var(--mono);background:rgba(18,20,58,.9);border:1px solid var(--line);padding:2px 6px;border-radius:6px;font-size:.92em}
+.prose .callout{padding:18px 22px 6px;margin:0 0 1.6em;border:1px solid var(--line);border-left:4px solid var(--yellow);border-radius:12px;background:rgba(18,20,58,.6)}.prose .callout p{margin:0 0 .5em}
+.author-box{display:flex;gap:16px;align-items:center;padding:20px;margin-top:40px}.author-box img{border-radius:50%;flex:none}.author-box p{margin:2px 0 4px}
+.blog-grid .card__title{font-size:1.25rem;margin-bottom:.4em}

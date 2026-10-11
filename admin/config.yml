@@ -1,0 +1,46 @@
+# Decap CMS: edit blog posts from /admin/ (needs the site deployed from Git and a GitHub OAuth app on Netlify).
+backend:
+  name: github
+  repo: rajubepari56/new
+  branch: claude/raju-bepari-website-build-uj8gvc
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+publish_mode: simple
+media_folder: assets/images/blog
+public_folder: /assets/images/blog
+site_url: https://rajubepari.netlify.app
+display_url: https://rajubepari.netlify.app
+
+collections:
+  - name: blog
+    label: Blog posts
+    label_singular: Blog post
+    folder: _posts
+    create: true
+    extension: md
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} ({{category}})"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: Title (keep under 46 characters), name: title, widget: string }
+      - { label: Short description (under 155 characters), name: description, widget: text }
+      - { label: Publish date, name: date, widget: datetime, format: "YYYY-MM-DD HH:mm:ss ZZ", date_format: "YYYY-MM-DD", time_format: "HH:mm" }
+      - { label: Category, name: category, widget: select, options: ["Google Ads", "Analytics", "Tracking", "Local SEO", "AI Search"] }
+      - { label: Author, name: author, widget: string, default: Raju Bepari }
+      - label: Related services
+        name: services
+        widget: select
+        multiple: true
+        required: false
+        options:
+          - { label: Google Ads Management, value: google-ads }
+          - { label: GA4 Setup & Audit, value: ga4 }
+          - { label: Google Tag Manager, value: google-tag-manager }
+          - { label: Meta Pixel & Conversions API, value: meta-pixel-capi }
+          - { label: Server-Side Tracking, value: server-side-tracking }
+          - { label: Enhanced & Offline Conversions, value: enhanced-offline-conversions }
+          - { label: Google Merchant Center, value: merchant-center }
+          - { label: Local SEO, value: local-seo }
+          - { label: AI Search Optimization, value: ai-search-optimization }
+      - { label: Article, name: body, widget: markdown }

@@ -171,6 +171,16 @@ faqs:
   </div>
 </section>
 
+<section class="section" id="blog">
+  <div class="wrap">
+    <h2 class="reveal">Latest from the blog</h2>
+    <div class="cards">
+      {% for p in site.posts limit:3 %}<a class="card glass tilt reveal" href="{{ p.url }}"><span class="pill pill--blue">{{ p.category }}</span><h3>{{ p.title }}</h3><p>{{ p.description }}</p></a>{% endfor %}
+    </div>
+    <p class="reveal"><a href="/blog/" data-event="cta_click" data-cta-text="All blog posts" data-link-location="home_blog">See all {{ site.posts | size }} articles &rarr;</a></p>
+  </div>
+</section>
+
 <section class="section section--alt">
   <div class="wrap narrow">
     <h2 class="reveal">Frequently asked questions</h2>

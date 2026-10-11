@@ -1,0 +1,25 @@
+---
+layout: default
+title: Blog
+crumb: Blog
+description: Plain-English guides on Google Ads, conversion tracking, GA4, Meta CAPI, server-side tracking, local SEO and AI search.
+permalink: /blog/
+---
+<section class="hero hero--sub"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Blog</span></nav>
+  <h1 class="reveal">Blog: Google Ads, Tracking and Local SEO</h1>
+  <p class="lead reveal">Plain-English guides to help you track what matters and get more from your marketing.</p>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="cards blog-grid">
+    {% for p in site.posts %}
+    <a class="card glass tilt reveal" href="{{ p.url }}">
+      <span class="pill pill--blue">{{ p.category }}</span>
+      <h2 class="card__title">{{ p.title }}</h2>
+      <p>{{ p.description }}</p>
+      <p class="muted post-meta">{{ p.date | date: "%B %-d, %Y" }} &middot; {{ p.content | number_of_words | divided_by: 200 | plus: 1 }} min read</p>
+    </a>
+    {% endfor %}
+  </div>
+</div></section>
+{% include cta.html service="Google Ads and tracking" loc="blog_index" %}

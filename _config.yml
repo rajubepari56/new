@@ -5,6 +5,7 @@ description: Google Ads, GA4, GTM and server-side tracking for US, UK and AU bus
 lang: en
 url: "https://rajubepari.netlify.app"
 baseurl: ""
+permalink: /blog/:title/
 
 author:
   name: Raju Bepari
@@ -53,6 +54,8 @@ social:
     - "https://www.linkedin.com/in/rajubepari0-seo-expert/"
 
 defaults:
+  - scope: { path: "", type: "posts" }
+    values: { layout: "post", image: "/assets/images/og-image.png" }
   - scope: { path: "" }
     values: { layout: "default", image: "/assets/images/og-image.png" }
   - scope: { path: "services", type: "pages" }

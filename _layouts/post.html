@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<section class="hero hero--sub post-hero"><div class="wrap narrow">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / <span>{{ page.category }}</span></nav>
+  <p><span class="pill pill--blue">{{ page.category }}</span></p>
+  <h1 class="reveal">{{ page.h1 | default: page.title }}</h1>
+  <p class="lead reveal">{{ page.description }}</p>
+  <p class="muted post-meta"><span>By {{ page.author | default: "Raju Bepari" }}</span> &middot; <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time> &middot; <span>{{ content | number_of_words | divided_by: 200 | plus: 1 }} min read</span></p>
+</div></section>
+<section class="section"><div class="wrap narrow">
+  <article class="prose">{{ content }}</article>
+  <div class="glass author-box reveal">
+    <img src="/assets/images/raju-avatar.webp" width="72" height="72" loading="lazy" alt="Raju Bepari">
+    <div><strong>Raju Bepari</strong><p class="muted">{{ site.tagline }}. {{ site.experience }} of hands-on experience.</p>
+    <a href="/about/" data-event="cta_click" data-cta-text="About the author" data-link-location="blog_post">About me</a></div>
+  </div>
+</div></section>
+{% if page.services %}<section class="section section--alt"><div class="wrap">
+  <h2 class="reveal">Related services</h2>
+  <div class="cards">
+    {% for slug in page.services %}{% assign r = site.data.services | where: "slug", slug | first %}{% if r %}<a class="card glass tilt reveal" href="{{ r.url }}"><span class="pill pill--{{ r.color }}">{{ r.tag }}</span><h3>{{ r.name }}</h3><p>{{ r.short }}</p></a>{% endif %}{% endfor %}
+  </div>
+</div></section>{% endif %}
+{% assign others = site.posts | where_exp: "p", "p.url != page.url" %}
+<section class="section"><div class="wrap">
+  <h2 class="reveal">More from the blog</h2>
+  <div class="cards">
+    {% for p in others limit:3 %}<a class="card glass tilt reveal" href="{{ p.url }}"><span class="pill pill--blue">{{ p.category }}</span><h3>{{ p.title }}</h3><p>{{ p.description }}</p></a>{% endfor %}
+  </div>
+</div></section>
+{% include cta.html service="Google Ads and tracking" title="Want help with this?" text="Tell me about your business and what you want to track or improve. I reply on WhatsApp, and the first strategy call is free." loc="blog_post" form_slug="google-ads" %}
