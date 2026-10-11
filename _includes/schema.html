@@ -1,4 +1,4 @@
-{%- assign socials = site.socials | map: "last" -%}
+{%- assign socials = site.data.settings.socials | map: "last" -%}
 {%- capture crumbs -%}
 {%- if page.url == "/" -%}
 {%- elsif page.layout == "post" -%}
@@ -13,7 +13,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"}{% if crumbs != "" %},{{ crumbs }}{% endif %}]}
 {%- if page.url == "/" -%}
-,{"@type":"Person","@id":"{{ site.url }}/#person","name":"Raju Bepari","jobTitle":"{{ site.tagline }}","url":"{{ site.url }}/","email":"{{ site.email }}","image":"{{ site.url }}/assets/images/raju-avatar.webp","sameAs":{{ socials | jsonify }}}
+,{"@type":"Person","@id":"{{ site.url }}/#person","name":"Raju Bepari","jobTitle":"{{ site.tagline }}","url":"{{ site.url }}/","email":"{{ site.data.settings.email }}","image":"{{ site.url }}/assets/images/raju-avatar.webp","sameAs":{{ socials | jsonify }}}
 ,{"@type":"ProfessionalService","@id":"{{ site.url }}/#business","name":"Raju Bepari","url":"{{ site.url }}/","image":"{{ site.url }}/assets/images/og-image.png","description":{{ site.description | jsonify }},"founder":{"@id":"{{ site.url }}/#person"},"areaServed":["United States","United Kingdom","Australia"],"sameAs":{{ socials | jsonify }}}
 {%- endif -%}
 {%- if page.layout == "service" or page.schema_service -%}

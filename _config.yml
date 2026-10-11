@@ -13,33 +13,13 @@ author:
   twitter: Raju_seo_
 
 # WhatsApp number: country code + number, no "+" (TODO: set real number)
-whatsapp: "8801710992866"
-email: rajubepari56@gmail.com
-experience: "7+ years"
-timezone: "UTC+6 (Bangladesh)"
-reply_time: ""   # e.g. "a few hours". Leave empty to hide the "Usually replies within ..." line
 
 # Tracking IDs. Leave empty to disable. GTM loads only if gtm_id is set.
-gtm_id: ""            # e.g. GTM-XXXXXXX
-ga4_id: ""            # e.g. G-XXXXXXXXXX (reference only; configure GA4 inside GTM)
-google_site_verification: ""   # Search Console meta tag content
 
 # Hero progress bars. Set display/count to your real numbers; empty items are hidden.
-hero_stats:
-  - { count: 200, suffix: "+", label: "Projects completed", percent: 100 }
-  - { count: 180, suffix: "", label: "Five-star reviews", percent: 90 }
-  - { display: "", label: "Client revenue generated", percent: 100 }   # TODO: add your real figure, e.g. "$1.2M+"
 
 # Real certifications only, e.g. "Google Ads Search certified". Never list Google Partner unless you are one.
-certifications: []
 
-socials:
-  upwork: "https://www.upwork.com/freelancers/~016342bc13e6f8ffb5"
-  linkedin: "https://www.linkedin.com/in/rajubepari0-seo-expert/"
-  facebook: "https://www.facebook.com/rajubepari0/"
-  instagram: "https://www.instagram.com/rajubepari0"
-  x: "https://x.com/Raju_seo_"
-  medium: "https://medium.com/@rajubepari56"
 
 plugins:
   - jekyll-sitemap
@@ -61,4 +41,4 @@ defaults:
   - scope: { path: "services", type: "pages" }
     values: { layout: "service" }
 
-exclude: [netlify.toml, BRIEF.md, TODO.md, QA-REPORT.md, README.md, scripts, Gemfile, Gemfile.lock, vendor]
+exclude: [netlify.toml, netlify, package.json, package-lock.json, node_modules, ADMIN-SETUP.md, BRIEF.md, TODO.md, QA-REPORT.md, README.md, scripts, Gemfile, Gemfile.lock, vendor]

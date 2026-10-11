@@ -13,7 +13,7 @@ layout: default
         <a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text=wa_text %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="landing_hero" data-service="{{ page.service_name }}">{% include icon-wa.html %} Book a free strategy call</a>
         <a class="btn btn--ghost btn--lg" href="#how-it-works" data-event="cta_click" data-cta-text="See how it works" data-link-location="landing_hero">See how it works</a>
       </div>
-      <p class="trust">{{ site.experience }} of hands-on experience &middot; {{ site.hero_stats[0].count }}{{ site.hero_stats[0].suffix }} projects &middot; {{ site.hero_stats[1].count }} five-star reviews</p>
+      <p class="trust">{{ site.data.settings.experience }} of hands-on experience &middot; {{ site.data.settings.hero_stats[0].count }}{{ site.data.settings.hero_stats[0].suffix }} projects &middot; {{ site.data.settings.hero_stats[1].count }} five-star reviews</p>
     </div>
     <div class="glass reveal flowcard" aria-label="{{ page.flow_label | default: 'How a search becomes a booked job' }}">
       <ol class="flow">
@@ -27,15 +27,15 @@ layout: default
   <h2 class="reveal">Why {{ page.audience }} can trust this</h2>
   <div class="stats">
     <div class="stat glass reveal"><b data-count="7" data-suffix="+">7+</b><span>years of hands-on experience</span></div>
-    <div class="stat glass reveal"><b>{{ site.hero_stats[0].count }}{{ site.hero_stats[0].suffix }}</b><span>projects completed</span></div>
-    <div class="stat glass reveal"><b>{{ site.hero_stats[1].count }}</b><span>five-star reviews</span></div>
+    <div class="stat glass reveal"><b>{{ site.data.settings.hero_stats[0].count }}{{ site.data.settings.hero_stats[0].suffix }}</b><span>projects completed</span></div>
+    <div class="stat glass reveal"><b>{{ site.data.settings.hero_stats[1].count }}</b><span>five-star reviews</span></div>
   </div>
   <ul class="ticks cols-2 trust-list">
     {% if page.trust_points %}{% for t in page.trust_points %}<li class="reveal">{{ t }}</li>{% endfor %}{% else %}<li class="reveal">Real Google Ads work for local service businesses and online stores</li>
     <li class="reveal">Tracking specialist: calls, forms and bookings, not just clicks</li>
     <li class="reveal">Clear weekly or monthly reports in plain English</li>
     <li class="reveal">Your ad account stays in your name, with full access for you</li>{% endif %}
-    {% for c in site.certifications %}<li class="reveal">{{ c }}</li>{% endfor %}
+    {% for c in site.data.settings.certifications %}<li class="reveal">{{ c }}</li>{% endfor %}
   </ul>
 </div></section>
 
@@ -98,7 +98,7 @@ layout: default
   <p class="muted reveal">{{ page.results_note }}</p>
   <div class="cards">{% for m in page.measure %}<div class="card glass reveal"><span class="pill pill--{{ m.color }}">{{ m.pill }}</span><h3>{{ m.t }}</h3><p>{{ m.d }}</p></div>{% endfor %}</div>
   <div class="quotes">
-    {% for r in site.data.reviews limit:3 %}
+    {% for r in site.data.reviews.items limit:3 %}
     <figure class="glass quote reveal"><p class="quote__stars" aria-label="5.0 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733; <span>5.0</span></p><blockquote><p>&ldquo;{{ r.text | truncatewords: 32 }}&rdquo;</p></blockquote><figcaption>Upwork review &middot; {{ r.date }}</figcaption></figure>
     {% endfor %}
   </div>
@@ -107,7 +107,7 @@ layout: default
   <h2 class="reveal">Real Google Ads results</h2>
   <p class="muted reveal">{{ page.results_note }}</p>
   <div class="cases">
-    {% for c in site.data.case_studies %}
+    {% for c in site.data.case_studies.items %}
     <article class="glass case reveal">
       <span class="pill pill--green">{{ c.tag }}</span>
       <h3>{{ c.title }}</h3>
@@ -118,7 +118,7 @@ layout: default
   </div>
   <div class="quotes">
     {% assign shown = 0 %}
-    {% for r in site.data.reviews %}{% if r.project contains "Google Ads" and shown < 3 %}{% assign shown = shown | plus: 1 %}
+    {% for r in site.data.reviews.items %}{% if r.project contains "Google Ads" and shown < 3 %}{% assign shown = shown | plus: 1 %}
     <figure class="glass quote reveal"><p class="quote__stars" aria-label="5.0 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733; <span>5.0</span></p><blockquote><p>&ldquo;{{ r.text | truncatewords: 32 }}&rdquo;</p></blockquote><figcaption>Upwork review &middot; {{ r.date }}</figcaption></figure>
     {% endif %}{% endfor %}
   </div>

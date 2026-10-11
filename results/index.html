@@ -12,7 +12,7 @@ permalink: /results/
 </div></section>
 <section class="section"><div class="wrap">
   <h2 class="reveal">Case studies</h2>
-  {% for c in site.data.case_studies %}
+  {% for c in site.data.case_studies.items %}
   <article class="glass case reveal">
     <span class="pill pill--green">{{ c.tag }}</span>
     <h3>{{ c.title }}</h3>
@@ -37,11 +37,11 @@ permalink: /results/
   <h2 class="reveal">Recent Google Ads results</h2>
   <p class="muted reveal">Screenshots from recent work, all campaigns, July 1 to 31, 2026. Client names and industries are not shown. "Conversions" are the actions each account tracks, such as calls, lead forms or purchases, so they differ from account to account.</p>
   <div class="snaps">
-    {% for s in site.data.snapshots %}
+    {% for s in site.data.snapshots.items %}
     <figure class="glass snap reveal">
       <img src="{{ s.img }}" width="1280" height="476" loading="lazy" alt="{{ s.alt }}">
       <figcaption><strong>{{ s.headline }}</strong>
-        <dl class="snap__stats">{% for st in s.stats %}<div><dt>{{ st[0] }}</dt><dd>{{ st[1] }}</dd></div>{% endfor %}</dl>
+        <dl class="snap__stats">{% for st in s.stats %}<div><dt>{{ st.label }}</dt><dd>{{ st.value }}</dd></div>{% endfor %}</dl>
         <span class="muted">Google Ads &middot; All campaigns &middot; Jul 1&ndash;31, 2026</span>
       </figcaption>
     </figure>
@@ -50,9 +50,9 @@ permalink: /results/
 </div></section>
 <section class="section"><div class="wrap">
   <h2 class="reveal">Client reviews from Upwork</h2>
-  <p class="muted reveal">A selection of my {{ site.hero_stats[1].count }} five-star reviews, quoted exactly from my Upwork profile. Client names are not shown. Some clients came back for a second or third project.</p>
+  <p class="muted reveal">A selection of my {{ site.data.settings.hero_stats[1].count }} five-star reviews, quoted exactly from my Upwork profile. Client names are not shown. Some clients came back for a second or third project.</p>
   <div class="quotes">
-    {% for r in site.data.reviews %}
+    {% for r in site.data.reviews.items %}
     <figure class="glass quote reveal">
       <p class="quote__stars" aria-label="5.0 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733; <span>5.0</span></p>
       <blockquote><p>&ldquo;{{ r.text }}&rdquo;</p></blockquote>
@@ -60,6 +60,6 @@ permalink: /results/
     </figure>
     {% endfor %}
   </div>
-  <div class="btn-row"><a class="btn btn--primary" href="{{ site.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="results">See my Upwork profile</a><a class="btn btn--ghost" href="{{ site.socials.linkedin }}" target="_blank" rel="noopener me" data-event="social_click" data-platform="linkedin" data-link-location="results">See my LinkedIn profile</a></div>
+  <div class="btn-row"><a class="btn btn--primary" href="{{ site.data.settings.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="results">See my Upwork profile</a><a class="btn btn--ghost" href="{{ site.data.settings.socials.linkedin }}" target="_blank" rel="noopener me" data-event="social_click" data-platform="linkedin" data-link-location="results">See my LinkedIn profile</a></div>
 </div></section>
 {% include cta.html service="a case study like these" loc="results" %}

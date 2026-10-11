@@ -2,9 +2,9 @@
 <header class="site-header" id="site-header">
   <div class="topbar">
     <div class="wrap topbar__in">
-      <a class="topbar__mail" href="mailto:{{ site.email }}" data-event="email_click" data-link-location="header">{{ site.email }}</a>
+      <a class="topbar__mail" href="mailto:{{ site.data.settings.email }}" data-event="email_click" data-link-location="header">{{ site.data.settings.email }}</a>
       <ul class="socials socials--top" aria-label="Social profiles">
-        {% for s in site.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="header" aria-label="{{ s[0] | capitalize }}">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</a></li>{% endfor %}
+        {% for s in site.data.settings.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="header" aria-label="{{ s[0] | capitalize }}">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</a></li>{% endfor %}
       </ul>
     </div>
   </div>

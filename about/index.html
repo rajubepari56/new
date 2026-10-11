@@ -9,7 +9,7 @@ permalink: /about/
   <div>
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>About</span></nav>
     <h1 class="reveal">About Raju Bepari</h1>
-    <p class="lead reveal">{{ site.experience }} of hands-on digital marketing experience. Google Ads, tracking and analytics are what I do every day.</p>
+    <p class="lead reveal">{{ site.data.settings.experience }} of hands-on digital marketing experience. Google Ads, tracking and analytics are what I do every day.</p>
   </div>
   <div class="reveal"><img class="hero__photo" src="/assets/images/raju-avatar.webp" width="420" height="420" alt="Raju Bepari, circular portrait with a four-color ring"></div>
 </div></section>
@@ -26,11 +26,11 @@ permalink: /about/
     <li class="glass"><strong>High workmanship.</strong> Every setup is tested before handover.</li>
   </ul>
   <h2>Time zone</h2>
-  <p>I am based in Bangladesh ({{ site.timezone }}). I overlap with the end of the UK day, the evening in Australia and the US morning, so we can talk during your working hours.</p>
+  <p>I am based in Bangladesh ({{ site.data.settings.timezone }}). I overlap with the end of the UK day, the evening in Australia and the US morning, so we can talk during your working hours.</p>
   <!-- TODO: confirm exact overlap hours -->
   <h2>Find me online</h2>
   <ul class="socials" aria-label="Social profiles">
-    {% for s in site.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="about" aria-label="{{ s[0] | capitalize }}">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</a></li>{% endfor %}
+    {% for s in site.data.settings.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="about" aria-label="{{ s[0] | capitalize }}">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</a></li>{% endfor %}
   </ul>
 </div></section>
 {% include cta.html service="Google Ads and tracking" loc="about" %}

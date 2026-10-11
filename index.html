@@ -21,7 +21,7 @@ faqs:
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="wrap">
     <div>
-      <p class="eyebrow reveal">&gt; {{ site.experience }} of hands-on digital marketing experience</p>
+      <p class="eyebrow reveal">&gt; {{ site.data.settings.experience }} of hands-on digital marketing experience</p>
       <p class="rotor-line reveal" aria-hidden="true">I fix <span class="rotor" data-words="Google Ads|GA4|Server-Side Tracking|Meta CAPI">Google Ads</span> tracking</p>
       <h1 id="hero-h1">Google Ads, Conversion Tracking &amp; Web Analytics Specialist</h1>
       <p class="lead reveal">I make sure every lead and sale from your ads is tracked accurately, so you know exactly what's working.</p>
@@ -30,14 +30,14 @@ faqs:
         <a class="btn btn--ghost btn--lg" href="/services/" data-event="cta_click" data-cta-text="See Services" data-link-location="hero">See Services</a>
       </div>
       <div class="hero-stats glass reveal" aria-label="Track record">
-        {% for st in site.hero_stats %}{% if st.count or st.display != "" %}
+        {% for st in site.data.settings.hero_stats %}{% if st.count or st.display != "" %}
         <div class="hstat">
           <div class="hstat__top"><b{% if st.count %} data-count="{{ st.count }}"{% if st.suffix %} data-suffix="{{ st.suffix }}"{% endif %}{% endif %}>{% if st.count %}{{ st.count }}{{ st.suffix }}{% else %}{{ st.display }}{% endif %}</b><span>{{ st.label }}</span></div>
           <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ st.percent }}" aria-label="{{ st.label }}"><i style="--w:{{ st.percent }}%"></i></div>
         </div>
         {% endif %}{% endfor %}
       </div>
-      <p class="trust reveal">{{ site.experience }} &middot; <a href="{{ site.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="hero">View my Upwork profile</a></p>
+      <p class="trust reveal">{{ site.data.settings.experience }} &middot; <a href="{{ site.data.settings.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="hero">View my Upwork profile</a></p>
     </div>
     <div class="hero__media reveal">
       <img class="hero__photo" src="/assets/images/raju-hero.webp" width="500" height="500" fetchpriority="high" alt="Raju Bepari, Google Ads and conversion tracking specialist, smiling in a blazer">
@@ -134,7 +134,7 @@ faqs:
   <div class="wrap">
     <h2 class="reveal">Results</h2>
     <div class="cases">
-      {% for c in site.data.case_studies %}
+      {% for c in site.data.case_studies.items %}
       <article class="glass case reveal">
         <span class="pill pill--green">{{ c.tag }}</span>
         <h3>{{ c.title }}</h3>
@@ -144,7 +144,7 @@ faqs:
       {% endfor %}
     </div>
     <div class="quotes">
-      {% for r in site.data.reviews limit:3 %}
+      {% for r in site.data.reviews.items limit:3 %}
       <figure class="glass quote reveal"><p class="quote__stars" aria-label="5.0 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733; <span>5.0</span></p><blockquote><p>&ldquo;{{ r.text | truncatewords: 28 }}&rdquo;</p></blockquote><figcaption>Upwork review &middot; {{ r.date }}</figcaption></figure>
       {% endfor %}
     </div>
@@ -164,7 +164,7 @@ faqs:
     <div class="reveal"><img class="hero__photo" loading="lazy" src="/assets/images/raju-avatar.webp" width="420" height="420" alt="Raju Bepari, circular portrait with a four-color ring"></div>
     <div class="reveal">
       <h2>Hi, I'm Raju.</h2>
-      <p>I have {{ site.experience }} of hands-on digital marketing experience. I work from Bangladesh with clients in the US, UK and Australia.</p>
+      <p>I have {{ site.data.settings.experience }} of hands-on digital marketing experience. I work from Bangladesh with clients in the US, UK and Australia.</p>
       <p>I like clear numbers, honest advice and work that is finished on time.</p>
       <a class="btn btn--ghost" href="/about/" data-event="cta_click" data-cta-text="More about me" data-link-location="home_about">More about me</a>
     </div>

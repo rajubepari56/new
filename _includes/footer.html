@@ -2,10 +2,10 @@
   <div class="wrap footer__grid">
     <div>
       <a class="brand" href="/">{% include logo.html %}<span class="brand__name">Raju Bepari</span></a>
-      <p class="muted">{{ site.tagline }}. {{ site.experience }} of hands-on digital marketing experience.</p>
-      <p class="muted">{{ site.timezone }}</p>
+      <p class="muted">{{ site.tagline }}. {{ site.data.settings.experience }} of hands-on digital marketing experience.</p>
+      <p class="muted">{{ site.data.settings.timezone }}</p>
       <ul class="socials" aria-label="Social profiles">
-        {% for s in site.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="footer" aria-label="{{ s[0] | capitalize }}">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</a></li>{% endfor %}
+        {% for s in site.data.settings.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="footer" aria-label="{{ s[0] | capitalize }}">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</a></li>{% endfor %}
       </ul>
     </div>
     <div>
@@ -22,7 +22,7 @@
         <li><a href="/">Home</a></li><li><a href="/services/">Services</a></li><li><a href="/results/">Results</a></li><li><a href="/blog/">Blog</a></li><li><a href="/about/">About</a></li><li><a href="/contact/">Contact</a></li><li><a href="/privacy/">Privacy Policy</a></li>
         <li><button type="button" class="linklike" data-consent-open>Cookie settings</button></li>
       </ul>
-      <p><a href="mailto:{{ site.email }}" data-event="email_click" data-link-location="footer">{{ site.email }}</a></p>
+      <p><a href="mailto:{{ site.data.settings.email }}" data-event="email_click" data-link-location="footer">{{ site.data.settings.email }}</a></p>
     </div>
   </div>
   <div class="wrap footer__bar"><span>&copy; {{ "now" | date: "%Y" }} Raju Bepari. All rights reserved.</span></div>

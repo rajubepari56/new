@@ -15,5 +15,5 @@ permalink: /llms.txt
 - [Contact]({{ site.url }}/contact/)
 
 ## Contact
-- WhatsApp: https://wa.me/{{ site.whatsapp }}
-- Email: {{ site.email }}
+- WhatsApp: https://wa.me/{{ site.data.settings.whatsapp }}
+- Email: {{ site.data.settings.email }}

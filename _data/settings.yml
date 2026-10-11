@@ -1,0 +1,29 @@
+# Site settings: editable at /admin (Settings) or directly here.
+whatsapp: '8801710992866'
+email: rajubepari56@gmail.com
+experience: 7+ years
+timezone: UTC+6 (Bangladesh)
+reply_time: ''
+gtm_id: ''
+ga4_id: ''
+google_site_verification: ''
+hero_stats:
+- count: 200
+  suffix: +
+  label: Projects completed
+  percent: 100
+- count: 180
+  suffix: ''
+  label: Five-star reviews
+  percent: 90
+- display: ''
+  label: Client revenue generated
+  percent: 100
+certifications: []
+socials:
+  upwork: https://www.upwork.com/freelancers/~016342bc13e6f8ffb5
+  linkedin: https://www.linkedin.com/in/rajubepari0-seo-expert/
+  facebook: https://www.facebook.com/rajubepari0/
+  instagram: https://www.instagram.com/rajubepari0
+  x: https://x.com/Raju_seo_
+  medium: https://medium.com/@rajubepari56

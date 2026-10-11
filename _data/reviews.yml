@@ -1,31 +1,42 @@
-# Real Upwork reviews, quoted exactly as shown on the profile (client names not shown).
+# Editable at /admin. Real figures only.
+items:
 - project: Google Ads Audit and Management for a Sydney café
   date: Sep 2026
-  repeat: "Second review from the same client"
-  text: "Raju, is very solutions and process orientated. He is focused on collecting data properly to make the best decisions for your ads."
+  repeat: Second review from the same client
+  text: Raju, is very solutions and process orientated. He is focused on collecting data properly to make the best decisions for your ads.
 - project: Google Ads Audit and Management for a Sydney café
   date: Aug 2026
-  text: "You get your moneys worth. Raju is very repsonsive, transaparent and systematic. He works closely with you to make sure your business is getting the best outcome while continuing to optimise roas by building and testing new campaigns."
+  text: You get your moneys worth. Raju is very repsonsive, transaparent and systematic. He works closely with you to make sure your business is getting the best outcome while continuing to optimise roas by building and testing new campaigns.
 - project: Meta Pixel Troubleshooting
   date: Aug 2026
-  text: "Raju was very swift with support and guided us with the best solutions to the end. Extremely happy with the communication as well."
+  text: Raju was very swift with support and guided us with the best solutions to the end. Extremely happy with the communication as well.
 - project: Website Optimization, Web Analytics and Conversion Tracking Setup
   date: Jul 2026
-  text: "Raju did a great job with my website optimization, content improvements, web analytics, and conversion tracking setup. He was reliable, patient, and explained everything clearly. Communication was easy, and I felt confident that the work was handled professionally. I enjoyed working with him and would be happy to hire him again."
+  text: Raju did a great job with my website optimization, content improvements, web analytics, and conversion tracking setup. He was reliable, patient, and explained everything clearly. Communication was easy, and I felt confident that the work
+    was handled professionally. I enjoyed working with him and would be happy to hire him again.
 - project: Website Optimization and Conversion Tracking Setup
   date: Sep 2026
-  repeat: "Third project with the same client"
-  text: "Raju has now completed three successful projects for us, and this one was just as smooth as the others. He handled our website optimization and conversion tracking setup, including Google Tag Manager, analytics, tracking pixels, and meta tag improvements. He understood exactly what we needed, explained each step clearly, and verified that all tracking was firing correctly. Reliable, skilled, and easy to work with. Looking forward to our next project."
+  repeat: Third project with the same client
+  text: Raju has now completed three successful projects for us, and this one was just as smooth as the others. He handled our website optimization and conversion tracking setup, including Google Tag Manager, analytics, tracking pixels, and meta
+    tag improvements. He understood exactly what we needed, explained each step clearly, and verified that all tracking was firing correctly. Reliable, skilled, and easy to work with. Looking forward to our next project.
 - project: GA4 & Server-Side, Meta Pixel Conversion API, Tracking Setup for Shopify
   date: Jul 2026
-  text: "Raju did an excellent job setting up and optimizing our Google Ads Conversion Tracking, Google Analytics-4 (GA4), Google Tag Manager (GTM), Meta Pixel, Conversion API, Server GTM, and Stape tracking. He configured Meta Conversion API with server-side tracking and deduplication to improve event matching quality and handle iOS 14+ tracking limitations. He also set up server container configurations in Google Tag Manager to support advanced, privacy-compliant tracking across Shopify, WordPress, and Magento 2. All key events were tested, duplicate conversions were fixed, and clear documentation was provided. Raju was professional, responsive, and highly knowledgeable. Highly recommended for advanced conversion tracking projects."
+  text: Raju did an excellent job setting up and optimizing our Google Ads Conversion Tracking, Google Analytics-4 (GA4), Google Tag Manager (GTM), Meta Pixel, Conversion API, Server GTM, and Stape tracking. He configured Meta Conversion API
+    with server-side tracking and deduplication to improve event matching quality and handle iOS 14+ tracking limitations. He also set up server container configurations in Google Tag Manager to support advanced, privacy-compliant tracking across
+    Shopify, WordPress, and Magento 2. All key events were tested, duplicate conversions were fixed, and clear documentation was provided. Raju was professional, responsive, and highly knowledgeable. Highly recommended for advanced conversion
+    tracking projects.
 - project: Google Ads, GA4, GTM, Meta Pixel and CAPI Ecommerce Purchase Tracking
   date: Jul 2026
-  repeat: "Second project with the same client"
-  text: "This was my second project with Raju, and once again I'm extremely happy with the results. He completed a full audit and repair of our ecommerce purchase tracking across GA4, Google Tag Manager, Google Ads, Meta Pixel, and Meta CAPI for our WordPress WooCommerce website. He identified missing and duplicated purchase events, fixed incorrect transaction values and purchase data, and configured accurate browser and server-side event deduplication. He also reviewed Meta Event Match Quality, tested Google Ads Enhanced Conversions, and made sure purchases were recorded consistently across all required platforms."
+  repeat: Second project with the same client
+  text: This was my second project with Raju, and once again I'm extremely happy with the results. He completed a full audit and repair of our ecommerce purchase tracking across GA4, Google Tag Manager, Google Ads, Meta Pixel, and Meta CAPI for
+    our WordPress WooCommerce website. He identified missing and duplicated purchase events, fixed incorrect transaction values and purchase data, and configured accurate browser and server-side event deduplication. He also reviewed Meta Event
+    Match Quality, tested Google Ads Enhanced Conversions, and made sure purchases were recorded consistently across all required platforms.
 - project: Google Ads Manager & Conversion Tracking Specialist
   date: Jul 2026
-  text: "Raju built and managed our Google Ads campaigns and set up accurate conversion tracking across multiple platforms, including Google Ads, Meta Pixel, TikTok, and Linkedin. He also configured dynamic conversion tracking for our website and ensured reliable data collection through Google Tag Manager and GA4. He carefully reviewed our setup, fixed missing and inaccurate tracking, validated conversion events, and explained the work clearly. Raju was professional, responsive, and easy to work with throughout the project I'm very satisfied with the results and highly recommend Raju to anyone who needs Google Ads management GA4, GTM, Meta Pixel, CAPI, or advanced conversion tracking support"
+  text: Raju built and managed our Google Ads campaigns and set up accurate conversion tracking across multiple platforms, including Google Ads, Meta Pixel, TikTok, and Linkedin. He also configured dynamic conversion tracking for our website
+    and ensured reliable data collection through Google Tag Manager and GA4. He carefully reviewed our setup, fixed missing and inaccurate tracking, validated conversion events, and explained the work clearly. Raju was professional, responsive,
+    and easy to work with throughout the project I'm very satisfied with the results and highly recommend Raju to anyone who needs Google Ads management GA4, GTM, Meta Pixel, CAPI, or advanced conversion tracking support
 - project: Shopify Google Ads Conversion Tracking and Meta Pixel Audit
   date: Jul 2026
-  text: "Raju set up advanced Google Ads conversion tracking for our Shopify store and fixed missing and duplicated Meta Pixel events, Purchase tracking, product parameters, and event deduplication. He was responsive, knowledgeable, and explained everything clearly. He also tested the setup in Facebook Events Manager and provided a clear final report Highly recommended for Shopify, Google Ads, GTM, Google Analytics & Tracking Setup, Meta Pixel, CAPI, and conversion tracking projects."
+  text: Raju set up advanced Google Ads conversion tracking for our Shopify store and fixed missing and duplicated Meta Pixel events, Purchase tracking, product parameters, and event deduplication. He was responsive, knowledgeable, and explained
+    everything clearly. He also tested the setup in Facebook Events Manager and provided a clear final report Highly recommended for Shopify, Google Ads, GTM, Google Analytics & Tracking Setup, Meta Pixel, CAPI, and conversion tracking projects.

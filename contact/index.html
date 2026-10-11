@@ -8,14 +8,14 @@ permalink: /contact/
 <section class="hero hero--sub"><div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Contact</span></nav>
   <h1 class="reveal">Let's Talk About Your Tracking</h1>
-  <p class="lead reveal">Send the form below, or message me on WhatsApp for the fastest reply.{% if site.reply_time != "" %} Usually replies within {{ site.reply_time }}.{% endif %}</p>
+  <p class="lead reveal">Send the form below, or message me on WhatsApp for the fastest reply.{% if site.data.settings.reply_time != "" %} Usually replies within {{ site.data.settings.reply_time }}.{% endif %}</p>
   <div class="btn-row"><a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text='Hi Raju, I found your website and need help with tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="contact" data-service="General">{% include icon-wa.html %} Message me on WhatsApp</a></div>
 </div></section>
 <section class="section"><div class="wrap contact-wrap">
   <div class="glass form-card reveal">
     <h2>Send me a message</h2>
     <p class="muted">Only name, email and service are required. Everything else is optional.</p>
-    <form id="contact-form" name="contact" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" data-mail="{{ site.email }}" data-wa="{{ site.whatsapp }}" novalidate>
+    <form id="contact-form" name="contact" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" data-mail="{{ site.data.settings.email }}" data-wa="{{ site.data.settings.whatsapp }}" novalidate>
       <input type="hidden" name="form-name" value="contact">
       <input type="hidden" name="source" id="f-source" value="">
       <p class="hp" aria-hidden="true"><label>Do not fill this out <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
@@ -58,9 +58,9 @@ permalink: /contact/
     </form>
   </div>
   <div class="contact-side">
-    <div class="glass reveal"><h2>Email</h2><p class="muted">For longer briefs and files.</p><a class="btn btn--ghost" href="mailto:{{ site.email }}" data-event="email_click" data-link-location="contact">{{ site.email }}</a></div>
-    <div class="glass reveal"><h2>Hire on Upwork</h2><p class="muted">Prefer a protected contract? Hire me there.</p><a class="btn btn--ghost" href="{{ site.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="contact">Open Upwork profile</a></div>
-    <div class="glass reveal"><h2>Time zone</h2><p class="muted">{{ site.timezone }}. I work with US, UK and AU clients.</p></div>
+    <div class="glass reveal"><h2>Email</h2><p class="muted">For longer briefs and files.</p><a class="btn btn--ghost" href="mailto:{{ site.data.settings.email }}" data-event="email_click" data-link-location="contact">{{ site.data.settings.email }}</a></div>
+    <div class="glass reveal"><h2>Hire on Upwork</h2><p class="muted">Prefer a protected contract? Hire me there.</p><a class="btn btn--ghost" href="{{ site.data.settings.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="contact">Open Upwork profile</a></div>
+    <div class="glass reveal"><h2>Time zone</h2><p class="muted">{{ site.data.settings.timezone }}. I work with US, UK and AU clients.</p></div>
   </div>
 </div></section>
 <script src="/assets/js/contact-form.js" defer></script>

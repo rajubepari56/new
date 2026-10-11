@@ -54,3 +54,6 @@
 ## Blog (/blog/) and /admin
 - [ ] Read the 7 posts once and edit anything that does not match how you work (they are general guides, no client numbers)
 - [ ] /admin (Decap CMS) needs: Netlify site deployed from GitHub + GitHub OAuth app set in Netlify > Site configuration > Access & security > OAuth. Until then, ask me to add or edit posts
+
+## Admin tools (leads dashboard + editor)
+- Deploy from GitHub, set ADMIN_KEY, NETLIFY_API_TOKEN, SITE_ID, create the GitHub OAuth app (see ADMIN-SETUP.md). Not testable from the build sandbox: dashboard UI was tested with mocked API responses only; functions pass a syntax check only.

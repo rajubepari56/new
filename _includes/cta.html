@@ -6,7 +6,7 @@
     <div class="btn-row center">
       <a class="btn btn--wa btn--lg magnetic" href="{% capture t %}Hi Raju, I need help with {{ svc }}{% endcapture %}{% include wa.html text=t %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="{{ include.loc | default: 'cta' }}" data-service="{{ svc }}">{% include icon-wa.html %} Message me on WhatsApp</a>
       {% if include.form_slug %}<a class="btn btn--ghost btn--lg" href="/contact/?service={{ include.form_slug }}" data-event="cta_click" data-cta-text="Use the contact form" data-link-location="{{ include.loc | default: 'cta' }}">Use the contact form</a>{% endif %}
-      <a class="btn btn--ghost btn--lg" href="mailto:{{ site.email }}?subject={{ svc | uri_escape | replace: "&", "%26" }}" data-event="email_click" data-link-location="cta">Email me</a>
+      <a class="btn btn--ghost btn--lg" href="mailto:{{ site.data.settings.email }}?subject={{ svc | uri_escape | replace: "&", "%26" }}" data-event="email_click" data-link-location="cta">Email me</a>
     </div>
   </div>
 </section>
