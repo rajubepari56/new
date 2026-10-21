@@ -9,24 +9,21 @@
   svg.querySelectorAll('[data-n]').forEach(function (n) { nodes[n.getAttribute('data-n')] = n; });
 
   /* ---- signal flow ---- */
-  var DUR = 3.3, GAP = 0.55, CYCLE = DUR + GAP, DEST = ['t0', 't1', 't2'];
+  var DUR = 3.3, GAP = 0.55, CYCLE = DUR + GAP, DEST = ['t0', 't1', 't2', 't1'];
   var items = sigs.map(function (g, i) {
     var p = svg.querySelector('#' + g.getAttribute('data-r'));
-    return { g: g, p: p, len: p.getTotalLength(), start: 0.9 + i * 1.25, fired: {}, dest: DEST[i] };
+    return { g: g, p: p, len: p.getTotalLength(), start: 0.9 + i * 1.0, fired: {}, dest: DEST[i], crm: g.classList.contains('sig--crm') };
   });
-  function opacity(t) {            // 0..DUR: fade in, slip inside GTM and Server GTM, fade out near the target
-    if (t < .25) return t / .25;
-    if (t < .52) return 1;
-    if (t < .62) return 1 - (t - .52) / .1;
-    if (t < 1.1) return 0;
-    if (t < 1.24) return (t - 1.1) / .14;
-    if (t < 1.62) return 1;
-    if (t < 1.72) return 1 - (t - 1.62) / .1;
-    if (t < 2.2) return 0;
-    if (t < 2.34) return (t - 2.2) / .14;
-    if (t < 3.0) return 1;
-    return Math.max(0, 1 - (t - 3.0) / .3);
+  /* visibility profile per signal: fade in, slip inside each node it passes through, fade out near the target */
+  function ramp(t, pts) {                  // pts: [[time, opacity], ...] linear between points
+    if (t <= pts[0][0]) return pts[0][1];
+    for (var i = 1; i < pts.length; i++) if (t <= pts[i][0]) { var a = pts[i - 1], b = pts[i]; return a[1] + (b[1] - a[1]) * (t - a[0]) / (b[0] - a[0]); }
+    return pts[pts.length - 1][1];
   }
+  var MAIN = [[0, 0], [.25, 1], [.3, 1], [.4, 0], [.9, 0], [1.0, 1], [1.05, 1], [1.15, 0], [1.67, 0], [1.77, 1], [1.81, 1], [1.91, 0], [2.43, 0], [2.53, 1], [3.0, 1], [3.3, 0]];
+  var CRM = [[0, 0], [.25, 1], [.3, 1], [.41, 0], [1.52, 0], [1.66, 1], [3.0, 1], [3.3, 0]];
+  function opacity(t, it) { return ramp(t, it.crm ? CRM : MAIN); }
+  var PULSES = [['web', 0], ['consent', .38], ['gtm', 1.15], ['sgtm', 1.91]];
   function pulse(key) {
     var n = nodes[key]; if (!n) return;
     n.classList.remove('pulse'); void n.getBoundingClientRect(); n.classList.add('pulse');
@@ -43,8 +40,8 @@
         if (it.cycle !== cycleNo) { it.cycle = cycleNo; it.fired = {}; }
         var pt = it.p.getPointAtLength(it.len * (c / DUR));
         it.g.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ' ' + pt.y.toFixed(1) + ')');
-        it.g.style.opacity = opacity(c).toFixed(2);
-        [['web', 0], ['gtm', .62], ['sgtm', 1.72]].forEach(function (k) { if (c >= k[1] && !it.fired[k[0]]) { it.fired[k[0]] = 1; pulse(k[0]); } });
+        it.g.style.opacity = opacity(c, it).toFixed(2);
+        (it.crm ? [['crm', 0], ['sgtm', 1.6]] : PULSES).forEach(function (k) { if (c >= k[1] && !it.fired[k[0]]) { it.fired[k[0]] = 1; pulse(k[0]); } });
         if (c >= 3.2 && !it.fired.end) { it.fired.end = 1; pulse(it.dest); }
       });
     }

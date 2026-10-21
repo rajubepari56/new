@@ -46,20 +46,23 @@ faqs:
         <div class="h-photo" id="h-photo"><div class="h-photo__in"><img src="/assets/images/raju-hero.webp" width="500" height="500" fetchpriority="high" alt="Raju Bepari, Google Ads and conversion tracking specialist"></div></div>
         <figure class="h-console" aria-label="How a conversion travels from my client's website to GA4, Google Ads and Meta">
           <div class="h-console__bar"><div><b>Raju Bepari</b><span>Direct line &middot; UTC+6</span></div></div>
-          <svg class="h-flow" id="h-flow" viewBox="0 0 360 392" role="img" aria-label="Signals page_view, generate_lead and purchase travel from Website through Web GTM and Server GTM to GA4, Google Ads and Meta CAPI">
-            <g fill="none" stroke="rgba(167,169,214,.32)" stroke-width="1.4"><path d="M180 50V100M180 140V190M180 230C180 270 56 270 56 316M180 230V316M180 230C180 270 304 270 304 316"/></g>
-            <g fill="none" stroke="none"><path id="ra" d="M180 50V230C180 270 56 270 56 316"/><path id="rb" d="M180 50V316"/><path id="rc" d="M180 50V230C180 270 304 270 304 316"/></g>
+          <svg class="h-flow" id="h-flow" viewBox="0 0 360 470" role="img" aria-label="Signals page_view, generate_lead and purchase travel from the tracked website through Consent Mode v2, Web GTM and Server GTM to GA4, Google Ads and Meta CAPI. Real sales from the CRM flow back into Server GTM as crm_sale.">
+            <g fill="none" stroke="rgba(167,169,214,.32)" stroke-width="1.4"><path d="M180 50V90M180 130V170M180 210V250M180 290C180 340 56 340 56 396M180 290V396M180 290C180 340 304 340 304 396"/><path stroke-dasharray="4 4" stroke="rgba(52,168,83,.7)" d="M268 270H236"/></g>
+            <g fill="none" stroke="none"><path id="ra" d="M180 50V290C180 340 56 340 56 396"/><path id="rb" d="M180 50V396"/><path id="rc" d="M180 50V290C180 340 304 340 304 396"/><path id="rd" d="M268 270H180V396"/></g>
             <g class="sig" data-r="ra" style="--c:#FBBC05"><circle class="sig__h" r="12"/><circle class="sig__m" r="7"/><circle class="sig__d" r="3.8"/><text x="14" y="4">page_view</text></g>
             <g class="sig" data-r="rb" style="--c:#4285F4"><circle class="sig__h" r="12"/><circle class="sig__m" r="7"/><circle class="sig__d" r="3.8"/><text x="14" y="4">generate_lead</text></g>
             <g class="sig" data-r="rc" style="--c:#EA4335"><circle class="sig__h" r="12"/><circle class="sig__m" r="7"/><circle class="sig__d" r="3.8"/><text x="14" y="4">purchase</text></g>
+            <g class="sig sig--crm" data-r="rd" style="--c:#34A853"><circle class="sig__h" r="12"/><circle class="sig__m" r="7"/><circle class="sig__d" r="3.8"/><text x="-14" y="4" text-anchor="end">crm_sale</text></g>
             <g class="h-flow__node" data-n="web"><rect x="124" y="10" width="112" height="40" rx="6"/><text x="180" y="35" text-anchor="middle">Website</text></g>
-            <g class="h-flow__node" data-n="gtm"><rect x="124" y="100" width="112" height="40" rx="6"/><text x="180" y="125" text-anchor="middle">GTM</text></g>
-            <g class="h-flow__node h-flow__node--core" data-n="sgtm"><rect x="124" y="190" width="112" height="40" rx="6"/><text x="180" y="215" text-anchor="middle">Server GTM</text></g>
-            <g class="h-flow__node h-flow__node--t" data-n="t0" style="--c:#FBBC05"><rect x="6" y="316" width="100" height="40" rx="6"/><circle cx="22" cy="336" r="3.5"/><text x="32" y="340">GA4</text></g>
-            <g class="h-flow__node h-flow__node--t" data-n="t1" style="--c:#4285F4"><rect x="130" y="316" width="100" height="40" rx="6"/><circle cx="146" cy="336" r="3.5"/><text x="156" y="340">Google Ads</text></g>
-            <g class="h-flow__node h-flow__node--t" data-n="t2" style="--c:#EA4335"><rect x="254" y="316" width="100" height="40" rx="6"/><circle cx="270" cy="336" r="3.5"/><text x="280" y="340">Meta CAPI</text></g>
+            <g class="h-flow__node h-flow__node--consent" data-n="consent"><rect x="112" y="90" width="136" height="40" rx="6"/><text x="180" y="115" text-anchor="middle">Consent Mode v2</text></g>
+            <g class="h-flow__node" data-n="gtm"><rect x="124" y="170" width="112" height="40" rx="6"/><text x="180" y="195" text-anchor="middle">Web GTM</text></g>
+            <g class="h-flow__node h-flow__node--core" data-n="sgtm"><rect x="124" y="250" width="112" height="40" rx="6"/><text x="180" y="275" text-anchor="middle">Server GTM</text></g>
+            <g class="h-flow__node h-flow__node--crm" data-n="crm"><rect x="268" y="250" width="84" height="40" rx="6"/><circle cx="284" cy="270" r="3.5"/><text x="294" y="275">CRM</text></g>
+            <g class="h-flow__node h-flow__node--t" data-n="t0" style="--c:#FBBC05"><rect x="6" y="396" width="100" height="40" rx="6"/><circle cx="22" cy="416" r="3.5"/><text x="32" y="420">GA4</text></g>
+            <g class="h-flow__node h-flow__node--t" data-n="t1" style="--c:#4285F4"><rect x="130" y="396" width="100" height="40" rx="6"/><circle cx="146" cy="416" r="3.5"/><text x="156" y="420">Google Ads</text></g>
+            <g class="h-flow__node h-flow__node--t" data-n="t2" style="--c:#EA4335"><rect x="254" y="396" width="100" height="40" rx="6"/><circle cx="270" cy="416" r="3.5"/><text x="280" y="420">Meta CAPI</text></g>
           </svg>
-          <figcaption class="h-console__cap mono">One conversion, counted once, sent to every platform that needs it.</figcaption>
+          <figcaption class="h-console__cap mono">One conversion, counted once, consent-aware, sent to every platform that needs it. Real CRM sales flow back.</figcaption>
         </figure>
       </div>
     </div>

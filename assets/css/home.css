@@ -353,3 +353,6 @@
 @media(min-width:861px) and (max-width:1020px){.nav{gap:14px}}
 .h-flow__node.pulse{animation:node-pulse .4s var(--ease)}
 @keyframes node-pulse{50%{transform:scale(1.09)}}
+.h-flow__node--consent rect{stroke:#34A853;stroke-opacity:.8}
+.h-flow__node--crm rect{stroke:#34A853;stroke-opacity:.8}.h-flow__node--crm circle{fill:#34A853}
+.h-flow__node--consent text{font-size:12px}
