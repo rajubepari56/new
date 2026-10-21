@@ -3,7 +3,7 @@ layout: default
 ---
 <header class="cs-hero">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/insights/">Insights</a> / <span>{{ page.category }}</span></nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/insights/">Blog</a> / <span>{{ page.category }}</span></nav>
     <p class="mono h-tag cs-tag">{{ page.category }}</p>
     <h1 class="cs-h1">{{ page.h1 | default: page.title }}</h1>
     <p class="h-sub">{{ page.description }}</p>
@@ -27,7 +27,7 @@ layout: default
   </div></div></div></section>{% endif %}
 {% assign others = site.posts | where_exp: "p", "p.url != page.url" %}
 <section class="h-sec cs-sec"><div class="wrap h-sec__grid">
-  <div class="h-sec__rail"><span class="mono">More insights</span></div>
+  <div class="h-sec__rail"><span class="mono">More from the blog</span></div>
   <div class="h-sec__body"><div class="h-svc__list">
     {% for p in others limit:3 %}<a class="h-svc__row reveal" href="{{ p.url }}"><span class="mono h-n">0{{ forloop.index }}</span><span class="h-svc__t">{{ p.title }}</span><span class="h-svc__d">{{ p.description }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>{% endfor %}
   </div></div></div></section>

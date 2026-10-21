@@ -254,9 +254,22 @@ faqs:
   </div>
 </section>
 
+<section class="h-sec" id="blog">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">09 / From the blog</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">Answers to questions <em>clients ask me.</em></h2>
+      <div class="h-svc__list">
+        {% for p in site.posts limit:4 %}<a class="h-svc__row reveal" href="{{ p.url }}"><span class="mono h-n">0{{ forloop.index }}</span><span class="h-svc__t">{{ p.title }}</span><span class="h-svc__d">{{ p.description }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>{% endfor %}
+      </div>
+      <a class="btn btn--ghost btn--lg magnetic reveal" style="margin-top:28px" href="/insights/" data-event="cta_click" data-cta-text="Read the blog" data-link-location="home_blog">Read the blog &rarr;</a>
+    </div>
+  </div>
+</section>
+
 <section class="h-sec" id="faq">
   <div class="wrap h-sec__grid">
-    <div class="h-sec__rail"><span class="mono">09 / Questions</span></div>
+    <div class="h-sec__rail"><span class="mono">10 / Questions</span></div>
     <div class="h-sec__body">
       <h2 class="h-h2 reveal">Questions I get before starting.</h2>
       {% include faq.html items=page.faqs %}

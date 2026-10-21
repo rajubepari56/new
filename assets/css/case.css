@@ -1,5 +1,5 @@
 /* Results listing and case-study pages. Tokens come from home.css (:is(.home,.cs)). */
-.cs{--rs-gap:clamp(40px,6vw,88px)}
+:is(.home,.cs){--rs-gap:clamp(56px,7vw,96px)}
 .cs-hero{padding:clamp(40px,6vw,88px) 0 clamp(40px,5vw,72px);border-bottom:1px solid var(--hair);position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(800px 420px at 90% 0,rgba(43,47,199,.3),transparent 65%)}
 .cs-hero .crumbs{margin-bottom:28px;font:.74rem var(--mono);letter-spacing:.06em;color:var(--muted)}
 .cs-hero .crumbs a{color:var(--muted)}

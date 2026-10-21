@@ -9,7 +9,7 @@ sitemap: false
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Leads Dashboard</title>
+<title>Dashboard</title>
 <style>
 :root{--bg:#0b1020;--card:#141b34;--line:#26305a;--tx:#e8ecff;--mu:#9aa6d6;--ac:#6ea8ff;--ok:#3ddc97;--warn:#ffb454;--bad:#ff6b81}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
@@ -34,7 +34,7 @@ textarea{width:100%;min-height:70px}
 .detail{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
 .detail dl{margin:0}.detail dt{color:var(--mu);font-size:.78rem}.detail dd{margin:0 0 8px;word-break:break-word}
 #login{max-width:420px;margin:12vh auto}#login input{width:100%;margin:10px 0}
-.err{color:var(--bad)}[hidden]{display:none!important}
+.err{color:var(--bad)}.tabs{display:flex;gap:8px;margin-bottom:16px;border-bottom:1px solid var(--line)}.tab{background:none;border:0;color:var(--mu);padding:10px 14px;font:inherit;font-weight:600;cursor:pointer;border-bottom:2px solid transparent}.tab[aria-selected=true]{color:var(--tx);border-bottom-color:var(--ac)}[hidden]{display:none!important}
 @media(max-width:700px){.lead summary{grid-template-columns:1fr 1fr}}
 </style>
 </head>
@@ -49,9 +49,11 @@ textarea{width:100%;min-height:70px}
 
   <div id="app" hidden>
     <header>
-      <h1>Leads Dashboard</h1>
+      <h1>Dashboard</h1>
       <div><button class="btn ghost" id="refresh" type="button">Refresh</button> <button class="btn ghost" id="csv" type="button">Download CSV</button> <a class="btn" href="/admin/">Edit site content</a> <button class="btn ghost" id="logout" type="button">Log out</button></div>
     </header>
+    <nav class="tabs" role="tablist" aria-label="Dashboard sections"><button class="tab" id="t-leads" role="tab" aria-selected="true" type="button">Enquiries</button><button class="tab" id="t-activity" role="tab" aria-selected="false" type="button">Visitor activity</button></nav>
+    <div id="tab-leads">
     <div class="kpis" id="kpis"></div>
     <div class="charts">
       <div class="card"><h2>Leads per day (last 30 days)</h2><svg id="daily" viewBox="0 0 600 160" width="100%" role="img" aria-label="Leads per day"></svg></div>
@@ -66,6 +68,24 @@ textarea{width:100%;min-height:70px}
     </div>
     <div id="list"></div>
     <p id="empty" class="muted" hidden>No leads yet. Submissions from the contact form will appear here.</p>
+    </div>
+    <div id="tab-activity" hidden>
+      <div class="tools"><label class="muted" for="act-days">Period</label><select id="act-days"><option value="7">Last 7 days</option><option value="30" selected>Last 30 days</option><option value="90">Last 90 days</option></select></div>
+      <div class="kpis" id="a-kpis"></div>
+      <div class="charts">
+        <div class="card"><h2>Page views per day</h2><svg id="a-daily" viewBox="0 0 600 160" width="100%" role="img" aria-label="Page views per day"></svg></div>
+        <div class="card"><h2>From visit to enquiry</h2><div id="a-funnel"></div></div>
+        <div class="card"><h2>Top pages</h2><div id="a-pages"></div></div>
+        <div class="card"><h2>Where visitors came from</h2><div id="a-ref"></div></div>
+        <div class="card"><h2>Countries</h2><div id="a-cc"></div></div>
+        <div class="card"><h2>Devices</h2><div id="a-dev"></div></div>
+        <div class="card"><h2>Button and link clicks</h2><div id="a-ev"></div></div>
+        <div class="card"><h2>Campaign sources (utm_source)</h2><div id="a-src"></div></div>
+      </div>
+      <p id="a-empty" class="muted" hidden>No activity recorded yet. Counters start once the site is deployed from Git (see ADMIN-SETUP.md). Visitors who send "Do Not Track" are not counted, and bots are ignored.</p>
+      <p class="muted">Anonymous totals only: no cookies, IP addresses or visitor IDs are stored. Numbers are approximate.</p>
+      <p id="a-err" class="err" role="alert"></p>
+    </div>
     <p id="app-err" class="err" role="alert"></p>
   </div>
 </div>
@@ -140,6 +160,32 @@ $("csv").addEventListener("click",function(){
   var cols=["created_at","name","email","phone","country","company","website","service","budget","preferred_contact","message","source","status","notes"];
   var csv=[cols.join(",")].concat(leads.map(function(l){return cols.map(function(c){return'"'+String(l[c]||"").replace(/"/g,'""')+'"'}).join(",")})).join("\n");
   var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="leads.csv";a.click()});
+
+/* ---- visitor activity tab ---- */
+function setTab(t){$("tab-leads").hidden=t!=="leads";$("tab-activity").hidden=t!=="activity";$("t-leads").setAttribute("aria-selected",t==="leads");$("t-activity").setAttribute("aria-selected",t==="activity");if(t==="activity")loadAct()}
+$("t-leads").addEventListener("click",function(){setTab("leads")});$("t-activity").addEventListener("click",function(){setTab("activity")});
+function mergeRows(days,key){var m={};days.forEach(function(d){var o=d[key]||{};Object.keys(o).forEach(function(k){m[k]=(m[k]||0)+o[k]})});return Object.keys(m).map(function(k){return[k,m[k]]}).sort(function(a,b){return b[1]-a[1]})}
+function tot(rows){return rows.reduce(function(a,r){return a+r[1]},0)}
+function loadAct(){
+  $("a-err").textContent="";
+  api("/api/activity?days="+$("act-days").value).then(function(r){if(r.status===401)throw new Error("auth");if(!r.ok)throw new Error("error "+r.status);return r.json()}).then(function(d){renderAct(d.days)}).catch(function(e){$("a-err").textContent=e.message==="auth"?"Wrong admin key.":"Could not load activity ("+e.message+"). It needs the Git-connected deploy, see ADMIN-SETUP.md."})
+}
+function renderAct(days){
+  var pv=days.map(function(d){return tot(Object.keys(d.pv||{}).map(function(k){return[k,d.pv[k]]}))});
+  var totalPV=pv.reduce(function(a,b){return a+b},0),sessions=days.reduce(function(a,d){return a+(d.sessions||0)},0);
+  var evAll=mergeRows(days,"ev"),ev={};evAll.forEach(function(r){ev[r[0]]=r[1]});
+  var wa=ev.whatsapp_click||0,mail=ev.email_click||0,book=ev.booking_click||0,leadsN=ev.generate_lead||0,contact=wa+mail+book+leadsN;
+  $("a-empty").hidden=totalPV>0;
+  $("a-kpis").innerHTML=[["Page views",totalPV],["Visits (sessions)",sessions],["WhatsApp clicks",wa],["Email clicks",mail],["Booking clicks",book],["Enquiries sent",leadsN]].map(function(k){return'<div class="card kpi"><b>'+k[1]+'</b><span>'+k[0]+'</span></div>'}).join("");
+  var mx=Math.max.apply(null,pv.concat([1])),n=pv.length,bw=600/n,h="";
+  pv.forEach(function(v,j){var bh=v/mx*120;h+='<rect x="'+(j*bw+1)+'" y="'+(140-bh)+'" width="'+Math.max(1,bw-2)+'" height="'+Math.max(bh,1)+'" rx="2" fill="#6ea8ff"><title>'+days[j].day+': '+v+'</title></rect>'});
+  $("a-daily").innerHTML=h+'<text x="0" y="156" fill="#9aa6d6" font-size="10">'+days[0].day+'</text><text x="600" y="156" fill="#9aa6d6" font-size="10" text-anchor="end">'+days[n-1].day+' (max '+mx+')</text>';
+  var pct=function(a,b){return b?Math.round(a/b*100)+"%":"-"};
+  $("a-funnel").innerHTML='<div class="bar"><em>Visits</em><i style="width:55%"></i><span>'+sessions+'</span></div><div class="bar"><em>Contact actions</em><i style="width:'+Math.max(2,sessions?contact/sessions*55:2)+'%"></i><span>'+contact+' ('+pct(contact,sessions)+')</span></div><div class="bar"><em>Enquiries</em><i style="width:'+Math.max(2,sessions?leadsN/sessions*55:2)+'%"></i><span>'+leadsN+' ('+pct(leadsN,sessions)+')</span></div><p class="muted">Contact actions = WhatsApp, email and booking clicks plus enquiries.</p>';
+  bars($("a-pages"),mergeRows(days,"pv"));bars($("a-ref"),mergeRows(days,"ref"));bars($("a-cc"),mergeRows(days,"cc"));bars($("a-dev"),mergeRows(days,"dev"));bars($("a-src"),mergeRows(days,"src"));
+  bars($("a-ev"),evAll.filter(function(r){return r[0].indexOf(" @ ")>-1}));
+}
+$("act-days").addEventListener("change",loadAct);
 if(KEY)load();
 })();
 </script>
