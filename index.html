@@ -106,20 +106,37 @@ faqs:
 </section>
 
 <section class="h-sec" id="services">
-  <div class="wrap h-sec__grid">
-    <div class="h-sec__rail"><span class="mono">02 / Services</span></div>
-    <div class="h-sec__body h-svc">
-      <div class="h-svc__intro">
-        <h2 class="h-h2 reveal">One specialist. <em>{{ site.data.services | size }}</em> services. One measurement system.</h2>
+  <div class="wrap">
+    <div class="h-sec__grid">
+      <div class="h-sec__rail"><span class="mono">02 / Services</span></div>
+      <div class="h-sec__body">
+        {% assign bn = 0 %}{% for g in site.data.bento.groups %}{% assign bn = bn | plus: g.items.size %}{% endfor %}
+        <h2 class="h-h2 reveal">One specialist. <em>{{ bn }}</em> services. One measurement system.</h2>
         <p class="lead reveal">Each service connects to the next, so your ads, analytics and reports all read from the same clean data.</p>
-        <a class="h-link reveal" href="/services/" data-event="cta_click" data-cta-text="All services" data-link-location="home_services">All services &rarr;</a>
-      </div>
-      <div class="h-svc__list">
-        {% for s in site.data.services %}
-        <a class="h-svc__row reveal" href="{{ s.url }}" data-c="{{ s.color }}"><span class="mono h-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span class="h-svc__t">{{ s.name }}</span><span class="h-svc__d">{{ s.short }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>
-        {% endfor %}
       </div>
     </div>
+    <div class="bento">
+      {% for g in site.data.bento.groups %}
+      {% if g.id == "ads" %}<div class="bento__side">{% endif %}
+      <section class="bg bg--{{ g.id }}" aria-labelledby="bg-{{ g.id }}">
+        <header class="bg__h reveal"><h3 id="bg-{{ g.id }}" class="mono">{{ g.name }}</h3><span>{{ g.note }}</span></header>
+        <div class="bg__grid">
+          {% for c in g.items %}
+          {% assign svc = site.data.services | where: "slug", c.slug | first %}
+          <a class="bx bx--{{ c.area }}{% if c.feature %} bx--feature{% endif %} reveal" href="/services/{{ c.slug }}/" data-event="cta_click" data-cta-text="Service: {{ svc.name | escape }}" data-link-location="home_bento">
+            <span class="bx__k mono">{{ c.kicker }}</span>
+            <h4>{{ svc.name }}</h4>
+            <p>{{ c.benefit }}</p>
+            {% include bento-viz.html v=c.viz %}
+            <span class="bx__go mono">View service <b aria-hidden="true">&rarr;</b></span>
+          </a>
+          {% endfor %}
+        </div>
+      </section>
+      {% if g.id == "seo" %}</div>{% endif %}
+      {% endfor %}
+    </div>
+    <p class="mono h-note reveal bento__more">Also available: <a href="/services/ai-search-optimization/">AI Search Optimization</a> &middot; <a href="/services/">all services</a> &middot; <a href="/google-ads-for-junk-removal/">services by industry</a></p>
   </div>
 </section>
 

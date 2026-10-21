@@ -1,0 +1,22 @@
+# Homepage services bento. Order inside each group is the display order.
+groups:
+  - id: track
+    name: Tracking & Analytics
+    note: My strongest specialization
+    items:
+      - { slug: ga4, area: ga4, kicker: "GA4 reports", benefit: "Reports you can finally trust when you make real decisions.", viz: line }
+      - { slug: google-tag-manager, area: gtm, kicker: "Containers and tags", benefit: "A clean, documented container instead of tag chaos.", viz: tags }
+      - { slug: server-side-tracking, area: sgtm, kicker: "Server-side GTM", benefit: "Recover the conversion signals lost to browser restrictions and ad blockers.", viz: server, feature: true }
+      - { slug: meta-pixel-capi, area: meta, kicker: "Pixel and Conversions API", benefit: "Stronger event match quality, so Meta optimizes on real conversions.", viz: meta }
+      - { slug: enhanced-offline-conversions, area: enh, kicker: "Offline and enhanced", benefit: "Send real sales and qualified leads back to Google Ads for smarter bidding.", viz: chain }
+  - id: ads
+    name: Ads
+    note: Paid search and shopping
+    items:
+      - { slug: google-ads, area: ads, kicker: "Search, Shopping, Performance Max", benefit: "Stop wasting budget. I scale the campaigns that actually bring you customers.", viz: bars }
+      - { slug: merchant-center, area: mc, kicker: "Feeds and policy", benefit: "Fix disapprovals and suspensions so your products show again.", viz: merchant }
+  - id: seo
+    name: SEO
+    note: Local search
+    items:
+      - { slug: local-seo, area: seo, kicker: "Google Maps and local search", benefit: "More calls and direction requests from Google Maps and local search.", viz: pin }

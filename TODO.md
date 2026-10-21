@@ -67,3 +67,8 @@
 - Minimum monthly ad budget for the "not a fit" list is not set (not provided). Add one if you want it shown.
 - No verified 5X/10X case yet. The only multiplier shown is the real "4x average ROAS" case (with its period and context).
 - Home page no longer includes the blog strip or About block (listed in the nav and footer instead). Service pages, About and other pages still use the previous design and will be restyled in a later step.
+
+## Homepage services bento
+- The bento shows the 8 services you listed. "AI Search Optimization" (the ninth) is linked under the grid and stays on the services page, nav and footer. Tell me if it should be hidden or removed.
+- Bento copy and grouping live in `_data/bento.yml`.
+- The card illustrations are abstract concept diagrams with no numbers (no fake metrics).
