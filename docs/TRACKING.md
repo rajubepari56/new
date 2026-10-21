@@ -2,8 +2,8 @@
 
 The website only pushes to `dataLayer`. You build the tags, triggers and variables in Google Tag Manager. Nothing is connected until you set the container ID and publish.
 
-## 1. Turn GTM on
-Set `gtm_id` in `/admin` > Site settings (or `_data/settings.yml`), for example `GTM-XXXXXXX`. Until it is set, no Google script loads. Consent Mode v2 defaults (all four set to `denied`) are always pushed first, before GTM.
+## 1. GTM is on
+`gtm_id` is set to **GTM-TZVTKKVM** in `_data/settings.yml` (editable in `/admin` > Site settings). It loads after you deploy. Until you publish tags in that container, nothing is measured. The site's own snippet is the standard GTM snippet, preceded by the Consent Mode v2 defaults. Consent Mode v2 defaults (all four set to `denied`) are always pushed first, before GTM.
 
 ## 2. Consent
 - Banner: Accept / Reject / Privacy link. Footer: "Cookie settings".

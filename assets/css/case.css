@@ -60,7 +60,7 @@
 .cs-shot figcaption .mono{color:var(--tint)}.cs-shot figcaption p{margin:8px 0 0;color:#BFC1E6}
 /* quote */
 .cs-quote{margin:0;padding:clamp(26px,4vw,48px);border:1px solid rgba(139,143,255,.3);border-radius:12px;background:linear-gradient(135deg,#1E2390,#12143A 70%)}
-.cs-quote blockquote{margin:0}.cs-quote blockquote p{font:400 clamp(1.4rem,3vw,2.2rem)/1.35 var(--serif);margin:0 0 20px}
+.cs-quote blockquote{margin:0}.cs-quote blockquote p{font:500 clamp(1.4rem,3vw,2.2rem)/1.35 var(--hf2);margin:0 0 20px}
 .cs-quote figcaption{color:var(--muted);text-transform:none!important;letter-spacing:.02em}
 /* listing rows */
 .rs-list{display:grid;gap:var(--rs-gap)}

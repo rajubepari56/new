@@ -21,8 +21,8 @@ Date: 2026-10-21. Branch `claude/raju-bepari-website-build-uj8gvc`. Everything b
 | 4 | Navigation, buttons, WhatsApp | All 7 header links and 14 dropdown links resolve. 9 distinct WhatsApp links all point to `https://wa.me/8801710992866?text=...` with a prefilled message. Forms: see 12. |
 | 5 | Keyboard and focus | The first Tab stop is the skip link. 70 consecutive Tab stops on the home page all showed a focus indicator. The services dropdown opens with Enter (`aria-expanded` true, then false on a second Enter) and Tab moves into it. The message widget opens, and Escape closes it and returns focus to its button. A combined test script reported a failure for the dropdown because of a bug in the test itself. A separate script confirmed the behaviour. |
 | 6 | Mobile, tablet, desktop | 360, 768 and 1440 px: no horizontal overflow on 13 pages. Interactive targets are at least 24 x 24 px (WCAG 2.5.8). I fixed footer links and dropdown toggles that were smaller. I reviewed screenshots of home and contact at 360 and 768 px. |
-| 7 | Images, fonts, animation | 21 images on all pages: all have `alt`, `width` and `height`, and all are WebP or SVG. Below-the-fold images are `loading="lazy"`; the hero and About photos are eager with `fetchpriority="high"`. The social image is a 42 KB JPG (was a 327 KB PNG). Fonts: 4 families in one request, `font-display: swap`, loaded without blocking rendering. Animations use transform and opacity only. The hero loop is coded to pause when the tab or section is not visible (not measured). Reduced motion is honoured. |
-| 8 | Core Web Vitals | See the Lighthouse table. Changes: removed the preloader, replaced the 5th font family, bundled 4 CSS files into one and minified CSS and JS, made the font stylesheet non-blocking, dropped an unused GSAP plugin. |
+| 7 | Images, fonts, animation | 21 images on all pages: all have `alt`, `width` and `height`, and all are WebP or SVG. Below-the-fold images are `loading="lazy"`; the hero and About photos are eager with `fetchpriority="high"`. The social image is a 42 KB JPG (was a 327 KB PNG). Fonts: 3 families (Space Grotesk, Inter, JetBrains Mono) in one request, `font-display: swap`, loaded without blocking rendering. Animations use transform and opacity only. The hero loop is coded to pause when the tab or section is not visible (not measured). Reduced motion is honoured. |
+| 8 | Core Web Vitals | See the Lighthouse table. Changes: removed the preloader, cut the font families from five to three, bundled 4 CSS files into one and minified CSS and JS, made the font stylesheet non-blocking, dropped an unused GSAP plugin. |
 | 9 | SEO | Unique titles and descriptions within limits. Open Graph and Twitter card tags on every page. `sitemap.xml` lists 32 URLs (no thank-you, 404, admin or dashboard). `robots.txt` allows the site, disallows `/dashboard/` and `/admin/` and points to the sitemap. |
 | 10 | Schema (JSON-LD) | All JSON parses. Home: WebSite, Person and ProfessionalService (`sameAs` = all 6 profiles), FAQPage, BreadcrumbList. Service pages and the 4 industry landing pages: Service, FAQPage, BreadcrumbList. Process: FAQPage. Posts: BlogPosting. Case studies: Article. Every page has a BreadcrumbList. |
 | 11 | Search Console tag | With a test code in settings the build outputs `<meta name="google-site-verification" content="...">`. With the code empty, no tag is output. **Reminder: after verifying, submit https://rajubepari.netlify.app/sitemap.xml in Search Console.** |
@@ -117,3 +117,15 @@ The 404 page returned 200 from my local test server, which serves it for every m
 - Case-study and service copy states only what you provided. Several pages show an honest "no published case study yet" message.
 - Legal pages are drafts with placeholders, not legal advice.
 - The leads dashboard shows what is stored in Netlify Blobs and Netlify Forms. It is not a CRM.
+
+## Addendum: re-run after the font change and GTM ID (2026-10-21)
+After switching the display font to Space Grotesk (per your brief), removing the italic serif accent and setting `gtm_id` to GTM-TZVTKKVM, I rebuilt and re-ran these checks on the production build:
+- 34 URLs: 0 issues (one H1, canonical, title and description limits, no duplicates).
+- axe-core on 25 routes at 1440 and 390 px: no violations. No broken internal links.
+- Overflow and 24 px target size at 360, 768 and 1440 px on 13 pages: pass. Hero headline lines are not clipped at 1440 or 360 px.
+- Keyboard checks (skip link, 70 Tab stops, widget, Escape): pass.
+- Consent defaults before GTM with the real container ID (GTM stubbed, so GTM itself was not contacted): pass, including Accept, Reject and returning-visitor order.
+- Form: 18 of 18 browser tests pass.
+- Lighthouse home page: mobile 98 / 100 / 96 / 100 (LCP 1.4 s, CLS 0), desktop 99 / 100 / 96 / 100.
+Not re-run: the event-by-event click test (events code did not change) and the function tests (function code did not change).
+I have **not** sent any request to your n8n webhook URL.

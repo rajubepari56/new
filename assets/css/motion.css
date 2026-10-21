@@ -124,3 +124,5 @@ html{scroll-padding-top:120px}
 /* WCAG 2.2 target size (2.5.8): keep small links at least 24px tall and dropdown toggles at least 28px wide */
 .footer__list a,.footer__list button{display:inline-block;min-height:28px;padding:4px 0}
 .nav__dd-btn{min-width:28px;min-height:28px}
+
+.footer__slogan{color:var(--tint,#8B8FFF);letter-spacing:.08em;text-transform:uppercase;font-size:.74rem}

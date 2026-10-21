@@ -1,9 +1,9 @@
 /* Home page: editorial layer on top of main.css. Tokens first. */
-:is(.home,.cs){--surface:#12143A;--surface-2:#1A1D4D;--tint:#8B8FFF;--hair:rgba(167,169,214,.18);--hf2:"Inter Tight","Inter",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,"Times New Roman",serif;--ease:cubic-bezier(.22,1,.36,1);--pad:clamp(72px,10vw,144px)}
+:is(.home,.cs){--surface:#12143A;--surface-2:#1A1D4D;--tint:#8B8FFF;--hair:rgba(167,169,214,.18);--hf2:"Space Grotesk","Inter",system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1);--pad:clamp(72px,10vw,144px)}
 :is(.home,.cs) .wrap{width:min(1200px,100% - 32px)}
 @media(min-width:768px){:is(.home,.cs) .wrap{width:min(1200px,100% - 48px)}}
 :is(.home,.cs) .mono,.h-n{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
-:is(.home,.cs) em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--tint);letter-spacing:0}
+:is(.home,.cs) em{font-style:normal;font-weight:inherit;color:var(--tint)}
 :is(.home,.cs) main a{color:var(--tint)}
 :is(.home,.cs) main .btn{color:#fff}:is(.home,.cs) main .btn--ghost{color:var(--text)}
 :is(.home,.cs) .btn--wa{border-radius:8px}:is(.home,.cs) .btn--ghost{border-radius:8px}
@@ -183,7 +183,7 @@
 @media(min-width:900px){.h-quotes{grid-template-columns:repeat(2,1fr)}.h-quote--lead{grid-column:1/-1}}
 .h-quote{margin:0;padding:clamp(22px,3vw,34px);background:var(--surface);border:1px solid var(--hair);border-radius:10px}
 .h-quote--lead{background:linear-gradient(135deg,#1E2390,#12143A 70%);border-color:rgba(139,143,255,.3)}
-.h-quote--lead blockquote p{font:400 clamp(1.25rem,2.6vw,1.9rem)/1.4 var(--serif);letter-spacing:0}
+.h-quote--lead blockquote p{font:400 clamp(1.25rem,2.6vw,1.9rem)/1.4 var(--hf2);letter-spacing:0}
 .h-stars{color:#FBBC05;letter-spacing:3px;font-size:.9rem;margin:0 0 14px}
 .h-quote blockquote{margin:0}.h-quote blockquote p{margin:0 0 18px;line-height:1.6}
 .h-quote figcaption{color:var(--muted);text-transform:none!important;letter-spacing:.02em;font-size:.74rem}
