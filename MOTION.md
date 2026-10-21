@@ -14,3 +14,6 @@ Timing: micro-interactions 200-280 ms, entrances 650-900 ms, one easing family (
 
 Reduced motion: when the device asks for it, `html.rm` is set, reveals and counters show final states immediately, the hero signals sit still with labels, and all transitions are near-instant.
 Removed: the full-screen wipe between pages (it delayed every link by 460 ms), the smooth-scroll library, 3D card tilt, the looping floating photo and the endless pulses.
+
+## Update: animations are always on
+Animations no longer depend on the device's "reduce motion" setting, and the hero flow no longer needs any external library, so everything runs even if a CDN is blocked. This follows your standing instruction that animations should be on for every visitor.

@@ -69,12 +69,7 @@
 .sig text{fill:#F5F6FF;font:500 10.5px var(--mono);paint-order:stroke;stroke:#12143A;stroke-width:4px;stroke-linejoin:round}
 .h-console__cap{margin:12px 0 0;color:var(--muted);text-transform:none!important;letter-spacing:.02em}
 
-@media(prefers-reduced-motion:reduce){
- .ln__i,.h-rise,.h-pop{animation:none;transform:none;opacity:1}
- .h-glow i{animation:none}
-}
-.rm-hero .ln__i,.rm-hero .h-rise,.rm-hero .h-pop{animation:none;transform:none;opacity:1}
-.rm-hero .h-glow i{animation:none}
+
 
 /* trust strip */
 .h-strip{border-block:1px solid var(--hair);background:rgba(18,20,58,.35)}
@@ -211,7 +206,7 @@
 .h-final .h-cta{margin-top:34px}
 
 :is(.home,.cs) .site-footer{margin-top:0}
-@media(prefers-reduced-motion:no-preference){.h-hero .h-display{animation:none}}
+
 :is(.home,.cs) main .h-svc__row,:is(.home,.cs) main .h-snap{color:var(--text)}
 .h-strip__stats b span{display:inline;margin:0;font-size:.6em;color:var(--tint)}
 .h-svc__intro .h-h2{font-size:clamp(1.7rem,3vw,2.7rem)}
@@ -347,12 +342,7 @@
 @keyframes rip{0%{opacity:.7;r:6}100%{opacity:0;r:26}}
 @keyframes rip2{0%{opacity:.7;r:6}100%{opacity:0;r:26}}
 .bento__more{margin-top:28px}
-@media(prefers-reduced-motion:reduce){
- .bx,.bx *{transition:none!important;animation:none!important}
- .v-bars .bars rect{transform:none}.v-bars .trend,.v-line .ln{stroke-dashoffset:0}.v-line .pt,.v-server svg .blocked,.v-server svg .x,.v-server svg .lbl{opacity:1}
- .v-code span{max-width:100%;border-right-color:transparent}.v-tags i{background:#34A853;opacity:1}.v-emq .meter u{transform:scaleX(.86)}
- .mc--ok{opacity:1;transform:none}.v-chain li{color:#F5F6FF}.bx:hover{transform:none}
-}
+
 
 .v-legend{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px;font:.7rem var(--mono);color:var(--muted)}
 .v-legend li{padding-left:18px;position:relative}
@@ -361,3 +351,5 @@
 .bx--feature{min-height:340px}
 @media(max-width:480px){.v-code{font-size:.64rem;padding:9px 8px}}
 @media(min-width:861px) and (max-width:1020px){.nav{gap:14px}}
+.h-flow__node.pulse{animation:node-pulse .4s var(--ease)}
+@keyframes node-pulse{50%{transform:scale(1.09)}}

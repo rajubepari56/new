@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0A0B1E">
   {% if site.data.settings.google_site_verification != "" %}<meta name="google-site-verification" content="{{ site.data.settings.google_site_verification }}">{% endif %}
-  <script>try{var d=document.documentElement,rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm)d.classList.add('rm')}catch(e){}</script>
   {% include gtm-head.html %}
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/images/raju-avatar.webp">
@@ -24,6 +23,7 @@
 </head>
 <body class="{{ page.body_class }}">
   {% include gtm-body.html %}
+  <div id="scroll-progress" aria-hidden="true"></div>
   {% include header.html %}
   <main id="main">
     {{ content }}

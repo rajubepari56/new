@@ -5,7 +5,7 @@
   w.dataLayer=w.dataLayer||[];
   function push(o){w.dataLayer.push(o);}
   var mq=function(q){return w.matchMedia(q).matches;};
-  var reduce=root.classList.contains('rm');
+  var reduce=false; /* animations are always on */
   var fine=mq('(hover: hover) and (pointer: fine)');
   var CDN='https://cdn.jsdelivr.net/npm/';
   var RB=w.RB={reduce:reduce,fine:fine,mobile:mq('(max-width: 860px)'),CDN:CDN,lenis:null,_cbs:[]};

@@ -94,7 +94,7 @@
 @media(min-width:1100px){.h-snaps--all{grid-template-columns:repeat(3,1fr)}}
 .h-snap figcaption{padding:12px 14px;display:grid;gap:4px;text-transform:none!important;letter-spacing:.01em}
 .h-snap figcaption b{font-weight:500;color:var(--text)}.h-snap figcaption span{color:var(--muted);font-size:.7rem}
-@media(prefers-reduced-motion:reduce){.rs-panel{transition:none}}
+
 .cs-big small.mono{text-transform:none;letter-spacing:.02em}
 .cs-sec .h-h2{font-size:clamp(1.7rem,3.4vw,2.6rem);max-width:24ch}
 .rs-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:14px 18px}
@@ -132,7 +132,7 @@
 .draft-note{padding:14px 16px;border:1px dashed rgba(251,188,5,.7);border-radius:8px;color:#FBBC05;background:rgba(251,188,5,.06);margin:0 0 28px}
 .empty-state{padding:28px;border:1px dashed rgba(167,169,214,.4);border-radius:12px;color:var(--muted)}
 .empty-state strong{color:var(--text);display:block;margin-bottom:6px}
-@media(prefers-reduced-motion:reduce){.btn__spin{animation-duration:2s!important}}
+
 
 /* service pages */
 .cs-list{list-style:none;margin:16px 0 0;padding:0}

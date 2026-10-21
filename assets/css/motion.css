@@ -3,13 +3,13 @@
 html{scroll-padding-top:120px}
 
 /* 1. page transitions: native cross-document view transitions (no JS, never delays navigation) */
-@media(prefers-reduced-motion:no-preference){
+
   @view-transition{navigation:auto}
   .site-header{view-transition-name:site-header}
   ::view-transition-old(root){animation:vt-out .16s ease both}
   ::view-transition-new(root){animation:vt-in .42s var(--ease) both}
   ::view-transition-group(site-header),::view-transition-old(site-header),::view-transition-new(site-header){animation:none}
-}
+
 @keyframes vt-out{to{opacity:0}}
 @keyframes vt-in{from{opacity:0;transform:translate3d(0,10px,0)}}
 
@@ -103,15 +103,7 @@ html{scroll-padding-top:120px}
 .tilt:hover:before{opacity:1}
 
 /* reduced motion: everything is visible and static */
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important}
-  .js .reveal{opacity:1;translate:none}
-  .js img.mask{clip-path:none;transform:none}
-  .js .h-sec:not(.in-view):before{transform:none}
-  .wa-fab{opacity:1;transform:none}
-  .nav>*{opacity:1;transform:none}
-}
+
 
 .hero__photo{animation:none}
 .h-paused .h-glow i{animation-play-state:paused}
@@ -126,3 +118,41 @@ html{scroll-padding-top:120px}
 .nav__dd-btn{min-width:28px;min-height:28px}
 
 .footer__slogan{color:var(--tint,#8B8FFF);letter-spacing:.08em;text-transform:uppercase;font-size:.74rem}
+
+/* ===== extra motion (always on) ===== */
+/* page-in for every browser (Chromium also gets the native view transition) */
+main{animation:page-in .7s var(--ease) both}
+@keyframes page-in{from{opacity:0;transform:translate3d(0,14px,0)}}
+/* scroll progress */
+#scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:90;background:linear-gradient(90deg,#8B8FFF,#4285F4,#34A853);transform:scaleX(0);transform-origin:left;pointer-events:none}
+/* word-by-word heading reveal */
+.js .split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.js .split .wi{display:inline-block;transform:translate3d(0,112%,0);transition:transform .9s var(--ease);transition-delay:calc(var(--wi,0)*45ms + 120ms)}
+.js .split.in .wi{transform:none}
+.js .h-h2.split.reveal,.js .cs-h2.split.reveal,.js .h-display--m.split.reveal{translate:none}
+/* tinted words shimmer */
+.h-hero .h-display em{background:linear-gradient(100deg,#8B8FFF 38%,#fff 50%,#8B8FFF 62%) 100% 0/250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:em-shine 6s ease-in-out 1.6s infinite}
+@keyframes em-shine{0%,60%{background-position:100% 0}100%{background-position:-60% 0}}
+/* photo ring floats gently */
+.h-photo__in{animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translate3d(0,-8px,0)}}
+/* ambient light on every sub-page hero */
+.cs-hero:before{content:"";position:absolute;z-index:-1;width:min(720px,90vw);height:min(720px,90vw);right:-12%;top:-40%;border-radius:50%;background:radial-gradient(closest-side,rgba(43,47,199,.4),transparent);animation:glow-a 18s ease-in-out infinite alternate;pointer-events:none}
+/* platform marquee */
+.h-marq{overflow:hidden;padding:18px 0 22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.h-marq__track{display:flex;gap:10px;width:max-content;list-style:none;margin:0;padding:0;animation:marq 45s linear infinite}
+.h-marq:hover .h-marq__track{animation-play-state:paused}
+.h-marq__track li{font:.74rem var(--mono);letter-spacing:.04em;color:var(--muted);border:1px solid var(--hair);border-radius:999px;padding:6px 14px;white-space:nowrap;transition:color .3s,border-color .3s}
+.h-marq__track li:hover{color:var(--text);border-color:var(--tint)}
+@keyframes marq{to{transform:translate3d(-50%,0,0)}}
+/* image hover zoom */
+.h-snap img,.cs-shot img{transition:transform .8s var(--ease),clip-path .85s var(--ease)}
+.h-snap:hover img{transform:scale(1.04)}
+.h-snap{overflow:hidden}
+/* footer social icons lift */
+.socials a{transition:transform .25s var(--ease),background-color .25s}.socials a:hover{transform:translate3d(0,-3px,0)}
+
+/* message button sits a little higher */
+.msgw{bottom:44px;right:22px}
+.totop{bottom:126px}
+@media(max-width:860px){.msgw{right:21px;bottom:calc(104px + env(safe-area-inset-bottom))}.totop{bottom:calc(16px + env(safe-area-inset-bottom))}}

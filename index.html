@@ -75,10 +75,10 @@ faqs:
       <li class="reveal"><b{% if st.count %} data-count="{{ st.count }}"{% if st.suffix %} data-suffix="{{ st.suffix }}"{% endif %}{% endif %}>{% if st.count %}{{ st.count }}{{ st.suffix }}{% else %}{{ st.display }}{% endif %}</b><span>{{ st.label }}</span><i class="h-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ st.percent }}" aria-label="{{ st.label }}"><u style="--w:{{ st.percent }}%"></u></i></li>
       {% endif %}{% endfor %}
     </ul>
-    <ul class="h-strip__pills" aria-label="Platforms I work with">
-      {% assign plat = "Google Ads,GA4,Google Tag Manager,Server-side GTM,Meta Ads,Shopify,WooCommerce,Wix,WordPress" | split: "," %}
-      {% for p in plat %}<li>{{ p }}</li>{% endfor %}
-    </ul>
+    <div class="h-marq" aria-label="Platforms I work with">
+      {% assign plat = "Google Ads,GA4,Google Tag Manager,Server-side GTM,Meta Ads,Shopify,WooCommerce,Wix,WordPress,Consent Mode v2,Conversions API,Looker Studio" | split: "," %}
+      <ul class="h-marq__track">{% for p in plat %}<li>{{ p }}</li>{% endfor %}{% for p in plat %}<li aria-hidden="true">{{ p }}</li>{% endfor %}</ul>
+    </div>
   </div>
 </section>
 

@@ -1,8 +1,37 @@
 /* Motion helpers: section transitions, number counters. Small, passive, and skipped entirely for reduced motion. */
 (function () {
   'use strict';
-  var d = document, root = d.documentElement, reduce = root.classList.contains('rm');
+  var d = document, root = d.documentElement, reduce = false; /* animations are always on */
   var hasIO = 'IntersectionObserver' in window;
+
+
+  /* split section headings into words so each word rises out of a mask (staggered) */
+  d.querySelectorAll('.h-h2.reveal, .cs-h2.reveal, .h-display--m.reveal').forEach(function (h) {
+    var n = 0;
+    (function walk(node) {
+      [].slice.call(node.childNodes).forEach(function (c) {
+        if (c.nodeType === 3) {
+          var parts = c.textContent.split(/(\s+)/), frag = d.createDocumentFragment();
+          parts.forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(d.createTextNode(' ')); return; }
+            var w = d.createElement('span'), i = d.createElement('span');
+            w.className = 'w'; i.className = 'wi'; i.style.setProperty('--wi', n++); i.textContent = p; w.appendChild(i); frag.appendChild(w);
+          });
+          c.parentNode.replaceChild(frag, c);
+        } else if (c.nodeType === 1) walk(c);
+      });
+    })(h);
+    h.classList.add('split');
+  });
+
+  /* scroll progress line */
+  var bar = d.getElementById('scroll-progress'), ticking = false;
+  if (bar) {
+    var up = function () { ticking = false; var h = root.scrollHeight - window.innerHeight; bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0).toFixed(4) + ')'; };
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(up); } }, { passive: true });
+    up();
+  }
 
   /* section entrance: hairline draws across and the rail label lights up */
   var secs = d.querySelectorAll('.h-sec, .h-final, .cs-sec');
