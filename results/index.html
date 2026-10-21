@@ -35,7 +35,7 @@ body_class: cs
       <p class="lead reveal">Screenshots from recent work, all campaigns, July 1 to 31, 2026. Client names and industries are not shown. "Conversions" are the actions each account tracks, such as calls, lead forms or purchases, so they differ from account to account.</p>
       <div class="h-snaps h-snaps--all">
         {% for s in site.data.snapshots.items %}
-        <figure class="h-snap reveal"><img src="{{ s.img }}" width="1280" height="476" loading="lazy" alt="{{ s.alt | escape }}"><figcaption class="mono"><b>{{ s.headline }}</b><span>{% for st in s.stats %}{{ st.label }} {{ st.value }}{% unless forloop.last %} &middot; {% endunless %}{% endfor %}</span></figcaption></figure>
+        <figure class="h-snap reveal"><img class="mask" src="{{ s.img }}" width="1280" height="476" loading="lazy" alt="{{ s.alt | escape }}"><figcaption class="mono"><b>{{ s.headline }}</b><span>{% for st in s.stats %}{{ st.label }} {{ st.value }}{% unless forloop.last %} &middot; {% endunless %}{% endfor %}</span></figcaption></figure>
         {% endfor %}
       </div>
     </div>

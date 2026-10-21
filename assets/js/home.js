@@ -1,15 +1,16 @@
 (function () {
   'use strict';
   var d = document;
-  /* process: thin progress line fills as the section scrolls past */
+  /* process: a thin line fills as the section scrolls past, and each step lights up when the line reaches it */
   var steps = d.getElementById('h-steps');
   if (steps) {
-    var tick = false;
+    var items = [].slice.call(steps.children), tick = false;
     var update = function () {
       tick = false;
-      var r = steps.getBoundingClientRect(), vh = window.innerHeight;
-      var p = (vh * 0.6 - r.top) / r.height;
+      var r = steps.getBoundingClientRect(), vh = window.innerHeight, line = vh * 0.62;
+      var p = (line - r.top) / r.height;
       steps.style.setProperty('--p', Math.max(0, Math.min(1, p)).toFixed(3));
+      items.forEach(function (li) { li.classList.toggle('on', li.getBoundingClientRect().top < line - 12); });
     };
     window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(update); } }, { passive: true });
     window.addEventListener('resize', update);

@@ -16,7 +16,7 @@ layout: default
     </dl>
     <div class="cs-lead">
       <p class="h-sub">{{ c.summary }}</p>
-      <div class="cs-big"><span class="mono">Verified result</span><b>{{ c.headline.value }}</b><span>{{ c.headline.label }}</span><small class="mono">{{ c.headline.context }}</small></div>
+      <div class="cs-big"><span class="mono">Verified result</span><b data-ct>{{ c.headline.value }}</b><span>{{ c.headline.label }}</span><small class="mono">{{ c.headline.context }}</small></div>
     </div>
   </div>
 </header>
@@ -76,7 +76,7 @@ layout: default
         {% for m in c.metrics %}
         <div class="cs-m reveal">
           <span class="mono cs-m__l">{{ m.label }}</span>
-          <b>{{ m.value }}</b>
+          <b data-ct>{{ m.value }}</b>
           {% if m.before and m.before != "" %}<span class="cs-m__ba mono"><s>{{ m.before }}</s> &rarr; {{ m.value }}</span>{% endif %}
           {% if m.note and m.note != "" %}<span class="cs-m__n">{{ m.note }}</span>{% endif %}
           {% if m.timeframe and m.timeframe != "" %}<span class="cs-m__t mono">{{ m.timeframe }}</span>{% endif %}
@@ -97,7 +97,7 @@ layout: default
       <h2 class="h-h2 reveal">{{ c.screens_title | default: "Account screenshots" }}</h2>
       {% if c.screens_note %}<p class="lead reveal">{{ c.screens_note }}</p>{% endif %}
       {% for s in c.screens %}
-      <figure class="cs-shot reveal"><img src="{{ s.img }}" width="{{ s.w }}" height="{{ s.h }}" loading="lazy" alt="{{ s.alt | escape }}"><figcaption><span class="mono">Screenshot {{ forloop.index }}</span><p>{{ s.cap }}</p></figcaption></figure>
+      <figure class="cs-shot reveal"><img class="mask" src="{{ s.img }}" width="{{ s.w }}" height="{{ s.h }}" loading="lazy" alt="{{ s.alt | escape }}"><figcaption><span class="mono">Screenshot {{ forloop.index }}</span><p>{{ s.cap }}</p></figcaption></figure>
       {% endfor %}
     </div>
   </div>

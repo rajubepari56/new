@@ -152,7 +152,7 @@ faqs:
       </div>
       <div class="h-snaps">
         {% for s in site.data.snapshots.items limit:3 %}
-        <a class="h-snap reveal" href="/results/#snapshots"><img loading="lazy" src="{{ s.img }}" width="1280" height="476" alt="{{ s.alt | escape }}"><span class="mono">{{ s.headline }}</span></a>
+        <a class="h-snap reveal" href="/results/#snapshots"><img class="mask" loading="lazy" src="{{ s.img }}" width="1280" height="476" alt="{{ s.alt | escape }}"><span class="mono">{{ s.headline }}</span></a>
         {% endfor %}
       </div>
       <p class="mono h-note reveal">Google Ads account overviews, all campaigns, Jul 1 to 31, 2026. Figures copied exactly. Results vary by account and are never guaranteed.</p>

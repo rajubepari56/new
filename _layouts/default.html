@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0A0B1E">
   {% if site.data.settings.google_site_verification != "" %}<meta name="google-site-verification" content="{{ site.data.settings.google_site_verification }}">{% endif %}
-  <script>try{var d=document.documentElement,rm=false;if(rm)d.classList.add('rm');else{if(!sessionStorage.getItem('rb_pl')){d.classList.add('has-preloader');sessionStorage.setItem('rb_pl','1')}if(sessionStorage.getItem('rb_wipe')){d.classList.add('wipe-cover');sessionStorage.removeItem('rb_wipe')}}}catch(e){}</script>
+  <script>try{var d=document.documentElement,rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm)d.classList.add('rm');else if(!sessionStorage.getItem('rb_pl')){d.classList.add('has-preloader');sessionStorage.setItem('rb_pl','1')}}catch(e){}</script>
   {% include gtm-head.html %}
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/images/raju-avatar.webp">
@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&family=Inter+Tight:wght@500;600&family=Instrument+Serif:ital@1&display=swap">
   <link rel="stylesheet" href="/assets/css/main.css">
   {% if page.body_class == "home" or page.body_class == "cs" %}<link rel="stylesheet" href="/assets/css/home.css"><link rel="stylesheet" href="/assets/css/case.css">{% endif %}
+  <link rel="stylesheet" href="/assets/css/motion.css">
   {% if page.noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
   {% seo %}
   {% include schema.html %}
@@ -21,7 +22,6 @@
 <body class="{{ page.body_class }}">
   {% include gtm-body.html %}
   <div id="preloader" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="pl-ring" cx="24" cy="24" r="21" pathLength="132" style="stroke-dashoffset:0"/><circle class="pl-ring" cx="24" cy="24" r="21" pathLength="132" style="stroke-dashoffset:-33"/><circle class="pl-ring" cx="24" cy="24" r="21" pathLength="132" style="stroke-dashoffset:-66"/><circle class="pl-ring" cx="24" cy="24" r="21" pathLength="132" style="stroke-dashoffset:-99"/><text class="pl-txt" x="24" y="30.5" text-anchor="middle">RB</text></svg></div>
-  <div id="wipe" aria-hidden="true"></div>
   {% include header.html %}
   <main id="main">
     {{ content }}
@@ -29,6 +29,7 @@
   {% include footer.html %}
   {% include consent-banner.html %}
   <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/motion.js" defer></script>
   {% if page.url == "/" %}<script src="/assets/js/home.js" defer></script><script src="/assets/js/hero.js" defer></script>{% endif %}
 </body>
 </html>

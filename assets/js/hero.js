@@ -53,7 +53,8 @@
 
         /* pause when the tab is hidden or the hero is off screen */
         var onScreen = true, hidden = d.hidden;
-        var sync = function () { tls.forEach(function (t) { (onScreen && !hidden) ? t.resume() : t.pause(); }); };
+        var heroEl = d.querySelector('.h-hero');
+        var sync = function () { var run = onScreen && !hidden; heroEl.classList.toggle('h-paused', !run); tls.forEach(function (t) { run ? t.resume() : t.pause(); }); };
         d.addEventListener('visibilitychange', function () { hidden = d.hidden; sync(); });
         if ('IntersectionObserver' in window) {
           new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; sync(); }, { threshold: 0 }).observe(d.getElementById('h-stage'));
