@@ -41,4 +41,4 @@ defaults:
   - scope: { path: "services", type: "pages" }
     values: { layout: "service" }
 
-exclude: [netlify.toml, netlify, package.json, package-lock.json, node_modules, ADMIN-SETUP.md, BRIEF.md, TODO.md, QA-REPORT.md, README.md, scripts, Gemfile, Gemfile.lock, vendor]
+exclude: [netlify.toml, DESIGN-SPEC.md, netlify, package.json, package-lock.json, node_modules, ADMIN-SETUP.md, BRIEF.md, TODO.md, QA-REPORT.md, README.md, scripts, Gemfile, Gemfile.lock, vendor]
