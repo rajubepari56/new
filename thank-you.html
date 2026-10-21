@@ -14,6 +14,7 @@ sitemap: false
     <p class="h-sub" id="ty-lead">I read every enquiry myself and reply personally{% if site.data.settings.reply_time != "" %}, usually within {{ site.data.settings.reply_time }}{% endif %}. For the fastest answer, message me on WhatsApp now.</p>
     <div class="h-cta">
       <a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text='Hi Raju, I just sent the contact form on your website' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="thank_you" data-service="Thank you page">{% include icon-wa.html %} Message me on WhatsApp</a>
+      {% include audit-cta.html class="btn btn--ghost btn--lg" label="Book a call now" loc="thank_you_booking" %}
       <a class="btn btn--ghost btn--lg" href="/results/" data-event="cta_click" data-cta-text="See results" data-link-location="thank_you">See my results</a>
     </div>
   </div>

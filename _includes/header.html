@@ -3,6 +3,7 @@
   <div class="topbar">
     <div class="wrap topbar__in">
       <a class="topbar__mail" href="mailto:{{ site.data.settings.email }}" data-event="email_click" data-link-location="header">{{ site.data.settings.email }}</a>
+      {% if site.data.settings.booking_url != "" %}<a class="topbar__book" href="{{ site.data.settings.booking_url }}" target="_blank" rel="noopener" data-event="booking_click" data-link-location="topbar" data-calendly="{{ site.data.settings.booking_url }}">Book a free 30-minute call</a>{% endif %}
       <ul class="socials socials--top" aria-label="Social profiles">
         {% for s in site.data.settings.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="header" aria-label="{{ s[0] | capitalize }}">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</a></li>{% endfor %}
       </ul>
@@ -32,7 +33,8 @@
       <a href="/insights/"{% if page.url contains "/insights/" or page.layout == "post" %} aria-current="page"{% endif %}>Blog</a>
       <a href="/about/"{% if page.url contains "/about/" %} aria-current="page"{% endif %}>About</a>
       <a href="/contact/"{% if page.url contains "/contact/" %} aria-current="page"{% endif %}>Contact</a>
-      <a class="btn btn--wa btn--sm magnetic" href="{% include wa.html text='Hi Raju, I found your website and need help with tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="header" data-service="General">{% include icon-wa.html %} Free Tracking Audit</a>
+      {% include audit-cta.html class="btn btn--wa btn--sm magnetic nav__book" label="Book a free call" loc="header" %}
+      <a class="nav__wa" href="{% include wa.html text='Hi Raju, I found your website and need help with tracking' %}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-event="whatsapp_click" data-link-location="header" data-service="General">{% include icon-wa.html %}<span class="nav__wa-t">WhatsApp</span></a>
     </nav>
   </div>
 </header>
