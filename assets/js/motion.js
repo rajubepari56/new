@@ -5,6 +5,21 @@
   var hasIO = 'IntersectionObserver' in window;
 
 
+
+  /* jump arrows: a bouncing button at the end of each section that scrolls to the next one */
+  (function () {
+    var secs = [].slice.call(d.querySelectorAll('.h-hero, .h-strip, .h-sec, .h-final'));
+    secs.forEach(function (s, i) {
+      var next = secs[i + 1]; if (!next || s.classList.contains('h-final')) return;
+      var label = (next.querySelector('.h-sec__rail span') || next.querySelector('h2')); var name = label ? label.textContent.replace(/^\s*\d+\s*\/\s*/, '').trim() : 'next section';
+      var b = d.createElement('button'); b.type = 'button'; b.className = 'jump' + (s.classList.contains('h-hero') ? ' jump--hero' : '');
+      b.setAttribute('aria-label', 'Jump to the next section: ' + name);
+      b.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      b.addEventListener('click', function () { next.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      s.appendChild(b);
+    });
+  })();
+
   /* split section headings into words so each word rises out of a mask (staggered) */
   d.querySelectorAll('.h-h2.reveal, .cs-h2.reveal, .h-display--m.reveal').forEach(function (h) {
     var n = 0;
