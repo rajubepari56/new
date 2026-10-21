@@ -6,6 +6,22 @@
 
 
 
+
+  /* chat prompt: opens by itself a moment after the page loads with one small question; the cross closes it for a week */
+  (function () {
+    var ask = d.getElementById('msgw-ask'), x = d.getElementById('msgw-ask-x'), more = d.getElementById('msgw-ask-more'), btn = d.getElementById('msgw-btn');
+    if (!ask || /^\/(contact|thank-you)\//.test(location.pathname)) return;
+    var KEY = 'rb_ask';
+    try { var t = +localStorage.getItem(KEY); if (t && Date.now() - t < 7 * 864e5) return; } catch (e) {}
+    function close(remember) { ask.hidden = true; if (remember) { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} } }
+    setTimeout(function () { var panel = d.getElementById('msgw-panel'); if (panel && !panel.hidden) return; ask.hidden = false; }, 2500);
+    x.addEventListener('click', function () { close(true); });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !ask.hidden) { close(true); btn && btn.focus(); } });
+    ask.addEventListener('click', function (e) { if (e.target.closest('.msgw__chips a')) close(true); });
+    more.addEventListener('click', function () { close(true); if (btn) btn.click(); });
+    if (btn) btn.addEventListener('click', function () { close(false); });
+  })();
+
   /* jump arrows: a bouncing button at the end of each section that scrolls to the next one */
   (function () {
     var secs = [].slice.call(d.querySelectorAll('.h-hero, .h-strip, .h-sec, .h-final'));

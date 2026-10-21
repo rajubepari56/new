@@ -17,6 +17,16 @@
       <li><a class="msgw__item" href="{{ site.data.settings.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="chat_widget">{% assign pn = 'upwork' %}{% include icon-social.html name=pn %}<span>Upwork<small>Hire me with protection</small></span></a></li>
     </ul>
   </div>
+  <div class="msgw__ask" id="msgw-ask" role="dialog" aria-labelledby="msgw-ask-t" hidden>
+    <button type="button" class="msgw__ask-x" id="msgw-ask-x" aria-label="Close this message">&times;</button>
+    <p class="msgw__ask-t" id="msgw-ask-t"><strong>Hi, I'm Raju.</strong> What do you need help with?</p>
+    <div class="msgw__chips">
+      <a href="{% include wa.html text='Hi Raju, I need help with Google Ads' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="chat_prompt" data-service="Google Ads">Google Ads</a>
+      <a href="{% include wa.html text='Hi Raju, I need help with conversion tracking and analytics' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="chat_prompt" data-service="Tracking and analytics">Tracking and analytics</a>
+      <a href="{% include wa.html text='Hi Raju, I have a different question' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="chat_prompt" data-service="Other">Something else</a>
+    </div>
+    <button type="button" class="msgw__ask-more" id="msgw-ask-more">More ways to reach me</button>
+  </div>
   <button type="button" class="msgw__btn" id="msgw-btn" aria-label="Message me" aria-expanded="false" aria-controls="msgw-panel" data-event="cta_click" data-cta-text="Open message widget" data-link-location="floating">
     <svg class="ico msgw__ico" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4 3h16a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H8l-4 4V4a1 1 0 0 1 1-1z"/></svg>
     <span class="msgw__label">Message me</span>
