@@ -181,3 +181,37 @@
     co.observe(el);
   });
 })();
+  /* scroll traveler: a glowing signal rides a rail down the page with your scroll and hops into each new section */
+  (function () {
+    var d = document;
+    var all = [].slice.call(d.querySelectorAll('main section, .h-hero, .h-strip, .h-final'));
+    var secs = all.filter(function (s, i, a) { return !a.some(function (o) { return o !== s && o.contains(s); }) && s.offsetHeight > 120; });
+    if (secs.length < 3) return;
+    var rail = d.createElement('div'); rail.className = 'trv'; rail.setAttribute('aria-hidden', 'true');
+    rail.innerHTML = '<i class="trv__line"></i><i class="trv__fill"></i>' + secs.map(function () { return '<b class="trv__dot"></b>'; }).join('') + '<span class="trv__orb"><u></u></span>';
+    d.body.appendChild(rail);
+    var orb = rail.querySelector('.trv__orb'), fill = rail.querySelector('.trv__fill'), dots = [].slice.call(rail.querySelectorAll('.trv__dot'));
+    var cur = -1, last = scrollY, vel = 0, T0 = .14, T1 = .7, tops = [], max = 1, vh = innerHeight;
+    function measure() {
+      vh = innerHeight; max = Math.max(1, d.documentElement.scrollHeight - vh);
+      tops = secs.map(function (s) { return s.getBoundingClientRect().top + scrollY; });
+      dots.forEach(function (dt, i) { dt.style.top = ((T0 + Math.min(1, tops[i] / max) * (T1 - T0)) * 100) + '%'; });
+    }
+    function tick() {
+      var y = scrollY, p = Math.min(1, y / max), top = (T0 + p * (T1 - T0)) * vh;
+      vel += ((y - last) - vel) * .25; last = y;
+      var sq = Math.min(1.9, 1 + Math.abs(vel) / 28);
+      orb.style.transform = 'translate3d(0,' + top.toFixed(1) + 'px,0) scale(' + (1 / Math.sqrt(sq)).toFixed(3) + ',' + sq.toFixed(3) + ')';
+      fill.style.height = (T0 * 100 + p * (T1 - T0) * 100) + 'vh'; fill.style.top = '0';
+      var mid = y + vh * .45, idx = 0;
+      for (var i = 0; i < tops.length; i++) if (tops[i] <= mid) idx = i;
+      if (idx !== cur) {
+        cur = idx; dots.forEach(function (dt, i) { dt.classList.toggle('on', i <= idx); });
+        orb.classList.remove('hop'); void orb.offsetWidth; orb.classList.add('hop');
+      }
+      requestAnimationFrame(tick);
+    }
+    measure(); addEventListener('resize', measure); addEventListener('load', measure); setTimeout(measure, 1500);
+    requestAnimationFrame(tick);
+  })();
+
