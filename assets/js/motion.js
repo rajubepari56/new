@@ -48,24 +48,32 @@
       .catch(function () { box.innerHTML = '<p>The calendar could not load. <a href="' + url + '" target="_blank" rel="noopener">Open it in a new tab</a>.</p>'; });
   });
 
-  /* booking banner: one honest question, shown once after 25 s, 55% scroll or exit intent (desktop). Closed for 3 days. */
+  /* booking banner: opens twice per visit. First 10 seconds after landing, then again when the visitor moves the mouse
+     toward the browser's close/tab area (desktop) or 60 seconds after the first one closes (touch devices). */
   (function () {
     var bk = d.getElementById('bk'); if (!bk || /^\/(contact|thank-you)\//.test(location.pathname)) return;
-    var KEY = 'rb_bk', shown = false;
-    try { var t = +localStorage.getItem(KEY); if (t && Date.now() - t < 3 * 864e5) return; } catch (e) {}
-    function remember(days) { try { localStorage.setItem(KEY, String(Date.now() + (days - 3) * 864e5)); } catch (e) {} }
-    function close() { bk.hidden = true; remember(3); }
-    function tryShow() {
-      if (shown) return;
+    var DONE = 'rb_bk_done', COUNT = 'rb_bk_n', MAX = 2, fired = { timer: false, second: false };
+    try { var t = +localStorage.getItem(DONE); if (t && Date.now() - t < 30 * 864e5) return; } catch (e) {}
+    function count() { try { return +sessionStorage.getItem(COUNT) || 0; } catch (e) { return 0; } }
+    function show() {
+      if (count() >= MAX || !bk.hidden) return false;
       var ask = d.getElementById('msgw-ask'), panel = d.getElementById('msgw-panel');
-      if ((ask && !ask.hidden) || (panel && !panel.hidden)) { setTimeout(tryShow, 4000); return; }   // never stack on top of the chat prompt
-      shown = true; bk.hidden = false;
+      if (ask && !ask.hidden) ask.hidden = true;                     // the booking question takes priority over the chat prompt
+      if (panel && !panel.hidden) return false;
+      bk.hidden = false; try { sessionStorage.setItem(COUNT, String(count() + 1)); } catch (e) {}
+      return true;
     }
-    setTimeout(tryShow, 25000);
-    window.addEventListener('scroll', function () { var h = root.scrollHeight - window.innerHeight; if (h > 0 && window.scrollY / h > .55) tryShow(); }, { passive: true });
-    if (matchMedia('(hover:hover) and (pointer:fine)').matches) d.addEventListener('mouseout', function (e) { if (!e.relatedTarget && e.clientY < 8) tryShow(); });
+    function close() { bk.hidden = true; if (touch && count() < MAX && !fired.second) { fired.second = true; setTimeout(show, 60000); } }
+    var touch = !matchMedia('(hover:hover) and (pointer:fine)').matches;
+    /* 1st: 10 seconds after landing */
+    setTimeout(function () { if (!fired.timer) { fired.timer = true; if (!show()) setTimeout(function () { show(); }, 3000); } }, 10000);
+    /* 2nd (desktop): the mouse leaves through the top edge, where the tabs and the close button are */
+    if (!touch) d.addEventListener('mouseout', function (e) {
+      if (!e.relatedTarget && e.clientY < 8 && !fired.second && fired.timer) { if (show()) fired.second = true; }
+      else if (!e.relatedTarget && e.clientY < 8 && !fired.timer) { fired.timer = true; show(); }
+    });
     d.getElementById('bk-x').addEventListener('click', close); d.getElementById('bk-no').addEventListener('click', close);
-    d.getElementById('bk-cta').addEventListener('click', function () { bk.hidden = true; remember(30); });
+    d.getElementById('bk-cta').addEventListener('click', function () { bk.hidden = true; try { localStorage.setItem(DONE, String(Date.now())); } catch (e) {} });
     d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !bk.hidden) close(); });
   })();
 

@@ -113,5 +113,5 @@
 ## Calendly
 - `booking_url` is set to https://calendly.com/rajubepari/30min. All "Get a Free Tracking Audit" buttons now open the Calendly popup (with a new-tab fallback). WhatsApp buttons stay on WhatsApp.
 - Calendly loads only when someone clicks a booking button, opens the inline calendar on /contact/, or uses the banner. I tested with a stand-in for Calendly's script, not with the real Calendly service, so please open the live site and try one booking button.
-- Booking banner: question "How much budget is bad tracking wasting this month?" It appears once after 25 seconds, 55% scroll or exit intent, never over the chat prompt, and stays closed for 3 days after the cross or "Not now". I used no fake scarcity or countdown. If you want real urgency, set real availability in Calendly (for example fewer slots) and tell me, and I will mention it truthfully.
+- Booking banner: question "How much budget is bad tracking wasting this month?" It opens twice per visit: 10 seconds after landing, then when the mouse moves to the browser top edge (close/tab area). On touch devices the second time is 60 seconds after the first closes. After a booking click it stays hidden for 30 days. No fake scarcity or countdown.
 - The privacy policy mentions Calendly. Please have it reviewed.
