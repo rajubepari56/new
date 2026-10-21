@@ -22,6 +22,53 @@
     if (btn) btn.addEventListener('click', function () { close(false); });
   })();
 
+
+  /* Calendly: loaded only when someone asks for it (no third-party cookies before that) */
+  var calLoad = null;
+  function loadCalendly() {
+    if (window.Calendly) return Promise.resolve();
+    if (calLoad) return calLoad;
+    calLoad = new Promise(function (res, rej) {
+      var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = 'https://assets.calendly.com/assets/external/widget.css'; d.head.appendChild(l);
+      var s = d.createElement('script'); s.src = 'https://assets.calendly.com/assets/external/widget.js'; s.async = true; s.onload = res; s.onerror = function () { calLoad = null; rej(); }; d.head.appendChild(s);
+    });
+    return calLoad;
+  }
+  d.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-calendly]'); if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    var url = a.getAttribute('data-calendly'), fallback = setTimeout(function () { window.open(url, '_blank', 'noopener'); }, 4000);
+    loadCalendly().then(function () { clearTimeout(fallback); window.Calendly.initPopupWidget({ url: url }); }).catch(function () { clearTimeout(fallback); window.open(url, '_blank', 'noopener'); });
+  });
+  /* inline calendar on the contact page: appears when the visitor asks for it */
+  var calBtn = d.getElementById('cal-load');
+  if (calBtn) calBtn.addEventListener('click', function () {
+    var box = d.getElementById('cal-embed'), url = box.getAttribute('data-url'); calBtn.disabled = true; calBtn.textContent = 'Loading the calendar...';
+    loadCalendly().then(function () { box.innerHTML = ''; var h = d.createElement('div'); h.style.cssText = 'min-width:320px;height:700px'; box.appendChild(h); window.Calendly.initInlineWidget({ url: url, parentElement: h }); })
+      .catch(function () { box.innerHTML = '<p>The calendar could not load. <a href="' + url + '" target="_blank" rel="noopener">Open it in a new tab</a>.</p>'; });
+  });
+
+  /* booking banner: one honest question, shown once after 25 s, 55% scroll or exit intent (desktop). Closed for 3 days. */
+  (function () {
+    var bk = d.getElementById('bk'); if (!bk || /^\/(contact|thank-you)\//.test(location.pathname)) return;
+    var KEY = 'rb_bk', shown = false;
+    try { var t = +localStorage.getItem(KEY); if (t && Date.now() - t < 3 * 864e5) return; } catch (e) {}
+    function remember(days) { try { localStorage.setItem(KEY, String(Date.now() + (days - 3) * 864e5)); } catch (e) {} }
+    function close() { bk.hidden = true; remember(3); }
+    function tryShow() {
+      if (shown) return;
+      var ask = d.getElementById('msgw-ask'), panel = d.getElementById('msgw-panel');
+      if ((ask && !ask.hidden) || (panel && !panel.hidden)) { setTimeout(tryShow, 4000); return; }   // never stack on top of the chat prompt
+      shown = true; bk.hidden = false;
+    }
+    setTimeout(tryShow, 25000);
+    window.addEventListener('scroll', function () { var h = root.scrollHeight - window.innerHeight; if (h > 0 && window.scrollY / h > .55) tryShow(); }, { passive: true });
+    if (matchMedia('(hover:hover) and (pointer:fine)').matches) d.addEventListener('mouseout', function (e) { if (!e.relatedTarget && e.clientY < 8) tryShow(); });
+    d.getElementById('bk-x').addEventListener('click', close); d.getElementById('bk-no').addEventListener('click', close);
+    d.getElementById('bk-cta').addEventListener('click', function () { bk.hidden = true; remember(30); });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !bk.hidden) close(); });
+  })();
+
   /* jump arrows: a bouncing button at the end of each section that scrolls to the next one */
   (function () {
     var secs = [].slice.call(d.querySelectorAll('.h-hero, .h-strip, .h-sec, .h-final'));

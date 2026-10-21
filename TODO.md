@@ -109,3 +109,9 @@
 - Threads: your earlier instruction was to remove it, but it is listed in this brief. It is still removed. Say "add Threads" and I will add it back to the header, footer and schema.
 - "Why a specialist, not an agency": the section uses the heading "You hire me. I do the work." and avoids the word "agency" on the page. Tell me if you prefer your exact wording.
 - 8 services: the site still has the ninth, AI Search Optimization. Tell me to hide or remove it.
+
+## Calendly
+- `booking_url` is set to https://calendly.com/rajubepari/30min. All "Get a Free Tracking Audit" buttons now open the Calendly popup (with a new-tab fallback). WhatsApp buttons stay on WhatsApp.
+- Calendly loads only when someone clicks a booking button, opens the inline calendar on /contact/, or uses the banner. I tested with a stand-in for Calendly's script, not with the real Calendly service, so please open the live site and try one booking button.
+- Booking banner: question "How much budget is bad tracking wasting this month?" It appears once after 25 seconds, 55% scroll or exit intent, never over the chat prompt, and stays closed for 3 days after the cross or "Not now". I used no fake scarcity or countdown. If you want real urgency, set real availability in Calendly (for example fewer slots) and tell me, and I will mention it truthfully.
+- The privacy policy mentions Calendly. Please have it reviewed.

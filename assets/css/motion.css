@@ -182,3 +182,16 @@ main{animation:page-in .7s var(--ease) both}
 .msgw__ask-more{margin-top:12px;background:none;border:0;padding:6px 0;color:#A7A9D6;font:inherit;font-size:.8rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .msgw__ask-more:hover{color:#F5F6FF}
 @keyframes ask-in{0%{opacity:0;transform:translate3d(0,24px,0) scale(.9)}100%{opacity:1;transform:none}}
+
+/* booking banner */
+.bk{position:fixed;left:50%;bottom:22px;z-index:68;width:min(640px,calc(100vw - 28px));transform:translateX(-50%);padding:24px 26px 22px;border-radius:16px;background:linear-gradient(135deg,#1E2390,#12143A 70%);border:1px solid rgba(139,143,255,.5);box-shadow:0 30px 80px rgba(0,0,0,.65);animation:bk-in .7s cubic-bezier(.3,1.35,.5,1) both}
+.bk[hidden]{display:none}
+@keyframes bk-in{0%{opacity:0;transform:translate(-50%,40px) scale(.96)}100%{opacity:1;transform:translate(-50%,0)}}
+.bk__x{position:absolute;top:10px;right:10px;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(167,169,214,.4);background:rgba(10,11,30,.55);color:#F5F6FF;font-size:1.4rem;line-height:1;cursor:pointer;transition:background-color .2s}
+.bk__x:hover,.bk__x:focus-visible{background:#2B2FC7}
+.bk__eyebrow{margin:0 0 8px;color:#8B8FFF}
+.bk__t{margin:0 40px 8px 0;font:600 clamp(1.25rem,3vw,1.65rem)/1.2 var(--hf2,Inter);letter-spacing:-.02em}
+.bk__d{margin:0 0 18px;color:#CFD1F0;line-height:1.55;font-size:.98rem}
+.bk__a{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.bk__no{background:none;border:0;color:#A7A9D6;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px 4px}.bk__no:hover{color:#F5F6FF}
+@media(max-width:860px){.bk{bottom:12px;padding:20px 18px 18px}.bk__a .btn{width:100%;justify-content:center}}

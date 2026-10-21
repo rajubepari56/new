@@ -12,10 +12,20 @@ permalink: /contact/
     <p class="h-eyebrow">Free tracking audit</p>
     <h1 class="h-display h-display--m">Tell me what you run. <em>I reply personally.</em></h1>
     <p class="h-sub">This short form helps me understand your business first, so my reply is useful. Prefer chat? Message me on WhatsApp.</p>
-    <div class="h-cta">{% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Message me on WhatsApp" loc="contact_hero" %}</div>
+    <div class="h-cta">{% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Message me on WhatsApp" loc="contact_hero" force="wa" %}</div>
   </div>
 </header>
 
+{% if S.booking_url and S.booking_url != "" %}<section class="h-sec cs-sec" id="book">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">Book a call</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">Prefer to talk? <em>Pick a time.</em></h2>
+      <p class="lead reveal">A free 30-minute call. I look at your tracking and ads and tell you what to fix first. The calendar loads when you ask for it.</p>
+      <div id="cal-embed" data-url="{{ S.booking_url }}" class="reveal"><button type="button" class="btn btn--wa btn--lg" id="cal-load" data-event="booking_click" data-link-location="contact_calendar">Show the calendar</button> <a class="h-link" href="{{ S.booking_url }}" target="_blank" rel="noopener" data-event="booking_click" data-link-location="contact_calendar_link">or open it in a new tab</a></div>
+    </div>
+  </div>
+</section>{% endif %}
 <section class="h-sec cs-sec" id="form-section">
   <div class="wrap contact-grid">
     <div class="lead-form reveal">
@@ -62,7 +72,7 @@ permalink: /contact/
       <noscript><p class="form-summary">This form needs JavaScript. Please email <a href="mailto:{{ S.email }}">{{ S.email }}</a> or message me on WhatsApp instead.</p></noscript>
     </div>
     <aside class="contact-side" aria-label="Other ways to reach me">
-      <div class="reveal"><h2 class="cs-h2">WhatsApp</h2><p class="muted">The fastest way to reach me.</p>{% include audit-cta.html class="btn btn--wa" label="Open WhatsApp" loc="contact_side" %}</div>
+      <div class="reveal"><h2 class="cs-h2">WhatsApp</h2><p class="muted">The fastest way to reach me.</p>{% include audit-cta.html class="btn btn--wa" label="Open WhatsApp" loc="contact_side" force="wa" %}</div>
       <div class="reveal"><h2 class="cs-h2">Email</h2><p class="muted">For longer briefs and files.</p><a class="h-link" href="mailto:{{ S.email }}" data-event="email_click" data-link-location="contact">{{ S.email }}</a></div>
       <div class="reveal"><h2 class="cs-h2">Hire on Upwork</h2><p class="muted">Prefer a protected contract? Hire me there.</p><a class="h-link" href="{{ S.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="contact">My Upwork profile</a></div>
       <div class="reveal"><h2 class="cs-h2">Time zone</h2><p class="muted">{{ S.timezone }}. I overlap with US, UK, Australian and European working hours.</p></div>
