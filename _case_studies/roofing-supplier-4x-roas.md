@@ -1,6 +1,9 @@
 ---
+seo:
+  type: Article
 title: 4x ROAS and 120% sales growth for an e-commerce roofing and insulation supplier
-description: 'Google Ads, Shopping and Performance Max rebuild for an e-commerce roofing and insulation supplier in Belgium: 4x average ROAS and 120% sales growth over about 5 months.'
+meta_title: "4x ROAS Case Study: Roofing Supplier"
+description: "Google Ads, Shopping and Performance Max rebuild for an e-commerce roofing supplier in Belgium: 4x average ROAS and 120% sales growth over about 5 months."
 order: 1
 tag: Google Ads · E-commerce
 industry: E-commerce, roofing and insulation supplies

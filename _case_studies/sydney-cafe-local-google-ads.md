@@ -1,5 +1,8 @@
 ---
+seo:
+  type: Article
 title: Local Google Ads for a Sydney café, with more store visits at a lower cost
+meta_title: "Local Google Ads Case Study: Sydney Café"
 description: 'Local Google Ads rebuild for a Sydney café: average CPC down from A$0.37 to A$0.20 and a lower cost per store visit with Performance Max.'
 order: 2
 tag: Google Ads · Local business

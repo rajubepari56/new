@@ -45,7 +45,7 @@ A gap of a few percent is common. A gap of 30 percent or more is a sign to check
 2. **Compare the same thing.** Compare one conversion action in Ads with the matching key event in GA4, not all conversions with all events.
 3. **Use the right date view.** In Google Ads, use the "by conversion time" columns when you want to compare with GA4 by event date.
 4. **Match time zones.** Set the same time zone and currency in both.
-5. **Remove duplicates.** One action should be tracked once. See our [conversion tracking checklist](/blog/google-ads-conversion-tracking-checklist/).
+5. **Remove duplicates.** One action should be tracked once. See my [conversion tracking checklist](/blog/google-ads-conversion-tracking-checklist/).
 6. **Test consent.** Check how your tags behave when a visitor accepts or rejects cookies, and set up Consent Mode v2 if you need it.
 7. **Look at the source.** Compare both tools with your CRM or booking list for the same dates.
 

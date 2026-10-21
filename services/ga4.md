@@ -44,7 +44,7 @@ process:
 - t: Audit
   d: I read your current property and list every gap, with evidence.
 - t: Measurement plan
-  d: We agree which events and conversions matter to your business.
+  d: I agree with you which events and conversions matter to your business.
 - t: Implement
   d: I build the events and settings, mostly through GTM.
 - t: QA

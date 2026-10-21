@@ -44,7 +44,7 @@ process:
 - t: Audit
   d: I check Pixel events, parameters and what Events Manager says.
 - t: Plan
-  d: We decide which events matter and which route fits your platform.
+  d: I decide with you which events matter and which route fits your platform.
 - t: Implement
   d: I connect the Pixel and CAPI and set deduplication.
 - t: Test

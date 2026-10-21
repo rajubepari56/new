@@ -42,11 +42,11 @@ collections:
 
 defaults:
   - scope: { path: "", type: "posts" }
-    values: { layout: "post", body_class: "cs", image: "/assets/images/og-image.png" }
+    values: { layout: "post", body_class: "cs", image: "/assets/images/og-image.jpg" }
   - scope: { path: "" }
-    values: { layout: "default", body_class: "cs", image: "/assets/images/og-image.png" }
+    values: { layout: "default", body_class: "cs", image: "/assets/images/og-image.jpg" }
   - scope: { path: "", type: "case_studies" }
-    values: { layout: "case-study", body_class: "cs", image: "/assets/images/og-image.png" }
+    values: { layout: "case-study", body_class: "cs", image: "/assets/images/og-image.jpg" }
   - scope: { path: "services", type: "pages" }
     values: { layout: "service" }
 

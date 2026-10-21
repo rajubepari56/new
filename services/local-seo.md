@@ -44,7 +44,7 @@ process:
 - t: Audit
   d: I check your profile, site, citations and local competitors.
 - t: Plan
-  d: We agree priorities, locations and the services to highlight.
+  d: I agree priorities, locations and the services to highlight with you.
 - t: Fix
   d: I update the profile, pages and listings.
 - t: Track

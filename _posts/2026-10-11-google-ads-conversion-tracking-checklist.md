@@ -65,7 +65,7 @@ For leads, counting **one** conversion per click is usually right. For purchases
 
 ## 8. Add enhanced conversions
 
-Enhanced conversions send hashed customer details (such as an email address from your form) to Google to improve matching when cookies are limited. They are worth turning on for both web sales and lead forms. See our service page on [enhanced and offline conversions](/services/enhanced-offline-conversions/) for more.
+Enhanced conversions send hashed customer details (such as an email address from your form) to Google to improve matching when cookies are limited. They are worth turning on for both web sales and lead forms. See my service page on [enhanced and offline conversions](/services/enhanced-offline-conversions/) for more.
 
 ## 9. Respect consent
 

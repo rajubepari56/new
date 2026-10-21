@@ -120,3 +120,7 @@ html{scroll-padding-top:120px}
 .lead-form .f-radio{flex-direction:row;align-items:center}
 .lead-form .f-radio label{display:inline-flex;flex-direction:row;align-items:center;gap:8px;margin:0}
 .lead-form .f-radio input,.lead-form .f-check input{width:18px;height:18px;padding:0;flex:none;border-radius:4px}
+
+/* WCAG 2.2 target size (2.5.8): keep small links at least 24px tall and dropdown toggles at least 28px wide */
+.footer__list a,.footer__list button{display:inline-block;min-height:28px;padding:4px 0}
+.nav__dd-btn{min-width:28px;min-height:28px}

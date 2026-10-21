@@ -9,7 +9,7 @@ outcome: 'I replace tag chaos with a clean, documented GTM container: every tag 
 hero_cta: Get a free GTM review
 who_title: Who this is for
 who:
-- Sites where years of tags, plugins and agency edits have piled up in one container.
+- Sites where years of tags, plugins and years of different edits have piled up in one container.
 - Businesses launching new ad platforms and needing tags set up correctly the first time.
 - Teams that depend on a developer for every small tracking change.
 - Marketing businesses that need a consistent GTM standard across client accounts.
@@ -44,7 +44,7 @@ process:
 - t: Audit
   d: I list every tag, trigger and variable and decide what stays.
 - t: Plan
-  d: We agree the events you need and how each will be measured.
+  d: I agree with you the events you need and how each will be measured.
 - t: Build
   d: I create the new structure in a workspace, separate from your live tags.
 - t: QA

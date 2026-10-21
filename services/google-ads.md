@@ -1,6 +1,6 @@
 ---
 title: Google Ads Specialist for Leads and Sales
-description: Hire an independent Google Ads specialist. I rebuild accounts around real leads and sales, with tracking you can trust. Search, Shopping and Performance Max.
+description: "Hire an independent Google Ads specialist. I rebuild accounts around real leads and sales, with tracking you can trust. Search, Shopping and PMax."
 service_name: Google Ads Management
 short_name: Google Ads
 keyword: Google Ads specialist
@@ -44,7 +44,7 @@ process:
 - t: Audit
   d: I review your account, goals and tracking, and tell you plainly what is working and what is not.
 - t: Plan
-  d: We agree on goals, budget and the campaign structure before I build anything.
+  d: I agree goals, budget and the campaign structure with you before I build anything.
 - t: Build
   d: I create or restructure campaigns, ads and conversion actions myself.
 - t: Optimize

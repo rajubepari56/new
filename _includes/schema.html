@@ -2,9 +2,13 @@
 {%- capture crumbs -%}
 {%- if page.url == "/" -%}
 {%- elsif page.layout == "post" -%}
-{"@type":"ListItem","position":2,"name":"Blog","item":"{{ site.url }}/blog/"},{"@type":"ListItem","position":3,"name":{{ page.title | jsonify }},"item":"{{ site.url }}{{ page.url }}"}
+{"@type":"ListItem","position":2,"name":"Insights","item":"{{ site.url }}/insights/"},{"@type":"ListItem","position":3,"name":{{ page.title | jsonify }},"item":"{{ site.url }}{{ page.url }}"}
 {%- elsif page.layout == "service" -%}
 {"@type":"ListItem","position":2,"name":"Services","item":"{{ site.url }}/services/"},{"@type":"ListItem","position":3,"name":{{ page.service_name | jsonify }},"item":"{{ site.url }}{{ page.url }}"}
+{%- elsif page.layout == "case-study" -%}
+{"@type":"ListItem","position":2,"name":"Results","item":"{{ site.url }}/results/"},{"@type":"ListItem","position":3,"name":{{ page.title | jsonify }},"item":"{{ site.url }}{{ page.url }}"}
+{%- elsif page.layout == "landing" -%}
+{"@type":"ListItem","position":2,"name":{{ page.parent_label | default: "Google Ads" | jsonify }},"item":"{{ site.url }}{{ page.parent_url | default: "/services/google-ads/" }}"},{"@type":"ListItem","position":3,"name":{{ page.crumb | default: page.title | jsonify }},"item":"{{ site.url }}{{ page.url }}"}
 {%- else -%}
 {"@type":"ListItem","position":2,"name":{{ page.crumb | default: page.title | jsonify }},"item":"{{ site.url }}{{ page.url }}"}
 {%- endif -%}
@@ -14,7 +18,7 @@
 {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ site.url }}/"}{% if crumbs != "" %},{{ crumbs }}{% endif %}]}
 {%- if page.url == "/" -%}
 ,{"@type":"Person","@id":"{{ site.url }}/#person","name":"Raju Bepari","jobTitle":"{{ site.tagline }}","url":"{{ site.url }}/","email":"{{ site.data.settings.email }}","image":"{{ site.url }}/assets/images/raju-avatar.webp","sameAs":{{ socials | jsonify }}}
-,{"@type":"ProfessionalService","@id":"{{ site.url }}/#business","name":"Raju Bepari","url":"{{ site.url }}/","image":"{{ site.url }}/assets/images/og-image.png","description":{{ site.description | jsonify }},"founder":{"@id":"{{ site.url }}/#person"},"areaServed":["United States","United Kingdom","Australia"],"sameAs":{{ socials | jsonify }}}
+,{"@type":"ProfessionalService","@id":"{{ site.url }}/#business","name":"Raju Bepari","url":"{{ site.url }}/","image":"{{ site.url }}/assets/images/og-image.jpg","description":{{ site.description | jsonify }},"founder":{"@id":"{{ site.url }}/#person"},"areaServed":["United States","United Kingdom","Australia"],"sameAs":{{ socials | jsonify }}}
 {%- endif -%}
 {%- if page.layout == "service" or page.schema_service -%}
 ,{"@type":"Service","name":{{ page.service_name | jsonify }},"serviceType":{{ page.keyword | jsonify }},"description":{{ page.description | jsonify }},"url":"{{ site.url }}{{ page.url }}","provider":{"@type":"ProfessionalService","name":"Raju Bepari","url":"{{ site.url }}/"},"areaServed":["United States","United Kingdom","Australia"]}

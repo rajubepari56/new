@@ -18,8 +18,8 @@
   };
   RB.gsap=function(){
     return RB.load(CDN+'gsap@3.13.0/dist/gsap.min.js').then(function(){
-      return Promise.all(['ScrollTrigger','MotionPathPlugin','SplitText'].map(function(n){return RB.load(CDN+'gsap@3.13.0/dist/'+n+'.min.js');}));
-    }).then(function(){w.gsap.registerPlugin(w.ScrollTrigger,w.MotionPathPlugin,w.SplitText);return w.gsap;});
+      return Promise.all(['ScrollTrigger','MotionPathPlugin'].map(function(n){return RB.load(CDN+'gsap@3.13.0/dist/'+n+'.min.js');}));
+    }).then(function(){w.gsap.registerPlugin(w.ScrollTrigger,w.MotionPathPlugin);return w.gsap;});
   };
   function afterPaint(fn){
     w.requestAnimationFrame(function(){w.setTimeout(function(){(w.requestIdleCallback||function(f){return setTimeout(f,150);})(fn);},0);});
@@ -163,9 +163,6 @@
     function loop(){rx+=(mx-rx)*.2;ry+=(my-ry)*.2;dot.style.transform='translate3d('+mx+'px,'+my+'px,0)';ring.style.transform='translate3d('+rx+'px,'+ry+'px,0)';if(Math.abs(mx-rx)>.3||Math.abs(my-ry)>.3)requestAnimationFrame(loop);else running=false;}
   }
 
-  /* ---- preloader cleanup ---- */
-  var pl=d.getElementById('preloader');
-  if(pl)setTimeout(function(){pl.remove();root.classList.remove('has-preloader');},760);
 
   /* native scrolling only: no smooth-scroll library, no scroll hijacking */
 })();

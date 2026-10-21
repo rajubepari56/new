@@ -91,3 +91,11 @@
 - **Service pages:** unique copy written for 9 services (each targets one keyword: Google Ads specialist, GA4 consultant, Google Tag Manager expert, Meta Conversions API setup, server-side tracking expert, offline conversion tracking for Google Ads, Google Merchant Center specialist, local SEO freelancer, AI search optimization consultant). Only Google Ads and Merchant Center have a connected case study; the rest show an honest "no published case study yet" message. Please review the wording for accuracy.
 - **Services count:** the site still has the ninth service (AI Search Optimization). Tell me if it should be hidden.
 - **Hosting:** unchanged (Netlify). Nothing was moved.
+
+## Production readiness (final QA)
+- Approve the release, then deploy (see the end of QA-REPORT.md and README.md). I did not publish anything to your live site.
+- After the first live deploy: verify the site in Search Console and submit https://rajubepari.netlify.app/sitemap.xml.
+- Set real values in Netlify (see `.env.example`): `N8N_WEBHOOK_URL`, `N8N_WEBHOOK_SECRET`, optional `SITE_URL`, `LEAD_HASH_SALT`, and for the dashboard `ADMIN_KEY`, `NETLIFY_API_TOKEN`, `SITE_ID`.
+- `google_site_verification`, `gtm_id`, `booking_url`, `reply_time` in `_data/settings.yml` are empty on purpose.
+- After deploying, test the form once with safe test data (for example test.person@example.com, message "TEST ONLY") and confirm the email or sheet row arrives.
+- Run Lighthouse on the live URL, because hosting and network change the scores.
