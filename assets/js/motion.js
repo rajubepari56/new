@@ -105,6 +105,19 @@
     });
   })();
 
+  /* inner pages: give every section its own entrance style (cycled), and stagger the items inside it */
+  (function () {
+    if (d.body.classList.contains('home')) return;
+    var secs = [].slice.call(d.querySelectorAll('main section, main .section')).filter(function (s) { return !s.classList.contains('h-final') && !s.parentElement.closest('section'); });
+    secs.forEach(function (s, i) {
+      s.setAttribute('data-mv', String(i % 6 + 1));
+      var n = 0; [].slice.call(s.querySelectorAll('.reveal')).forEach(function (e) {
+        if (/(^|\s)(h-h2|cs-h2)(\s|$)/.test(e.className)) return;
+        e.style.setProperty('--s', String(Math.min(n++, 7)));
+      });
+    });
+  })();
+
   /* floating jump arrow: follows you down the page and jumps to the next section */
   (function () {
     var secs = [].slice.call(d.querySelectorAll('.h-sec, .h-strip, .h-final')); if (secs.length < 3) return;
