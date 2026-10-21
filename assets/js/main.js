@@ -205,7 +205,7 @@
 
   /* ---- preloader cleanup ---- */
   var pl=d.getElementById('preloader');
-  if(pl)setTimeout(function(){pl.remove();root.classList.remove('has-preloader');},1250);
+  if(pl)setTimeout(function(){pl.remove();root.classList.remove('has-preloader');},760);
 
   /* ---- Lenis smooth scroll (after first paint, desktop) ---- */
   if(fine&&!reduce){

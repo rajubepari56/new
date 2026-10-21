@@ -25,38 +25,43 @@ faqs:
 {% capture audit_wa %}{% include wa.html text='Hi Raju, I would like a free tracking audit for my ads' %}{% endcapture %}
 
 <section class="h-hero" aria-labelledby="hero-h1">
+  <div class="h-glow" aria-hidden="true"><i></i><i></i></div>
   <div class="wrap">
     <div class="h-hero__grid">
       <div class="h-hero__copy">
-        <p class="h-eyebrow reveal">Google Ads &middot; Conversion Tracking &middot; Web Analytics</p>
-        <h1 id="hero-h1" class="h-display reveal">Stop Guessing Which Ads Make You <em>Money.</em></h1>
-        <p class="h-sub reveal">I'm Raju Bepari, a Google Ads, Conversion Tracking &amp; Web Analytics Specialist. I set up tracking that captures every lead and sale, then use that clean data to scale the campaigns that grow your revenue.</p>
-        <div class="h-cta reveal">
+        <p class="h-eyebrow h-rise" style="--d:.55s">Google Ads &middot; Conversion Tracking &middot; Web Analytics</p>
+        <h1 id="hero-h1" class="h-display">
+          <span class="ln"><span class="ln__i" style="--i:0">Stop Guessing</span></span>
+          <span class="ln"><span class="ln__i" style="--i:1">Which Ads Make</span></span>
+          <span class="ln"><span class="ln__i" style="--i:2">You <em>Money.</em></span></span>
+        </h1>
+        <p class="h-sub h-rise" style="--d:.85s">I'm Raju Bepari, a Google Ads, Conversion Tracking &amp; Web Analytics Specialist. I set up tracking that captures every lead and sale, then use that clean data to scale the campaigns that grow your revenue.</p>
+        <div class="h-cta h-rise" style="--d:1s">
           {% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Get a Free Tracking Audit" loc="hero" %}
-          <a class="btn btn--ghost btn--lg" href="#results" data-event="cta_click" data-cta-text="See Results" data-link-location="hero">See Results</a>
+          <a class="btn btn--ghost btn--lg magnetic" href="#results" data-event="cta_click" data-cta-text="See Results" data-link-location="hero">See Results</a>
         </div>
-        <p class="h-trust reveal">{{ S.experience }} <i aria-hidden="true">&middot;</i> <a href="{{ S.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="hero">My Upwork profile</a> <i aria-hidden="true">&middot;</i> Works directly with you, no middlemen</p>
+        <p class="h-trust h-rise" style="--d:1.12s">{{ S.experience }} <i aria-hidden="true">&middot;</i> <a href="{{ S.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="hero">My Upwork profile</a> <i aria-hidden="true">&middot;</i> Works directly with you, no middlemen</p>
       </div>
-      <figure class="h-console reveal" aria-label="How a conversion travels from my client's website to GA4, Google Ads and Meta">
-        <div class="h-console__bar">
-          <img src="/assets/images/raju-hero.webp" width="500" height="500" fetchpriority="high" alt="Raju Bepari, Google Ads and conversion tracking specialist">
-          <div><b>Raju Bepari</b><span>Direct line &middot; UTC+6</span></div>
-        </div>
-        <svg class="h-flow h-flow--tall" viewBox="0 0 340 380" role="img" aria-label="Website to Google Tag Manager to Server GTM, then split to GA4, Google Ads and Meta">
-          <g fill="none" stroke="rgba(167,169,214,.35)" stroke-width="1.5"><path d="M170 50V100M170 140V190M170 230C170 270 50 270 50 310M170 230V310M170 230C170 270 290 270 290 310"/></g>
-          <circle r="4.5" fill="#FBBC05" stroke="#FBBC05" stroke-opacity=".3" stroke-width="9" opacity="0"><animateMotion dur="4.2s" begin="0s" repeatCount="indefinite" path="M170 50V230C170 270 50 270 50 310"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.9;1" dur="4.2s" begin="0s" repeatCount="indefinite"/></circle>
-          <circle r="4.5" fill="#4285F4" stroke="#4285F4" stroke-opacity=".3" stroke-width="9" opacity="0"><animateMotion dur="4.2s" begin="1.4s" repeatCount="indefinite" path="M170 50V310"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.9;1" dur="4.2s" begin="1.4s" repeatCount="indefinite"/></circle>
-          <circle r="4.5" fill="#EA4335" stroke="#EA4335" stroke-opacity=".3" stroke-width="9" opacity="0"><animateMotion dur="4.2s" begin="2.8s" repeatCount="indefinite" path="M170 50V230C170 270 290 270 290 310"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.9;1" dur="4.2s" begin="2.8s" repeatCount="indefinite"/></circle>
-          <g class="h-flow__node"><rect x="114" y="10" width="112" height="40" rx="6"/><text x="170" y="35" text-anchor="middle">Website</text></g>
-          <g class="h-flow__node"><rect x="114" y="100" width="112" height="40" rx="6"/><text x="170" y="125" text-anchor="middle">Web GTM</text></g>
-          <g class="h-flow__node h-flow__node--core"><rect x="114" y="190" width="112" height="40" rx="6"/><text x="170" y="215" text-anchor="middle">Server GTM</text></g>
-          <g class="h-flow__node h-flow__node--t" style="--c:#FBBC05"><rect x="0" y="310" width="100" height="40" rx="6"/><circle cx="16" cy="330" r="3.5"/><text x="26" y="335">GA4</text></g>
-          <g class="h-flow__node h-flow__node--t" style="--c:#4285F4"><rect x="120" y="310" width="100" height="40" rx="6"/><circle cx="136" cy="330" r="3.5"/><text x="146" y="335">Google Ads</text></g>
-          <g class="h-flow__node h-flow__node--t" style="--c:#EA4335"><rect x="240" y="310" width="100" height="40" rx="6"/><circle cx="256" cy="330" r="3.5"/><text x="266" y="335">Meta</text></g>
-          <g class="h-flow__cap"><text x="238" y="80">page_view</text><text x="238" y="170">generate_lead</text></g>
-        </svg>
-        <figcaption class="h-console__cap mono">One conversion, counted once, sent to every platform that needs it.</figcaption>
-      </figure>
+      <div class="h-stage h-pop" id="h-stage">
+        <div class="h-photo" id="h-photo"><div class="h-photo__in"><img src="/assets/images/raju-hero.webp" width="500" height="500" fetchpriority="high" alt="Raju Bepari, Google Ads and conversion tracking specialist"></div></div>
+        <figure class="h-console" aria-label="How a conversion travels from my client's website to GA4, Google Ads and Meta">
+          <div class="h-console__bar"><div><b>Raju Bepari</b><span>Direct line &middot; UTC+6</span></div></div>
+          <svg class="h-flow" id="h-flow" viewBox="0 0 360 392" role="img" aria-label="Signals page_view, generate_lead and purchase travel from Website through Web GTM and Server GTM to GA4, Google Ads and Meta CAPI">
+            <g fill="none" stroke="rgba(167,169,214,.32)" stroke-width="1.4"><path d="M180 50V100M180 140V190M180 230C180 270 56 270 56 316M180 230V316M180 230C180 270 304 270 304 316"/></g>
+            <g fill="none" stroke="none"><path id="ra" d="M180 50V230C180 270 56 270 56 316"/><path id="rb" d="M180 50V316"/><path id="rc" d="M180 50V230C180 270 304 270 304 316"/></g>
+            <g class="sig" data-r="ra" style="--c:#FBBC05"><circle class="sig__h" r="12"/><circle class="sig__m" r="7"/><circle class="sig__d" r="3.8"/><text x="14" y="4">page_view</text></g>
+            <g class="sig" data-r="rb" style="--c:#4285F4"><circle class="sig__h" r="12"/><circle class="sig__m" r="7"/><circle class="sig__d" r="3.8"/><text x="14" y="4">generate_lead</text></g>
+            <g class="sig" data-r="rc" style="--c:#EA4335"><circle class="sig__h" r="12"/><circle class="sig__m" r="7"/><circle class="sig__d" r="3.8"/><text x="14" y="4">purchase</text></g>
+            <g class="h-flow__node" data-n="web"><rect x="124" y="10" width="112" height="40" rx="6"/><text x="180" y="35" text-anchor="middle">Website</text></g>
+            <g class="h-flow__node" data-n="gtm"><rect x="124" y="100" width="112" height="40" rx="6"/><text x="180" y="125" text-anchor="middle">GTM</text></g>
+            <g class="h-flow__node h-flow__node--core" data-n="sgtm"><rect x="124" y="190" width="112" height="40" rx="6"/><text x="180" y="215" text-anchor="middle">Server GTM</text></g>
+            <g class="h-flow__node h-flow__node--t" data-n="t0" style="--c:#FBBC05"><rect x="6" y="316" width="100" height="40" rx="6"/><circle cx="22" cy="336" r="3.5"/><text x="32" y="340">GA4</text></g>
+            <g class="h-flow__node h-flow__node--t" data-n="t1" style="--c:#4285F4"><rect x="130" y="316" width="100" height="40" rx="6"/><circle cx="146" cy="336" r="3.5"/><text x="156" y="340">Google Ads</text></g>
+            <g class="h-flow__node h-flow__node--t" data-n="t2" style="--c:#EA4335"><rect x="254" y="316" width="100" height="40" rx="6"/><circle cx="270" cy="336" r="3.5"/><text x="280" y="340">Meta CAPI</text></g>
+          </svg>
+          <figcaption class="h-console__cap mono">One conversion, counted once, sent to every platform that needs it.</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>

@@ -124,12 +124,12 @@ code,.mono{font-family:var(--mono)}
 .lenis.lenis-stopped{overflow:hidden}
 /* preloader (CSS only, max 1.2s) */
 #preloader{display:none;position:fixed;inset:0;z-index:200;background:var(--bg);place-items:center}
-.has-preloader #preloader{display:grid;animation:pl-out .25s ease 0.95s forwards}
+.has-preloader #preloader{display:grid;animation:pl-out .2s ease .5s forwards}
 #preloader svg{width:96px;height:96px;overflow:visible}
-#preloader .pl-ring{fill:none;stroke-width:2.5;stroke-dasharray:33 99;opacity:0;animation:pl-ring .5s ease forwards}
-#preloader .pl-ring:nth-child(1){stroke:var(--blue);animation-delay:.1s}#preloader .pl-ring:nth-child(2){stroke:var(--red);animation-delay:.25s}
-#preloader .pl-ring:nth-child(3){stroke:var(--yellow);animation-delay:.4s}#preloader .pl-ring:nth-child(4){stroke:var(--green);animation-delay:.55s}
-#preloader .pl-txt{fill:none;stroke:var(--text);stroke-width:1.2;font:700 18px var(--hf);stroke-dasharray:140;stroke-dashoffset:140;animation:pl-draw .8s ease .1s forwards}
+#preloader .pl-ring{fill:none;stroke-width:2.5;stroke-dasharray:33 99;opacity:0;animation:pl-ring .3s ease forwards}
+#preloader .pl-ring:nth-child(1){stroke:var(--blue);animation-delay:.02s}#preloader .pl-ring:nth-child(2){stroke:var(--red);animation-delay:.1s}
+#preloader .pl-ring:nth-child(3){stroke:var(--yellow);animation-delay:.18s}#preloader .pl-ring:nth-child(4){stroke:var(--green);animation-delay:.26s}
+#preloader .pl-txt{fill:none;stroke:var(--text);stroke-width:1.2;font:700 18px var(--hf);stroke-dasharray:140;stroke-dashoffset:140;animation:pl-draw .45s ease .05s forwards}
 @keyframes pl-draw{to{stroke-dashoffset:0;fill:var(--text)}}
 @keyframes pl-ring{from{opacity:0;transform:scale(.9);transform-origin:24px 24px}to{opacity:1;transform:none}}
 @keyframes pl-out{to{opacity:0;visibility:hidden}}
