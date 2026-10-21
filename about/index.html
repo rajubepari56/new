@@ -77,8 +77,8 @@ permalink: /about/
     <div class="h-sec__rail"><span class="mono">05 / Find me online</span></div>
     <div class="h-sec__body">
       <h2 class="h-h2 reveal">My profiles.</h2>
-      <ul class="socials socials--big" aria-label="My profiles">
-        {% for s in S.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="about"><span class="ico-wrap">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</span> {{ s[0] | capitalize }}</a></li>{% endfor %}
+      <ul class="profile-links" aria-label="My profiles">
+        {% for s in S.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="about"><span class="pl__ico" aria-hidden="true">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</span><span class="pl__t">{% case s[0] %}{% when "x" %}X{% when "linkedin" %}LinkedIn{% else %}{{ s[0] | capitalize }}{% endcase %}</span><span class="pl__a" aria-hidden="true">&nearr;</span></a></li>{% endfor %}
       </ul>
     </div>
   </div>
