@@ -9,7 +9,7 @@ export default async (req) => {
   if (!authorised(req)) return json({ error: "unauthorised" }, 401);
   let b;
   try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
-  if (!b.id || typeof b.id !== "string" || !/^[a-zA-Z0-9]+$/.test(b.id)) return json({ error: "bad_id" }, 400);
+  if (!b.id || typeof b.id !== "string" || !/^[a-zA-Z0-9_-]+$/.test(b.id)) return json({ error: "bad_id" }, 400);
   const status = STATUSES.includes(b.status) ? b.status : "new";
   const notes = String(b.notes || "").slice(0, 4000);
   await getStore("lead-meta").setJSON(b.id, { status, notes, updated: new Date().toISOString() });

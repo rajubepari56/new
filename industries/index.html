@@ -1,0 +1,89 @@
+---
+layout: default
+title: "Industries I Work With"
+crumb: Industries
+description: Google Ads, tracking and local SEO for local service businesses, ecommerce stores and marketing businesses that need a white-label specialist.
+permalink: /industries/
+segments:
+  - id: local
+    name: Local service businesses
+    who: Home services, remodeling, flooring, legal and similar businesses that live on calls, quote requests and booked jobs.
+    problems:
+      - Clicks are cheap, but few of them become real jobs.
+      - Calls and form leads are not tracked back to the keyword or campaign.
+      - The business is hard to find in the Google Maps pack.
+    help:
+      - Google Ads built around calls, forms and booked jobs
+      - Call and form tracking through GTM, GA4 and Google Ads
+      - "Local SEO: Business Profile, citations and service-area pages"
+    services: [google-ads, local-seo, google-tag-manager]
+    pages: [/google-ads-for-junk-removal/, /google-ads-for-contractors/, /local-seo-for-contractors/, /local-seo-for-home-service-businesses/]
+  - id: ecommerce
+    name: Ecommerce stores
+    who: Shopify, WooCommerce and Wix stores that already run paid ads and need profitable growth and trustworthy numbers.
+    problems:
+      - Platform numbers disagree with the store's real orders.
+      - Meta and Google lost signal to browser restrictions and ad blockers.
+      - Feed issues keep products out of Shopping results.
+    help:
+      - Shopping and Performance Max with a clean Merchant Center feed
+      - GA4 purchase tracking, Meta Conversions API and server-side tracking
+      - Value-based bidding with first-party data
+    services: [google-ads, merchant-center, meta-pixel-capi, server-side-tracking]
+    pages: []
+    case: roofing-supplier-4x-roas
+  - id: agencies
+    name: Marketing businesses (white-label)
+    who: Marketing businesses and consultants who need a reliable tracking and Google Ads specialist behind the scenes.
+    problems:
+      - Client tracking is set up differently every time and breaks when people leave.
+      - There is no time to audit every container, feed and conversion action.
+      - Clients expect clear, documented reporting.
+    help:
+      - White-label GTM, GA4 and server-side setups on a consistent standard
+      - Documentation you can hand to your own clients
+      - "Direct contact with the specialist, with no account managers and no handoffs"
+    services: [google-tag-manager, ga4, server-side-tracking]
+    pages: []
+---
+<header class="cs-hero cs-hero--list">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Industries</span></nav>
+    <p class="h-eyebrow">Industries</p>
+    <h1 class="h-display h-display--m">Built for businesses that <em>already advertise.</em></h1>
+    <p class="h-sub">I work with three kinds of clients. Each has different problems, so I use a different starting point for each.</p>
+  </div>
+</header>
+{% for g in page.segments %}
+<section class="h-sec cs-sec" id="{{ g.id }}">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">0{{ forloop.index }} / {{ g.name }}</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">{{ g.name }}.</h2>
+      <p class="lead reveal">{{ g.who }}</p>
+      <div class="cs-two">
+        <div><h3 class="cs-h2 reveal">Common problems</h3><ul class="cs-list cs-list--bad">{% for p in g.problems %}<li class="reveal">{{ p }}</li>{% endfor %}</ul></div>
+        <div><h3 class="cs-h2 reveal">How I help</h3><ul class="cs-check cs-check--one">{% for p in g.help %}<li class="reveal">{{ p }}</li>{% endfor %}</ul></div>
+      </div>
+      <div class="h-svc__list">
+        {% for sl in g.services %}{% assign r = site.data.services | where: "slug", sl | first %}<a class="h-svc__row reveal" href="{{ r.url }}"><span class="mono h-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span class="h-svc__t">{{ r.name }}</span><span class="h-svc__d">{{ r.short }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>{% endfor %}
+        {% for u in g.pages %}{% assign ind = site.data.industries | where: "url", u | first %}{% if ind %}<a class="h-svc__row reveal" href="{{ ind.url }}"><span class="mono h-n">{% if ind.type == 'seo' %}SEO{% else %}ADS{% endif %}</span><span class="h-svc__t">{{ ind.name }}</span><span class="h-svc__d">{{ ind.short }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>{% endif %}{% endfor %}
+      </div>
+      {% if g.case %}{% assign c = site.case_studies | where: "slug", g.case | first %}{% if c %}<div class="rs-list" style="margin-top:36px">{% include case-card.html c=c loc="industries" %}</div>{% endif %}{% endif %}
+    </div>
+  </div>
+</section>
+{% endfor %}
+<section class="h-sec cs-sec">
+  <div class="wrap">
+    <h2 class="h-h2 reveal">Who I work best with, <em>and who I don't.</em></h2>
+    {% include fit-block.html %}
+  </div>
+</section>
+<section class="h-final">
+  <div class="wrap">
+    <p class="h-eyebrow reveal">Your industry</p>
+    <h2 class="h-display h-display--m reveal">Tell me what you run. <em>I'll tell you what to fix first.</em></h2>
+    <div class="h-cta reveal">{% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Get a free tracking audit" loc="industries_cta" %}<a class="btn btn--ghost btn--lg" href="/contact/" data-event="cta_click" data-cta-text="Use the contact form" data-link-location="industries_cta">Use the contact form</a></div>
+  </div>
+</section>

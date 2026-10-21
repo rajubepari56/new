@@ -33,7 +33,7 @@
     var ev=el.getAttribute('data-event'),loc=el.getAttribute('data-link-location')||'',p={event:ev};
     if(ev==='whatsapp_click'){p.link_location=loc;p.service_name=el.getAttribute('data-service')||'General';p.page_path=location.pathname;}
     else if(ev==='email_click'){p.link_location=loc;p.page_path=location.pathname;}
-    else if(ev==='upwork_click'){p.link_location=loc;}
+    else if(ev==='upwork_click'||ev==='booking_click'){p.link_location=loc;}
     else if(ev==='social_click'){p.platform=el.getAttribute('data-platform')||'';}
     else if(ev==='cta_click'){p.cta_text=el.getAttribute('data-cta-text')||el.textContent.trim();p.link_location=loc;}
     else return;
@@ -103,12 +103,13 @@
   d.addEventListener('click',function(e){d.querySelectorAll('.nav__dd.open').forEach(function(x){if(!x.contains(e.target)&&!nav.classList.contains('open')){x.classList.remove('open');var b=x.querySelector('.nav__dd-btn');if(b)b.setAttribute('aria-expanded','false');}});});
 
   /* ---- scroll reveal (stagger via --i among siblings) ---- */
-  var items=d.querySelectorAll('.reveal,.mask');
+  var items=d.querySelectorAll('.reveal'),masks=d.querySelectorAll('.mask');
   items.forEach(function(n){var sib=n.parentNode?[].filter.call(n.parentNode.children,function(c){return c.classList.contains('reveal');}):[n];n.style.setProperty('--i',Math.min(sib.indexOf(n),5));});
   if('IntersectionObserver' in w&&!reduce){
     var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
     items.forEach(function(n){io.observe(n);});
   }else items.forEach(function(n){n.classList.add('in');});
+  if('IntersectionObserver' in w&&!reduce){var mo=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');mo.unobserve(x.target);}});},{threshold:0,rootMargin:'0px 0px -8% 0px'});masks.forEach(function(n){mo.observe(n);});}else masks.forEach(function(n){n.classList.add('in');});
 
   /* ---- service diagram: lights up once, in order, when it scrolls into view ---- */
   d.querySelectorAll('.diagram__nodes').forEach(function(ol){

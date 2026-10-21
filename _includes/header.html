@@ -12,7 +12,6 @@
     <a class="brand" href="/">{% include logo.html %}<span class="brand__name">Raju Bepari</span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
     <nav class="nav" id="nav" aria-label="Main">
-      <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a>
       <div class="nav__dd">
         <a href="/services/"{% if page.url contains "/services/" %} aria-current="page"{% endif %}>Services</a>
         <button class="nav__dd-btn" type="button" aria-expanded="false" aria-label="Show services list"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
@@ -21,13 +20,16 @@
         </ul>
       </div>
       <div class="nav__dd">
-        <button class="nav__dd-btn nav__dd-btn--text" type="button" aria-expanded="false" aria-haspopup="true">Industries <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <a href="/industries/"{% if page.url contains "/industries/" %} aria-current="page"{% endif %}>Industries</a>
+        <button class="nav__dd-btn" type="button" aria-expanded="false" aria-label="Show industries list"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
         <ul class="nav__menu">
+          <li><a href="/industries/">All industries</a></li>
           {% for i in site.data.industries %}<li><a href="{{ i.url }}"{% if page.url == i.url %} aria-current="page"{% endif %}>{{ i.name }}</a></li>{% endfor %}
         </ul>
       </div>
       <a href="/results/"{% if page.url contains "/results/" %} aria-current="page"{% endif %}>Results</a>
-      <a href="/blog/"{% if page.url contains "/blog/" %} aria-current="page"{% endif %}>Blog</a>
+      <a href="/process/"{% if page.url contains "/process/" %} aria-current="page"{% endif %}>Process</a>
+      <a href="/insights/"{% if page.url contains "/insights/" or page.layout == "post" %} aria-current="page"{% endif %}>Insights</a>
       <a href="/about/"{% if page.url contains "/about/" %} aria-current="page"{% endif %}>About</a>
       <a href="/contact/"{% if page.url contains "/contact/" %} aria-current="page"{% endif %}>Contact</a>
       <a class="btn btn--wa btn--sm magnetic" href="{% include wa.html text='Hi Raju, I found your website and need help with tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="header" data-service="General">{% include icon-wa.html %} Free Tracking Audit</a>

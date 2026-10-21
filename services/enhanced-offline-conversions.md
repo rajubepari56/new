@@ -1,70 +1,75 @@
 ---
-title: Google Ads Enhanced Conversions Setup
-description: Google Ads enhanced conversions setup and offline conversion imports, so bidding learns from real leads and revenue, not just form fills.
+title: Offline Conversion Tracking for Google Ads Setup
+description: I set up offline conversion tracking and enhanced conversions for Google Ads, so real sales and qualified leads from your CRM improve bidding.
 service_name: Enhanced & Offline Conversions
-short_name: Enhanced Conversions
-keyword: Google Ads enhanced conversions setup
-h1: Google Ads Enhanced Conversions Setup
-outcome: Send hashed first-party data and real CRM outcomes back to Google Ads so bidding learns from what matters.
-who_title: Who needs enhanced and offline data
+short_name: Offline conversions
+keyword: offline conversion tracking for Google Ads
+h1: 'Offline Conversion Tracking for Google Ads: Teach Bidding What a Real Sale Is'
+outcome: I send real sales and qualified leads from your CRM back to Google Ads, so Smart Bidding learns from the customers that matter instead of every form fill.
+hero_cta: Get a free offline tracking check
+who_title: Who this is for
 who:
-- Lead businesses that close deals offline or by phone.
-- Stores that want better web conversion matching.
-- Advertisers who see leads but not which ones became customers.
-problems_title: Gaps in Google Ads conversion data
+- Lead businesses where many form fills never become customers.
+- Companies with a CRM or booking system that records real sales.
+- Advertisers who want Google Ads to bid on revenue, not just leads.
+- Marketing businesses that report on lead quality for their clients.
+problems_title: The problem with counting every lead the same
 problems:
-- Google Ads counts every form fill the same.
-- Conversions are missed when cookies are lost.
-- CRM sales never reach the ad account.
-- Imports fail because of formatting or GCLID gaps.
-included_title: What I set up for conversion imports
+- Smart Bidding treats a spam enquiry and a signed job as equal.
+- Ad platforms never find out which leads became customers.
+- You pay for cheap leads that never buy.
+- Enhanced conversions are switched on but not verified.
+- Sales data sits in a CRM nobody connected to the ad account.
+included_title: What I set up
 included:
-- Enhanced conversions for web
-- Enhanced conversions for leads
-- GCLID capture on forms
-- Offline conversion import (manual or automated)
-- CRM stage mapping
-- Hashing and privacy checks
-- Diagnostics review in Google Ads
-- Import schedule and guide
-diagram_title: From lead to learning
+- A review of your lead flow, CRM stages and what "qualified" means
+- Google Click ID (GCLID) capture on forms and landing pages
+- Enhanced conversions for web and for leads, with proper hashing
+- A CRM-to-Google Ads import, manual or automated
+- Conversion actions and values that reflect real revenue
+- Consent-aware handling of any personal data
+- Testing with real leads from click to imported sale
+- A simple monthly process for keeping the import current
+- Documentation for your team
+diagram_title: How a real sale gets back to Google Ads
 diagram:
-- Form fill
-- GCLID saved
-- CRM sale
-- Import to Google Ads
-- Bidding learns
-process_title: How the setup runs
-timeline: 'enhanced conversions: 2 to 3 days; offline imports: about 1 week.'
+- Ad click
+- Lead form
+- CRM stage
+- Offline import
+- Smarter bidding
+process_title: How an offline conversions project runs
+timeline: a plan in 2 to 3 days; setup and testing usually take one to two weeks, plus time for real leads to flow through.
 process:
-- t: Audit
-  d: Check conversion actions and forms.
-- t: Map
-  d: Match CRM stages to conversions.
-- t: Capture
-  d: Store GCLID and customer data.
-- t: Import
-  d: Send conversions to Google Ads.
-- t: Review
-  d: Check diagnostics and results.
-faq_title: Enhanced and offline conversion questions
+- t: Map the lead flow
+  d: I trace a lead from the ad click to the closed sale.
+- t: Capture identifiers
+  d: I store the click ID and consented data with each lead.
+- t: Connect
+  d: I set up enhanced conversions and the CRM import.
+- t: Test
+  d: I follow real leads through to Google Ads.
+- t: Maintain
+  d: I show you how to keep the import running every week.
+related_cases: []
+faq_title: Offline and enhanced conversions questions
 faqs:
-- q: What is the difference between enhanced and offline conversions?
-  a: Enhanced conversions add hashed customer data to web conversions. Offline conversions bring in sales that happen later.
-- q: Do I need a CRM?
-  a: A spreadsheet can work to start. A CRM makes it automatic.
+- q: Which CRMs can you connect?
+  a: Most CRMs can export or sync stage changes. I work with what you already use, including spreadsheets for smaller teams.
 - q: Is customer data safe?
-  a: Data is hashed before sending, and I follow Google's policies.
-- q: How long until bidding improves?
-  a: Google needs enough conversion volume to learn. I explain realistic timing for your account.
-- q: Which CRMs do you work with?
-  a: Most, via export, Zapier, API or Google Ads import tools. Ask me about yours.
+  a: Personal data is hashed before it is sent, only with the right consent, and I send as little as the platform needs.
+- q: How long before bidding improves?
+  a: Bidding needs enough imported conversions to learn from. I explain what volume is realistic for your account and never promise a result.
+- q: Do I need enhanced conversions and offline imports?
+  a: They solve different problems. Enhanced conversions improve measurement of web actions, and offline imports report what happened after the lead. I tell you which you need.
+- q: What do you need from me?
+  a: Access to your Google Ads account, your website forms and your CRM or lead sheet.
 related:
 - google-ads
 - server-side-tracking
 - ga4
-cta_title: Teach Google Ads from real sales
-related_title: More ways to feed Google Ads
-crumb: Enhanced & Offline Conversions
+related_title: Services that pair with offline conversions
+cta_title: Want Google Ads to learn from real sales?
 permalink: /services/enhanced-offline-conversions/
+crumb: Enhanced & Offline Conversions
 ---

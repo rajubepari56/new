@@ -1,34 +1,57 @@
 ---
 layout: default
-title: Google Ads & Tracking Services
+title: "Google Ads and Tracking Services"
 crumb: Services
-description: "Google Ads, GA4, GTM, Meta CAPI, server-side tracking, enhanced conversions, Merchant Center, Local SEO and AI search optimization (AEO, GEO, LLM)."
+description: "Eight focused services from one independent specialist: Google Ads, GA4, GTM, Meta CAPI, server-side tracking, offline conversions, Merchant Center and Local SEO."
 permalink: /services/
 ---
-<section class="hero hero--sub"><div class="wrap">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Services</span></nav>
-  <h1 class="reveal">Services for Accurate Ads and Analytics</h1>
-  <p class="lead reveal">{{ site.data.services | size }} focused services in three groups. Pick one, or combine them for a complete setup.</p>
-</div></section>
-{% assign groups = "Ads,Tracking,SEO" | split: "," %}
+<header class="cs-hero cs-hero--list">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Services</span></nav>
+    <p class="h-eyebrow">Services</p>
+    <h1 class="h-display h-display--m">One specialist. <em>One measurement system.</em></h1>
+    <p class="h-sub">Pick one service or combine them. Tracking is my strongest specialization, so I start there: clean data first, then growth.</p>
+    <div class="h-cta">{% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Get a free tracking audit" loc="services_hub" %}</div>
+  </div>
+</header>
+{% assign groups = "Tracking,Ads,SEO" | split: "," %}
 {% for g in groups %}
-<section class="section{% if forloop.index0 == 1 %} section--alt{% endif %}"><div class="wrap">
-  <h2 class="reveal">{% case g %}{% when "Ads" %}Ads and shopping{% when "Tracking" %}Tracking and analytics{% else %}Search visibility and AI search{% endcase %}</h2>
-  <div class="cards">
-    {% for s in site.data.services %}{% if s.group == g %}
-    <a class="card glass tilt reveal" href="{{ s.url }}"><span class="pill pill--{{ s.color }}">{{ s.tag }}</span><h3>{{ s.name }}</h3><p>{{ s.short }}</p></a>
-    {% endif %}{% endfor %}
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">0{{ forloop.index }} / {% case g %}{% when "Tracking" %}Tracking and analytics{% when "Ads" %}Ads and shopping{% else %}Search visibility{% endcase %}</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">{% case g %}{% when "Tracking" %}Tracking and analytics: my strongest specialization.{% when "Ads" %}Ads and shopping.{% else %}Search visibility and AI search.{% endcase %}</h2>
+      <div class="h-svc__list">
+        {% assign n = 0 %}{% for s in site.data.services %}{% if s.group == g %}{% assign n = n | plus: 1 %}
+        <a class="h-svc__row reveal" href="{{ s.url }}"><span class="mono h-n">0{{ n }}</span><span class="h-svc__t">{{ s.name }}</span><span class="h-svc__d">{{ s.short }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>
+        {% endif %}{% endfor %}
+      </div>
+    </div>
   </div>
-</div></section>
+</section>
 {% endfor %}
-<section class="section"><div class="wrap">
-  <h2 class="reveal">Built into every tracking setup</h2>
-  <div class="addons">
-    {% for a in site.data.addons %}<a class="card glass tilt reveal" href="{{ a.url }}"><span class="pill pill--{{ a.color }}">{{ a.tag }}</span><h3>{{ a.name }}</h3><p>{{ a.text }}</p></a>{% endfor %}
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">04 / Built in</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">Built into every tracking setup.</h2>
+      <div class="h-svc__list">
+        {% for a in site.data.addons %}<a class="h-svc__row reveal" href="{{ a.url }}"><span class="mono h-n">{{ forloop.index }}</span><span class="h-svc__t">{{ a.name }}</span><span class="h-svc__d">{{ a.text }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>{% endfor %}
+      </div>
+    </div>
   </div>
-</div></section>
-<section class="section section--alt"><div class="wrap">
-  <h2 class="reveal">Services by industry</h2>
-  <div class="cards">{% for i in site.data.industries %}<a class="card glass tilt reveal" href="{{ i.url }}"><span class="pill pill--{% if i.type == 'seo' %}green{% else %}blue{% endif %}">{% if i.type == 'seo' %}Local SEO{% else %}Google Ads{% endif %}</span><h3>{{ i.name }}</h3><p>{{ i.short }}</p></a>{% endfor %}</div>
-</div></section>
-{% include cta.html service="my project" title="Not sure which service you need?" text="Describe your setup on WhatsApp and I will point you to the right one." loc="services_hub" %}
+</section>
+<section class="h-sec cs-sec">
+  <div class="wrap">
+    <h2 class="h-h2 reveal">Who I work best with, <em>and who I don't.</em></h2>
+    {% include fit-block.html %}
+  </div>
+</section>
+<section class="h-final">
+  <div class="wrap">
+    <p class="h-eyebrow reveal">Not sure where to start?</p>
+    <h2 class="h-display h-display--m reveal">Start with a free <em>tracking audit.</em></h2>
+    <p class="h-sub reveal">I look at your current setup and tell you what to fix first. No obligation.</p>
+    <div class="h-cta reveal">{% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Get a free tracking audit" loc="services_cta" %}<a class="btn btn--ghost btn--lg" href="/contact/?service=audit" data-event="cta_click" data-cta-text="Use the contact form" data-link-location="services_cta">Use the contact form</a></div>
+  </div>
+</section>

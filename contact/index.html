@@ -1,66 +1,79 @@
 ---
 layout: default
-title: Contact Raju Bepari
+title: "Contact Raju Bepari for a Free Tracking Audit"
 crumb: Contact
-description: Contact Raju Bepari about Google Ads, GA4, GTM, tracking or AI search. Send the form, message me on WhatsApp, or email me.
+description: Tell me about your Google Ads, tracking or analytics project. I read every enquiry myself and reply personally on WhatsApp or email.
 permalink: /contact/
 ---
-<section class="hero hero--sub"><div class="wrap">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Contact</span></nav>
-  <h1 class="reveal">Let's Talk About Your Tracking</h1>
-  <p class="lead reveal">Send the form below, or message me on WhatsApp for the fastest reply.{% if site.data.settings.reply_time != "" %} Usually replies within {{ site.data.settings.reply_time }}.{% endif %}</p>
-  <div class="btn-row"><a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text='Hi Raju, I found your website and need help with tracking' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="contact" data-service="General">{% include icon-wa.html %} Message me on WhatsApp</a></div>
-</div></section>
-<section class="section"><div class="wrap contact-wrap">
-  <div class="glass form-card reveal">
-    <h2>Send me a message</h2>
-    <p class="muted">Only name, email and service are required. Everything else is optional.</p>
-    <form id="contact-form" name="contact" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" data-mail="{{ site.data.settings.email }}" data-wa="{{ site.data.settings.whatsapp }}" novalidate>
-      <input type="hidden" name="form-name" value="contact">
-      <input type="hidden" name="source" id="f-source" value="">
-      <p class="hp" aria-hidden="true"><label>Do not fill this out <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <div class="f-row">
-        <div class="f"><label for="f-name">Full name <b>*</b></label><input id="f-name" name="name" type="text" autocomplete="name" required minlength="2"></div>
-        <div class="f"><label for="f-email">Email <b>*</b></label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
-      </div>
-      <div class="f-row">
-        <div class="f"><label for="f-phone">WhatsApp / phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Include country code" pattern="[0-9+()\-\s]{7,20}"><small>Optional. Use the country code, for example +1 or +44.</small></div>
-        <div class="f"><label for="f-country">Country</label><input id="f-country" name="country" type="text" autocomplete="country-name"></div>
-      </div>
-      <div class="f-row">
-        <div class="f"><label for="f-company">Business or company</label><input id="f-company" name="company" type="text" autocomplete="organization"></div>
-        <div class="f"><label for="f-website">Website</label><input id="f-website" name="website" type="text" autocomplete="url" inputmode="url" placeholder="example.com"></div>
-      </div>
-      <div class="f-row">
-        <div class="f"><label for="f-service">Service you need <b>*</b></label>
-          <select id="f-service" name="service" required>
-            {% for s in site.data.services %}<option value="{{ s.name | escape }}" data-slug="{{ s.slug }}"{% if forloop.first %} selected{% endif %}>{{ s.name }}</option>{% endfor %}
-            <option value="Not sure yet / something else">Not sure yet / something else</option>
-          </select></div>
-        <div class="f"><label for="f-contact">Best way to reach you</label>
-          <select id="f-contact" name="preferred_contact">
-            <option>WhatsApp</option><option>Email</option><option selected>Either is fine</option>
-          </select></div>
-      </div>
-      <div class="f"><label for="f-budget">Monthly marketing budget</label>
-        <select id="f-budget" name="budget">
-          <option value="" selected>Prefer not to say (optional)</option>
-          <option value="$1,000 / month">$1,000 / month</option>
-          <option value="$2,000 / month">$2,000 / month</option>
-          <option value="$5,000 / month">$5,000 / month</option>
-          <option value="$10,000 / month">$10,000 / month</option>
-          <option value="More than $10,000 / month">More than $10,000 / month</option>
-        </select><small>Optional. Roughly what you plan to spend on marketing or ads each month.</small></div>
-      <div class="f"><label for="f-msg">Tell me about your project</label><textarea id="f-msg" name="message" rows="6" placeholder="Optional. What do you sell, what do you want to track or improve, and which tools do you use today?"></textarea></div>
-      <p class="muted form-note">By sending this form you agree that Raju may use these details to reply to you. See the <a href="/privacy/">Privacy Policy</a>.</p>
-      <p id="form-status" class="form-status" role="alert" aria-live="assertive" hidden></p>
-      <button class="btn btn--primary btn--lg" type="submit" id="form-submit">Send message</button>
-    </form>
+{% assign S = site.data.settings %}
+<header class="cs-hero cs-hero--list">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Contact</span></nav>
+    <p class="h-eyebrow">Free tracking audit</p>
+    <h1 class="h-display h-display--m">Tell me what you run. <em>I reply personally.</em></h1>
+    <p class="h-sub">This short form helps me understand your business before we talk, so my first reply is useful. Prefer chat? Message me on WhatsApp.</p>
+    <div class="h-cta">{% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Message me on WhatsApp" loc="contact_hero" %}</div>
   </div>
-  <div class="contact-side">
-    <div class="glass reveal"><h2>Email</h2><p class="muted">For longer briefs and files.</p><a class="btn btn--ghost" href="mailto:{{ site.data.settings.email }}" data-event="email_click" data-link-location="contact">{{ site.data.settings.email }}</a></div>
-    <div class="glass reveal"><h2>Hire on Upwork</h2><p class="muted">Prefer a protected contract? Hire me there.</p><a class="btn btn--ghost" href="{{ site.data.settings.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="contact">Open Upwork profile</a></div>
-    <div class="glass reveal"><h2>Time zone</h2><p class="muted">{{ site.data.settings.timezone }}. I work with US, UK and AU clients.</p></div>
+</header>
+
+<section class="h-sec cs-sec" id="form-section">
+  <div class="wrap contact-grid">
+    <div class="lead-form reveal">
+      <h2 class="cs-h2">Project enquiry</h2>
+      <p class="muted">Fields marked * are required. It takes about two minutes.</p>
+      <form id="contact-form" name="contact" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" data-mail="{{ S.email }}" data-wa="{{ S.whatsapp }}" novalidate>
+        <input type="hidden" name="form-name" value="contact">
+        <input type="hidden" name="source" id="f-source" value="">
+        <input type="hidden" name="page" id="f-page" value="">
+        <input type="hidden" name="submission_id" id="f-sid" value="">
+        <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+        <div id="form-summary" class="form-summary" role="alert" tabindex="-1" hidden></div>
+
+        <div class="f-row">
+          <div class="f"><label for="f-name">Full name <b aria-hidden="true">*</b></label><input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="100" aria-describedby="e-name"><span class="f-err" id="e-name" hidden></span></div>
+          <div class="f"><label for="f-email">Business email <b aria-hidden="true">*</b></label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" aria-describedby="e-email"><span class="f-err" id="e-email" hidden></span></div>
+        </div>
+        <div class="f"><label for="f-website">Website URL <b aria-hidden="true">*</b></label><input id="f-website" name="website" type="text" autocomplete="url" inputmode="url" placeholder="example.com" required maxlength="200" aria-describedby="e-website"><span class="f-err" id="e-website" hidden></span></div>
+        <div class="f-row">
+          <div class="f"><label for="f-btype">Business type <b aria-hidden="true">*</b></label>
+            <select id="f-btype" name="business_type" required aria-describedby="e-business_type"><option value="" selected disabled>Choose one</option><option>Local service business</option><option>Ecommerce</option><option>Agency</option><option>Other</option></select><span class="f-err" id="e-business_type" hidden></span></div>
+          <div class="f"><label for="f-service">Service needed <b aria-hidden="true">*</b></label>
+            <select id="f-service" name="service" required aria-describedby="e-service"><option value="" selected disabled>Choose one</option>{% for s in site.data.services %}{% unless s.slug == "ai-search-optimization" %}<option value="{{ s.name | escape }}" data-slug="{{ s.slug }}">{{ s.name }}</option>{% endunless %}{% endfor %}<option value="Not sure, need an audit" data-slug="audit">Not sure, need an audit</option></select><span class="f-err" id="e-service" hidden></span></div>
+        </div>
+        <div class="f-row">
+          <div class="f"><label for="f-goal">Main goal <b aria-hidden="true">*</b></label>
+            <select id="f-goal" name="goal" required aria-describedby="e-goal"><option value="" selected disabled>Choose one</option><option>More leads</option><option>Higher ROAS</option><option>Fix tracking</option><option>Other</option></select><span class="f-err" id="e-goal" hidden></span></div>
+          <div class="f"><label for="f-budget">Monthly ad budget <span class="muted">(optional)</span></label>
+            <select id="f-budget" name="budget" aria-describedby="e-budget"><option value="" selected>Prefer not to say</option><option>Under $1,000</option><option>$1,000-$5,000</option><option>$5,000-$20,000</option><option>$20,000+</option></select><span class="f-err" id="e-budget" hidden></span></div>
+        </div>
+        <fieldset class="f f-radio"><legend>Preferred contact <b aria-hidden="true">*</b></legend>
+          <label><input type="radio" name="preferred_contact" value="WhatsApp" checked> WhatsApp</label>
+          <label><input type="radio" name="preferred_contact" value="Email"> Email</label>
+        </fieldset>
+        <div class="f" id="phone-wrap"><label for="f-phone">WhatsApp number <b aria-hidden="true">*</b></label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Include the country code, for example +1 555 0100" maxlength="30" aria-describedby="e-phone"><span class="f-err" id="e-phone" hidden></span></div>
+        <div class="f"><label for="f-msg">Project details <span class="muted">(optional)</span></label><textarea id="f-msg" name="message" rows="6" maxlength="3000" placeholder="What do you sell, what do you want to track or improve, and which tools do you use today?"></textarea></div>
+        <div class="f f-check"><label for="f-consent"><input id="f-consent" name="consent" type="checkbox" value="on" required aria-describedby="e-consent"> <span>I agree that Raju may use these details to reply to my enquiry. See the <a href="/privacy-policy/">Privacy Policy</a>. <b aria-hidden="true">*</b></span></label><span class="f-err" id="e-consent" hidden></span></div>
+        <div class="f-actions">
+          <button class="btn btn--wa btn--lg" type="submit" id="form-submit"><span class="btn__label">Send enquiry</span><span class="btn__spin" aria-hidden="true"></span></button>
+          <p id="form-live" class="muted" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+      <noscript><p class="form-summary">This form needs JavaScript. Please email <a href="mailto:{{ S.email }}">{{ S.email }}</a> or message me on WhatsApp instead.</p></noscript>
+    </div>
+    <aside class="contact-side" aria-label="Other ways to reach me">
+      <div class="reveal"><h2 class="cs-h2">WhatsApp</h2><p class="muted">The fastest way to reach me.</p>{% include audit-cta.html class="btn btn--wa" label="Open WhatsApp" loc="contact_side" %}</div>
+      <div class="reveal"><h2 class="cs-h2">Email</h2><p class="muted">For longer briefs and files.</p><a class="h-link" href="mailto:{{ S.email }}" data-event="email_click" data-link-location="contact">{{ S.email }}</a></div>
+      <div class="reveal"><h2 class="cs-h2">Hire on Upwork</h2><p class="muted">Prefer a protected contract? Hire me there.</p><a class="h-link" href="{{ S.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="contact">My Upwork profile</a></div>
+      <div class="reveal"><h2 class="cs-h2">Time zone</h2><p class="muted">{{ S.timezone }}. I overlap with US, UK, Australian and European working hours.</p></div>
+    </aside>
   </div>
-</div></section>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap">
+    <h2 class="h-h2 reveal">Who I work best with, <em>and who I don't.</em></h2>
+    {% include fit-block.html %}
+  </div>
+</section>
 <script src="/assets/js/contact-form.js" defer></script>

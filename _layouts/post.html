@@ -1,32 +1,41 @@
 ---
 layout: default
 ---
-<section class="hero hero--sub post-hero"><div class="wrap narrow">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/blog/">Blog</a> / <span>{{ page.category }}</span></nav>
-  <p><span class="pill pill--blue">{{ page.category }}</span></p>
-  <h1 class="reveal">{{ page.h1 | default: page.title }}</h1>
-  <p class="lead reveal">{{ page.description }}</p>
-  <p class="muted post-meta"><span>By {{ page.author | default: "Raju Bepari" }}</span> &middot; <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time> &middot; <span>{{ content | number_of_words | divided_by: 200 | plus: 1 }} min read</span></p>
-</div></section>
-<section class="section"><div class="wrap narrow">
-  <article class="prose">{{ content }}</article>
-  <div class="glass author-box reveal">
-    <img src="/assets/images/raju-avatar.webp" width="72" height="72" loading="lazy" alt="Raju Bepari">
-    <div><strong>Raju Bepari</strong><p class="muted">{{ site.tagline }}. {{ site.data.settings.experience }} of hands-on experience.</p>
-    <a href="/about/" data-event="cta_click" data-cta-text="About the author" data-link-location="blog_post">About me</a></div>
+<header class="cs-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/insights/">Insights</a> / <span>{{ page.category }}</span></nav>
+    <p class="mono h-tag cs-tag">{{ page.category }}</p>
+    <h1 class="cs-h1">{{ page.h1 | default: page.title }}</h1>
+    <p class="h-sub">{{ page.description }}</p>
+    <p class="mono h-note"><span>By {{ page.author | default: "Raju Bepari" }}</span> &middot; <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time> &middot; <span>{{ content | number_of_words | divided_by: 200 | plus: 1 }} min read</span></p>
   </div>
-</div></section>
-{% if page.services %}<section class="section section--alt"><div class="wrap">
-  <h2 class="reveal">Related services</h2>
-  <div class="cards">
-    {% for slug in page.services %}{% assign r = site.data.services | where: "slug", slug | first %}{% if r %}<a class="card glass tilt reveal" href="{{ r.url }}"><span class="pill pill--{{ r.color }}">{{ r.tag }}</span><h3>{{ r.name }}</h3><p>{{ r.short }}</p></a>{% endif %}{% endfor %}
+</header>
+<section class="h-sec cs-sec">
+  <div class="wrap narrow">
+    <article class="prose">{{ content }}</article>
+    <aside class="author-box reveal" aria-label="About the author">
+      <img class="mask" src="/assets/images/raju-avatar.webp" width="72" height="72" loading="lazy" alt="Raju Bepari">
+      <div><strong>Raju Bepari</strong><p class="muted">{{ site.tagline }}. {{ site.data.settings.experience }} of hands-on experience.</p>
+      <a class="h-link" href="/about/" data-event="cta_click" data-cta-text="About the author" data-link-location="blog_post">About me &rarr;</a></div>
+    </aside>
   </div>
-</div></section>{% endif %}
+</section>
+{% if page.services %}<section class="h-sec cs-sec"><div class="wrap h-sec__grid">
+  <div class="h-sec__rail"><span class="mono">Related services</span></div>
+  <div class="h-sec__body"><div class="h-svc__list">
+    {% for slug in page.services %}{% assign r = site.data.services | where: "slug", slug | first %}{% if r %}<a class="h-svc__row reveal" href="{{ r.url }}"><span class="mono h-n">0{{ forloop.index }}</span><span class="h-svc__t">{{ r.name }}</span><span class="h-svc__d">{{ r.short }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>{% endif %}{% endfor %}
+  </div></div></div></section>{% endif %}
 {% assign others = site.posts | where_exp: "p", "p.url != page.url" %}
-<section class="section"><div class="wrap">
-  <h2 class="reveal">More from the blog</h2>
-  <div class="cards">
-    {% for p in others limit:3 %}<a class="card glass tilt reveal" href="{{ p.url }}"><span class="pill pill--blue">{{ p.category }}</span><h3>{{ p.title }}</h3><p>{{ p.description }}</p></a>{% endfor %}
+<section class="h-sec cs-sec"><div class="wrap h-sec__grid">
+  <div class="h-sec__rail"><span class="mono">More insights</span></div>
+  <div class="h-sec__body"><div class="h-svc__list">
+    {% for p in others limit:3 %}<a class="h-svc__row reveal" href="{{ p.url }}"><span class="mono h-n">0{{ forloop.index }}</span><span class="h-svc__t">{{ p.title }}</span><span class="h-svc__d">{{ p.description }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>{% endfor %}
+  </div></div></div></section>
+<section class="h-final">
+  <div class="wrap">
+    <p class="h-eyebrow reveal">Free tracking audit</p>
+    <h2 class="h-display h-display--m reveal">Want help with this? <em>Let's talk.</em></h2>
+    <p class="h-sub reveal">Tell me about your business and what you want to track or improve. I reply personally, and the first strategy call is free.</p>
+    <div class="h-cta reveal">{% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Get a free audit" loc="blog_post" %}<a class="btn btn--ghost btn--lg" href="/contact/?service=google-ads" data-event="cta_click" data-cta-text="Use the contact form" data-link-location="blog_post">Use the contact form</a></div>
   </div>
-</div></section>
-{% include cta.html service="Google Ads and tracking" title="Want help with this?" text="Tell me about your business and what you want to track or improve. I reply on WhatsApp, and the first strategy call is free." loc="blog_post" form_slug="google-ads" %}
+</section>

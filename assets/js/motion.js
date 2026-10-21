@@ -14,7 +14,30 @@
     secs.forEach(function (s) { so.observe(s); });
   }
 
+
   /* counters: only elements that carry a real number (data-count or data-ct). Text such as "4x", "+120%", "A$0.20", "200+" keeps its prefix and suffix. */
+  /* diagram: boxes light up one after another when it scrolls into view */
+  d.querySelectorAll('.cs-flow[data-lit]').forEach(function (fl) {
+    var st = [].slice.call(fl.querySelectorAll('.cs-flow__s'));
+    if (reduce || !hasIO) { st.forEach(function (x) { x.classList.add('on'); }); return; }
+    var o = new IntersectionObserver(function (es) { if (!es[0].isIntersecting) return; o.disconnect(); st.forEach(function (x, i) { setTimeout(function () { x.classList.add('on'); }, i * 380); }); }, { threshold: 0.4 });
+    o.observe(fl);
+  });
+
+  /* scroll timeline: a thin line fills and each step lights up as it is reached */
+  var tl = d.querySelector('[data-timeline]');
+  if (tl) {
+    var li = [].slice.call(tl.children), tick = false;
+    var upd = function () {
+      tick = false;
+      var r = tl.getBoundingClientRect(), vh = window.innerHeight, line = vh * 0.62;
+      tl.style.setProperty('--p', Math.max(0, Math.min(1, (line - r.top) / r.height)).toFixed(3));
+      li.forEach(function (x) { x.classList.toggle('on', reduce || x.getBoundingClientRect().top < line - 12); });
+    };
+    window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
+    window.addEventListener('resize', upd); upd();
+  }
+
   if (reduce || !hasIO) return;
   var RE = /^(\D*?)(\d[\d,]*(?:\.\d+)?)(.*)$/;
   function fmt(v, dec, commas) {

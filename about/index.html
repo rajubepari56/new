@@ -1,36 +1,93 @@
 ---
 layout: default
-title: About Raju Bepari
+title: "About Raju Bepari, Independent Google Ads Specialist"
 crumb: About
-description: Raju Bepari is a Google Ads and conversion tracking specialist from Bangladesh with 7+ years of experience, working with US, UK and AU clients.
+description: "I am Raju Bepari, an independent Google Ads, conversion tracking and analytics specialist from Bangladesh with 7+ years of experience, working with US, UK, AU and EU clients."
 permalink: /about/
 ---
-<section class="hero hero--sub"><div class="wrap grid-2">
-  <div>
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>About</span></nav>
-    <h1 class="reveal">About Raju Bepari</h1>
-    <p class="lead reveal">{{ site.data.settings.experience }} of hands-on digital marketing experience. Google Ads, tracking and analytics are what I do every day.</p>
+{% assign S = site.data.settings %}
+<header class="cs-hero">
+  <div class="wrap about-hero">
+    <div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>About</span></nav>
+      <p class="h-eyebrow">About me</p>
+      <h1 class="cs-h1">I'm Raju. I fix the data behind your ads, <em>myself.</em></h1>
+      <p class="h-sub">{{ S.experience }} of hands-on digital marketing experience. Google Ads, conversion tracking and analytics are what I do every day, for clients in the US, UK, Australia and Europe.</p>
+    </div>
+    <img class="about-photo mask" src="/assets/images/raju-avatar.webp" width="420" height="420" fetchpriority="high" alt="Raju Bepari, independent Google Ads and conversion tracking specialist">
   </div>
-  <div class="reveal"><img class="hero__photo mask" src="/assets/images/raju-avatar.webp" width="420" height="420" alt="Raju Bepari, circular portrait with a four-color ring"></div>
-</div></section>
-<section class="section"><div class="wrap narrow page-content">
-  <h2>My story</h2>
-  <p>I help businesses understand where their leads and sales really come from. I started in digital marketing and kept going deeper into the data, because good ads need good measurement.</p>
-  <p>Today I work with local service businesses, online stores and agencies. I fix tracking, run Google Ads and make reports simple to read.</p>
-  <!-- TODO: add personal story details in Raju's own words -->
-  <h2>How I work</h2>
-  <ul class="cards-list">
-    <li class="glass"><strong>On-time delivery.</strong> Clear dates, and I keep them.</li>
-    <li class="glass"><strong>Transparent pricing.</strong> You see the quote before work starts.</li>
-    <li class="glass"><strong>Open communication.</strong> Quick WhatsApp replies and plain updates.</li>
-    <li class="glass"><strong>High workmanship.</strong> Every setup is tested before handover.</li>
-  </ul>
-  <h2>Time zone</h2>
-  <p>I am based in Bangladesh ({{ site.data.settings.timezone }}). I overlap with the end of the UK day, the evening in Australia and the US morning, so we can talk during your working hours.</p>
-  <!-- TODO: confirm exact overlap hours -->
-  <h2>Find me online</h2>
-  <ul class="socials" aria-label="Social profiles">
-    {% for s in site.data.settings.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="about" aria-label="{{ s[0] | capitalize }}">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</a></li>{% endfor %}
-  </ul>
-</div></section>
-{% include cta.html service="Google Ads and tracking" loc="about" %}
+</header>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">01 / My story</span></div>
+    <div class="h-sec__body prose-page">
+      <h2 class="h-h2 reveal">Good ads need good measurement.</h2>
+      <p class="reveal">I help businesses understand where their leads and sales really come from. I started in digital marketing and kept going deeper into the data, because I kept seeing the same problem: ad accounts making decisions from numbers that were wrong.</p>
+      <p class="reveal">Today I work with local service businesses, online stores and marketing businesses. I fix tracking, run Google Ads and make reports easy to read.</p>
+      <!-- TODO: add personal story details in Raju's own words (how you started, a defining project, what you enjoy). -->
+    </div>
+  </div>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">02 / Why independent</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">You work with the person who does the work.</h2>
+      <ul class="cs-list">
+        <li class="reveal"><strong>No account managers.</strong> The person you speak to is the person in your ad account.</li>
+        <li class="reveal"><strong>No handoffs.</strong> Nothing gets lost between a salesperson, a manager and a junior.</li>
+        <li class="reveal"><strong>Straight advice.</strong> If you do not need a service, I tell you.</li>
+        <li class="reveal"><strong>Accountability.</strong> My name is on every setup, so I test it before I hand it over.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">03 / How I work</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">My working principles.</h2>
+      <ol class="cs-work">
+        <li class="reveal"><span class="mono h-n">01</span><p><strong>On-time delivery.</strong> I agree dates with you and keep them. If something changes, you hear it from me early.</p></li>
+        <li class="reveal"><span class="mono h-n">02</span><p><strong>Accurate estimates.</strong> I scope the work carefully so the estimate matches reality.</p></li>
+        <li class="reveal"><span class="mono h-n">03</span><p><strong>Transparent pricing.</strong> You see the quote before work starts, and there are no surprise extras.</p></li>
+        <li class="reveal"><span class="mono h-n">04</span><p><strong>Open communication.</strong> Quick replies on WhatsApp or email, and plain-English updates.</p></li>
+        <li class="reveal"><span class="mono h-n">05</span><p><strong>High workmanship.</strong> Every tag, event and campaign is tested before handover.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">04 / Time zone</span></div>
+    <div class="h-sec__body prose-page">
+      <h2 class="h-h2 reveal">Based in Bangladesh, working your hours.</h2>
+      <p class="reveal">I am in {{ S.timezone }}. That overlaps naturally with the end of the UK working day and the Australian day, and a US morning is my evening. I schedule calls in your working hours, and I reply on WhatsApp quickly.</p>
+      <!-- TODO: confirm your exact overlap hours and add them here. -->
+    </div>
+  </div>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">05 / Find me online</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">My profiles.</h2>
+      <ul class="socials socials--big" aria-label="My profiles">
+        {% for s in S.socials %}<li><a href="{{ s[1] }}" target="_blank" rel="noopener me" data-event="{% if s[0] == 'upwork' %}upwork_click{% else %}social_click{% endif %}" data-platform="{{ s[0] }}" data-link-location="about"><span class="ico-wrap">{% assign pn = s[0] %}{% include icon-social.html name=pn %}</span> {{ s[0] | capitalize }}</a></li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="h-final">
+  <div class="wrap">
+    <p class="h-eyebrow reveal">Work with me</p>
+    <h2 class="h-display h-display--m reveal">Want a specialist <em>who answers directly?</em></h2>
+    <div class="h-cta reveal">{% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Get a free tracking audit" loc="about_cta" %}<a class="btn btn--ghost btn--lg" href="/contact/" data-event="cta_click" data-cta-text="Use the contact form" data-link-location="about_cta">Use the contact form</a></div>
+  </div>
+</section>

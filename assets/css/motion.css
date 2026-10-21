@@ -18,7 +18,7 @@ html{scroll-padding-top:120px}
 .js .reveal.in{translate:none}
 
 /* 3. image mask reveal (wipe upward, with a slight settle) */
-.js img.mask{clip-path:inset(0 0 100% 0);transform:scale(1.05);transition:clip-path .85s var(--ease),transform 1.1s var(--ease);transition-delay:.05s}
+.js img.mask{clip-path:inset(0 0 98% 0);transform:scale(1.05);transition:clip-path .85s var(--ease),transform 1.1s var(--ease);transition-delay:.05s}
 .js img.mask.in{clip-path:inset(0 0 0 0);transform:none}
 .h-photo img{animation:photo-in 1s var(--ease) .55s both}
 @keyframes photo-in{from{clip-path:inset(100% 0 0 0);transform:scale(1.08)}to{clip-path:inset(0);transform:none}}
@@ -115,3 +115,8 @@ html{scroll-padding-top:120px}
 
 .hero__photo{animation:none}
 .h-paused .h-glow i{animation-play-state:paused}
+
+.f-err[hidden]{display:none!important}
+.lead-form .f-radio{flex-direction:row;align-items:center}
+.lead-form .f-radio label{display:inline-flex;flex-direction:row;align-items:center;gap:8px;margin:0}
+.lead-form .f-radio input,.lead-form .f-check input{width:18px;height:18px;padding:0;flex:none;border-radius:4px}

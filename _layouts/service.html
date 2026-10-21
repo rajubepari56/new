@@ -2,57 +2,123 @@
 layout: default
 ---
 {%- assign svc = page.service_name -%}
-<section class="hero hero--sub">
+{%- assign slug = page.url | split: "/" | last -%}
+{%- assign me = site.data.services | where: "slug", slug | first -%}
+<header class="cs-hero">
   <div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/services/">Services</a> / <span>{{ svc }}</span></nav>
-    <h1 class="reveal">{{ page.h1 }}</h1>
-    <p class="lead reveal">{{ page.outcome }}</p>
-    <div class="btn-row reveal">
-      <a class="btn btn--wa btn--lg magnetic" href="{% capture t %}Hi Raju, I need help with {{ svc }}{% endcapture %}{% include wa.html text=t %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="service_page" data-service="{{ svc }}">{% include icon-wa.html %} Ask about {{ page.short_name | default: svc }}</a>
-      <a class="btn btn--ghost btn--lg" href="#included" data-event="cta_click" data-cta-text="See what's included" data-link-location="service_page">See what's included</a>
+    <p class="mono h-tag cs-tag">{{ me.tag | default: svc }}</p>
+    <h1 class="cs-h1">{{ page.h1 }}</h1>
+    <p class="h-sub">{{ page.outcome }}</p>
+    <div class="h-cta">
+      <a class="btn btn--wa btn--lg magnetic" href="{% capture t %}Hi Raju, I need help with {{ svc }}{% endcapture %}{% include wa.html text=t %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="service_hero" data-service="{{ svc }}">{% include icon-wa.html %} {{ page.hero_cta | default: "Get a free audit" }}</a>
+      <a class="btn btn--ghost btn--lg" href="#included" data-event="cta_click" data-cta-text="See what's included" data-link-location="service_hero">See what's included</a>
+    </div>
+  </div>
+</header>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">01 / Who it's for</span></div>
+    <div class="h-sec__body cs-two">
+      <div><h2 class="cs-h2 reveal">{{ page.who_title }}</h2>
+        <ul class="cs-list">{% for w in page.who %}<li class="reveal">{{ w }}</li>{% endfor %}</ul></div>
+      <div><h2 class="cs-h2 reveal">{{ page.problems_title }}</h2>
+        <ul class="cs-list cs-list--bad">{% for p in page.problems %}<li class="reveal">{{ p }}</li>{% endfor %}</ul></div>
     </div>
   </div>
 </section>
 
-<section class="section"><div class="wrap grid-2">
-  <div class="reveal"><h2>{{ page.who_title }}</h2>
-    <ul class="cards-list">{% for w in page.who %}<li class="glass">{{ w }}</li>{% endfor %}</ul></div>
-  <div class="reveal"><h2>{{ page.problems_title }}</h2>
-    <ul class="ticks ticks--red">{% for p in page.problems %}<li>{{ p }}</li>{% endfor %}</ul></div>
-</div></section>
-
-<section class="section section--alt" id="included"><div class="wrap">
-  <h2 class="reveal">{{ page.included_title }}</h2>
-  <ul class="ticks ticks--green cols-2">{% for i in page.included %}<li class="reveal">{{ i }}</li>{% endfor %}</ul>
-</div></section>
-
-<section class="section"><div class="wrap">
-  <h2 class="reveal">{{ page.diagram_title }}</h2>
-  <div class="diagram glass reveal" data-diagram="{{ page.diagram | join: '|' }}" aria-label="{{ page.diagram_title }}">
-    <ol class="diagram__nodes">{% for d in page.diagram %}<li class="diagram__node"><span>{{ d }}</span></li>{% endfor %}</ol>
+<section class="h-sec cs-sec" id="included">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">02 / What's included</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">{{ page.included_title }}</h2>
+      <ul class="cs-check">{% for i in page.included %}<li class="reveal">{{ i }}</li>{% endfor %}</ul>
+    </div>
   </div>
-</div></section>
+</section>
 
-<section class="section section--alt"><div class="wrap">
-  <h2 class="reveal">{{ page.process_title }}</h2>
-  <p class="lead reveal">Typical timeline: {{ page.timeline }}</p>
-  <ol class="steps">{% for s in page.process %}<li class="glass reveal"><span class="steps__n">{{ forloop.index }}</span><h3>{{ s.t }}</h3><p>{{ s.d }}</p></li>{% endfor %}</ol>
-</div></section>
-
-<section class="section"><div class="wrap narrow">
-  <h2 class="reveal">{{ page.faq_title }}</h2>
-  {% include faq.html items=page.faqs %}
-</div></section>
-
-<section class="section section--alt"><div class="wrap">
-  <h2 class="reveal">{{ page.related_title }}</h2>
-  <div class="cards">
-    {% for slug in page.related %}{% assign r = site.data.services | where: "slug", slug | first %}
-    <a class="card glass tilt reveal" href="{{ r.url }}"><span class="pill pill--{{ r.color }}">{{ r.tag }}</span><h3>{{ r.name }}</h3><p>{{ r.short }}</p></a>
-    {% endfor %}
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">03 / How it flows</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">{{ page.diagram_title }}</h2>
+      <ol class="cs-flow reveal" data-lit aria-label="{{ page.diagram_title | escape }}">
+        {% for d in page.diagram %}<li class="cs-flow__s"><ul><li>{{ d }}</li></ul></li>{% endfor %}
+      </ol>
+    </div>
   </div>
-</div></section>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">04 / Process and timeline</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">{{ page.process_title }}</h2>
+      <p class="lead reveal">Typical timeline: {{ page.timeline }}</p>
+      <ol class="h-steps" id="h-steps" data-timeline>
+        {% for s in page.process %}<li class="reveal"><span class="mono h-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><div><h3>{{ s.t }}</h3><p>{{ s.d }}</p></div></li>{% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">05 / Related results</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">Results connected to this work.</h2>
+      {% assign shown = 0 %}
+      <div class="rs-list">
+      {% for cslug in page.related_cases %}{% assign cs = site.case_studies | where: "slug", cslug | first %}{% if cs %}{% assign shown = shown | plus: 1 %}{% include case-card.html c=cs loc="service_results" %}{% endif %}{% endfor %}
+      </div>
+      {% if shown == 0 %}<div class="empty-state reveal"><strong>No published case study for this service yet.</strong>I only publish results I can verify, with client permission. See the <a href="/results/">results I can show today</a>, or ask me about work like this on WhatsApp.</div>{% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">06 / Questions</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">{{ page.faq_title }}</h2>
+      {% include faq.html items=page.faqs %}
+    </div>
+  </div>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap">
+    <h2 class="h-h2 reveal">Is this the right fit?</h2>
+    {% include fit-block.html %}
+  </div>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">07 / Related services</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">{{ page.related_title }}</h2>
+      <div class="h-svc__list">
+        {% for rs in page.related %}{% assign r = site.data.services | where: "slug", rs | first %}
+        <a class="h-svc__row reveal" href="{{ r.url }}"><span class="mono h-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span class="h-svc__t">{{ r.name }}</span><span class="h-svc__d">{{ r.short }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
 
 {{ content }}
-{% assign slug = page.url | split: "/" | last %}
-{% include cta.html service=svc title=page.cta_title loc="service_page" form_slug=slug %}
+
+<section class="h-final">
+  <div class="wrap">
+    <p class="h-eyebrow reveal">Free tracking audit</p>
+    <h2 class="h-display h-display--m reveal">{{ page.cta_title }}</h2>
+    <p class="h-sub reveal">Tell me what you run and what you want to measure. I reply to every message myself.</p>
+    <div class="h-cta reveal">
+      {% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Get a free audit" loc="service_cta" %}
+      <a class="btn btn--ghost btn--lg" href="/contact/?service={{ slug }}" data-event="cta_click" data-cta-text="Use the contact form" data-link-location="service_cta">Use the contact form</a>
+    </div>
+  </div>
+</section>

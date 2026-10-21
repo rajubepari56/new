@@ -1,0 +1,50 @@
+---
+layout: default
+title: "Insights on Google Ads, Tracking and Local SEO"
+crumb: Insights
+description: Plain-English guides on Google Ads, conversion tracking, GA4, Meta CAPI, server-side tracking and local SEO, plus my articles on Medium.
+permalink: /insights/
+---
+{% assign M = site.data.medium %}
+<header class="cs-hero cs-hero--list">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Insights</span></nav>
+    <p class="h-eyebrow">Insights</p>
+    <h1 class="h-display h-display--m">Plain-English guides to <em>tracking what matters.</em></h1>
+    <p class="h-sub">What I learn from real accounts, written for business owners. Guides on this site, and longer reads on Medium.</p>
+  </div>
+</header>
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">01 / On this site</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">Guides.</h2>
+      {% if site.posts.size > 0 %}
+      <div class="h-svc__list">
+        {% for p in site.posts %}<a class="h-svc__row reveal" href="{{ p.url }}"><span class="mono h-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span class="h-svc__t">{{ p.title }}</span><span class="h-svc__d">{{ p.description }} <span class="mono">{{ p.date | date: "%b %-d, %Y" }}</span></span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>{% endfor %}
+      </div>
+      {% else %}<div class="empty-state"><strong>No guides published yet.</strong>New articles will appear here. In the meantime, you can read my writing on Medium.</div>{% endif %}
+    </div>
+  </div>
+</section>
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">02 / On Medium</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">My articles on Medium.</h2>
+      {% if M.items.size > 0 %}
+      <div class="h-svc__list">
+        {% for a in M.items %}<a class="h-svc__row reveal" href="{{ a.url }}" target="_blank" rel="noopener" data-event="cta_click" data-cta-text="Medium: {{ a.title | escape }}" data-link-location="insights_medium"><span class="mono h-n">MED</span><span class="h-svc__t">{{ a.title }}</span><span class="h-svc__d">{{ a.blurb }}</span><span class="h-svc__a" aria-hidden="true">&nearr;</span></a>{% endfor %}
+      </div>
+      {% else %}<div class="empty-state reveal"><strong>The full list lives on my Medium profile.</strong>I have not added individual article links here yet. Everything I publish is on Medium.</div>{% endif %}
+      <a class="btn btn--ghost btn--lg magnetic" style="margin-top:28px" href="{{ M.profile }}" target="_blank" rel="noopener me" data-event="social_click" data-platform="medium" data-link-location="insights">Read on Medium &nearr;</a>
+    </div>
+  </div>
+</section>
+<section class="h-final">
+  <div class="wrap">
+    <p class="h-eyebrow reveal">Want this applied to your account?</p>
+    <h2 class="h-display h-display--m reveal">Start with a free <em>tracking audit.</em></h2>
+    <div class="h-cta reveal">{% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Get a free tracking audit" loc="insights_cta" %}<a class="btn btn--ghost btn--lg" href="/contact/" data-event="cta_click" data-cta-text="Use the contact form" data-link-location="insights_cta">Use the contact form</a></div>
+  </div>
+</section>

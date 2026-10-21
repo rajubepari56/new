@@ -80,3 +80,14 @@
 - "Case study coming soon" cards (edit in /admin or `_data/coming_soon.yml`): lead tracking for a home-services business, server-side tracking for an e-commerce store, Local SEO for a service-area business. These are placeholder topics, not claims. Replace or delete them when you have real projects, with verified before/after numbers and client permission.
 - No 5X-10X multiplier is shown anywhere except the real "4x average ROAS" (roofing supplier) and the client-reported "1.5x weekday daily revenue" (café), each with its source.
 - Screenshots on case pages: I used the café account screenshots already on the site (all-time totals, labelled). Add anonymized (blurred) screenshots for other cases.
+
+## Full site build and contact form
+- **Form delivery is not live until you set it up.** The form posts to `/api/lead`, a Netlify Function that needs a Git-connected deploy (see ADMIN-SETUP.md). With a ZIP deploy it falls back to Netlify Forms (enable form detection and the email notification). n8n is NOT called in ZIP mode.
+- **n8n:** build the workflow in `docs/N8N-WORKFLOW.md`, then set `N8N_WEBHOOK_URL` (and `N8N_WEBHOOK_SECRET`) in Netlify. I could not test your n8n, Google Sheets, email or WhatsApp alert. Only the website side was tested, with mocks.
+- **GTM:** set `gtm_id` in Site settings, then create the tags, triggers and variables in `docs/TRACKING.md`. Nothing is connected until you do.
+- **Legal pages:** /privacy-policy/ and /terms/ are drafts with yellow placeholders: legal/business name, address, date, retention period, payment terms, liability, governing law, which integrations are active. Have them reviewed.
+- **About page:** add your personal story (how you started, a defining project) and your exact time-zone overlap hours (marked with TODO comments in `about/index.html`).
+- **Medium:** only your profile link is shown. Add real article links to `_data/medium.yml`.
+- **Service pages:** unique copy written for 9 services (each targets one keyword: Google Ads specialist, GA4 consultant, Google Tag Manager expert, Meta Conversions API setup, server-side tracking expert, offline conversion tracking for Google Ads, Google Merchant Center specialist, local SEO freelancer, AI search optimization consultant). Only Google Ads and Merchant Center have a connected case study; the rest show an honest "no published case study yet" message. Please review the wording for accuracy.
+- **Services count:** the site still has the ninth service (AI Search Optimization). Tell me if it should be hidden.
+- **Hosting:** unchanged (Netlify). Nothing was moved.

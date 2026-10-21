@@ -10,7 +10,11 @@ permalink: /llms.txt
 {% for s in site.data.services %}- [{{ s.name }}]({{ site.url }}{{ s.url }}): {{ s.short }}
 {% endfor %}
 ## Key pages
+- [Industries]({{ site.url }}/industries/)
 - [Results and case studies]({{ site.url }}/results/)
+{% for c in site.case_studies %}- [{{ c.title }}]({{ site.url }}{{ c.url }})
+{% endfor %}- [Process]({{ site.url }}/process/)
+- [Insights]({{ site.url }}/insights/)
 - [About]({{ site.url }}/about/)
 - [Contact]({{ site.url }}/contact/)
 

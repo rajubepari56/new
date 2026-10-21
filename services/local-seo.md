@@ -1,72 +1,76 @@
 ---
-title: Local SEO Freelancer
-description: Local SEO freelancer for service businesses. Google Business Profile, citations and local pages that help you show up in the map pack.
+title: 'Local SEO Freelancer: More Calls from Google Maps'
+description: Hire a local SEO freelancer. I improve your Google Business Profile, citations and local pages to bring more calls and direction requests.
 service_name: Local SEO
 short_name: Local SEO
 keyword: local SEO freelancer
-h1: Local SEO Freelancer for Service Businesses
-outcome: Show up when nearby customers search, and turn those views into calls and bookings.
-who_title: Who needs local SEO
+h1: A Local SEO Freelancer Who Focuses on Calls and Direction Requests
+outcome: I improve your Google Business Profile, local pages and citations so more nearby customers find you, call you and ask for directions.
+hero_cta: Get a free local SEO review
+who_title: Who this is for
 who:
-- Home service and trade businesses serving a city or region.
-- Multi-location businesses that need consistent listings.
-- Owners who rank well in one town but not the next.
-problems_title: Why local customers cannot find you
+- Local service businesses that depend on calls and bookings.
+- Shops and venues that need foot traffic and direction requests.
+- Service-area businesses that want to be found across several towns.
+- Marketing businesses that need a local SEO specialist to white-label.
+problems_title: Why customers cannot find you
 problems:
-- Google Business Profile is incomplete or suspended.
-- Name, address and phone differ across listings.
-- No pages for each service or area.
-- Few reviews and no process to get more.
-included_title: What local SEO work covers
+- Your Google Business Profile is incomplete, or categories and services are wrong.
+- Name, address and phone details differ across the web.
+- Your website has no clear page for each service and location.
+- Competitors have far more reviews and fresher activity.
+- You do not know which actions in Google Maps lead to calls or visits.
+included_title: What a local SEO project includes
 included:
-- Google Business Profile audit and optimisation
-- Category, service and photo review
-- Citation cleanup and building
-- Local landing page plan
-- On-page SEO for local keywords
-- Review request process
-- Call and direction tracking
-- Monthly local report
-- AI search check (see AEO, GEO and LLM optimization)
-diagram_title: How local visibility builds
+- 'A Business Profile audit: categories, services, attributes, photos and posts'
+- NAP and citation clean-up across key directories
+- Service and location pages with clear on-page SEO
+- A review plan that asks happy customers for honest reviews
+- Local keyword research based on how people actually search
+- Tracking for calls, direction requests and website clicks
+- Competitor review in your local map pack
+- A monthly report that shows actions, not just rankings
+- A written checklist for your team
+diagram_title: How local search turns into a customer
 diagram:
-- Business profile
-- Citations
-- Local pages
-- Reviews
-- Map pack calls
-process_title: How a Local SEO project runs
-timeline: setup in 2 to 4 weeks; rankings build over the following months.
+- Local search
+- Map pack
+- Business Profile
+- Call or directions
+- Customer
+process_title: How a local SEO project runs
+timeline: an audit in 2 to 3 days; the main fixes take a few weeks. Local search results build over time and I never promise rankings.
 process:
 - t: Audit
-  d: Profile, listings, site and competitors.
+  d: I check your profile, site, citations and local competitors.
+- t: Plan
+  d: We agree priorities, locations and the services to highlight.
 - t: Fix
-  d: Correct profile and listing data.
-- t: Build
-  d: Add local pages and citations.
-- t: Reviews
-  d: Set up a simple review process.
-- t: Report
-  d: Track calls, clicks and rankings.
+  d: I update the profile, pages and listings.
+- t: Track
+  d: I measure calls, direction requests and clicks.
+- t: Improve
+  d: I refine every month using what the data shows.
+related_cases: []
 faq_title: Local SEO questions
 faqs:
+- q: 'Can you guarantee a #1 ranking?'
+  a: No. Nobody honest can. I improve the factors that are in your control and track real actions such as calls and direction requests.
 - q: How long does local SEO take?
-  a: Often a few months to see steady movement. It depends on competition.
-- q: Do you need access to my Business Profile?
-  a: Yes. A manager invite is enough.
-- q: Can you fix a suspended profile?
-  a: I can review the cause and help prepare a reinstatement request. Google makes the final call.
-- q: Do you buy reviews?
-  a: Never. Fake reviews break rules and hurt trust.
-- q: Do you track results?
-  a: Yes. I set up call, click and direction tracking so you see real actions.
+  a: You can see profile and listing improvements within weeks, but ranking changes build over months.
+- q: Do I need a new website?
+  a: Not usually. I improve what you have and add pages only where they help.
+- q: Do you write my reviews?
+  a: Never. I help you ask real customers for honest reviews, which is the only approach that lasts.
+- q: Can local SEO work alongside Google Ads?
+  a: Yes. Local ads and organic local results support each other, and I can manage both.
 related:
-- ai-search-optimization
 - google-ads
 - ga4
-cta_title: Get found in your area
-related_title: Pair local SEO with these
-crumb: Local SEO
+- google-tag-manager
+related_title: Services that pair with Local SEO
+cta_title: Want more calls from local search?
 permalink: /services/local-seo/
+crumb: Local SEO
 ---
-<section class="section"><div class="wrap narrow"><p class="reveal">Working in a specific industry? See {% assign seo = site.data.industries | where: "type", "seo" %}{% for i in seo %}{% if forloop.first %}{% elsif forloop.last %} and {% else %}, {% endif %}<a href="{{ i.url }}">{{ i.name | downcase }}</a>{% endfor %}.</p></div></section>
+<section class="h-sec cs-sec"><div class="wrap h-sec__grid"><div class="h-sec__rail"><span class="mono">Industry pages</span></div><div class="h-sec__body"><h2 class="h-h2 reveal">Local SEO for specific industries.</h2><div class="h-svc__list">{% assign ind = site.data.industries | where: "type", "seo" %}{% for i in ind %}<a class="h-svc__row reveal" href="{{ i.url }}"><span class="mono h-n">0{{ forloop.index }}</span><span class="h-svc__t">{{ i.name }}</span><span class="h-svc__d">{{ i.short }}</span><span class="h-svc__a" aria-hidden="true">&rarr;</span></a>{% endfor %}</div></div></div></section>

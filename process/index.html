@@ -1,0 +1,62 @@
+---
+layout: default
+title: "My Process from Audit to Report"
+crumb: Process
+description: "How I work with clients: audit, plan, implement, QA and report. One specialist from first message to final report, with a quote before work starts."
+permalink: /process/
+steps:
+  - { t: Audit, d: "I review your ad accounts, tracking and website, and tell you plainly what is working and what is broken. You get a short written summary, with evidence." }
+  - { t: Plan, d: "I agree goals, the events to track and the fix list with you. You see the scope, the timeline and the price before I touch anything." }
+  - { t: Implement, d: "I set up the tags, conversions and campaign changes myself, in a separate workspace first so your live data stays safe." }
+  - { t: QA, d: "I test every event before it goes live and compare it with your real leads and sales, so I can show you that the numbers are right." }
+  - { t: Report, d: "You get plain-English results, a handover document and clear next steps. If something needs ongoing care, I tell you what and why." }
+faqs:
+  - { q: "Do I get a quote before work starts?", a: "Yes, always. I send a clear scope and price in writing, and I do not start until you agree." }
+  - { q: "Who will I talk to?", a: "Me. I am an independent specialist, so the person on the discovery call is the person who does the work." }
+  - { q: "What access do you need?", a: "View or editor access to the accounts involved, such as Google Ads, GA4 and Tag Manager. Your accounts stay in your name, and you can remove my access at any time." }
+  - { q: "How do you communicate?", a: "On WhatsApp or email, whichever you prefer, plus a call when it helps. I share progress updates in plain language." }
+  - { q: "What if something goes wrong after handover?", a: "Tell me. I fix problems caused by my work, and I tell you straight if a new issue is outside the original scope." }
+---
+<header class="cs-hero cs-hero--list">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Process</span></nav>
+    <p class="h-eyebrow">My process</p>
+    <h1 class="h-display h-display--m">Five steps. <em>One person</em> from first message to final report.</h1>
+    <p class="h-sub">No account managers, no junior staff, no handoffs. This is exactly how a project runs.</p>
+  </div>
+</header>
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">01 / The steps</span></div>
+    <div class="h-sec__body">
+      <h2 class="sr">The five steps</h2>
+      <ol class="h-steps" data-timeline>
+        {% for s in page.steps %}<li class="reveal"><span class="mono h-n">0{{ forloop.index }}</span><div><h3>{{ s.t }}</h3><p>{{ s.d }}</p></div></li>{% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">02 / Working together</span></div>
+    <div class="h-sec__body cs-two">
+      <div><h2 class="cs-h2 reveal">What I need from you</h2><ul class="cs-list">
+        <li class="reveal">A clear goal: more leads, higher ROAS or accurate data</li><li class="reveal">Access to the accounts involved, in your name</li><li class="reveal">Your real lead or order numbers to compare against</li><li class="reveal">One person who can approve changes quickly</li></ul></div>
+      <div><h2 class="cs-h2 reveal">What you get from me</h2><ul class="cs-check cs-check--one">
+        <li class="reveal">A written quote before work starts</li><li class="reveal">Clear dates, and I keep them</li><li class="reveal">Tested work and a documented handover</li><li class="reveal">Quick replies and honest advice, including when you do not need me</li></ul></div>
+    </div>
+  </div>
+</section>
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">03 / Questions</span></div>
+    <div class="h-sec__body"><h2 class="h-h2 reveal">How working with me runs.</h2>{% include faq.html items=page.faqs %}</div>
+  </div>
+</section>
+<section class="h-final">
+  <div class="wrap">
+    <p class="h-eyebrow reveal">Step one</p>
+    <h2 class="h-display h-display--m reveal">Start with a free <em>tracking audit.</em></h2>
+    <div class="h-cta reveal">{% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Get a free tracking audit" loc="process_cta" %}<a class="btn btn--ghost btn--lg" href="/contact/" data-event="cta_click" data-cta-text="Use the contact form" data-link-location="process_cta">Use the contact form</a></div>
+  </div>
+</section>

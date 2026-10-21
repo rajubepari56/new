@@ -1,69 +1,74 @@
 ---
-title: Server-Side Tracking Expert (sGTM)
-description: Server-side tracking expert for sGTM setup on your own domain. Cleaner data for GA4, Google Ads and Meta, with more control over what you send.
+title: 'Server-Side Tracking Expert: sGTM Setup and Recovery'
+description: Hire a server-side tracking expert. I set up server-side Google Tag Manager to recover conversion signals lost to browsers and ad blockers.
 service_name: Server-Side Tracking (sGTM)
 short_name: sGTM
 keyword: server-side tracking expert
-h1: 'Server-Side Tracking Expert: sGTM Setup'
-outcome: A server container on your own domain that sends cleaner data to your ad platforms.
-who_title: Who should consider sGTM
+h1: A Server-Side Tracking Expert for Conversions That Browsers Keep Losing
+outcome: I set up server-side Google Tag Manager so more of your real conversions reach Google Ads, GA4 and Meta, even when browsers and ad blockers get in the way.
+hero_cta: Get a free server-side tracking check
+who_title: Who benefits from server-side tracking
 who:
-- Stores losing data to ad blockers and browser limits.
-- Teams that want more control over what data leaves the site.
-- Businesses sending data to several platforms at once.
-problems_title: Problems server-side tracking addresses
+- Businesses with meaningful ad spend where lost signals cost real money.
+- Stores and lead businesses whose platform numbers are lower than their own records.
+- Teams planning first-party data, CRM imports or offline conversions.
+- Marketing businesses that need a repeatable, documented sGTM setup for clients.
+problems_title: Why browser-only tracking falls short
 problems:
-- Third-party scripts are blocked or limited by browsers.
-- Too many tags slow the page.
-- Cookie lifetimes are cut short.
-- Platforms get different data for the same event.
-included_title: What an sGTM build covers
+- Ad blockers and browser privacy features block tags before they send anything.
+- Conversions get cut short when a visitor leaves before the tag finishes.
+- Platforms receive different data from different tags, so numbers disagree.
+- Third-party scripts slow your site down.
+- You have little control over what data is sent where.
+included_title: What a server-side project includes
 included:
-- Server GTM container setup
-- Custom tracking domain
-- Hosting set up (Cloud Run, Stape or similar)
-- GA4, Google Ads and Meta CAPI clients and tags
-- First-party cookie setup
-- Data cleaning before sending
-- Consent Mode v2 handling
-- Monitoring and handover guide
-diagram_title: How server-side tracking flows
+- 'Readiness check: is server-side worth it for your traffic and budget?'
+- Server container set up on a cloud host, with a custom first-party domain
+- Web container reconfigured to send events to your server
+- GA4, Google Ads and Meta Conversions API clients and tags
+- Event deduplication across browser and server
+- Consent Mode and privacy controls carried through to the server
+- Monitoring and a plain cost estimate for hosting
+- Before-and-after checks against your real orders or leads
+- Documentation for your team
+diagram_title: How events travel through a server container
 diagram:
-- Browser
+- Website
 - Web GTM
 - Server GTM
-- GA4 / Ads / Meta CAPI
-process_title: How an sGTM project runs
-timeline: about 1 to 2 weeks, including testing.
+- GA4, Google Ads, Meta CAPI
+process_title: How a server-side project runs
+timeline: a readiness check in 1 to 2 days; setup and testing usually take one to two weeks.
 process:
-- t: Assess
-  d: Check if server-side is a fit and what it costs to host.
-- t: Provision
-  d: Set up server, domain and DNS.
+- t: Readiness check
+  d: I tell you honestly whether server-side tracking is worth it for you.
+- t: Architecture
+  d: I plan the server, domain and which platforms receive data.
 - t: Build
-  d: Configure clients and tags.
-- t: Test
-  d: Compare browser and server data.
-- t: Launch
-  d: Go live and monitor.
+  d: I deploy the server container and move tags across.
+- t: Validate
+  d: I compare browser and server data against real conversions.
+- t: Hand over
+  d: You get documentation and a note on hosting costs to watch.
+related_cases: []
 faq_title: Server-side tracking questions
 faqs:
-- q: Is server-side tracking worth it for me?
-  a: It depends on traffic, ad spend and platforms. I tell you honestly if it is not worth it yet.
-- q: What does hosting cost?
-  a: It depends on traffic and the host you choose. I explain the options before we start.
-- q: Does it replace client-side GTM?
-  a: No. Web GTM still collects events and sends them to the server container.
-- q: Is it allowed under privacy rules?
-  a: It is a technical setup, not a consent bypass. I respect consent choices.
-- q: Which platforms can I send to?
-  a: GA4, Google Ads, Meta, and others with server-side support.
+- q: Is server-side tracking worth it for a small business?
+  a: Not always. If your ad spend is small, simpler fixes may help more. I check this first and tell you honestly.
+- q: What does it cost to run?
+  a: The server container runs on cloud hosting. Costs depend on traffic. I give you an estimate before you commit.
+- q: Will it get around consent?
+  a: No. I keep consent rules in place on the server too, so visitor choices are respected.
+- q: Which platforms can receive server events?
+  a: GA4, Google Ads and Meta Conversions API are the most common. Others are possible depending on their server-side options.
+- q: Will my site get faster?
+  a: It can, because fewer scripts run in the browser, but I do not promise a specific speed gain.
 related:
 - meta-pixel-capi
 - google-tag-manager
 - enhanced-offline-conversions
-cta_title: Move your tracking server-side
-related_title: Where sGTM fits in your stack
-crumb: Server-Side Tracking (sGTM)
+related_title: Services that pair with server-side tracking
+cta_title: Ready to stop losing conversion signals?
 permalink: /services/server-side-tracking/
+crumb: Server-Side Tracking (sGTM)
 ---

@@ -1,29 +1,38 @@
 ---
 layout: default
-title: Thank You
+title: "Thank you"
 crumb: Thank You
-description: Thanks for contacting Raju Bepari. Your message was sent.
+description: Thanks for contacting Raju Bepari.
 permalink: /thank-you/
 noindex: true
 sitemap: false
 ---
-<section class="hero hero--sub"><div class="wrap narrow">
-  <p class="eyebrow">&gt; message_sent</p>
-  <h1 id="ty-title">Thank you, your message was sent</h1>
-  <p class="lead" id="ty-lead">I will reply to you personally{% if site.data.settings.reply_time != "" %}, usually within {{ site.data.settings.reply_time }}{% endif %}. For the fastest answer you can also message me on WhatsApp.</p>
-</div></section>
-<section class="section"><div class="wrap narrow">
-  <div class="glass form-card" id="ty-box" hidden>
-    <h2>Your details</h2>
-    <p class="muted">This is what you sent me.</p>
-    <dl class="entries" id="ty-entries"></dl>
+<header class="cs-hero cs-hero--list">
+  <div class="wrap">
+    <p class="h-eyebrow">Enquiry received</p>
+    <h1 class="h-display h-display--m" id="ty-title">Thank you. <em>I have your enquiry.</em></h1>
+    <p class="h-sub" id="ty-lead">I read every enquiry myself and reply personally{% if site.data.settings.reply_time != "" %}, usually within {{ site.data.settings.reply_time }}{% endif %}. For the fastest answer, message me on WhatsApp now.</p>
+    <div class="h-cta">
+      <a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text='Hi Raju, I just sent the contact form on your website' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="thank_you" data-service="Thank you page">{% include icon-wa.html %} Message me on WhatsApp</a>
+      <a class="btn btn--ghost btn--lg" href="/results/" data-event="cta_click" data-cta-text="See results" data-link-location="thank_you">See my results</a>
+    </div>
   </div>
-  <div id="ty-empty" class="glass form-card" hidden>
-    <p>There are no form details to show here. If you just sent a message, it was received. If not, you can send one from the contact page.</p>
+</header>
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">What happens next</span></div>
+    <div class="h-sec__body">
+      <ol class="cs-work">
+        <li><span class="mono h-n">01</span><p>I read your answers and look at your website and ad setup.</p></li>
+        <li><span class="mono h-n">02</span><p>I reply personally by your preferred channel with questions or a first view of what to fix.</p></li>
+        <li><span class="mono h-n">03</span><p>If we are a good fit, I send a clear scope and quote before any work starts.</p></li>
+      </ol>
+      <div class="ty-box" id="ty-box" hidden>
+        <h2 class="cs-h2">What you sent me</h2>
+        <dl class="entries" id="ty-entries"></dl>
+      </div>
+      <p id="ty-empty" class="muted" hidden>There are no form details to show here. If you just sent a message, it was received.</p>
+    </div>
   </div>
-  <div class="btn-row">
-    <a class="btn btn--wa btn--lg magnetic" href="{% include wa.html text='Hi Raju, I just sent the contact form on your website' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="thank_you" data-service="General">{% include icon-wa.html %} Message me on WhatsApp</a>
-    <a class="btn btn--ghost btn--lg" href="/" data-event="cta_click" data-cta-text="Back to Home" data-link-location="thank_you">Back to Home</a>
-  </div>
-</div></section>
+</section>
 <script src="/assets/js/thank-you.js" defer></script>
