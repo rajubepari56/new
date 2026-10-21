@@ -209,3 +209,55 @@ main{animation:page-in .7s var(--ease) both}
 .footer__cta{margin:12px 0 18px}
 .msgw__item--book{background:#2B2FC7;border-color:#8B8FFF}.msgw__item--book small{color:#E3E5FF}.msgw__item--book:hover{background:#3338d8}
 @media(max-width:1100px) and (min-width:861px){.nav{gap:10px}.nav__book{padding:0 12px;font-size:.85rem}.nav__wa{width:38px;height:38px}}
+/* ===== services bento: every card animates continuously, each in its own way ===== */
+/* 1 Google Ads: bars rise and fall like live spend, trend line redraws */
+.in .v-bars .bars rect{animation:vbar 3.6s ease-in-out infinite;animation-delay:calc(var(--i,0)*.25s + 1s)}
+.in .v-bars .bars rect:nth-child(2){--i:1}.in .v-bars .bars rect:nth-child(3){--i:2}.in .v-bars .bars rect:nth-child(4){--i:3}.in .v-bars .bars rect:nth-child(5){--i:4}
+@keyframes vbar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.45)}}
+.in .v-bars .trend{animation:vtrend 5s ease-in-out infinite 1.2s}
+@keyframes vtrend{0%{stroke-dashoffset:1}45%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
+/* 2 GA4: line draws, holds, redraws; point pulses */
+.in .v-line .ln{animation:vline 6s ease-in-out infinite 1.8s}
+@keyframes vline{0%{stroke-dashoffset:1}50%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
+.in .v-line .pt{animation:vpt 2s ease-in-out infinite 1.8s}
+@keyframes vpt{0%,100%{transform:scale(1);filter:none}50%{transform:scale(1.7);filter:drop-shadow(0 0 6px #FBBC05)}}
+/* 3 GTM: tags fire one after another */
+.in .v-tags i{animation:vtag 4.2s ease-in-out infinite}
+.in .v-tags li:nth-child(1) i{animation-delay:.5s}.in .v-tags li:nth-child(2) i{animation-delay:1.2s}.in .v-tags li:nth-child(3) i{animation-delay:1.9s}
+@keyframes vtag{0%,10%{background:var(--muted);opacity:.5;box-shadow:none}20%,60%{background:#34A853;opacity:1;box-shadow:0 0 8px #34A853}80%,100%{background:var(--muted);opacity:.5;box-shadow:none}}
+.in .v-tags li{animation:vtagli 4.2s ease-in-out infinite;animation-delay:inherit}
+.in .v-tags li:nth-child(1){animation-delay:.5s}.in .v-tags li:nth-child(2){animation-delay:1.2s}.in .v-tags li:nth-child(3){animation-delay:1.9s}
+@keyframes vtagli{0%,10%{border-color:var(--hair)}20%,60%{border-color:rgba(52,168,83,.6)}80%,100%{border-color:var(--hair)}}
+/* 4 Server-side: event packet travels the server route, forever; blocked path flickers */
+.in .v-server svg .dot{animation:srv 3.4s ease-in-out infinite 1.6s!important}
+.in .v-server svg .blocked{animation:vblk 3.4s ease-in-out infinite}
+@keyframes vblk{0%,100%{opacity:.35}50%{opacity:1}}
+.in .v-code span{animation:vtype 6s steps(36) infinite 2s;max-width:100%}
+@keyframes vtype{0%{max-width:0}40%,85%{max-width:100%}100%{max-width:0}}
+/* 5 Meta: event match quality meter climbs and settles */
+.in .v-emq .meter u{animation:vmeter 4.5s ease-in-out infinite 1.5s}
+@keyframes vmeter{0%{transform:scaleX(.22)}55%,80%{transform:scaleX(.9)}100%{transform:scaleX(.22)}}
+.in .v-emq__row em{display:inline-block;animation:vspin 4.5s ease-in-out infinite}
+@keyframes vspin{0%,60%{transform:rotate(0)}80%,100%{transform:rotate(180deg)}}
+/* 6 Enhanced conversions: lead moves down the chain, step by step, repeating */
+.in .v-chain li{animation:vchain 5s ease-in-out infinite}
+.in .v-chain li:nth-child(1){animation-delay:.4s}.in .v-chain li:nth-child(2){animation-delay:1s}.in .v-chain li:nth-child(3){animation-delay:1.6s}.in .v-chain li:nth-child(4){animation-delay:2.2s}
+@keyframes vchain{0%,8%{color:var(--muted);border-color:var(--hair);transform:none}16%,45%{color:#F5F6FF;border-color:rgba(139,143,255,.8);transform:translateY(-3px)}60%,100%{color:var(--muted);border-color:var(--hair);transform:none}}
+.in .v-chain .to{animation-name:vchainok}
+@keyframes vchainok{0%,8%{color:var(--muted);border-color:var(--hair);transform:none}16%,45%{color:#F5F6FF;border-color:#34A853;box-shadow:0 0 14px rgba(52,168,83,.5);transform:translateY(-3px)}60%,100%{color:var(--muted);border-color:var(--hair);transform:none;box-shadow:none}}
+/* 7 Merchant Center: Disapproved flips to Approved and back */
+.in .v-merchant .mc--bad{animation:vbad 5s ease-in-out infinite;transition:none}
+.in .v-merchant .mc--ok{animation:vok 5s ease-in-out infinite;transition:none}
+.in .v-merchant em{display:inline-block;animation:varr 5s ease-in-out infinite}
+@keyframes vbad{0%,35%{opacity:1;transform:none}50%,90%{opacity:.35;transform:scale(.94)}100%{opacity:1;transform:none}}
+@keyframes vok{0%,35%{opacity:.25;transform:translateX(-6px)}50%,90%{opacity:1;transform:scale(1.06);box-shadow:0 0 14px rgba(52,168,83,.5)}100%{opacity:.25;transform:translateX(-6px);box-shadow:none}}
+@keyframes varr{0%,30%{transform:none}45%{transform:translateX(5px)}60%,100%{transform:none}}
+/* 8 Local SEO: map pin ripples and bounces without end */
+.in .v-pin .rp1{animation:rip 2.4s ease-out .4s infinite!important}.in .v-pin .rp2{animation:rip 2.4s ease-out 1.6s infinite!important}
+.in .v-pin .pn{transform-box:fill-box;transform-origin:50% 100%;animation:vpin 2.4s ease-in-out infinite}
+@keyframes vpin{0%,100%{transform:translateY(0)}20%{transform:translateY(-5px)}40%{transform:translateY(0)}}
+.in .v-pin span{animation:vchip 4s ease-in-out infinite}.in .v-pin span:nth-of-type(2){animation-delay:2s}
+@keyframes vchip{0%,100%{border-color:var(--hair)}25%,45%{border-color:rgba(52,168,83,.8);color:#8BE0A4}}
+/* card glow breathes so the grid never looks idle */
+.in.bx::after,.bx.in::after{animation:vglow 6s ease-in-out infinite}
+@keyframes vglow{0%,100%{opacity:.6}50%{opacity:1}}
