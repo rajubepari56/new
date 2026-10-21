@@ -165,7 +165,6 @@ main{animation:page-in .7s var(--ease) both}
 .jump:active{transform:scale(.92)}
 @keyframes jump{0%,100%{transform:translate3d(0,0,0) scale(1,1)}12%{transform:translate3d(0,0,0) scale(1.08,.9)}30%{transform:translate3d(0,-16px,0) scale(.96,1.06)}48%{transform:translate3d(0,0,0) scale(1.08,.9)}58%{transform:translate3d(0,-6px,0)}68%{transform:translate3d(0,0,0)}}
 /* sections spring up as they arrive */
-.js .h-sec.in-view>.wrap,.js .h-final.in-view>.wrap{animation:spring-in .95s cubic-bezier(.3,1.4,.5,1) both}
 @keyframes spring-in{0%{transform:translate3d(0,70px,0)}60%{transform:translate3d(0,-10px,0)}80%{transform:translate3d(0,3px,0)}100%{transform:none}}
 @media(max-width:700px){.jump{width:44px;height:44px;margin-left:-22px}}
 
@@ -261,18 +260,61 @@ main{animation:page-in .7s var(--ease) both}
 /* card glow breathes so the grid never looks idle */
 .in.bx::after,.bx.in::after{animation:vglow 6s ease-in-out infinite}
 @keyframes vglow{0%,100%{opacity:.6}50%{opacity:1}}
-/* ===== scroll traveler rail ===== */
-.trv{position:fixed;right:14px;top:0;bottom:0;width:22px;z-index:40;pointer-events:none}
-.trv__line,.trv__fill{position:absolute;right:10px;width:2px;border-radius:2px}
-.trv__line{top:14vh;height:56vh;background:rgba(167,169,214,.18)}
-.trv__fill{background:linear-gradient(#4285F4,#34A853,#FBBC05);box-shadow:0 0 10px rgba(66,133,244,.6);margin-top:0;clip-path:inset(14vh 0 0 0)}
-.trv__dot{position:absolute;right:7px;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:#12143A;border:1.5px solid rgba(167,169,214,.45);transition:background .4s,border-color .4s,box-shadow .4s}
-.trv__dot.on{background:#34A853;border-color:#34A853;box-shadow:0 0 8px rgba(52,168,83,.8)}
-.trv__orb{position:absolute;right:2px;top:0;width:18px;height:18px;margin-top:-9px;will-change:transform}
-.trv__orb:before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#FBBC05 45%,#EA8A00);box-shadow:0 0 16px 4px rgba(251,188,5,.65),0 0 34px 8px rgba(66,133,244,.4)}
-.trv__orb u{position:absolute;inset:-6px;border-radius:50%;border:1.5px solid #FBBC05;opacity:0}
-.trv__orb.hop:before{animation:trvhop .9s cubic-bezier(.3,1.3,.5,1)}
-.trv__orb.hop u{animation:trvring .9s ease-out}
-@keyframes trvhop{0%{translate:0 0}25%{translate:-34px -16px;scale:1.25 .8}55%{translate:-46px 2px;scale:.85 1.2}80%{translate:-8px 0;scale:1.15 .88}100%{translate:0 0;scale:1}}
-@keyframes trvring{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(3.2)}}
-@media(max-width:700px){.trv{right:4px;width:14px}.trv__orb{right:0;width:12px;height:12px;margin-top:-6px}.trv__line,.trv__fill{right:6px}.trv__dot{right:3px;width:6px;height:6px;margin-top:-3px}@keyframes trvhop{0%{translate:0 0}30%{translate:-20px -10px;scale:1.25 .8}60%{translate:-26px 2px}100%{translate:0 0;scale:1}}}
+/* ===== section-by-section choreography: every section enters with its own motion ===== */
+.js .h-sec .reveal:not(.h-h2),.js .h-final .reveal:not(.h-display){transition-property:opacity,translate,scale,rotate,filter,clip-path;transition-duration:.9s;transition-timing-function:cubic-bezier(.22,1,.36,1)}
+.js .h-sec .reveal.in:not(.h-h2){translate:none;scale:none;rotate:none;filter:none;clip-path:inset(-20px)}
+/* 01 problem: symptoms slide in from the left out of a blur, the proof card swings in from the right in 3D */
+.js #problem .h-problem{perspective:1200px}
+.js #problem .h-symptoms li.reveal:not(.in){translate:-60px 0;filter:blur(8px)}
+.js #problem .h-symptoms li:nth-child(2){transition-delay:.15s}.js #problem .h-symptoms li:nth-child(3){transition-delay:.3s}
+.js #problem .h-mismatch.reveal:not(.in){translate:70px 0;rotate:3deg;scale:.9;transform-origin:100% 50%}
+/* 02 services: cards rise and scale up from small, staggered like a deal of cards */
+.js #services .bx.reveal:not(.in){translate:0 60px;scale:.86;filter:blur(6px)}
+.js #services .bx.reveal{transition-delay:calc(var(--n,0)*90ms)}
+.js #services .bx:nth-child(2){--n:1}.js #services .bx:nth-child(3){--n:2}.js #services .bx:nth-child(4){--n:3}.js #services .bx:nth-child(5){--n:4}
+/* 03 results: panels are wiped open from the left like a curtain, snapshots zoom out of the dark */
+.js #results .rs-row.reveal:not(.in),.js #results .rs-soon.reveal:not(.in){clip-path:inset(0 100% 0 0);translate:0 0}
+.js #results .rs-row.reveal,.js #results .rs-soon.reveal{transition-duration:1.2s}
+.js #results .h-snap.reveal:not(.in){scale:1.25;filter:brightness(.3) blur(4px);translate:0 0}
+.js #results .h-snap:nth-child(2){transition-delay:.15s}.js #results .h-snap:nth-child(3){transition-delay:.3s}
+/* 04 why: the comparison table opens out from its centre line, then settles */
+.js #why .h-cmp.reveal:not(.in){clip-path:inset(0 50% 0 50%);scale:.96;translate:0 0}
+.js #why .h-cmp.reveal{transition-duration:1.3s}
+/* 05 process: each step flips down from the top edge, one after another */
+.js #process .h-steps{perspective:1000px}
+.js #process .h-steps li.reveal{transform-origin:50% 0;transition-delay:calc(var(--k,0)*160ms)}
+.js #process .h-steps li.reveal:not(.in){rotate:x -80deg;translate:0 -20px}
+.js #process .h-steps li:nth-child(2){--k:1}.js #process .h-steps li:nth-child(3){--k:2}.js #process .h-steps li:nth-child(4){--k:3}.js #process .h-steps li:nth-child(5){--k:4}
+/* 06 stack: tool names pop in one by one with a springy overshoot */
+.js #stack .h-stack>div.reveal:not(.in){translate:0 0}
+.js #stack .h-stack li{opacity:0;scale:.3;transition:opacity .4s,scale .6s cubic-bezier(.34,1.8,.5,1);transition-delay:calc(var(--k,0)*70ms + .2s)}
+.js #stack .h-stack .in li{opacity:1;scale:1}
+.js #stack .h-stack li:nth-child(2){--k:1}.js #stack .h-stack li:nth-child(3){--k:2}.js #stack .h-stack li:nth-child(4){--k:3}.js #stack .h-stack li:nth-child(5){--k:4}.js #stack .h-stack li:nth-child(6){--k:5}.js #stack .h-stack li:nth-child(7){--k:6}.js #stack .h-stack li:nth-child(8){--k:7}
+/* 07 reviews: quotes fly in from alternating sides with a small tilt */
+.js #reviews .h-quote.reveal:not(.in){translate:-90px 20px;rotate:-4deg}
+.js #reviews .h-quote:nth-child(even).reveal:not(.in){translate:90px 20px;rotate:4deg}
+.js #reviews .h-quote:nth-child(2){transition-delay:.15s}.js #reviews .h-quote:nth-child(3){transition-delay:.3s}
+/* 08 fit: the two columns arrive from opposite sides and meet in the middle */
+.js #fit .h-fit>div:first-child.reveal:not(.in){translate:-80px 0}
+.js #fit .h-fit>div:last-child.reveal:not(.in){translate:80px 0}
+.js #fit .h-fit li{opacity:0;translate:0 14px;transition:opacity .5s,translate .6s cubic-bezier(.22,1,.36,1);transition-delay:calc(var(--k,0)*90ms + .5s)}
+.js #fit .h-fit .in li{opacity:1;translate:none}
+.js #fit .h-fit li:nth-child(2){--k:1}.js #fit .h-fit li:nth-child(3){--k:2}.js #fit .h-fit li:nth-child(4){--k:3}.js #fit .h-fit li:nth-child(5){--k:4}
+/* 09 blog: cards fan up from the bottom-left like a hand of cards */
+.js #blog .post-card.reveal:not(.in){translate:-40px 80px;rotate:-6deg;scale:.9;transform-origin:0 100%}
+.js #blog .post-card:nth-child(2){transition-delay:.12s}.js #blog .post-card:nth-child(3){transition-delay:.24s}.js #blog .post-card:nth-child(4){transition-delay:.36s}
+/* 10 faq: questions are dealt down the page, each wiped open from the top */
+.js #faq .faq__item.reveal:not(.in){clip-path:inset(0 0 100% 0);translate:0 -16px}
+.js #faq .faq__item:nth-child(2){transition-delay:.1s}.js #faq .faq__item:nth-child(3){transition-delay:.2s}.js #faq .faq__item:nth-child(4){transition-delay:.3s}.js #faq .faq__item:nth-child(5){transition-delay:.4s}.js #faq .faq__item:nth-child(6){transition-delay:.5s}
+/* final call to action: buttons bounce in with spring */
+.js .h-final .h-cta.reveal:not(.in){translate:0 50px;scale:.8}
+.js .h-final .h-cta.reveal.in{transition-timing-function:cubic-bezier(.34,1.7,.5,1)}
+/* strip: each stat drops in */
+.js .h-strip .reveal:not(.in){translate:0 -30px;scale:.9}
+/* scroll-linked depth (browsers with scroll-driven animations): section headings and rails drift at their own speed */
+@supports (animation-timeline:view()){
+ .h-sec .h-sec__rail{animation:drift-rail linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+ @keyframes drift-rail{from{translate:0 40px}to{translate:0 -40px}}
+ .h-final .h-display{animation:final-zoom linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+ @keyframes final-zoom{from{scale:.85;opacity:.3;filter:blur(6px)}to{scale:1;opacity:1;filter:none}}
+}
