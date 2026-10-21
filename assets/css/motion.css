@@ -250,8 +250,8 @@ main{animation:page-in .7s var(--ease) both}
 .in.bx::after,.bx.in::after{animation:vglow 6s ease-in-out infinite}
 @keyframes vglow{0%,100%{opacity:.6}50%{opacity:1}}
 /* ===== section-by-section choreography: every section enters with its own motion ===== */
-.js .h-sec .reveal:not(.h-h2),.js .h-final .reveal:not(.h-display){transition-property:opacity,translate,scale,rotate,filter,clip-path;transition-duration:.9s;transition-timing-function:cubic-bezier(.22,1,.36,1)}
-.js .h-sec .reveal.in:not(.h-h2){translate:none;scale:none;rotate:none;filter:none;clip-path:inset(-20px)}
+.js .h-sec .reveal:not(.h-h2),.js .h-final .reveal:not(.h-display){transition-property:opacity,translate,scale,rotate,filter;transition-duration:.9s;transition-timing-function:cubic-bezier(.22,1,.36,1)}
+.js .h-sec .reveal.in:not(.h-h2){translate:none;scale:none;rotate:none;filter:none}
 /* 01 problem: symptoms slide in from the left out of a blur, the proof card swings in from the right in 3D */
 .js #problem .h-problem{perspective:1200px}
 .js #problem .h-symptoms li.reveal:not(.in){translate:-60px 0;filter:blur(8px)}
@@ -262,12 +262,12 @@ main{animation:page-in .7s var(--ease) both}
 .js #services .bx.reveal{transition-delay:calc(var(--n,0)*90ms)}
 .js #services .bx:nth-child(2){--n:1}.js #services .bx:nth-child(3){--n:2}.js #services .bx:nth-child(4){--n:3}.js #services .bx:nth-child(5){--n:4}
 /* 03 results: panels are wiped open from the left like a curtain, snapshots zoom out of the dark */
-.js #results .rs-row.reveal:not(.in),.js #results .rs-soon.reveal:not(.in){clip-path:inset(0 100% 0 0);translate:0 0}
+.js #results .rs-row.reveal:not(.in),.js #results .rs-soon.reveal:not(.in){translate:-110px 0;scale:.94 1;filter:blur(10px);transform-origin:0 50%}
 .js #results .rs-row.reveal,.js #results .rs-soon.reveal{transition-duration:1.2s}
 .js #results .h-snap.reveal:not(.in){scale:1.25;filter:brightness(.3) blur(4px);translate:0 0}
 .js #results .h-snap:nth-child(2){transition-delay:.15s}.js #results .h-snap:nth-child(3){transition-delay:.3s}
 /* 04 why: the comparison table opens out from its centre line, then settles */
-.js #why .h-cmp.reveal:not(.in){clip-path:inset(0 50% 0 50%);scale:.96;translate:0 0}
+.js #why .h-cmp.reveal:not(.in){scale:.55 1;filter:blur(8px);translate:0 0}
 .js #why .h-cmp.reveal{transition-duration:1.3s}
 /* 05 process: each step flips down from the top edge, one after another */
 .js #process .h-steps{perspective:1000px}
@@ -293,7 +293,7 @@ main{animation:page-in .7s var(--ease) both}
 .js #blog .post-card.reveal:not(.in){translate:-40px 80px;rotate:-6deg;scale:.9;transform-origin:0 100%}
 .js #blog .post-card:nth-child(2){transition-delay:.12s}.js #blog .post-card:nth-child(3){transition-delay:.24s}.js #blog .post-card:nth-child(4){transition-delay:.36s}
 /* 10 faq: questions are dealt down the page, each wiped open from the top */
-.js #faq .faq__item.reveal:not(.in){clip-path:inset(0 0 100% 0);translate:0 -16px}
+.js #faq .faq__item.reveal:not(.in){scale:1 .3;translate:0 -16px;transform-origin:50% 0}
 .js #faq .faq__item:nth-child(2){transition-delay:.1s}.js #faq .faq__item:nth-child(3){transition-delay:.2s}.js #faq .faq__item:nth-child(4){transition-delay:.3s}.js #faq .faq__item:nth-child(5){transition-delay:.4s}.js #faq .faq__item:nth-child(6){transition-delay:.5s}
 /* final call to action: buttons bounce in with spring */
 .js .h-final .h-cta.reveal:not(.in){translate:0 50px;scale:.8}
@@ -327,3 +327,8 @@ main{animation:page-in .7s var(--ease) both}
 @keyframes bk-dot{70%{box-shadow:0 0 0 10px rgba(52,168,83,0)}100%{box-shadow:0 0 0 0 rgba(52,168,83,0)}}
 @keyframes bk-btn{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
 @media(max-width:700px){.bk__a .btn{width:100%;justify-content:center}.bk__x{top:12px;right:12px}}
+
+/* floating jump arrow: stays at the bottom centre while a section is on screen and carries you to the next one */
+.jump--float{position:fixed;left:50%;bottom:26px;top:auto;margin-left:-24px;z-index:45;transition:opacity .35s,visibility .35s,background-color .25s,color .25s}
+.jump--float[data-off]{opacity:0;visibility:hidden;pointer-events:none}
+@media(max-width:700px){.jump--float{bottom:20px;margin-left:-22px}}

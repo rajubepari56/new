@@ -105,6 +105,22 @@
     });
   })();
 
+  /* floating jump arrow: follows you down the page and jumps to the next section */
+  (function () {
+    var secs = [].slice.call(d.querySelectorAll('.h-sec, .h-strip, .h-final')); if (secs.length < 3) return;
+    var b = d.createElement('button'); b.type = 'button'; b.className = 'jump jump--float'; b.setAttribute('data-off', '');
+    b.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    d.body.appendChild(b); var target = null, ticking = false;
+    b.addEventListener('click', function () { if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    function upd() {
+      ticking = false; var vh = innerHeight, t = null;
+      for (var i = 0; i < secs.length - 1; i++) { var r = secs[i].getBoundingClientRect(); if (r.top < vh * .5 && r.bottom > vh * .5) { t = secs[i + 1]; if (r.bottom < vh + 40) t = null; break; } }
+      target = t; if (t) { b.removeAttribute('data-off'); b.setAttribute('aria-label', 'Jump to the next section'); } else b.setAttribute('data-off', '');
+      b.tabIndex = t ? 0 : -1;
+    }
+    addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true }); upd();
+  })();
+
   /* split section headings into words so each word rises out of a mask (staggered) */
   d.querySelectorAll('.h-h2.reveal, .cs-h2.reveal, .h-display--m.reveal').forEach(function (h) {
     var n = 0;
