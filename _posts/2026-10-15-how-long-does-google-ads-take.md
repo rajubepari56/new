@@ -7,6 +7,9 @@ services:
 - google-ads
 - enhanced-offline-conversions
 author: Raju Bepari
+image: /assets/images/blog/how-long-does-google-ads-take.jpg
+feature: /assets/images/blog/how-long-does-google-ads-take.webp
+feature_alt: Chart of results rising over days, weeks and months with a learning period marked
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

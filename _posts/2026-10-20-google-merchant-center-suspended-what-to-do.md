@@ -7,6 +7,9 @@ services:
 - merchant-center
 - google-ads
 author: Raju Bepari
+image: /assets/images/blog/google-merchant-center-suspended-what-to-do.jpg
+feature: /assets/images/blog/google-merchant-center-suspended-what-to-do.webp
+feature_alt: Illustration of a product changing from disapproved to approved in Merchant Center
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

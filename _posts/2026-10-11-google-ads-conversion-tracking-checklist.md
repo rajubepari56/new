@@ -8,6 +8,9 @@ services:
 - google-tag-manager
 - enhanced-offline-conversions
 author: Raju Bepari
+image: /assets/images/blog/google-ads-conversion-tracking-checklist.jpg
+feature: /assets/images/blog/google-ads-conversion-tracking-checklist.webp
+feature_alt: Illustration of a conversion tracking checklist with five ticked items
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

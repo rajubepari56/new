@@ -8,6 +8,9 @@ services:
 - meta-pixel-capi
 - ga4
 author: Raju Bepari
+image: /assets/images/blog/server-side-tracking-worth-it.jpg
+feature: /assets/images/blog/server-side-tracking-worth-it.webp
+feature_alt: Diagram of a blocked browser tag, a server container and events reaching GA4, Google Ads and Meta
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

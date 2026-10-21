@@ -8,6 +8,9 @@ services:
 - ga4
 - server-side-tracking
 author: Raju Bepari
+image: /assets/images/blog/consent-mode-v2-explained.jpg
+feature: /assets/images/blog/consent-mode-v2-explained.webp
+feature_alt: 'Four consent toggles: ad_storage, analytics_storage, ad_user_data and ad_personalization'
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

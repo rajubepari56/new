@@ -8,6 +8,9 @@ services:
 - google-tag-manager
 - ga4
 author: Raju Bepari
+image: /assets/images/blog/why-google-ads-clicks-no-leads.jpg
+feature: /assets/images/blog/why-google-ads-clicks-no-leads.webp
+feature_alt: Funnel illustration narrowing from clicks to visits, page views, actions and leads
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

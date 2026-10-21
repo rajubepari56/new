@@ -176,3 +176,20 @@
 .profile-links .pl__t{font:600 1rem var(--hf2);flex:1}
 .profile-links .pl__a{color:var(--muted);transition:transform .3s var(--ease),color .25s}
 .profile-links a:hover .pl__a{transform:translate(3px,-3px);color:var(--tint)}
+
+/* blog feature images and cards */
+.post-feature-wrap{max-width:1000px;margin-top:clamp(24px,4vw,48px)}
+.post-feature{margin:0}.post-feature img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--hair);box-shadow:0 30px 80px rgba(4,5,22,.55)}
+.post-body{padding-top:clamp(40px,5vw,72px)}
+.post-grid{display:grid;gap:22px;grid-template-columns:1fr}
+@media(min-width:700px){.post-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.post-grid:not(.post-grid--home){grid-template-columns:repeat(3,1fr)}}
+.post-card{display:flex;flex-direction:column;gap:10px;color:var(--text)!important;text-decoration:none!important;border:1px solid var(--hair);border-radius:12px;padding:14px 14px 20px;background:rgba(18,20,58,.4);transition:transform .45s var(--ease),border-color .3s,background-color .3s}
+.post-card:hover,.post-card:focus-visible{transform:translate3d(0,-4px,0);border-color:var(--tint);background:rgba(43,47,199,.14)}
+.post-card__img{display:block;overflow:hidden;border-radius:8px;border:1px solid var(--hair);margin-bottom:6px}
+.post-card__img img{display:block;width:100%;height:auto;transition:transform .8s var(--ease)}
+.post-card:hover .post-card__img img{transform:scale(1.04)}
+.post-card__t{font:600 1.25rem/1.25 var(--hf2);letter-spacing:-.02em;padding:0 6px}
+.post-card__d{color:#BFC1E6;font-size:.92rem;line-height:1.55;padding:0 6px}
+.post-card .h-tag{padding:0 6px}.post-card__m{color:var(--muted);padding:0 6px;margin-top:auto;text-transform:none!important;letter-spacing:.02em}
+.post-feature img{animation:photo-in 1s var(--ease) .1s both}

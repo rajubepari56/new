@@ -27,6 +27,9 @@ collections:
       - { label: Short description (under 155 characters), name: description, widget: text }
       - { label: Publish date, name: date, widget: datetime, format: "YYYY-MM-DD HH:mm:ss ZZ", date_format: "YYYY-MM-DD", time_format: "HH:mm" }
       - { label: Category, name: category, widget: select, options: ["Google Ads", "Analytics", "Tracking", "Local SEO", "AI Search"] }
+      - { label: Feature image (1200x630 WebP, shown on the post and cards), name: feature, widget: image, required: false }
+      - { label: Feature image for social sharing (1200x630 JPG), name: image, widget: image, required: false }
+      - { label: Feature image description (alt text), name: feature_alt, widget: string, required: false }
       - { label: Author, name: author, widget: string, default: Raju Bepari }
       - label: Related services
         name: services

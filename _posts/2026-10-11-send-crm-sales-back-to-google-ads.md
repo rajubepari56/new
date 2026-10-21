@@ -8,6 +8,9 @@ services:
 - google-ads
 - server-side-tracking
 author: Raju Bepari
+image: /assets/images/blog/send-crm-sales-back-to-google-ads.jpg
+feature: /assets/images/blog/send-crm-sales-back-to-google-ads.webp
+feature_alt: Diagram of a lead moving from qualified to sale and feeding back into Google Ads, with a rising chart
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

@@ -8,6 +8,9 @@ services:
 - local-seo
 - ga4
 author: Raju Bepari
+image: /assets/images/blog/aeo-geo-get-mentioned-in-ai-answers.jpg
+feature: /assets/images/blog/aeo-geo-get-mentioned-in-ai-answers.webp
+feature_alt: Illustration of an AI chat answer citing sources, with my site highlighted as one of them
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

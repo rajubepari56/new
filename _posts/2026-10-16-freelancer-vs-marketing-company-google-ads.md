@@ -7,6 +7,9 @@ services:
 - google-ads
 - ga4
 author: Raju Bepari
+image: /assets/images/blog/freelancer-vs-marketing-company-google-ads.jpg
+feature: /assets/images/blog/freelancer-vs-marketing-company-google-ads.webp
+feature_alt: Illustration comparing a direct line to one specialist with a chain of handoffs
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

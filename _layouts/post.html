@@ -10,7 +10,8 @@ layout: default
     <p class="mono h-note"><span>By {{ page.author | default: "Raju Bepari" }}</span> &middot; <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time> &middot; <span>{{ content | number_of_words | divided_by: 200 | plus: 1 }} min read</span></p>
   </div>
 </header>
-<section class="h-sec cs-sec">
+{% if page.feature %}<div class="wrap post-feature-wrap"><figure class="post-feature"><img src="{{ page.feature }}" width="1200" height="630" fetchpriority="high" alt="{{ page.feature_alt | escape }}"></figure></div>{% endif %}
+<section class="h-sec cs-sec post-body">
   <div class="wrap narrow">
     <article class="prose">{{ content }}</article>
     <aside class="author-box reveal" aria-label="About the author">

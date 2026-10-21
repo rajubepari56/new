@@ -8,6 +8,9 @@ services:
 - ga4
 - ai-search-optimization
 author: Raju Bepari
+image: /assets/images/blog/google-business-profile-fixes.jpg
+feature: /assets/images/blog/google-business-profile-fixes.webp
+feature_alt: Illustration of a map pin with ripples and five stars for a Google Business Profile
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

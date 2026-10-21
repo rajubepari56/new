@@ -8,6 +8,9 @@ services:
 - google-ads
 - google-tag-manager
 author: Raju Bepari
+image: /assets/images/blog/google-ads-vs-ga4-numbers-dont-match.jpg
+feature: /assets/images/blog/google-ads-vs-ga4-numbers-dont-match.webp
+feature_alt: Bar chart showing Google Ads, GA4 and CRM reporting different numbers, with a not-equal sign
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

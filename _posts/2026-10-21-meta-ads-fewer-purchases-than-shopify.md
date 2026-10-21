@@ -8,6 +8,9 @@ services:
 - server-side-tracking
 - ga4
 author: Raju Bepari
+image: /assets/images/blog/meta-ads-fewer-purchases-than-shopify.jpg
+feature: /assets/images/blog/meta-ads-fewer-purchases-than-shopify.webp
+feature_alt: Bar comparison showing Meta reporting fewer purchases than Shopify, with the gap marked
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

@@ -8,6 +8,9 @@ services:
 - server-side-tracking
 - google-tag-manager
 author: Raju Bepari
+image: /assets/images/blog/meta-pixel-vs-conversions-api.jpg
+feature: /assets/images/blog/meta-pixel-vs-conversions-api.webp
+feature_alt: Diagram of Meta Pixel and Conversions API events merging into one deduplicated event
 ---
 <div class="callout" markdown="1">
 **Key takeaways**

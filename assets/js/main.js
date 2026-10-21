@@ -109,7 +109,7 @@
     var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
     items.forEach(function(n){io.observe(n);});
   }else items.forEach(function(n){n.classList.add('in');});
-  if('IntersectionObserver' in w&&!reduce){var mo=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');mo.unobserve(x.target);}});},{threshold:0,rootMargin:'0px 0px -8% 0px'});masks.forEach(function(n){mo.observe(n);});}else masks.forEach(function(n){n.classList.add('in');});
+  if('IntersectionObserver' in w&&!reduce){var mo=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){(x.target._masks||[]).forEach(function(m){m.classList.add('in');});mo.unobserve(x.target);}});},{threshold:0,rootMargin:'0px 0px -8% 0px'});masks.forEach(function(n){var pr=n.parentNode;(pr._masks=pr._masks||[]).push(n);mo.observe(pr);});}else masks.forEach(function(n){n.classList.add('in');});
 
   /* ---- service diagram: lights up once, in order, when it scrolls into view ---- */
   d.querySelectorAll('.diagram__nodes').forEach(function(ol){

@@ -7,6 +7,9 @@ services:
 - google-ads
 - ga4
 author: Raju Bepari
+image: /assets/images/blog/how-is-a-google-ads-freelancer-priced.jpg
+feature: /assets/images/blog/how-is-a-google-ads-freelancer-priced.webp
+feature_alt: 'Four pricing models: retainer, percent of spend, hourly and project'
 ---
 <div class="callout" markdown="1">
 **Key takeaways**
