@@ -48,33 +48,47 @@
       .catch(function () { box.innerHTML = '<p>The calendar could not load. <a href="' + url + '" target="_blank" rel="noopener">Open it in a new tab</a>.</p>'; });
   });
 
-  /* booking banner: opens twice per visit. First 10 seconds after landing, then again when the visitor moves the mouse
-     toward the browser's close/tab area (desktop) or 60 seconds after the first one closes (touch devices). */
+  /* booking banner: a full-screen booking message that returns every 30 seconds with a different message each time.
+     It waits while the chat panel is open, stays off the contact and thank-you pages, and stops for 30 days after a booking click. */
   (function () {
     var bk = d.getElementById('bk'); if (!bk || /^\/(contact|thank-you)\//.test(location.pathname)) return;
-    var DONE = 'rb_bk_done', COUNT = 'rb_bk_n', MAX = 2, fired = { timer: false, second: false };
+    var DONE = 'rb_bk_done', N = 'rb_bk_i', EVERY = 30000;
     try { var t = +localStorage.getItem(DONE); if (t && Date.now() - t < 30 * 864e5) return; } catch (e) {}
-    function count() { try { return +sessionStorage.getItem(COUNT) || 0; } catch (e) { return 0; } }
+    var M = [
+      ['Free 30-minute tracking audit', 'How much budget is bad tracking wasting this month?', 'Every week without accurate data is another week of ad decisions made blind. In a free call I show you what to fix first.', 'Book my free 30-minute audit'],
+      ['Quick question', 'Do your Google Ads and GA4 numbers match?', 'If they do not, Smart Bidding is learning from the wrong data. A 30-minute call is enough to find out where they split.', 'Check my numbers with Raju'],
+      ['Before you spend another dollar', 'Is Google Ads really bringing you customers?', 'Missing or duplicate conversions make good campaigns look bad. Let me look at your account with you and show you what is real.', 'Book a free call'],
+      ['Straight talk', 'Losing sales to ad blockers and iOS?', 'Server-side tracking can recover signals the browser drops. I can tell you in one call whether it fits your setup.', 'See if it fits my site'],
+      ['No pitch, no obligation', 'Pick a time. I will bring the questions.', 'You choose a slot on my calendar. I review your tracking beforehand and tell you plainly what is broken and what to fix first.', 'Choose my time slot'],
+      ['One specialist, one call', 'Talk to the person who will actually do the work.', 'No account managers and no hand-offs. You speak with me directly, and I reply to every message myself.', 'Book my free audit']
+    ];
+    var eb = d.querySelector('.bk__eyebrow'), ti = d.getElementById('bk-t'), de = d.getElementById('bk-d'), cta = d.getElementById('bk-cta'), x = d.getElementById('bk-x'), no = d.getElementById('bk-no'), prev = null, timer = null;
+    function idx() { try { return +sessionStorage.getItem(N) || 0; } catch (e) { return 0; } }
+    function schedule(ms) { clearTimeout(timer); timer = setTimeout(show, ms); }
     function show() {
-      if (count() >= MAX || !bk.hidden) return false;
-      var ask = d.getElementById('msgw-ask'), panel = d.getElementById('msgw-panel');
-      if (ask && !ask.hidden) ask.hidden = true;                     // the booking question takes priority over the chat prompt
-      if (panel && !panel.hidden) return false;
-      bk.hidden = false; try { sessionStorage.setItem(COUNT, String(count() + 1)); } catch (e) {}
-      return true;
+      if (!bk.hidden) return;
+      var panel = d.getElementById('msgw-panel');
+      if ((panel && !panel.hidden) || d.hidden) return schedule(5000);   // never stack on the chat panel or run in a background tab
+      var i = idx(), m = M[i % M.length]; try { sessionStorage.setItem(N, String(i + 1)); } catch (e) {}
+      eb.textContent = m[0]; ti.textContent = m[1]; de.textContent = m[2]; cta.textContent = m[3];
+      var ask = d.getElementById('msgw-ask'); if (ask && !ask.hidden) ask.hidden = true;
+      prev = d.activeElement; bk.hidden = false; d.documentElement.classList.add('bk-open');
+      setTimeout(function () { cta.focus({ preventScroll: true }); }, 60);
     }
-    function close() { bk.hidden = true; if (touch && count() < MAX && !fired.second) { fired.second = true; setTimeout(show, 60000); } }
-    var touch = !matchMedia('(hover:hover) and (pointer:fine)').matches;
-    /* 1st: 10 seconds after landing */
-    setTimeout(function () { if (!fired.timer) { fired.timer = true; if (!show()) setTimeout(function () { show(); }, 3000); } }, 10000);
-    /* 2nd (desktop): the mouse leaves through the top edge, where the tabs and the close button are */
-    if (!touch) d.addEventListener('mouseout', function (e) {
-      if (!e.relatedTarget && e.clientY < 8 && !fired.second && fired.timer) { if (show()) fired.second = true; }
-      else if (!e.relatedTarget && e.clientY < 8 && !fired.timer) { fired.timer = true; show(); }
+    function close() {
+      bk.hidden = true; d.documentElement.classList.remove('bk-open');
+      if (prev && prev.focus) try { prev.focus({ preventScroll: true }); } catch (e) {}
+      schedule(EVERY);
+    }
+    schedule(EVERY);
+    x.addEventListener('click', close); no.addEventListener('click', close);
+    bk.addEventListener('click', function (e) { if (e.target === bk) close(); });
+    cta.addEventListener('click', function () { clearTimeout(timer); bk.hidden = true; d.documentElement.classList.remove('bk-open'); try { localStorage.setItem(DONE, String(Date.now())); } catch (e) {} });
+    d.addEventListener('keydown', function (e) {
+      if (bk.hidden) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'Tab') { var f = [x, cta, no], a = d.activeElement, k = f.indexOf(a); e.preventDefault(); f[(k + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus(); }
     });
-    d.getElementById('bk-x').addEventListener('click', close); d.getElementById('bk-no').addEventListener('click', close);
-    d.getElementById('bk-cta').addEventListener('click', function () { bk.hidden = true; try { localStorage.setItem(DONE, String(Date.now())); } catch (e) {} });
-    d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !bk.hidden) close(); });
   })();
 
   /* jump arrows: a bouncing button at the end of each section that scrolls to the next one */

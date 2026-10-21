@@ -1,13 +1,16 @@
 {%- assign b = site.data.settings.booking_url -%}
 {%- if b and b != "" -%}
-<div class="bk" id="bk" role="dialog" aria-labelledby="bk-t" aria-describedby="bk-d" hidden>
-  <button type="button" class="bk__x" id="bk-x" aria-label="Close this banner">&times;</button>
+<div class="bk" id="bk" role="dialog" aria-modal="true" aria-labelledby="bk-t" aria-describedby="bk-d" hidden>
+    <button type="button" class="bk__x" id="bk-x" aria-label="Close this banner">&times;</button>
+  <div class="bk__in">
   <p class="bk__eyebrow mono">Free 30-minute tracking audit</p>
   <h2 class="bk__t" id="bk-t">How much budget is bad tracking wasting this month?</h2>
   <p class="bk__d" id="bk-d">Every week without accurate data is another week of ad decisions made blind. In a free call I show you what to fix first. No pitch, no obligation.</p>
   <div class="bk__a">
     <a class="btn btn--wa btn--lg" id="bk-cta" href="{{ b }}" target="_blank" rel="noopener" data-event="booking_click" data-link-location="booking_banner" data-calendly="{{ b }}">Book my free 30-minute audit</a>
     <button type="button" class="bk__no" id="bk-no">Not now</button>
+  </div>
+  <p class="bk__fine mono">30 minutes &middot; Free &middot; I run the call myself</p>
   </div>
 </div>
 {%- endif -%}

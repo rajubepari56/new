@@ -183,17 +183,6 @@ main{animation:page-in .7s var(--ease) both}
 @keyframes ask-in{0%{opacity:0;transform:translate3d(0,24px,0) scale(.9)}100%{opacity:1;transform:none}}
 
 /* booking banner */
-.bk{position:fixed;left:50%;bottom:22px;z-index:68;width:min(640px,calc(100vw - 28px));transform:translateX(-50%);padding:24px 26px 22px;border-radius:16px;background:linear-gradient(135deg,#1E2390,#12143A 70%);border:1px solid rgba(139,143,255,.5);box-shadow:0 30px 80px rgba(0,0,0,.65);animation:bk-in .7s cubic-bezier(.3,1.35,.5,1) both}
-.bk[hidden]{display:none}
-@keyframes bk-in{0%{opacity:0;transform:translate(-50%,40px) scale(.96)}100%{opacity:1;transform:translate(-50%,0)}}
-.bk__x{position:absolute;top:10px;right:10px;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(167,169,214,.4);background:rgba(10,11,30,.55);color:#F5F6FF;font-size:1.4rem;line-height:1;cursor:pointer;transition:background-color .2s}
-.bk__x:hover,.bk__x:focus-visible{background:#2B2FC7}
-.bk__eyebrow{margin:0 0 8px;color:#8B8FFF}
-.bk__t{margin:0 40px 8px 0;font:600 clamp(1.25rem,3vw,1.65rem)/1.2 var(--hf2,Inter);letter-spacing:-.02em}
-.bk__d{margin:0 0 18px;color:#CFD1F0;line-height:1.55;font-size:.98rem}
-.bk__a{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.bk__no{background:none;border:0;color:#A7A9D6;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px 4px}.bk__no:hover{color:#F5F6FF}
-@media(max-width:860px){.bk{bottom:12px;padding:20px 18px 18px}.bk__a .btn{width:100%;justify-content:center}}
 
 /* booking links everywhere */
 .topbar__book{margin-left:auto;margin-right:18px;color:#F5F6FF;font-weight:600;font-size:.82rem;display:inline-flex;align-items:center;gap:8px}
@@ -318,3 +307,23 @@ main{animation:page-in .7s var(--ease) both}
  .h-final .h-display{animation:final-zoom linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
  @keyframes final-zoom{from{scale:.85;opacity:.3;filter:blur(6px)}to{scale:1;opacity:1;filter:none}}
 }
+/* ===== full-screen booking banner ===== */
+.bk{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:24px;background:radial-gradient(60% 60% at 50% 40%,rgba(43,47,199,.55),rgba(6,7,24,.96) 70%);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:bk-fade .5s ease both;overflow:auto}
+.bk[hidden]{display:none}
+.bk__in{position:relative;width:min(820px,100%);text-align:center;animation:bk-pop .8s cubic-bezier(.3,1.35,.5,1) .1s both}
+.bk__x{position:fixed;top:18px;right:18px;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(167,169,214,.45);background:rgba(10,11,30,.6);color:#F5F6FF;font-size:1.7rem;line-height:1;cursor:pointer;transition:background-color .2s,transform .3s}
+.bk__x:hover,.bk__x:focus-visible{background:#2B2FC7;transform:rotate(90deg)}
+.bk__eyebrow{margin:0 0 18px;color:#FBBC05;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem}
+.bk__eyebrow:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:#34A853;margin-right:10px;box-shadow:0 0 0 0 rgba(52,168,83,.7);animation:bk-dot 1.8s infinite}
+.bk__t{margin:0 0 20px;font:700 clamp(2rem,6vw,4.2rem)/1.05 var(--hf2,Inter);letter-spacing:-.03em;color:#fff}
+.bk__d{margin:0 auto 34px;max-width:560px;color:#CFD1F0;line-height:1.6;font-size:clamp(1rem,2.2vw,1.2rem)}
+.bk__a{display:flex;flex-direction:column;gap:14px;align-items:center}
+.bk__a .btn{font-size:1.1rem;padding:18px 34px;animation:bk-btn 2.2s ease-in-out infinite}
+.bk__no{background:none;border:0;color:#A7A9D6;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:10px 8px}.bk__no:hover{color:#F5F6FF}
+.bk__fine{margin:22px 0 0;color:#8B8FFF;font-size:.78rem;letter-spacing:.06em}
+.bk-open{overflow:hidden}
+@keyframes bk-fade{from{opacity:0}to{opacity:1}}
+@keyframes bk-pop{from{opacity:0;transform:translate3d(0,40px,0) scale(.94)}to{opacity:1;transform:none}}
+@keyframes bk-dot{70%{box-shadow:0 0 0 10px rgba(52,168,83,0)}100%{box-shadow:0 0 0 0 rgba(52,168,83,0)}}
+@keyframes bk-btn{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+@media(max-width:700px){.bk__a .btn{width:100%;justify-content:center}.bk__x{top:12px;right:12px}}
