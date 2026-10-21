@@ -57,3 +57,13 @@
 
 ## Admin tools (leads dashboard + editor)
 - Deploy from GitHub, set ADMIN_KEY, NETLIFY_API_TOKEN, SITE_ID, create the GitHub OAuth app (see ADMIN-SETUP.md). Not testable from the build sandbox: dashboard UI was tested with mocked API responses only; functions pass a syntax check only.
+
+## Homepage rebuild (personal-brand version)
+- Booking link: set `booking_url` in /admin > Site settings (Cal.com or Calendly). Until then, the "Get a Free Tracking Audit" buttons open WhatsApp with a prefilled message. Booking clicks fire the `booking_click` event.
+- Hero photo `raju-hero.webp` is only 500 px; it is shown at about 92 px so it is sharp, but a full-resolution glasses photo is needed before using it larger.
+- Threads stays removed (earlier instruction). Tell me if you want it back.
+- "Agency" is not used anywhere on the home page; white-label work is described as "marketing businesses".
+- Revenue bar stays hidden until a real figure is entered.
+- Minimum monthly ad budget for the "not a fit" list is not set (not provided). Add one if you want it shown.
+- No verified 5X/10X case yet. The only multiplier shown is the real "4x average ROAS" case (with its period and context).
+- Home page no longer includes the blog strip or About block (listed in the nav and footer instead). Service pages, About and other pages still use the previous design and will be restyled in a later step.

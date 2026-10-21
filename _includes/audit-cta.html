@@ -1,0 +1,3 @@
+{%- assign b = site.data.settings.booking_url -%}
+{%- if b and b != "" -%}<a class="{{ include.class }}" href="{{ b }}" target="_blank" rel="noopener" data-event="booking_click" data-link-location="{{ include.loc }}">{{ include.label }}</a>
+{%- else -%}<a class="{{ include.class }}" href="{% include wa.html text='Hi Raju, I would like a free tracking audit for my ads' %}" target="_blank" rel="noopener" data-event="whatsapp_click" data-link-location="{{ include.loc }}" data-service="Free tracking audit">{% include icon-wa.html %} {{ include.label }}</a>{%- endif -%}

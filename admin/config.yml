@@ -56,6 +56,7 @@ collections:
           - { label: Email, name: email, widget: string }
           - { label: Experience (for example 7+ years), name: experience, widget: string }
           - { label: Timezone, name: timezone, widget: string }
+          - { label: "Booking link (Cal.com or Calendly URL; empty = audit button opens WhatsApp)", name: booking_url, widget: string, required: false }
           - { label: "Reply time (for example: a few hours; empty hides the line)", name: reply_time, widget: string, required: false }
           - { label: GTM container ID (GTM-XXXXXXX; empty disables tracking), name: gtm_id, widget: string, required: false }
           - { label: GA4 measurement ID (reference only), name: ga4_id, widget: string, required: false }
