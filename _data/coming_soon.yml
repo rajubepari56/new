@@ -1,0 +1,5 @@
+# Placeholder cards for case studies that are not published yet. Remove an entry when its real case study is added to _case_studies/.
+items:
+  - { tag: "Lead tracking", title: "Fixing lead tracking for a home-services business", note: "Waiting for a verified project, client permission and before/after numbers." }
+  - { tag: "Server-side tracking", title: "Server-side tracking for an e-commerce store", note: "Waiting for a verified project, client permission and before/after numbers." }
+  - { tag: "Local SEO", title: "Local SEO for a service-area business", note: "Waiting for a verified project, client permission and before/after numbers." }

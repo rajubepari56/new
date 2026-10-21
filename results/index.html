@@ -2,64 +2,58 @@
 layout: default
 title: Results and Case Studies
 crumb: Results
-description: Case studies and client reviews from Google Ads and conversion tracking work. Real results are being added.
+description: Case studies and client reviews from Google Ads and conversion tracking work, with real numbers and anonymized clients.
 permalink: /results/
+body_class: cs
 ---
-<section class="hero hero--sub"><div class="wrap">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Results</span></nav>
-  <h1 class="reveal">Results and Case Studies</h1>
-  <p class="lead reveal">Real numbers and real reviews only. Client names are kept private.</p>
-</div></section>
-<section class="section"><div class="wrap">
-  <h2 class="reveal">Case studies</h2>
-  {% for c in site.data.case_studies.items %}
-  <article class="glass case reveal">
-    <span class="pill pill--green">{{ c.tag }}</span>
-    <h3>{{ c.title }}</h3>
-    <p class="muted"><strong>Client:</strong> {{ c.client }}</p>
-    <div class="stats">{% for r in c.results %}<div class="stat glass"><b>{{ r.n }}</b><span>{{ r.l }}</span></div>{% endfor %}</div>
-    <h4>The challenge</h4><p>{{ c.challenge }}</p>
-    <h4>What I did</h4>
-    <ul class="ticks">{% for w in c.work %}<li>{{ w }}</li>{% endfor %}</ul>
-    <p class="muted">{{ c.metrics }}</p>
-    {% if c.screens %}
-    <h4>{{ c.screens_title }}</h4>
-    <p class="muted">{{ c.screens_note }}</p>
-    <div class="snaps">{% for sc in c.screens %}<figure class="glass snap"><img src="{{ sc.img }}" width="{{ sc.w }}" height="{{ sc.h }}" loading="lazy" alt="{{ sc.alt }}"><figcaption><span class="muted">{{ sc.cap }}</span></figcaption></figure>{% endfor %}</div>
-    {% endif %}
-    <p>{% for t in c.tools %}<span class="pill pill--blue">{{ t }}</span> {% endfor %}</p>
-  </article>
-  {% endfor %}
-  <!-- TODO: add more case studies to _data/case_studies.yml once figures are confirmed -->
-  <div class="card glass card--soon reveal"><span class="pill pill--yellow">More coming</span><p>More case studies will be added here.</p></div>
-</div></section>
-<section class="section section--alt" id="snapshots"><div class="wrap">
-  <h2 class="reveal">Recent Google Ads results</h2>
-  <p class="muted reveal">Screenshots from recent work, all campaigns, July 1 to 31, 2026. Client names and industries are not shown. "Conversions" are the actions each account tracks, such as calls, lead forms or purchases, so they differ from account to account.</p>
-  <div class="snaps">
-    {% for s in site.data.snapshots.items %}
-    <figure class="glass snap reveal">
-      <img src="{{ s.img }}" width="1280" height="476" loading="lazy" alt="{{ s.alt }}">
-      <figcaption><strong>{{ s.headline }}</strong>
-        <dl class="snap__stats">{% for st in s.stats %}<div><dt>{{ st.label }}</dt><dd>{{ st.value }}</dd></div>{% endfor %}</dl>
-        <span class="muted">Google Ads &middot; All campaigns &middot; Jul 1&ndash;31, 2026</span>
-      </figcaption>
-    </figure>
-    {% endfor %}
+{% assign cases = site.case_studies | sort: "order" %}
+<header class="cs-hero cs-hero--list">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Results</span></nav>
+    <p class="h-eyebrow">Selected results</p>
+    <h1 class="h-display h-display--m">Real accounts. Real numbers. <em>Clients stay anonymous.</em></h1>
+    <p class="h-sub">Every figure here comes from a real account or from the client's own reports. I name a client only when they have confirmed permission. Results vary by account and are never guaranteed.</p>
   </div>
-</div></section>
-<section class="section" id="reviews"><div class="wrap">
-  <h2 class="reveal">Client reviews from Upwork</h2>
-  <p class="muted reveal">A selection of my {{ site.data.settings.hero_stats[1].count }} five-star reviews, quoted exactly from my Upwork profile. Client names are not shown. Some clients came back for a second or third project.</p>
-  <div class="quotes">
-    {% for r in site.data.reviews.items %}
-    <figure class="glass quote reveal">
-      <p class="quote__stars" aria-label="5.0 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733; <span>5.0</span></p>
-      <blockquote><p>&ldquo;{{ r.text }}&rdquo;</p></blockquote>
-      <figcaption>{{ r.project }} &middot; {{ r.date }}{% if r.repeat %} &middot; {{ r.repeat }}{% endif %}</figcaption>
-    </figure>
-    {% endfor %}
+</header>
+<section class="h-sec cs-sec" id="case-studies">
+  <div class="wrap">
+    <h2 class="sr">Case studies</h2>
+    <div class="rs-list">
+      {% for c in cases %}{% include case-card.html c=c loc="results_list" %}{% endfor %}
+    </div>
+    <h2 class="cs-h2 rs-soonh reveal">On the way</h2>
+    <div class="rs-soongrid">
+      {% for s in site.data.coming_soon.items %}{% include coming-soon-card.html c=s %}{% endfor %}
+    </div>
   </div>
-  <div class="btn-row"><a class="btn btn--primary" href="{{ site.data.settings.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="results">See my Upwork profile</a><a class="btn btn--ghost" href="{{ site.data.settings.socials.linkedin }}" target="_blank" rel="noopener me" data-event="social_click" data-platform="linkedin" data-link-location="results">See my LinkedIn profile</a></div>
-</div></section>
+</section>
+<section class="h-sec cs-sec" id="snapshots">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">Account snapshots</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">Recent Google Ads results.</h2>
+      <p class="lead reveal">Screenshots from recent work, all campaigns, July 1 to 31, 2026. Client names and industries are not shown. "Conversions" are the actions each account tracks, such as calls, lead forms or purchases, so they differ from account to account.</p>
+      <div class="h-snaps h-snaps--all">
+        {% for s in site.data.snapshots.items %}
+        <figure class="h-snap reveal"><img src="{{ s.img }}" width="1280" height="476" loading="lazy" alt="{{ s.alt | escape }}"><figcaption class="mono"><b>{{ s.headline }}</b><span>{% for st in s.stats %}{{ st.label }} {{ st.value }}{% unless forloop.last %} &middot; {% endunless %}{% endfor %}</span></figcaption></figure>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<section class="h-sec cs-sec" id="reviews">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">Client reviews</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">Quoted exactly as written on Upwork.</h2>
+      <p class="lead reveal">A selection of my {{ site.data.settings.hero_stats[1].count }} five-star reviews. Client names are not shown. Some clients came back for a second or third project.</p>
+      <div class="h-quotes">
+        {% for r in site.data.reviews.items %}
+        <figure class="h-quote reveal"><p class="h-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p><blockquote><p>&ldquo;{{ r.text }}&rdquo;</p></blockquote><figcaption class="mono">{{ r.project }} &middot; {{ r.date }}{% if r.repeat %} &middot; {{ r.repeat }}{% endif %}</figcaption></figure>
+        {% endfor %}
+      </div>
+      <p class="reveal"><a class="h-link" href="{{ site.data.settings.socials.upwork }}" target="_blank" rel="noopener me" data-event="upwork_click" data-link-location="results">See my Upwork profile &rarr;</a></p>
+    </div>
+  </div>
+</section>
 {% include cta.html service="a case study like these" loc="results" %}

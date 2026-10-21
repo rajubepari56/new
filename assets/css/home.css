@@ -1,13 +1,13 @@
 /* Home page: editorial layer on top of main.css. Tokens first. */
-.home{--surface:#12143A;--surface-2:#1A1D4D;--tint:#8B8FFF;--hair:rgba(167,169,214,.18);--hf2:"Inter Tight","Inter",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,"Times New Roman",serif;--ease:cubic-bezier(.22,1,.36,1);--pad:clamp(72px,10vw,144px)}
-.home .wrap{width:min(1200px,100% - 32px)}
-@media(min-width:768px){.home .wrap{width:min(1200px,100% - 48px)}}
-.home .mono,.h-n{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
-.home em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--tint);letter-spacing:0}
-.home main a{color:var(--tint)}
-.home main .btn{color:#fff}.home main .btn--ghost{color:var(--text)}
-.home .btn--wa{border-radius:8px}.home .btn--ghost{border-radius:8px}
-.home .site-header{background:rgba(10,11,30,.88)}
+:is(.home,.cs){--surface:#12143A;--surface-2:#1A1D4D;--tint:#8B8FFF;--hair:rgba(167,169,214,.18);--hf2:"Inter Tight","Inter",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,"Times New Roman",serif;--ease:cubic-bezier(.22,1,.36,1);--pad:clamp(72px,10vw,144px)}
+:is(.home,.cs) .wrap{width:min(1200px,100% - 32px)}
+@media(min-width:768px){:is(.home,.cs) .wrap{width:min(1200px,100% - 48px)}}
+:is(.home,.cs) .mono,.h-n{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
+:is(.home,.cs) em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--tint);letter-spacing:0}
+:is(.home,.cs) main a{color:var(--tint)}
+:is(.home,.cs) main .btn{color:#fff}:is(.home,.cs) main .btn--ghost{color:var(--text)}
+:is(.home,.cs) .btn--wa{border-radius:8px}:is(.home,.cs) .btn--ghost{border-radius:8px}
+:is(.home,.cs) .site-header{background:rgba(10,11,30,.88)}
 
 /* type */
 .h-display{font:600 clamp(2.7rem,8.4vw,6.6rem)/1.01 var(--hf2);letter-spacing:-.035em;margin:0 0 clamp(28px,4vw,56px);max-width:15ch}
@@ -202,17 +202,17 @@
 .h-fit>div+div li{color:var(--muted)}.h-fit>div+div li:before{background:var(--muted)}
 
 /* faq inside home */
-.home .faq__item{border-radius:0;background:transparent;border:0;border-top:1px solid var(--hair);padding:6px 0}
-.home .faq{border-bottom:1px solid var(--hair)}
-.home .faq summary{font:600 1.1rem var(--hf2);padding:16px 0}
+:is(.home,.cs) .faq__item{border-radius:0;background:transparent;border:0;border-top:1px solid var(--hair);padding:6px 0}
+:is(.home,.cs) .faq{border-bottom:1px solid var(--hair)}
+:is(.home,.cs) .faq summary{font:600 1.1rem var(--hf2);padding:16px 0}
 
 /* final */
 .h-final{padding:var(--pad) 0;text-align:left;background:radial-gradient(800px 420px at 12% 100%,rgba(43,47,199,.35),transparent 70%)}
 .h-final .h-cta{margin-top:34px}
 
-.home .site-footer{margin-top:0}
+:is(.home,.cs) .site-footer{margin-top:0}
 @media(prefers-reduced-motion:no-preference){.h-hero .h-display{animation:none}}
-.home main .h-svc__row,.home main .h-snap{color:var(--text)}
+:is(.home,.cs) main .h-svc__row,:is(.home,.cs) main .h-snap{color:var(--text)}
 .h-strip__stats b span{display:inline;margin:0;font-size:.6em;color:var(--tint)}
 .h-svc__intro .h-h2{font-size:clamp(1.7rem,3vw,2.7rem)}
 .h-row{grid-template-columns:150px 1fr 34px}
@@ -242,7 +242,7 @@
 @media(max-width:699px){.bg--track .bg__grid>*{grid-area:auto}}
 
 .bx{--ac:inherit;position:relative;display:flex;flex-direction:column;gap:8px;min-height:210px;padding:20px 20px 16px;border:1px solid var(--hair);border-radius:10px;overflow:hidden;color:var(--text);text-decoration:none!important;background:linear-gradient(180deg,rgba(26,29,77,.55),rgba(18,20,58,.6));transition:transform .45s var(--ease),border-color .3s,background .3s,box-shadow .45s}
-.home main a.bx{color:var(--text)}
+:is(.home,.cs) main a.bx{color:var(--text)}
 .bx:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--ac) 22%,transparent),transparent 70%)}
 .bx:hover,.bx:focus-visible{transform:translateY(-3px);border-color:color-mix(in srgb,var(--ac) 70%,transparent);box-shadow:0 18px 40px rgba(5,6,24,.5)}
 .bx:hover:before,.bx:focus-visible:before{opacity:1}

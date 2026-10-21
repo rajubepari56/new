@@ -72,3 +72,11 @@
 - The bento shows the 8 services you listed. "AI Search Optimization" (the ninth) is linked under the grid and stays on the services page, nav and footer. Tell me if it should be hidden or removed.
 - Bento copy and grouping live in `_data/bento.yml`.
 - The card illustrations are abstract concept diagrams with no numbers (no fake metrics).
+
+## Results and case studies
+- Add case studies as one markdown file each in `_case_studies/` (or in /admin > Case studies). Fields: title, industry, country, headline result, baseline, challenge, steps, architecture diagram, tools, timeline, metrics (value, before, timeframe, multiplier tick), screenshots, real quote. Pages appear at /results/[file-name]/.
+- Roofing supplier case: baseline (before) figures are missing, so the page shows the improvement only. Add the starting ROAS, sales and CPA if you have them. No client quote yet.
+- Sydney café case: the quote is the real Sep 2026 Upwork review with the name hidden. Add the client's name and role only if they give permission.
+- "Case study coming soon" cards (edit in /admin or `_data/coming_soon.yml`): lead tracking for a home-services business, server-side tracking for an e-commerce store, Local SEO for a service-area business. These are placeholder topics, not claims. Replace or delete them when you have real projects, with verified before/after numbers and client permission.
+- No 5X-10X multiplier is shown anywhere except the real "4x average ROAS" (roofing supplier) and the client-reported "1.5x weekday daily revenue" (café), each with its source.
+- Screenshots on case pages: I used the café account screenshots already on the site (all-time totals, labelled). Add anonymized (blurred) screenshots for other cases.

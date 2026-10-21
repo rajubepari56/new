@@ -1,0 +1,131 @@
+---
+layout: default
+---
+{% assign c = page %}
+<article class="cs-page">
+<header class="cs-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/results/">Results</a> / <span>Case study</span></nav>
+    <p class="mono h-tag cs-tag">{{ c.tag }}</p>
+    <h1 class="cs-h1">{{ c.title }}</h1>
+    <dl class="cs-meta">
+      <div><dt class="mono">Industry</dt><dd>{{ c.industry }}</dd></div>
+      <div><dt class="mono">Country</dt><dd>{{ c.country }}</dd></div>
+      <div><dt class="mono">Client</dt><dd>{% if c.name_permission and c.client_name != "" %}{{ c.client_name }}{% else %}{{ c.client_label }} (name kept private){% endif %}</dd></div>
+      <div><dt class="mono">Timeframe</dt><dd>{{ c.timeframe }}</dd></div>
+    </dl>
+    <div class="cs-lead">
+      <p class="h-sub">{{ c.summary }}</p>
+      <div class="cs-big"><span class="mono">Verified result</span><b>{{ c.headline.value }}</b><span>{{ c.headline.label }}</span><small class="mono">{{ c.headline.context }}</small></div>
+    </div>
+  </div>
+</header>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">01 / Starting point</span></div>
+    <div class="h-sec__body cs-two">
+      {% if c.baseline and c.baseline != "" %}<div class="reveal"><h2 class="cs-h2">Baseline</h2><p>{{ c.baseline }}</p></div>{% endif %}
+      <div class="reveal"><h2 class="cs-h2">The business challenge</h2><p>{{ c.challenge }}</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">02 / What I did</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">What I did, step by step.</h2>
+      <ol class="cs-work">{% for w in c.work %}<li class="reveal"><span class="mono h-n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><p>{{ w }}</p></li>{% endfor %}</ol>
+    </div>
+  </div>
+</section>
+
+{% if c.flow and c.flow.stages %}
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">03 / Architecture</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">{{ c.flow.title }}</h2>
+      {% if c.flow.note %}<p class="lead reveal">{{ c.flow.note }}</p>{% endif %}
+      <ol class="cs-flow reveal" aria-label="{{ c.flow.title | escape }}">
+        {% for s in c.flow.stages %}<li class="cs-flow__s"><ul>{% for b in s.boxes %}<li>{{ b }}</li>{% endfor %}</ul></li>{% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">04 / Tools and timeline</span></div>
+    <div class="h-sec__body cs-two">
+      <div class="reveal"><h2 class="cs-h2">Tools used</h2><ul class="cs-tools">{% for t in c.tools %}<li>{{ t }}</li>{% endfor %}</ul></div>
+      <div class="reveal"><h2 class="cs-h2">Timeline</h2>
+        <ol class="cs-tl">{% for t in c.timeline %}<li><b class="mono">{{ t.when }}</b><p>{{ t.what }}</p></li>{% endfor %}</ol></div>
+    </div>
+  </div>
+</section>
+
+<section class="h-sec cs-sec" id="outcome">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">05 / Verified outcome</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">What changed, in numbers.</h2>
+      <div class="cs-metrics">
+        {% for m in c.metrics %}
+        <div class="cs-m reveal">
+          <span class="mono cs-m__l">{{ m.label }}</span>
+          <b>{{ m.value }}</b>
+          {% if m.before and m.before != "" %}<span class="cs-m__ba mono"><s>{{ m.before }}</s> &rarr; {{ m.value }}</span>{% endif %}
+          {% if m.note and m.note != "" %}<span class="cs-m__n">{{ m.note }}</span>{% endif %}
+          {% if m.timeframe and m.timeframe != "" %}<span class="cs-m__t mono">{{ m.timeframe }}</span>{% endif %}
+          {% if m.multiplier %}<span class="cs-m__x mono">Multiplier · source noted</span>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% if c.data_note and c.data_note != "" %}<p class="mono h-note reveal">{{ c.data_note }} Results vary by account and are never guaranteed.</p>{% endif %}
+    </div>
+  </div>
+</section>
+
+{% if c.screens and c.screens.size > 0 %}
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">06 / Screenshots</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">{{ c.screens_title | default: "Account screenshots" }}</h2>
+      {% if c.screens_note %}<p class="lead reveal">{{ c.screens_note }}</p>{% endif %}
+      {% for s in c.screens %}
+      <figure class="cs-shot reveal"><img src="{{ s.img }}" width="{{ s.w }}" height="{{ s.h }}" loading="lazy" alt="{{ s.alt | escape }}"><figcaption><span class="mono">Screenshot {{ forloop.index }}</span><p>{{ s.cap }}</p></figcaption></figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if c.quote and c.quote.text %}
+<section class="h-sec cs-sec">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">07 / Client quote</span></div>
+    <div class="h-sec__body">
+      <figure class="cs-quote reveal"><p class="h-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p><blockquote><p>&ldquo;{{ c.quote.text }}&rdquo;</p></blockquote><figcaption class="mono">{{ c.quote.who }}{% if c.quote.who and c.quote.source %} &middot; {% endif %}{{ c.quote.source }}</figcaption></figure>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{{ content }}
+
+<section class="h-final">
+  <div class="wrap">
+    <p class="h-eyebrow reveal">Next step</p>
+    <h2 class="h-display h-display--m reveal">Want results like this? Get a free <em>tracking audit.</em></h2>
+    <p class="h-sub reveal">Tell me what you run and what you want to measure. I look at your setup myself and reply personally.</p>
+    <div class="h-cta reveal">
+      {% include audit-cta.html class="btn btn--wa btn--lg magnetic" label="Get a Free Tracking Audit" loc="case_study_cta" %}
+      <a class="btn btn--ghost btn--lg" href="/results/" data-event="cta_click" data-cta-text="All results" data-link-location="case_study_cta">All results</a>
+    </div>
+  </div>
+</section>
+</article>

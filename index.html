@@ -145,20 +145,18 @@ faqs:
     <div class="h-sec__rail"><span class="mono">03 / Selected results</span></div>
     <div class="h-sec__body">
       <h2 class="h-h2 reveal">Real accounts. Real numbers. <em>Clients stay anonymous.</em></h2>
-      {% for c in site.data.case_studies.items %}
-      <article class="h-case reveal">
-        <header><span class="mono h-tag">{{ c.tag }}</span><h3>{{ c.title }}</h3><p class="muted">{{ c.client }}</p></header>
-        <ul class="h-case__nums">{% for r in c.results %}<li><b>{{ r.n }}</b><span>{{ r.l }}</span></li>{% endfor %}</ul>
-        <p class="h-case__ctx mono">{{ c.metrics }}</p>
-      </article>
-      {% endfor %}
+      {% assign cases = site.case_studies | sort: "order" %}
+      <div class="rs-list">
+        {% for c in cases %}{% include case-card.html c=c loc="home_results" %}{% endfor %}
+        {% assign soon = site.data.coming_soon.items | first %}{% if soon %}{% include coming-soon-card.html c=soon %}{% endif %}
+      </div>
       <div class="h-snaps">
         {% for s in site.data.snapshots.items limit:3 %}
         <a class="h-snap reveal" href="/results/#snapshots"><img loading="lazy" src="{{ s.img }}" width="1280" height="476" alt="{{ s.alt | escape }}"><span class="mono">{{ s.headline }}</span></a>
         {% endfor %}
       </div>
       <p class="mono h-note reveal">Google Ads account overviews, all campaigns, Jul 1 to 31, 2026. Figures copied exactly. Results vary by account and are never guaranteed.</p>
-      <a class="h-link reveal" href="/results/" data-event="cta_click" data-cta-text="All results" data-link-location="home_results">Full case studies and reviews &rarr;</a>
+      <a class="h-link reveal" href="/results/" data-event="cta_click" data-cta-text="All results" data-link-location="home_results">All case studies, snapshots and reviews &rarr;</a>
     </div>
   </div>
 </section>

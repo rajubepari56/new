@@ -33,11 +33,18 @@ social:
   links:
     - "https://www.linkedin.com/in/rajubepari0-seo-expert/"
 
+collections:
+  case_studies:
+    output: true
+    permalink: /results/:name/
+
 defaults:
   - scope: { path: "", type: "posts" }
     values: { layout: "post", image: "/assets/images/og-image.png" }
   - scope: { path: "" }
     values: { layout: "default", image: "/assets/images/og-image.png" }
+  - scope: { path: "", type: "case_studies" }
+    values: { layout: "case-study", body_class: "cs", image: "/assets/images/og-image.png" }
   - scope: { path: "services", type: "pages" }
     values: { layout: "service" }
 

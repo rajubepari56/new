@@ -1,0 +1,17 @@
+{%- assign c = include.c -%}
+<article class="rs-row reveal">
+  <a class="rs-panel" href="{{ c.url }}" tabindex="-1" aria-hidden="true">
+    <span class="mono rs-panel__k">Verified result</span>
+    <b>{{ c.headline.value }}</b>
+    <span class="rs-panel__l">{{ c.headline.label }}</span>
+    <span class="mono rs-panel__c">{{ c.headline.context }}</span>
+  </a>
+  <div class="rs-text">
+    <p class="mono h-tag">{{ c.tag }}</p>
+    <h3><a href="{{ c.url }}">{{ c.title }}</a></h3>
+    <p class="rs-meta mono">{{ c.industry }} &middot; {{ c.country }} &middot; {{ c.timeframe }}</p>
+    <p class="rs-sum">{{ c.summary }}</p>
+    <ul class="rs-mini">{% for m in c.metrics limit:3 %}<li><b>{{ m.value }}</b><span>{{ m.label }}</span></li>{% endfor %}</ul>
+    <a class="h-link" href="{{ c.url }}" data-event="cta_click" data-cta-text="Case study: {{ c.headline.value | escape }}" data-link-location="{{ include.loc | default: 'results' }}">Read the case study &rarr;</a>
+  </div>
+</article>

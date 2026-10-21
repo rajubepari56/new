@@ -120,37 +120,99 @@ collections:
                 fields:
                   - { label: Label, name: label, widget: string }
                   - { label: Value, name: value, widget: string }
-      - label: Case studies
-        name: case_studies
-        file: _data/case_studies.yml
+      - label: Case studies still to come (placeholder cards)
+        name: coming_soon
+        file: _data/coming_soon.yml
         fields:
-          - label: Case studies
+          - label: Cards
             name: items
             widget: list
             summary: "{{fields.title}}"
             fields:
               - { label: Tag, name: tag, widget: string }
               - { label: Title, name: title, widget: string }
-              - { label: Client description (no names), name: client, widget: string }
-              - { label: Tools, name: tools, widget: list, field: { label: Tool, name: tool, widget: string } }
-              - { label: Challenge, name: challenge, widget: text }
-              - { label: Work done, name: work, widget: list, field: { label: Step, name: step, widget: text } }
-              - label: Results
-                name: results
-                widget: list
-                fields:
-                  - { label: Number, name: n, widget: string }
-                  - { label: Label, name: l, widget: string }
-              - { label: Metrics note, name: metrics, widget: text, required: false }
-              - { label: Screenshots heading, name: screens_title, widget: string, required: false }
-              - { label: Screenshots note, name: screens_note, widget: text, required: false }
-              - label: Screenshots
-                name: screens
-                widget: list
-                required: false
-                fields:
-                  - { label: Image, name: img, widget: image }
-                  - { label: Width, name: w, widget: number }
-                  - { label: Height, name: h, widget: number }
-                  - { label: Alt text, name: alt, widget: text }
-                  - { label: Caption, name: cap, widget: string }
+              - { label: Note, name: note, widget: string }
+
+  - name: case_studies
+    label: Case studies
+    label_singular: Case study
+    folder: _case_studies
+    create: true
+    extension: md
+    slug: "{{slug}}"
+    summary: "{{title}} ({{industry}}, {{country}})"
+    fields:
+      - { label: Title (outcome-led, no client name unless permitted), name: title, widget: string }
+      - { label: Search description, name: description, widget: text }
+      - { label: Order on the page (1 = first), name: order, widget: number, value_type: int, default: 10 }
+      - { label: Tag (for example Google Ads · E-commerce), name: tag, widget: string }
+      - { label: Industry, name: industry, widget: string }
+      - { label: Country, name: country, widget: string }
+      - { label: Anonymized client description, name: client_label, widget: string }
+      - { label: Client name (leave empty unless the client gave permission), name: client_name, widget: string, required: false }
+      - { label: Client confirmed permission to show their name, name: name_permission, widget: boolean, default: false }
+      - { label: Timeframe, name: timeframe, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - label: Headline result (shown on cards)
+        name: headline
+        widget: object
+        fields:
+          - { label: Value (for example 4x or A$0.20), name: value, widget: string }
+          - { label: Label, name: label, widget: string }
+          - { label: Context (timeframe and setting), name: context, widget: string }
+      - { label: Starting point / baseline (real numbers only), name: baseline, widget: text, required: false }
+      - { label: Business challenge, name: challenge, widget: text }
+      - { label: What I did (first person), name: work, widget: list, field: { label: Step, name: step, widget: text } }
+      - label: Architecture diagram
+        name: flow
+        widget: object
+        required: false
+        fields:
+          - { label: Diagram title, name: title, widget: string }
+          - { label: Note, name: note, widget: text, required: false }
+          - label: Stages (left to right; each stage lists the boxes stacked in that column)
+            name: stages
+            widget: list
+            fields:
+              - { label: Boxes in this stage, name: boxes, widget: list, field: { label: Box, name: box, widget: string } }
+      - { label: Tools used, name: tools, widget: list, field: { label: Tool, name: tool, widget: string } }
+      - label: Timeline
+        name: timeline
+        widget: list
+        required: false
+        fields:
+          - { label: When, name: when, widget: string }
+          - { label: What happened, name: what, widget: text }
+      - label: Verified outcome metrics
+        name: metrics
+        widget: list
+        summary: "{{fields.label}}: {{fields.value}}"
+        fields:
+          - { label: Value (after), name: value, widget: string }
+          - { label: Before (optional), name: before, widget: string, required: false }
+          - { label: Label, name: label, widget: string }
+          - { label: Note (optional), name: note, widget: string, required: false }
+          - { label: Timeframe (optional), name: timeframe, widget: string, required: false }
+          - { label: "This is a real multiplier such as 5X (only tick if supported by data)", name: multiplier, widget: boolean, default: false }
+      - { label: Data note (source, caveats), name: data_note, widget: text, required: false }
+      - { label: Screenshots heading, name: screens_title, widget: string, required: false }
+      - { label: Screenshots note (hidden account IDs, names, personal data), name: screens_note, widget: text, required: false }
+      - label: Screenshots (blur account IDs, client names and personal data first)
+        name: screens
+        widget: list
+        required: false
+        fields:
+          - { label: Image, name: img, widget: image }
+          - { label: Width, name: w, widget: number }
+          - { label: Height, name: h, widget: number }
+          - { label: Alt text, name: alt, widget: text }
+          - { label: Caption, name: cap, widget: string }
+      - label: Client quote (real only)
+        name: quote
+        widget: object
+        required: false
+        fields:
+          - { label: Quote (exact words), name: text, widget: text }
+          - { label: Name and role (only if permitted), name: who, widget: string }
+          - { label: Source (for example Upwork review, date), name: source, widget: string }
+      - { label: More detail (optional), name: body, widget: markdown, required: false }

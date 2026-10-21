@@ -312,3 +312,4 @@ html.rm .hero-stats .bar i{transform:none!important}
 .prose .callout{padding:18px 22px 6px;margin:0 0 1.6em;border:1px solid var(--line);border-left:4px solid var(--yellow);border-radius:12px;background:rgba(18,20,58,.6)}.prose .callout p{margin:0 0 .5em}
 .author-box{display:flex;gap:16px;align-items:center;padding:20px;margin-top:40px}.author-box img{border-radius:50%;flex:none}.author-box p{margin:2px 0 4px}
 .blog-grid .card__title{font-size:1.25rem;margin-bottom:.4em}
+.case .muted a{text-decoration:underline}

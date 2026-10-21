@@ -107,12 +107,12 @@ layout: default
   <h2 class="reveal">Real Google Ads results</h2>
   <p class="muted reveal">{{ page.results_note }}</p>
   <div class="cases">
-    {% for c in site.data.case_studies.items %}
+    {% for c in site.case_studies %}
     <article class="glass case reveal">
       <span class="pill pill--green">{{ c.tag }}</span>
       <h3>{{ c.title }}</h3>
-      <div class="stats">{% for r in c.results %}<div class="stat glass"><b>{{ r.n }}</b><span>{{ r.l }}</span></div>{% endfor %}</div>
-      <p class="muted">{{ c.client }}</p>
+      <div class="stats">{% for r in c.metrics %}<div class="stat glass"><b>{{ r.value }}</b><span>{{ r.label }}</span></div>{% endfor %}</div>
+      <p class="muted">{{ c.client_label }}, {{ c.country }}. <a href="{{ c.url }}">Read the case study</a></p>
     </article>
     {% endfor %}
   </div>
