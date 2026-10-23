@@ -83,3 +83,7 @@
 .tcr__issues .is-warn{border-color:rgba(251,188,5,.5)}.tcr__issues .is-warn .tcr__i{background:#FBBC05;color:#0A0B1E}
 .tcr__issues .is-info .tcr__i{background:#4285F4;color:#fff}
 #hc-out{margin-top:28px}
+.tcf__type{flex-basis:100%;border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px}
+.tcf__type label{display:flex;align-items:center;gap:8px;color:#CFD1F0;font-size:.95rem;cursor:pointer}
+.tcf__type input{accent-color:#8B8FFF;width:18px;height:18px}
+.tcr__inc{margin:22px 0 0;padding:14px 18px;border-radius:12px;border:1px solid rgba(251,188,5,.5);background:rgba(251,188,5,.08);color:#F5F6FF}

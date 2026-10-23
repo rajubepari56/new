@@ -9,8 +9,9 @@
     var found = j.tags.filter(function (t) { return t.ok; }), miss = j.tags.filter(function (t) { return !t.ok; });
     var core = ['gtm', 'ga4', 'ads', 'consent'], got = core.filter(function (k) { return found.some(function (t) { return t.key === k; }); }).length;
     var evOk = j.events.filter(function (e) { return e.ok; }).length, host = ''; try { host = new URL(j.page).hostname; } catch (e) {}
-    var h = '<div class="tcr__head"><div><p class="mono tcr__k">Scanned</p><h2 class="tcr__h">' + esc(host) + '</h2>' + (j.platform ? '<p class="muted">Looks like a ' + esc(j.platform) + ' site.</p>' : '') + '</div>' +
+    var h = '<div class="tcr__head"><div><p class="mono tcr__k">Scanned</p><h2 class="tcr__h">' + esc(host) + '</h2>' + '<p class="muted">' + (j.platform ? 'Looks like a ' + esc(j.platform) + ' site. ' : '') + 'Checked as ' + (j.siteType === 'store' ? 'an online store' : 'a lead-generation site') + (j.typeUsed === 'chosen' ? ' (your choice)' : ' (detected)') + '.</p>' + '</div>' +
       '<div class="tcr__score"><b>' + got + '/4</b><span>core signals</span></div><div class="tcr__score"><b>' + evOk + '/' + j.events.length + '</b><span>key events</span></div></div>';
+    if (j.incomplete) h += '<div class="tcr__inc" role="status"><b>Scan may be incomplete.</b> ' + esc(j.incomplete) + ' Treat the results below as a starting point, or book a call and I will check the live site properly.</div>';
     /* recommended teaser first, so the visitor sees what is worth fixing straight away */
     if (j.recommended && j.recommended.length) {
       h += '<div class="tcr__rec"><p class="tcr__rec-t"><span class="tcr__badge">Recommended</span> ' + j.recommended.length + ' thing' + (j.recommended.length > 1 ? 's' : '') + ' worth setting up first</p><ul>' +
@@ -38,11 +39,12 @@
     var id = f.getAttribute('data-checker'), inp = d.getElementById(id + '-url'), err = d.getElementById(id + '-err'), btn = f.querySelector('button'), busy = false;
     var out = d.getElementById(id + '-out'), idle = d.getElementById(id + '-idle'); if (!out) return;
     function run(url) {
+      var tp = f.querySelector('input[name=type]:checked'); var type = tp ? tp.value : 'auto';
       if (busy) return; busy = true; err.hidden = true;
       btn.disabled = true; var lab = btn.textContent; btn.textContent = 'Scanning…';
       out.hidden = false; out.innerHTML = '<p class="tcr__load" role="status"><i></i>Scanning your page and Tag Manager container…</p>';
       push('tracker_scan_start', { link_location: id });
-      fetch('/api/scan', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ url: url }) })
+      fetch('/api/scan', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ url: url, type: type }) })
         .then(function (r) { var ct = r.headers.get('content-type') || ''; if (!/json/.test(ct)) throw new Error('offline'); return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
         .then(function (x) { if (!x.ok) { fail(out, x.j.error || 'The scan failed.', false, idle); push('tracker_scan_error'); } else { render(out, x.j, idle); push('tracker_scan_done', { tags_found: x.j.tags.filter(function (t) { return t.ok; }).length, events_found: x.j.events.filter(function (e) { return e.ok; }).length }); } })
         .catch(function () { fail(out, 'The scanner could not be reached.', true, idle); push('tracker_scan_error'); })

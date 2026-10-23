@@ -42,7 +42,8 @@ const all = (re, s) => uniq([...s.matchAll(re)].map((m) => m[1]));
 export default async (req) => {
   if (req.method !== "POST") return json({ error: "POST only" }, 405);
   let input;
-  try { input = JSON.parse(await req.text()).url; } catch { return json({ error: "Send a website address." }, 400); }
+  let siteType = "auto";
+  try { const body = JSON.parse(await req.text()); input = body.url; if (["store", "leads"].includes(body.type)) siteType = body.type; } catch { return json({ error: "Send a website address." }, 400); }
   input = String(input || "").trim().slice(0, 300);
   if (!input) return json({ error: "Enter your website address." }, 400);
   if (!/^https?:\/\//i.test(input)) input = "https://" + input;
@@ -68,7 +69,7 @@ export default async (req) => {
   const customGtm = /<script[^>]+src=["']https?:\/\/(?!www\.googletagmanager\.com)[^"']+\/gtm\.js\?id=GTM-/i.test(html) || /["']?(?:server_container_url|transport_url)["']?\s*[:,]\s*["']https?:\/\/(?!(?:www\.)?(?:google|googletagmanager)\.)[^"'\s]+/i.test(src);
   const consentMode = has(/gtag\(\s*['"]consent['"]\s*,\s*['"]default['"]/) || has(/ad_user_data/) || has(/"ad_storage"/);
   const cmp = (/cookiebot/i.test(src) && "Cookiebot") || (/onetrust|optanon/i.test(src) && "OneTrust") || (/cookieyes/i.test(src) && "CookieYes") || (/iubenda/i.test(src) && "iubenda") || (/termly/i.test(src) && "Termly") || (/complianz/i.test(src) && "Complianz") || (/usercentrics/i.test(src) && "Usercentrics") || "";
-  const platform = (/cdn\.shopify\.com|Shopify\.theme/i.test(html) && "Shopify") || (/wp-content|wp-includes/i.test(html) && "WordPress") || (/wixstatic|wix\.com/i.test(html) && "Wix") || (/squarespace/i.test(html) && "Squarespace") || (/webflow/i.test(html) && "Webflow") || (/woocommerce/i.test(html) && "WooCommerce") || "";
+  const platform = (/cdn\.shopify\.com|Shopify\.theme/i.test(html) && "Shopify") || (/wp-content|wp-includes/i.test(html) && "WordPress") || (/wixstatic|wix\.com/i.test(html) && "Wix") || (/squarespace/i.test(html) && "Squarespace") || (/webflow/i.test(html) && "Webflow") || (/woocommerce/i.test(html) && "WooCommerce") || (/bigcommerce/i.test(html) && "BigCommerce") || (/Magento|mage\/|\/static\/version/i.test(html) && "Magento") || (/prestashop/i.test(html) && "PrestaShop") || (/opencart/i.test(html) && "OpenCart") || "";
   const title = (html.match(/<title[^>]*>([^<]{1,120})/i) || [])[1] || "";
 
   /* ChatGPT Ads (OpenAI) pixel: loader from bzrcdn.openai.com, oaiq("init", id) and oaiq("measure", event, ...) */
@@ -77,6 +78,8 @@ export default async (req) => {
   const oaiEv = uniq([...src.matchAll(new RegExp(`oaiq\\(\\s*${q}measure${q}\\s*,\\s*${q}([a-z_]{3,40})`, "g"))].map((m) => m[1]));
   const oaiPixel = oaiLoader || oaiInit.length > 0 || oaiEv.length > 0;
   const oaiMap = { generate_lead: "lead_created", purchase: "order_created" };
+  const bare = html.length < 3000 && !gtmIds.length;
+  const incomplete = page.status >= 400 ? "The site answered my scanner with status " + page.status + ", so I could not read the real page." : /just a moment|cf-chl|attention required|access denied|captcha|enable javascript/i.test(html.slice(0, 6000)) && html.length < 60000 ? "The site showed a bot-protection or JavaScript check instead of the page, so some or all tags could not be read." : bare ? "The page returned very little HTML, which usually means tags load only after JavaScript runs. Results below may miss tags that are really there." : "";
   const tags = [
     { key: "gtm", name: "Google Tag Manager", ok: gtmIds.length > 0, detail: gtmIds.join(", ") },
     { key: "ga4", name: "Google Analytics 4", ok: ga4.length > 0, detail: ga4.join(", ") },
@@ -99,7 +102,9 @@ export default async (req) => {
     ...[...html.matchAll(/dataLayer\.push\(\s*\{[^}]*?event['"]?\s*:\s*['"]([A-Za-z0-9_]{2,40})['"]/g)].map((m) => m[1]),
   ]);
   const metaEv = new Set([...src.matchAll(/fbq\(\s*['"]track(?:Custom)?['"]\s*,\s*['"]([A-Za-z0-9_]{2,40})['"]/g)].map((m) => m[1]));
-  const ecommerce = /Shopify|WooCommerce/.test(platform) || ["purchase", "add_to_cart", "begin_checkout"].some((e) => ga4Ev.has(e));
+  const shopSignals = [/Shopify|WooCommerce|BigCommerce|Magento|PrestaShop|OpenCart/.test(platform), /["']@type["']\s*:\s*["']Product["']/.test(html), /og:type["'][^>]*product/i.test(html), /add[\s_-]*to[\s_-]*(cart|bag|basket)/i.test(html), /href=["'][^"']*\/(cart|basket|checkout|shop|collections|products?)[\/"'?]/i.test(html), /(free shipping|shopping cart|view cart|checkout)/i.test(html), ["purchase", "add_to_cart", "begin_checkout", "view_item"].some((e) => ga4Ev.has(e)), /ecommerce|"items"\s*:/.test(container)].filter(Boolean).length;
+  const ecommerce = siteType === "store" || (siteType === "auto" && shopSignals >= 2);
+  const typeUsed = siteType !== "auto" ? "chosen" : "detected";
   const plan = ecommerce
     ? [["view_item", "ViewContent", "Product viewed"], ["add_to_cart", "AddToCart", "Item added to cart"], ["begin_checkout", "InitiateCheckout", "Checkout started"], ["purchase", "Purchase", "Order completed (with value and currency)"]]
     : [["generate_lead", "Lead", "Lead form submitted"], ["whatsapp_click", "Contact", "WhatsApp click"], ["phone_call_click", "Contact", "Click on a phone number"], ["booking_click", "Schedule", "Booking started"]];
@@ -128,11 +133,12 @@ export default async (req) => {
   if (oaiPixel && oaiEv.length === 0) add("bad", "ChatGPT Ads pixel without conversion events", "The OpenAI pixel loads, but I found no oaiq(\"measure\", ...) calls, so ChatGPT Ads has no conversions to report or optimise on.");
   if (oaiPixel) add("info", "Check the oppref click ID survives", "ChatGPT Ads attribute clicks with the oppref parameter on your landing URL. Redirects, link shorteners or form pages that drop URL parameters break attribution.");
   if (oaiPixel && (oaiEv.includes("lead_created") || oaiEv.includes("order_created")) && !/event_id/.test(src)) add("warn", "No event_id found for deduplication", "If you also send conversions through the Conversions API, both calls need the same event_id or each conversion is counted twice.");
+  if (incomplete) add("warn", "The scan may be incomplete", incomplete);
   const recommended = missing.slice(0, 4).map((e) => ({ name: e.name, label: e.label }));
   if (!oaiPixel && (aw.length || fb.length)) recommended.push({ name: "oaiq measure", label: "ChatGPT Ads conversion tracking (if you advertise there)" });
   if (!consentMode && (aw.length || fb.length)) recommended.push({ name: "consent_update", label: "Consent Mode v2" });
   if (!customGtm && (aw.length || fb.length)) recommended.push({ name: "server_side", label: "Server-side tracking" });
-  return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, events, custom, conversionLabels: labels.length, chatgptEvents: oaiEv, issues, recommended, ecommerce,
+  return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, events, custom, conversionLabels: labels.length, siteType: ecommerce ? "store" : "leads", typeUsed, incomplete, chatgptEvents: oaiEv, issues, recommended, ecommerce,
     limits: "This reads only what is publicly visible in the page source and the published GTM container. Tags loaded after consent, behind logins, or on other pages can be missed, and a tag being present does not prove it fires correctly." });
 };
 

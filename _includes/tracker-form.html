@@ -3,5 +3,10 @@
   <label class="sr" for="{{ fid }}-url">Your website address</label>
   <input class="tcf__in" id="{{ fid }}-url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="yourwebsite.com" required>
   <button class="btn btn--wa btn--lg" type="submit">Check my tracking</button>
+  <fieldset class="tcf__type"><legend class="sr">What kind of site is it?</legend>
+    <label><input type="radio" name="type" value="auto" checked> Not sure</label>
+    <label><input type="radio" name="type" value="store"> Online store</label>
+    <label><input type="radio" name="type" value="leads"> Leads / services</label>
+  </fieldset>
   <p class="tcf__err" id="{{ fid }}-err" role="alert" hidden></p>
 </form>
