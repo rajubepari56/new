@@ -1,4 +1,5 @@
 import dns from "node:dns/promises";
+import { getStore } from "@netlify/blobs";
 import net from "node:net";
 
 // POST /api/scan { url } : read-only tracking checker.
@@ -144,6 +145,16 @@ export default async (req) => {
   if (!oaiPixel && (aw.length || fb.length)) recommended.push({ name: "oaiq measure", label: "ChatGPT Ads conversion tracking (if you advertise there)" });
   if (!consentMode && (aw.length || fb.length)) recommended.push({ name: "consent_update", label: "Consent Mode v2" });
   if (!customGtm && (aw.length || fb.length)) recommended.push({ name: "server_side", label: "Server-side tracking" });
+  /* log the scan for the dashboard (Site scans tab). Logging must never break the checker. */
+  try {
+    const when = new Date().toISOString();
+    await getStore("scans").setJSON(`${when}-${Math.random().toString(36).slice(2, 8)}`, {
+      created_at: when, url: page.url.slice(0, 300), host: new URL(page.url).hostname, type: ecommerce ? "store" : "leads", platform,
+      tags_found: tags.filter((t) => t.ok).length, events_found: events.filter((e) => e.ok).length, events_total: events.length, issues: issues.length,
+      status: incomplete ? "incomplete" : "ok",
+      summary: { tags: tags.filter((t) => t.ok).map((t) => t.name + (t.detail ? ` (${t.detail})` : "")), events_missing: missing.map((e) => e.name), issues: issues.map((i) => i.title) },
+    });
+  } catch (e) { console.error("scan log error", e?.name); }
   return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, events, custom, conversionLabels: labels.length, siteType: ecommerce ? "store" : "leads",  incomplete, chatgptEvents: oaiEv, issues, recommended, ecommerce,
     limits: "This reads only what is publicly visible in the page source and the published GTM container. Tags loaded after consent, behind logins, or on other pages can be missed, and a tag being present does not prove it fires correctly." });
 };
