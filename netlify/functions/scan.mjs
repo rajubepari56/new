@@ -71,6 +71,27 @@ export default async (req) => {
   const platform = (/cdn\.shopify\.com|Shopify\.theme/i.test(html) && "Shopify") || (/wp-content|wp-includes/i.test(html) && "WordPress") || (/wixstatic|wix\.com/i.test(html) && "Wix") || (/squarespace/i.test(html) && "Squarespace") || (/webflow/i.test(html) && "Webflow") || (/woocommerce/i.test(html) && "WooCommerce") || "";
   const title = (html.match(/<title[^>]*>([^<]{1,120})/i) || [])[1] || "";
 
+  /* ---- AI search: can ChatGPT and friends read the site, and does the site tag visits that come from them? ---- */
+  const origin = new URL(page.url).origin;
+  let robots = "", llms = false;
+  try { const r = await get(origin + "/robots.txt", 200000, 2); if (r.status === 200 && !/<html/i.test(r.text.slice(0, 300))) robots = r.text; } catch { /* no robots.txt */ }
+  try { const r = await get(origin + "/llms.txt", 20000, 2); llms = r.status === 200 && !/<html/i.test(r.text.slice(0, 300)) && r.text.trim().length > 20; } catch { /* none */ }
+  const groups = []; let cur = null;
+  for (const raw of robots.split(/\r?\n/)) {
+    const line = raw.replace(/#.*/, "").trim(); const m = line.match(/^([A-Za-z-]+)\s*:\s*(.*)$/); if (!m) continue;
+    const k = m[1].toLowerCase(), v = m[2].trim();
+    if (k === "user-agent") { if (!cur || cur.rules.length) { cur = { agents: [], rules: [] }; groups.push(cur); } cur.agents.push(v.toLowerCase()); }
+    else if (cur && (k === "disallow" || k === "allow")) cur.rules.push([k, v]);
+  }
+  const verdict = (bot) => {
+    const g = groups.find((x) => x.agents.includes(bot.toLowerCase())) || groups.find((x) => x.agents.includes("*"));
+    if (!g) return "allowed";
+    const dis = g.rules.some(([k, v]) => k === "disallow" && v === "/"), allow = g.rules.some(([k, v]) => k === "allow" && v === "/");
+    return dis && !allow ? "blocked" : "allowed";
+  };
+  const bots = [["GPTBot", "ChatGPT training crawler"], ["OAI-SearchBot", "ChatGPT search index"], ["ChatGPT-User", "ChatGPT browsing for a user"], ["PerplexityBot", "Perplexity"], ["ClaudeBot", "Claude"], ["Google-Extended", "Gemini training"]].map(([name, what]) => ({ name, what, status: robots ? verdict(name) : "allowed" }));
+  const aiTrack = /ai_referral|ai_source/.test(src) || /chatgpt\.com|chat\.openai\.com/.test(container);
+  const ai = { robots: !!robots, llms, bots, tracking: aiTrack };
   const tags = [
     { key: "gtm", name: "Google Tag Manager", ok: gtmIds.length > 0, detail: gtmIds.join(", ") },
     { key: "ga4", name: "Google Analytics 4", ok: ga4.length > 0, detail: ga4.join(", ") },
@@ -82,6 +103,7 @@ export default async (req) => {
     { key: "clarity", name: "Microsoft Clarity", ok: has(/clarity\.ms/), detail: "" },
     { key: "hotjar", name: "Hotjar", ok: has(/static\.hotjar\.com|hjid/), detail: "" },
     { key: "consent", name: "Consent Mode signals", ok: consentMode, detail: cmp ? "Banner: " + cmp : "" },
+    { key: "aitrack", name: "ChatGPT / AI referral tracking", ok: aiTrack, detail: "" },
     { key: "server", name: "Server-side tagging (custom GTM domain)", ok: customGtm, detail: "" },
   ];
   /* ---- events: only strong signals count (GA4 event tags, custom-event triggers, fbq track calls, dataLayer pushes, gtag events) ---- */
@@ -118,10 +140,15 @@ export default async (req) => {
   if (fb.length && !customGtm) add("info", "Meta Conversions API not visible", "I cannot see from outside whether CAPI also sends events. It protects you from browser and iOS losses.");
   if ((aw.length || fb.length || has(/linkedin|tiktok/)) && !consentMode) add("bad", "No Consent Mode v2 signals", "Advertising tags are present, but I found no consent signals. For EEA, UK and some other traffic, Google can ignore audience and conversion data without them.");
   if (ga4.length && !aw.length && !fb.length) add("info", "No ad conversion tags", "If you run ads, check that conversions reach Google Ads or Meta, not only GA4.");
+  if (!aiTrack) add("warn", "No ChatGPT / AI referral tracking", "Visitors who click through from ChatGPT, Perplexity or Gemini usually show up as plain referral or direct traffic. Without a rule that labels them, you cannot see whether AI search is sending you customers.");
+  const blocked = bots.filter((b) => b.status === "blocked");
+  if (blocked.length) add("warn", "AI crawlers are blocked in robots.txt", blocked.map((b) => b.name).join(", ") + " cannot read this site, so those assistants may never recommend it.");
+  if (!llms) add("info", "No llms.txt file", "An llms.txt file gives AI assistants a clean summary of your business and key pages. It is optional but cheap to add.");
   const recommended = missing.slice(0, 4).map((e) => ({ name: e.name, label: e.label }));
+  if (!aiTrack) recommended.push({ name: "ai_referral", label: "Track visits from ChatGPT and AI search" });
   if (!consentMode && (aw.length || fb.length)) recommended.push({ name: "consent_update", label: "Consent Mode v2" });
   if (!customGtm && (aw.length || fb.length)) recommended.push({ name: "server_side", label: "Server-side tracking" });
-  return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, events, custom, conversionLabels: labels.length, issues, recommended, ecommerce,
+  return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, events, custom, conversionLabels: labels.length, ai, issues, recommended, ecommerce,
     limits: "This reads only what is publicly visible in the page source and the published GTM container. Tags loaded after consent, behind logins, or on other pages can be missed, and a tag being present does not prove it fires correctly." });
 };
 

@@ -83,3 +83,5 @@
 .tcr__issues .is-warn{border-color:rgba(251,188,5,.5)}.tcr__issues .is-warn .tcr__i{background:#FBBC05;color:#0A0B1E}
 .tcr__issues .is-info .tcr__i{background:#4285F4;color:#fff}
 #hc-out{margin-top:28px}
+.tcr__ai{display:grid;gap:16px}
+.tcr__list small{word-break:normal;overflow-wrap:anywhere}
