@@ -47,14 +47,12 @@ Put the verification code (the `content` value of the Google meta tag) in `_data
 ## More
 
 ## Deployment checklist
-1. Approve the release candidate (`QA-REPORT.md`).
 2. Decide the deploy mode. For n8n delivery use a **Git-connected** Netlify deploy (or the Netlify CLI), because functions do not run on a ZIP deploy.
 3. In Netlify > Site configuration > Environment variables set `N8N_WEBHOOK_URL` to your n8n production webhook URL (keep it out of the repo and out of chat history where possible), plus `N8N_WEBHOOK_SECRET` if you add header auth in n8n. Optional: `SITE_URL`, `LEAD_HASH_SALT`. For the dashboard: `ADMIN_KEY`, `NETLIFY_API_TOKEN`, `SITE_ID`.
 4. Build an n8n workflow with a Webhook trigger that accepts the lead JSON, and activate it.
 5. Deploy. Check https://rajubepari.netlify.app loads, then send one test enquiry (test.person@example.com, message "TEST ONLY") and confirm the sheet row and email.
 6. In GTM (container GTM-TZVTKKVM) create the GA4, Google Ads, Meta and consent tags for the dataLayer events the site pushes (generate_lead, whatsapp_click, booking_click and others), test in Preview with the live URL, then publish.
 7. Search Console: add the verification code to `_data/settings.yml`, deploy, verify, and submit `https://rajubepari.netlify.app/sitemap.xml`.
-8. Fill the placeholders in `TODO.md` (booking link, legal pages, personal story, case-study numbers).
 9. Run Lighthouse on the live URL.
 
 ## Free tracking checker (`/tracking-checker/`)
