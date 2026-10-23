@@ -72,7 +72,9 @@ function require_admin(): void {
     $key = (string)cfg('admin_key', '');
     if ($key === '' || strlen($key) < 8) out(['error' => 'not_configured', 'note' => 'Set admin_key in api/config.php'], 503);
     $sent = $_SERVER['HTTP_X_ADMIN_KEY'] ?? '';
-    if (!hash_equals($key, $sent)) { usleep(400000); out(['error' => 'unauthorised'], 401); }
+    $user = (string)cfg('admin_user', '');
+    $userOk = $user === '' || hash_equals($user, $_SERVER['HTTP_X_ADMIN_USER'] ?? '');
+    if (!hash_equals($key, $sent) || !$userOk) { usleep(400000); out(['error' => 'unauthorised'], 401); }
 }
 
 function clean_str($v, int $max): string {

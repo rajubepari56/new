@@ -42,8 +42,8 @@ textarea{width:100%;min-height:70px}
 <div class="wrap">
   <div id="login" class="card">
     <h1>Leads Dashboard</h1>
-    <p class="muted">Enter your admin key to see contact form submissions.</p>
-    <form id="login-form"><input id="key" type="password" autocomplete="current-password" placeholder="Admin key" aria-label="Admin key" required><button class="btn" type="submit">Open dashboard</button></form>
+    <p class="muted">Log in to see enquiries, visitor activity and site scans.</p>
+    <form id="login-form"><input id="user" type="text" autocomplete="username" placeholder="Username" aria-label="Username" required><input id="key" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" required><button class="btn" type="submit">Log in</button></form>
     <p id="login-err" class="err" role="alert"></p>
   </div>
 
@@ -104,10 +104,10 @@ textarea{width:100%;min-height:70px}
 var STATUSES=[["new","New"],["contacted","Contacted"],["call-booked","Call booked"],["proposal","Proposal sent"],["won","Won"],["lost","Lost"],["spam","Spam"]];
 var LABEL={};STATUSES.forEach(function(s){LABEL[s[0]]=s[1]});
 var $=function(id){return document.getElementById(id)};
-var leads=[],KEY="";
-try{KEY=sessionStorage.getItem("adminKey")||""}catch(e){}
+var leads=[],KEY="",USER="";
+try{KEY=sessionStorage.getItem("adminKey")||"";USER=sessionStorage.getItem("adminUser")||""}catch(e){}
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-function api(path,opt){opt=opt||{};opt.headers=Object.assign({"x-admin-key":KEY},opt.headers||{});return fetch(path,opt)}
+function api(path,opt){opt=opt||{};opt.headers=Object.assign({"x-admin-key":KEY,"x-admin-user":USER},opt.headers||{});return fetch(path,opt)}
 function show(on){$("login").hidden=on;$("app").hidden=!on}
 function load(){
   $("app-err").textContent="";
@@ -115,7 +115,7 @@ function load(){
     if(r.status===401){throw new Error("auth")}
     return r.json().then(function(d){if(!r.ok)throw new Error(d.detail||d.error||"error");return d})
   }).then(function(d){leads=d.leads;show(true);render()}).catch(function(e){
-    if(e.message==="auth"){try{sessionStorage.removeItem("adminKey")}catch(x){}show(false);$("login-err").textContent="Wrong admin key.";return}
+    if(e.message==="auth"){try{sessionStorage.removeItem("adminKey");sessionStorage.removeItem("adminUser")}catch(x){}show(false);$("login-err").textContent="Wrong username or password.";return}
     show(true);$("app-err").textContent="Could not load leads ("+e.message+"). Check the setup steps in ADMIN-SETUP.md."})
 }
 function count(arr,fn){var m={};arr.forEach(function(l){var k=fn(l)||"Not given";m[k]=(m[k]||0)+1});return Object.keys(m).map(function(k){return[k,m[k]]}).sort(function(a,b){return b[1]-a[1]})}
@@ -161,8 +161,8 @@ $("list").addEventListener("click",function(e){
      // refresh charts without closing the panel
      var open=box.open;render();var again=document.querySelector('.lead[data-id="'+id+'"]');if(again&&open)again.open=true})
    .catch(function(){msg.textContent="Could not save"})});
-$("login-form").addEventListener("submit",function(e){e.preventDefault();KEY=$("key").value.trim();try{sessionStorage.setItem("adminKey",KEY)}catch(x){}$("login-err").textContent="";load()});
-$("logout").addEventListener("click",function(){try{sessionStorage.removeItem("adminKey")}catch(x){}KEY="";leads=[];show(false)});
+$("login-form").addEventListener("submit",function(e){e.preventDefault();KEY=$("key").value.trim();USER=$("user").value.trim();try{sessionStorage.setItem("adminKey",KEY);sessionStorage.setItem("adminUser",USER)}catch(x){}$("login-err").textContent="";load()});
+$("logout").addEventListener("click",function(){try{sessionStorage.removeItem("adminKey");sessionStorage.removeItem("adminUser")}catch(x){}KEY="";USER="";leads=[];show(false)});
 $("refresh").addEventListener("click",load);
 ["q","f-status","f-service"].forEach(function(id){$(id).addEventListener("input",list)});
 $("f-status").innerHTML+=STATUSES.map(function(s){return'<option value="'+s[0]+'">'+s[1]+'</option>'}).join("");
@@ -178,7 +178,7 @@ function mergeRows(days,key){var m={};days.forEach(function(d){var o=d[key]||{};
 function tot(rows){return rows.reduce(function(a,r){return a+r[1]},0)}
 function loadAct(){
   $("a-err").textContent="";
-  api("/api/activity?days="+$("act-days").value).then(function(r){if(r.status===401)throw new Error("auth");if(!r.ok)throw new Error("error "+r.status);return r.json()}).then(function(d){renderAct(d.days)}).catch(function(e){$("a-err").textContent=e.message==="auth"?"Wrong admin key.":"Could not load activity ("+e.message+"). It needs the Git-connected deploy, see ADMIN-SETUP.md."})
+  api("/api/activity?days="+$("act-days").value).then(function(r){if(r.status===401)throw new Error("auth");if(!r.ok)throw new Error("error "+r.status);return r.json()}).then(function(d){renderAct(d.days)}).catch(function(e){$("a-err").textContent=e.message==="auth"?"Wrong username or password.":"Could not load activity ("+e.message+"). It needs the Git-connected deploy, see ADMIN-SETUP.md."})
 }
 function renderAct(days){
   var pv=days.map(function(d){return tot(Object.keys(d.pv||{}).map(function(k){return[k,d.pv[k]]}))});
@@ -200,7 +200,7 @@ function renderAct(days){
 function esc2(x){return String(x==null?"":x).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function loadScans(){
   $("s-err").textContent="";
-  api("/api/scans").then(function(r){if(r.status===401)throw new Error("auth");if(r.status===404)throw new Error("none");if(!r.ok)throw new Error("error "+r.status);return r.json()}).then(renderScans).catch(function(e){$("s-err").textContent=e.message==="auth"?"Wrong admin key.":e.message==="none"?"Scan history needs the Hostinger (PHP) backend.":"Could not load scans ("+e.message+")."});
+  api("/api/scans").then(function(r){if(r.status===401)throw new Error("auth");if(r.status===404)throw new Error("none");if(!r.ok)throw new Error("error "+r.status);return r.json()}).then(renderScans).catch(function(e){$("s-err").textContent=e.message==="auth"?"Wrong username or password.":e.message==="none"?"Scan history needs the Hostinger (PHP) backend.":"Could not load scans ("+e.message+")."});
 }
 function renderScans(d){
   $("s-empty").hidden=d.total>0;

@@ -96,3 +96,5 @@
 .tcf__opt:hover span{border-color:#8B8FFF}
 .tcf__opt input:checked+span{border-color:#8B8FFF;background:rgba(139,143,255,.16);box-shadow:0 0 0 3px rgba(139,143,255,.22)}
 .tcf__opt input:focus-visible+span{outline:3px solid #FBBC05;outline-offset:2px}
+.footer__bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.footer__login{color:#8E91B8;font-size:.85rem;text-decoration:none}.footer__login:hover{color:#F5F6FF;text-decoration:underline}

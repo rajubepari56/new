@@ -2,6 +2,8 @@
 // Settings for the Hostinger backend. Edit this file in hPanel > File Manager (public_html/api/config.php).
 // This folder is not listed by the web server and only the PHP endpoints are reachable from the browser.
 return [
+    // Username for /dashboard/. Leave empty to log in with the password only.
+    'admin_user'     => 'raju',
     // REQUIRED: the password you type on /dashboard/. Use a long random phrase, 20+ characters.
     'admin_key'      => '',
     // Where new enquiries are emailed. Leave empty to turn email off.
