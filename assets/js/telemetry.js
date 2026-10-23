@@ -35,11 +35,11 @@
     var pv = path(ver, mn, mx), g = '';
     [.25, .5, .75].forEach(function (f) { g += '<line x1="0" x2="' + W + '" y1="' + H * f + '" y2="' + H * f + '" stroke="rgba(255,255,255,.06)" stroke-dasharray="3 6"/>'; });
     var ly = H - 10 - (ver[N - 1] - mn) / (mx - mn) * (H - 24);
-    svg.innerHTML = '<defs><linearGradient id="ltg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#E6C36A" stop-opacity=".3"/><stop offset="1" stop-color="#E6C36A" stop-opacity="0"/></linearGradient></defs>' + g +
+    svg.innerHTML = '<defs><linearGradient id="ltg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8B8FFF" stop-opacity=".3"/><stop offset="1" stop-color="#8B8FFF" stop-opacity="0"/></linearGradient></defs>' + g +
       '<path d="' + pv + ' L' + W + ' ' + H + ' L0 ' + H + ' Z" fill="url(#ltg)"/>' +
       '<path d="' + path(rep, mn, mx) + '" fill="none" stroke="#6B7280" stroke-width="1.6" vector-effect="non-scaling-stroke"/>' +
-      '<path d="' + pv + '" fill="none" stroke="#E6C36A" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>' +
-      '<circle cx="' + W + '" cy="' + ly + '" r="4" fill="#E6C36A"/><circle cx="' + W + '" cy="' + ly + '" r="10" fill="#E6C36A" opacity=".25"><animate attributeName="opacity" values=".3;.05;.3" dur="1.6s" repeatCount="indefinite"/></circle>';
+      '<path d="' + pv + '" fill="none" stroke="#8B8FFF" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>' +
+      '<circle cx="' + W + '" cy="' + ly + '" r="4" fill="#8B8FFF"/><circle cx="' + W + '" cy="' + ly + '" r="10" fill="#8B8FFF" opacity=".25"><animate attributeName="opacity" values=".3;.05;.3" dur="1.6s" repeatCount="indefinite"/></circle>';
     var diff = Math.abs(rep[N - 1] - ver[N - 1]), score = Math.max(62, Math.min(99.6, 100 - diff * 1.1));
     document.getElementById('lt-score').textContent = score.toFixed(1) + '%';
     var dl = document.getElementById('lt-delta'); dl.textContent = diff < 4 ? 'aligned' : 'gap ' + diff.toFixed(1) + ' pts';
