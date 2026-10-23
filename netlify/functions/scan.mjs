@@ -71,11 +71,18 @@ export default async (req) => {
   const platform = (/cdn\.shopify\.com|Shopify\.theme/i.test(html) && "Shopify") || (/wp-content|wp-includes/i.test(html) && "WordPress") || (/wixstatic|wix\.com/i.test(html) && "Wix") || (/squarespace/i.test(html) && "Squarespace") || (/webflow/i.test(html) && "Webflow") || (/woocommerce/i.test(html) && "WooCommerce") || "";
   const title = (html.match(/<title[^>]*>([^<]{1,120})/i) || [])[1] || "";
 
+  /* ChatGPT Ads (OpenAI) pixel: loader from bzrcdn.openai.com, oaiq("init", id) and oaiq("measure", event, ...) */
+  const q = `\\\\?["']`;
+  const oaiLoader = /bzrcdn\.openai\.com/.test(src), oaiInit = [...src.matchAll(new RegExp(`oaiq\\(\\s*${q}init${q}\\s*,\\s*${q}([^"'\\\\]{6,64})`, "g"))].map((m) => m[1]);
+  const oaiEv = uniq([...src.matchAll(new RegExp(`oaiq\\(\\s*${q}measure${q}\\s*,\\s*${q}([a-z_]{3,40})`, "g"))].map((m) => m[1]));
+  const oaiPixel = oaiLoader || oaiInit.length > 0 || oaiEv.length > 0;
+  const oaiMap = { generate_lead: "lead_created", purchase: "order_created" };
   const tags = [
     { key: "gtm", name: "Google Tag Manager", ok: gtmIds.length > 0, detail: gtmIds.join(", ") },
     { key: "ga4", name: "Google Analytics 4", ok: ga4.length > 0, detail: ga4.join(", ") },
     { key: "ads", name: "Google Ads tag / conversions", ok: aw.length > 0, detail: aw.join(", ") },
     { key: "meta", name: "Meta Pixel", ok: fb.length > 0 || has(/connect\.facebook\.net\/[^"']*fbevents\.js/), detail: fb.join(", ") },
+    { key: "chatgpt", name: "ChatGPT Ads pixel (OpenAI)", ok: oaiPixel, detail: oaiInit[0] || "" },
     { key: "tiktok", name: "TikTok Pixel", ok: has(/analytics\.tiktok\.com|ttq\.load/), detail: "" },
     { key: "linkedin", name: "LinkedIn Insight Tag", ok: has(/snap\.licdn\.com|_linkedin_partner_id/), detail: "" },
     { key: "bing", name: "Microsoft Ads (UET)", ok: has(/bat\.bing\.com/), detail: "" },
@@ -98,7 +105,7 @@ export default async (req) => {
     : [["generate_lead", "Lead", "Lead form submitted"], ["whatsapp_click", "Contact", "WhatsApp click"], ["phone_call_click", "Contact", "Click on a phone number"], ["booking_click", "Schedule", "Booking started"]];
   const alias = { phone_call_click: /^(phone_call_click|click_to_call|call_click|phone_click|tel_click)$/, whatsapp_click: /^(whatsapp_click|whatsapp|wa_click)$/, booking_click: /^(booking_click|schedule|book_call|calendly_click|appointment)$/, generate_lead: /^(generate_lead|lead|form_submit|form_submission|contact_form|submit_lead_form)$/ };
   const hit = (set, name) => [...set].some((e) => (alias[name] ? alias[name].test(e) : e === name));
-  const events = plan.map(([name, metaName, label]) => ({ name, label, ga4: hit(ga4Ev, name), meta: metaEv.has(metaName) || metaEv.has(name), metaName, ok: hit(ga4Ev, name) || metaEv.has(metaName) }));
+  const events = plan.map(([name, metaName, label]) => ({ name, label, ga4: hit(ga4Ev, name), meta: metaEv.has(metaName) || metaEv.has(name), metaName, ok: hit(ga4Ev, name) || metaEv.has(metaName) || (oaiMap[name] && oaiEv.includes(oaiMap[name])), chatgpt: !!(oaiMap[name] && oaiEv.includes(oaiMap[name])) }));
   const standard = new Set([...plan.map((p) => p[0]), "page_view", "gtm.js", "gtm.dom", "gtm.load", "gtm.click", "gtm.linkClick", "gtm.formSubmit", "gtm.historyChange", "gtm.scrollDepth", "gtm.timer", "gtm.video", "gtm.elementVisibility", "gtm.triggerGroup", "gtm.init", "gtm.init_consent", "default", "granted", "denied"]);
   const custom = [...ga4Ev].filter((e) => !standard.has(e) && !/^gtm\./.test(e) && !/^(true|false|null|undefined|string|number|object|function|auto|none|gtag|config|set|js|get|consent|update|click|load|ready|submit|scroll|change|input|focus|blur|resize|text|url|path|host|href|name|value|type|id|class|class_name|tag|link|form|page|data|event|events|url_path|hostname)$/i.test(e) && /^[a-z][a-z0-9_]*$/.test(e) && e.length > 3).slice(0, 12);
   const labels = uniq([...src.matchAll(/(?:"vtp_conversionLabel"\s*:\s*"([\w-]{6,})"|send_to['"]?\s*[:=]\s*['"]AW-\d+\/([\w-]{6,}))/g)].map((m) => m[1] || m[2]));
@@ -118,10 +125,14 @@ export default async (req) => {
   if (fb.length && !customGtm) add("info", "Meta Conversions API not visible", "I cannot see from outside whether CAPI also sends events. It protects you from browser and iOS losses.");
   if ((aw.length || fb.length || has(/linkedin|tiktok/)) && !consentMode) add("bad", "No Consent Mode v2 signals", "Advertising tags are present, but I found no consent signals. For EEA, UK and some other traffic, Google can ignore audience and conversion data without them.");
   if (ga4.length && !aw.length && !fb.length) add("info", "No ad conversion tags", "If you run ads, check that conversions reach Google Ads or Meta, not only GA4.");
+  if (oaiPixel && oaiEv.length === 0) add("bad", "ChatGPT Ads pixel without conversion events", "The OpenAI pixel loads, but I found no oaiq(\"measure\", ...) calls, so ChatGPT Ads has no conversions to report or optimise on.");
+  if (oaiPixel) add("info", "Check the oppref click ID survives", "ChatGPT Ads attribute clicks with the oppref parameter on your landing URL. Redirects, link shorteners or form pages that drop URL parameters break attribution.");
+  if (oaiPixel && (oaiEv.includes("lead_created") || oaiEv.includes("order_created")) && !/event_id/.test(src)) add("warn", "No event_id found for deduplication", "If you also send conversions through the Conversions API, both calls need the same event_id or each conversion is counted twice.");
   const recommended = missing.slice(0, 4).map((e) => ({ name: e.name, label: e.label }));
+  if (!oaiPixel && (aw.length || fb.length)) recommended.push({ name: "oaiq measure", label: "ChatGPT Ads conversion tracking (if you advertise there)" });
   if (!consentMode && (aw.length || fb.length)) recommended.push({ name: "consent_update", label: "Consent Mode v2" });
   if (!customGtm && (aw.length || fb.length)) recommended.push({ name: "server_side", label: "Server-side tracking" });
-  return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, events, custom, conversionLabels: labels.length, issues, recommended, ecommerce,
+  return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, events, custom, conversionLabels: labels.length, chatgptEvents: oaiEv, issues, recommended, ecommerce,
     limits: "This reads only what is publicly visible in the page source and the published GTM container. Tags loaded after consent, behind logins, or on other pages can be missed, and a tag being present does not prove it fires correctly." });
 };
 
