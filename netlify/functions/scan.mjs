@@ -42,8 +42,8 @@ const all = (re, s) => uniq([...s.matchAll(re)].map((m) => m[1]));
 export default async (req) => {
   if (req.method !== "POST") return json({ error: "POST only" }, 405);
   let input;
-  let siteType = "auto";
-  try { const body = JSON.parse(await req.text()); input = body.url; if (["store", "leads"].includes(body.type)) siteType = body.type; } catch { return json({ error: "Send a website address." }, 400); }
+  let siteType = "leads";
+  try { const body = JSON.parse(await req.text()); input = body.url; if (body.type === "store") siteType = "store"; } catch { return json({ error: "Send a website address." }, 400); }
   input = String(input || "").trim().slice(0, 300);
   if (!input) return json({ error: "Enter your website address." }, 400);
   if (!/^https?:\/\//i.test(input)) input = "https://" + input;
@@ -102,17 +102,23 @@ export default async (req) => {
     ...[...html.matchAll(/dataLayer\.push\(\s*\{[^}]*?event['"]?\s*:\s*['"]([A-Za-z0-9_]{2,40})['"]/g)].map((m) => m[1]),
   ]);
   const metaEv = new Set([...src.matchAll(/fbq\(\s*['"]track(?:Custom)?['"]\s*,\s*['"]([A-Za-z0-9_]{2,40})['"]/g)].map((m) => m[1]));
-  const shopSignals = [/Shopify|WooCommerce|BigCommerce|Magento|PrestaShop|OpenCart/.test(platform), /["']@type["']\s*:\s*["']Product["']/.test(html), /og:type["'][^>]*product/i.test(html), /add[\s_-]*to[\s_-]*(cart|bag|basket)/i.test(html), /href=["'][^"']*\/(cart|basket|checkout|shop|collections|products?)[\/"'?]/i.test(html), /(free shipping|shopping cart|view cart|checkout)/i.test(html), ["purchase", "add_to_cart", "begin_checkout", "view_item"].some((e) => ga4Ev.has(e)), /ecommerce|"items"\s*:/.test(container)].filter(Boolean).length;
-  const ecommerce = siteType === "store" || (siteType === "auto" && shopSignals >= 2);
-  const typeUsed = siteType !== "auto" ? "chosen" : "detected";
+  const ecommerce = siteType === "store";   // the visitor chooses: two separate checks, no guessing
+  const typeUsed = "chosen";
   const plan = ecommerce
     ? [["view_item", "ViewContent", "Product viewed"], ["add_to_cart", "AddToCart", "Item added to cart"], ["begin_checkout", "InitiateCheckout", "Checkout started"], ["purchase", "Purchase", "Order completed (with value and currency)"]]
-    : [["generate_lead", "Lead", "Lead form submitted"], ["whatsapp_click", "Contact", "WhatsApp click"], ["phone_call_click", "Contact", "Click on a phone number"], ["booking_click", "Schedule", "Booking started"]];
-  const alias = { phone_call_click: /^(phone_call_click|click_to_call|call_click|phone_click|tel_click)$/, whatsapp_click: /^(whatsapp_click|whatsapp|wa_click)$/, booking_click: /^(booking_click|schedule|book_call|calendly_click|appointment)$/, generate_lead: /^(generate_lead|lead|form_submit|form_submission|contact_form|submit_lead_form)$/ };
+    : [["generate_lead", "Lead", "Lead form submitted"], ["phone_call_click", "Contact", "Click on a phone number or call button"], ["email_click", "Contact", "Click on an email address"], ["whatsapp_click", "Contact", "WhatsApp click"], ["booking_click", "Schedule", "Booking or appointment started"]];
+  const alias = {
+    generate_lead: /(^|_)(generate_lead|lead|leads|form_?(submit|submission|success|sent)|submit_?form|ninja_form\w*|wpforms\w*|cf7\w*|gravity\w*|contact_form\w*)(_|$)/i,
+    phone_call_click: /(phone|call|tel)(_|$)|click_to_call|(^|_)tel_/i,
+    email_click: /(^|_)(email|mailto)(_|$)/i,
+    whatsapp_click: /whatsapp|(^|_)wa_click/i,
+    booking_click: /book|schedul|appointment|calendly/i,
+  };
   const hit = (set, name) => [...set].some((e) => (alias[name] ? alias[name].test(e) : e === name));
-  const events = plan.map(([name, metaName, label]) => ({ name, label, ga4: hit(ga4Ev, name), meta: metaEv.has(metaName) || metaEv.has(name), metaName, ok: hit(ga4Ev, name) || metaEv.has(metaName) || (oaiMap[name] && oaiEv.includes(oaiMap[name])), chatgpt: !!(oaiMap[name] && oaiEv.includes(oaiMap[name])) }));
-  const standard = new Set([...plan.map((p) => p[0]), "page_view", "gtm.js", "gtm.dom", "gtm.load", "gtm.click", "gtm.linkClick", "gtm.formSubmit", "gtm.historyChange", "gtm.scrollDepth", "gtm.timer", "gtm.video", "gtm.elementVisibility", "gtm.triggerGroup", "gtm.init", "gtm.init_consent", "default", "granted", "denied"]);
-  const custom = [...ga4Ev].filter((e) => !standard.has(e) && !/^gtm\./.test(e) && !/^(true|false|null|undefined|string|number|object|function|auto|none|gtag|config|set|js|get|consent|update|click|load|ready|submit|scroll|change|input|focus|blur|resize|text|url|path|host|href|name|value|type|id|class|class_name|tag|link|form|page|data|event|events|url_path|hostname)$/i.test(e) && /^[a-z][a-z0-9_]*$/.test(e) && e.length > 3).slice(0, 12);
+  const events = plan.map(([name, metaName, label]) => ({ name, label, ga4: hit(ga4Ev, name), meta: metaEv.has(metaName) || metaEv.has(name), metaName, ok: !!(hit(ga4Ev, name) || metaEv.has(metaName) || (oaiMap[name] && oaiEv.includes(oaiMap[name]))), chatgpt: !!(oaiMap[name] && oaiEv.includes(oaiMap[name])) }));
+  const matched = (e) => plan.some(([n]) => (alias[n] ? alias[n].test(e) : e === n));
+  const standard = new Set(["page_view", "gtm.js", "gtm.dom", "gtm.load", "gtm.click", "gtm.linkClick", "gtm.formSubmit", "gtm.historyChange", "gtm.scrollDepth", "gtm.timer", "gtm.video", "gtm.elementVisibility", "gtm.triggerGroup", "gtm.init", "gtm.init_consent", "default", "granted", "denied"]);
+  const custom = [...ga4Ev].filter((e) => !standard.has(e) && !matched(e) && !/^(time|timer|outbound|button_click|history|visibility|scroll_depth|user_engagement)$/i.test(e) && !/^gtm\./.test(e) && !/^(true|false|null|undefined|string|number|object|function|auto|none|gtag|config|set|js|get|consent|update|click|load|ready|submit|scroll|change|input|focus|blur|resize|text|url|path|host|href|name|value|type|id|class|class_name|tag|link|form|page|data|event|events|url_path|hostname)$/i.test(e) && /^[a-z][a-z0-9_]*$/.test(e) && e.length > 3).slice(0, 12);
   const labels = uniq([...src.matchAll(/(?:"vtp_conversionLabel"\s*:\s*"([\w-]{6,})"|send_to['"]?\s*[:=]\s*['"]AW-\d+\/([\w-]{6,}))/g)].map((m) => m[1] || m[2]));
   const missing = events.filter((e) => !e.ok);
   const pvOnlyMeta = fb.length > 0 && metaEv.size === 0;
@@ -138,7 +144,7 @@ export default async (req) => {
   if (!oaiPixel && (aw.length || fb.length)) recommended.push({ name: "oaiq measure", label: "ChatGPT Ads conversion tracking (if you advertise there)" });
   if (!consentMode && (aw.length || fb.length)) recommended.push({ name: "consent_update", label: "Consent Mode v2" });
   if (!customGtm && (aw.length || fb.length)) recommended.push({ name: "server_side", label: "Server-side tracking" });
-  return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, events, custom, conversionLabels: labels.length, siteType: ecommerce ? "store" : "leads", typeUsed, incomplete, chatgptEvents: oaiEv, issues, recommended, ecommerce,
+  return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, events, custom, conversionLabels: labels.length, siteType: ecommerce ? "store" : "leads",  incomplete, chatgptEvents: oaiEv, issues, recommended, ecommerce,
     limits: "This reads only what is publicly visible in the page source and the published GTM container. Tags loaded after consent, behind logins, or on other pages can be missed, and a tag being present does not prove it fires correctly." });
 };
 
