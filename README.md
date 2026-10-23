@@ -58,3 +58,6 @@ Put the verification code (the `content` value of the Google meta tag) in `_data
 7. Search Console: add the verification code to `_data/settings.yml`, deploy, verify, and submit `https://rajubepari.netlify.app/sitemap.xml`.
 8. Fill the placeholders in `TODO.md` (booking link, legal pages, personal story, case-study numbers).
 9. Run Lighthouse on the live URL.
+
+## Free tracking checker (`/tracking-checker/`)
+Visitors paste their website address; `netlify/functions/scan.mjs` (`POST /api/scan`) reads the public page plus the published GTM container and reports visible tags (GTM, GA4, Google Ads, Meta, TikTok, LinkedIn, Microsoft, Clarity, Hotjar, Consent Mode, server-side hint). It blocks private/internal addresses (also on redirects), times out at 8 s, and stores nothing. Like the other functions it needs a Git or CLI deploy; on a ZIP-only deploy the page shows a "request a manual check" fallback.

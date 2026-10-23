@@ -1,0 +1,7 @@
+{%- assign fid = include.id | default: "tc" -%}
+<form class="tcf" id="{{ fid }}-form" action="/tracking-checker/" method="get" novalidate data-checker="{{ fid }}">
+  <label class="sr" for="{{ fid }}-url">Your website address</label>
+  <input class="tcf__in" id="{{ fid }}-url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="yourwebsite.com" required>
+  <button class="btn btn--wa btn--lg" type="submit">Check my tracking</button>
+  <p class="tcf__err" id="{{ fid }}-err" role="alert" hidden></p>
+</form>

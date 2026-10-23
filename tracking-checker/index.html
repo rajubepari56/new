@@ -1,0 +1,32 @@
+---
+layout: default
+title: "Free Website Tracking Checker | Raju Bepari"
+crumb: Tracking checker
+description: Enter your website address and see which tracking tags are visible today: Google Tag Manager, GA4, Google Ads, Meta Pixel, consent signals and more. Free, instant, nothing is stored.
+permalink: /tracking-checker/
+body_class: cs
+---
+<header class="cs-hero cs-hero--list">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Tracking checker</span></nav>
+    <p class="h-eyebrow">Free tool</p>
+    <h1 class="h-display h-display--m">See your current tracking. <em>In seconds.</em></h1>
+    <p class="h-sub">Paste your website address. I scan the public page and the published Tag Manager container, then show which tags are visible and what looks wrong. Nothing is stored.</p>
+    {% include tracker-form.html id="tc" %}
+  </div>
+</header>
+
+<section class="h-sec cs-sec" id="tc-out-sec" aria-live="polite">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">Result</span></div>
+    <div class="h-sec__body">
+      <div id="tc-out" class="tcr" hidden></div>
+      <div id="tc-idle" class="tcr tcr--idle">
+        <p class="muted">Your result appears here. The checker looks for:</p>
+        <ul class="tcr__chips"><li>Google Tag Manager</li><li>GA4</li><li>Google Ads</li><li>Meta Pixel</li><li>TikTok</li><li>LinkedIn</li><li>Microsoft Ads</li><li>Clarity and Hotjar</li><li>Consent Mode</li><li>Server-side tagging</li></ul>
+        <p class="mono h-note">A scan reads only what is public. Tags loaded after consent, behind a login or on other pages can be missed, and a tag being present does not prove it fires correctly. A full audit checks that properly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% include cta.html service="a full tracking audit" loc="tracking_checker" %}
