@@ -3,7 +3,7 @@ import { getStore } from "@netlify/blobs";
 // POST /api/track : privacy-friendly visit and click counters.
 // Stores only anonymous daily totals (page, event name, referrer host, country code, device type).
 // No IP address, cookie, visitor id or user agent is stored. "Do Not Track" and Global Privacy Control are respected.
-const EVENTS = ["whatsapp_click", "email_click", "booking_click", "upwork_click", "cta_click", "social_click", "generate_lead", "ai_referral"];
+const EVENTS = ["whatsapp_click", "email_click", "booking_click", "upwork_click", "cta_click", "social_click", "generate_lead"];
 const BOT = /bot|crawl|spider|slurp|headless|lighthouse|preview|monitor|curl|wget|python|node-fetch/i;
 const ok = () => new Response(null, { status: 204 });
 const clean = (v, n) => String(v || "").replace(/[^\w\-./:@ ]/g, "").slice(0, n);
