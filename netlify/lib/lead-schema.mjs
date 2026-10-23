@@ -1,4 +1,4 @@
-// Single source of truth for contact-form validation. The same rules are documented for the n8n workflow in docs/N8N-WORKFLOW.md.
+// Single source of truth for contact-form validation. Mirror these rules in your n8n workflow.
 export const BUSINESS_TYPES = ["Local service business", "Ecommerce", "Agency", "Other"];
 export const SERVICES = [
   "Google Ads Management", "GA4 Setup & Audit", "Google Tag Manager", "Meta Pixel & Conversions API",
