@@ -1,0 +1,5 @@
+# Only the PHP endpoints are reachable; config and helper files are not.
+<FilesMatch "^(config|lib|schema)\.php$">
+  Require all denied
+</FilesMatch>
+Options -Indexes

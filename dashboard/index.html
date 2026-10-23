@@ -52,7 +52,7 @@ textarea{width:100%;min-height:70px}
       <h1>Dashboard</h1>
       <div><button class="btn ghost" id="refresh" type="button">Refresh</button> <button class="btn ghost" id="csv" type="button">Download CSV</button> <a class="btn" href="/admin/">Edit site content</a> <button class="btn ghost" id="logout" type="button">Log out</button></div>
     </header>
-    <nav class="tabs" role="tablist" aria-label="Dashboard sections"><button class="tab" id="t-leads" role="tab" aria-selected="true" type="button">Enquiries</button><button class="tab" id="t-activity" role="tab" aria-selected="false" type="button">Visitor activity</button></nav>
+    <nav class="tabs" role="tablist" aria-label="Dashboard sections"><button class="tab" id="t-leads" role="tab" aria-selected="true" type="button">Enquiries</button><button class="tab" id="t-activity" role="tab" aria-selected="false" type="button">Visitor activity</button><button class="tab" id="t-scans" role="tab" aria-selected="false" type="button">Site scans</button></nav>
     <div id="tab-leads">
     <div class="kpis" id="kpis"></div>
     <div class="charts">
@@ -85,6 +85,16 @@ textarea{width:100%;min-height:70px}
       <p id="a-empty" class="muted" hidden>No activity recorded yet. Counters start once the site is deployed from Git (see ADMIN-SETUP.md). Visitors who send "Do Not Track" are not counted, and bots are ignored.</p>
       <p class="muted">Anonymous totals only: no cookies, IP addresses or visitor IDs are stored. Numbers are approximate.</p>
       <p id="a-err" class="err" role="alert"></p>
+    </div>
+    <div id="tab-scans" hidden>
+      <div class="kpis" id="s-kpis"></div>
+      <div class="charts">
+        <div class="card"><h2>Scans per day (last 30 days)</h2><svg id="s-daily" viewBox="0 0 600 160" width="100%" role="img" aria-label="Scans per day"></svg></div>
+        <div class="card"><h2>Most-scanned sites</h2><div id="s-top"></div></div>
+      </div>
+      <div id="s-list"></div>
+      <p id="s-empty" class="muted" hidden>No scans yet. Every website checked on the Tracking checker appears here with what was found.</p>
+      <p id="s-err" class="err" role="alert"></p>
     </div>
     <p id="app-err" class="err" role="alert"></p>
   </div>
@@ -162,8 +172,8 @@ $("csv").addEventListener("click",function(){
   var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="leads.csv";a.click()});
 
 /* ---- visitor activity tab ---- */
-function setTab(t){$("tab-leads").hidden=t!=="leads";$("tab-activity").hidden=t!=="activity";$("t-leads").setAttribute("aria-selected",t==="leads");$("t-activity").setAttribute("aria-selected",t==="activity");if(t==="activity")loadAct()}
-$("t-leads").addEventListener("click",function(){setTab("leads")});$("t-activity").addEventListener("click",function(){setTab("activity")});
+function setTab(t){$("tab-leads").hidden=t!=="leads";$("tab-activity").hidden=t!=="activity";$("tab-scans").hidden=t!=="scans";$("t-leads").setAttribute("aria-selected",t==="leads");$("t-activity").setAttribute("aria-selected",t==="activity");$("t-scans").setAttribute("aria-selected",t==="scans");if(t==="activity")loadAct();if(t==="scans")loadScans()}
+$("t-leads").addEventListener("click",function(){setTab("leads")});$("t-scans").addEventListener("click",function(){setTab("scans")});$("t-activity").addEventListener("click",function(){setTab("activity")});
 function mergeRows(days,key){var m={};days.forEach(function(d){var o=d[key]||{};Object.keys(o).forEach(function(k){m[k]=(m[k]||0)+o[k]})});return Object.keys(m).map(function(k){return[k,m[k]]}).sort(function(a,b){return b[1]-a[1]})}
 function tot(rows){return rows.reduce(function(a,r){return a+r[1]},0)}
 function loadAct(){
@@ -184,6 +194,25 @@ function renderAct(days){
   $("a-funnel").innerHTML='<div class="bar"><em>Visits</em><i style="width:55%"></i><span>'+sessions+'</span></div><div class="bar"><em>Contact actions</em><i style="width:'+Math.max(2,sessions?contact/sessions*55:2)+'%"></i><span>'+contact+' ('+pct(contact,sessions)+')</span></div><div class="bar"><em>Enquiries</em><i style="width:'+Math.max(2,sessions?leadsN/sessions*55:2)+'%"></i><span>'+leadsN+' ('+pct(leadsN,sessions)+')</span></div><p class="muted">Contact actions = WhatsApp, email and booking clicks plus enquiries.</p>';
   bars($("a-pages"),mergeRows(days,"pv"));bars($("a-ref"),mergeRows(days,"ref"));bars($("a-cc"),mergeRows(days,"cc"));bars($("a-dev"),mergeRows(days,"dev"));bars($("a-src"),mergeRows(days,"src"));
   bars($("a-ev"),evAll.filter(function(r){return r[0].indexOf(" @ ")>-1}));
+}
+
+/* ---- site scans tab (tracking checker usage) ---- */
+function esc2(x){return String(x==null?"":x).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function loadScans(){
+  $("s-err").textContent="";
+  api("/api/scans").then(function(r){if(r.status===401)throw new Error("auth");if(r.status===404)throw new Error("none");if(!r.ok)throw new Error("error "+r.status);return r.json()}).then(renderScans).catch(function(e){$("s-err").textContent=e.message==="auth"?"Wrong admin key.":e.message==="none"?"Scan history needs the Hostinger (PHP) backend.":"Could not load scans ("+e.message+")."});
+}
+function renderScans(d){
+  $("s-empty").hidden=d.total>0;
+  $("s-kpis").innerHTML=[["Total scans",d.total],["Last 24 hours",d.last24h],["Last 7 days",d.last7d],["Different sites",d.unique_sites],["Service sites",d.services],["Online stores",d.stores]].map(function(k){return'<div class="card kpi"><b>'+k[1]+'</b><span>'+k[0]+'</span></div>'}).join("");
+  var days=[],i;for(i=29;i>=0;i--){var dt=new Date(Date.now()-i*864e5).toISOString().slice(0,10);days.push([dt,(d.per_day||{})[dt]||0])}
+  var mx=Math.max.apply(null,days.map(function(x){return x[1]}).concat([1])),bw=600/30,h="";
+  days.forEach(function(x,j){var bh=x[1]/mx*120;h+='<rect x="'+(j*bw+1)+'" y="'+(140-bh)+'" width="'+(bw-2)+'" height="'+Math.max(bh,1)+'" rx="2" fill="#6ea8ff"><title>'+x[0]+': '+x[1]+'</title></rect>'});
+  $("s-daily").innerHTML=h+'<text x="0" y="156" fill="#9aa6d6" font-size="10">'+days[0][0]+'</text><text x="600" y="156" fill="#9aa6d6" font-size="10" text-anchor="end">'+days[29][0]+' (max '+mx+')</text>';
+  var cnt={};d.scans.forEach(function(s){cnt[s.host]=(cnt[s.host]||0)+1});bars($("s-top"),Object.keys(cnt).map(function(k){return[k,cnt[k]]}).sort(function(a,b){return b[1]-a[1]}).slice(0,10));
+  $("s-list").innerHTML=d.scans.map(function(s){var sm=s.summary||{};
+    return'<details class="card lead"><summary><span><b><a href="'+esc2(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc2(s.host||s.url)+'</a></b><br><span class="muted">'+esc2((s.created_at||"").replace("T"," ").slice(0,16))+' UTC</span></span><span>'+(s.type==="store"?"Online store":"Service site")+(s.platform?' &middot; '+esc2(s.platform):"")+'</span><span class="muted">Tags '+s.tags_found+' &middot; Events '+s.events_found+'/'+s.events_total+'</span><span class="pill '+(s.issues>2?"s-lost":"s-new")+'">'+s.issues+' issue'+(s.issues===1?"":"s")+'</span><span class="pill">'+esc2(s.status)+'</span></summary>'+
+    '<div class="detail"><dl><dt>Full address scanned</dt><dd><a href="'+esc2(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc2(s.url)+'</a></dd><dt>Tags found</dt><dd>'+((sm.tags||[]).map(esc2).join("<br>")||"none")+'</dd></dl><dl><dt>Events missing</dt><dd>'+((sm.events_missing||[]).map(esc2).join(", ")||"none")+'</dd><dt>Problems flagged</dt><dd>'+((sm.issues||[]).map(esc2).join("<br>")||"none")+'</dd></dl></div></details>'}).join("");
 }
 $("act-days").addEventListener("change",loadAct);
 if(KEY)load();

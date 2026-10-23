@@ -50,4 +50,4 @@ defaults:
   - scope: { path: "services", type: "pages" }
     values: { layout: "service" }
 
-exclude: ["*.zip", netlify.toml, netlify, package.json, package-lock.json, node_modules, ADMIN-SETUP.md, README.md, scripts, Gemfile, Gemfile.lock, vendor]
+exclude: [hostinger, "*.zip", netlify.toml, netlify, package.json, package-lock.json, node_modules, ADMIN-SETUP.md, README.md, scripts, Gemfile, Gemfile.lock, vendor]

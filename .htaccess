@@ -8,6 +8,7 @@ RewriteEngine On
 # Uncomment the next two lines once SSL is active in hPanel to force https
 # RewriteCond %{HTTPS} off
 # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule ^api/(lead|leads|lead-update|track|activity|scan|scans)/?$ api/$1.php [L,QSA]
 RewriteRule ^blog/?$ /insights/ [R=301,L]
 RewriteRule ^privacy/?$ /privacy-policy/ [R=301,L]
 </IfModule>
