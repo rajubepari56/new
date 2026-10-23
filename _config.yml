@@ -33,7 +33,7 @@ social:
   links:
     - "https://www.linkedin.com/in/rajubepari0-seo-expert/"
 
-include: [_redirects]
+include: [_redirects, .htaccess]
 
 collections:
   case_studies:
