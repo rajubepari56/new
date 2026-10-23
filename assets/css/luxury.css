@@ -54,3 +54,5 @@
 .tcr__err{border:1px solid rgba(234,67,53,.45);border-radius:12px;padding:20px;display:grid;gap:12px;justify-items:start}
 .tcr__load{display:flex;align-items:center;gap:12px;color:#CFD1F0}.tcr__load i{width:18px;height:18px;border-radius:50%;border:2px solid rgba(139,143,255,.3);border-top-color:#8B8FFF;animation:tcspin .8s linear infinite}
 @keyframes tcspin{to{transform:rotate(360deg)}}
+.footer__cta{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+.footer__check{font-weight:600;color:#B7BAFF;text-decoration:underline;text-underline-offset:4px}.footer__check:hover{color:#fff}
