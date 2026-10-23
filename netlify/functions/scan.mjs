@@ -65,7 +65,7 @@ export default async (req) => {
   const ua = uniq(src.match(/\bUA-\d{4,10}-\d{1,3}\b/g) || []);
   const aw = uniq(src.match(/\bAW-\d{6,12}\b/g) || []);
   const fb = uniq([...src.matchAll(/fbq\(\s*['"]init['"]\s*,\s*['"]?(\d{8,18})/g)].map((m) => m[1]));
-  const customGtm = /<script[^>]+src=["']https?:\/\/(?!www\.googletagmanager\.com)[^"']+\/gtm\.js\?id=GTM-/i.test(html) || /server_container_url|transport_url/.test(src);
+  const customGtm = /<script[^>]+src=["']https?:\/\/(?!www\.googletagmanager\.com)[^"']+\/gtm\.js\?id=GTM-/i.test(html) || /["']?(?:server_container_url|transport_url)["']?\s*[:,]\s*["']https?:\/\/(?!(?:www\.)?(?:google|googletagmanager)\.)[^"'\s]+/i.test(src);
   const consentMode = has(/gtag\(\s*['"]consent['"]\s*,\s*['"]default['"]/) || has(/ad_user_data/) || has(/"ad_storage"/);
   const cmp = (/cookiebot/i.test(src) && "Cookiebot") || (/onetrust|optanon/i.test(src) && "OneTrust") || (/cookieyes/i.test(src) && "CookieYes") || (/iubenda/i.test(src) && "iubenda") || (/termly/i.test(src) && "Termly") || (/complianz/i.test(src) && "Complianz") || (/usercentrics/i.test(src) && "Usercentrics") || "";
   const platform = (/cdn\.shopify\.com|Shopify\.theme/i.test(html) && "Shopify") || (/wp-content|wp-includes/i.test(html) && "WordPress") || (/wixstatic|wix\.com/i.test(html) && "Wix") || (/squarespace/i.test(html) && "Squarespace") || (/webflow/i.test(html) && "Webflow") || (/woocommerce/i.test(html) && "WooCommerce") || "";
@@ -84,15 +84,44 @@ export default async (req) => {
     { key: "consent", name: "Consent Mode signals", ok: consentMode, detail: cmp ? "Banner: " + cmp : "" },
     { key: "server", name: "Server-side tagging (custom GTM domain)", ok: customGtm, detail: "" },
   ];
-  const notes = [];
-  if (!gtmIds.length) notes.push("No Google Tag Manager container is visible. Tags may be hard-coded in the theme, which is harder to audit and change safely.");
-  if (!ga4.length && !ua.length) notes.push("No Google Analytics ID was found in the page source or the GTM container.");
-  if (ua.length && !ga4.length) notes.push("Only a legacy Universal Analytics ID (" + ua[0] + ") was found. Universal Analytics stopped processing data in 2023, so this tag is not collecting anything useful.");
-  if (ga4.length > 1) notes.push("More than one GA4 ID is present (" + ga4.join(", ") + "). That is sometimes intentional, but it often means duplicated page views or conversions.");
-  if ((aw.length || fb.length || has(/linkedin|tiktok/)) && !consentMode) notes.push("Advertising tags are present but no Consent Mode v2 signals were found. For EEA, UK and some other traffic, Google can ignore audience and conversion data without them.");
-  if (fb.length && !customGtm) notes.push("A Meta Pixel is present. I cannot see from outside whether the Conversions API is also sending events, which is what protects you from browser and iOS losses.");
-  if (aw.length === 0 && (fb.length || ga4.length)) notes.push("I could not see a Google Ads conversion tag. If you run Google Ads, check that conversions are tracked and imported correctly.");
-  return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, notes,
+  /* ---- events: only strong signals count (GA4 event tags, custom-event triggers, fbq track calls, dataLayer pushes, gtag events) ---- */
+  const ga4Ev = new Set([
+    ...[...src.matchAll(/"vtp_eventName"\s*:\s*"([A-Za-z0-9_]{2,40})"/g)].map((m) => m[1]),
+    ...[...src.matchAll(/gtag\(\s*['"]event['"]\s*,\s*['"]([A-Za-z0-9_]{2,40})['"]/g)].map((m) => m[1]),
+    ...[...src.matchAll(/"arg1"\s*:\s*"([a-z][a-z0-9_]{2,40})"/g)].map((m) => m[1]),
+    ...[...html.matchAll(/dataLayer\.push\(\s*\{[^}]*?event['"]?\s*:\s*['"]([A-Za-z0-9_]{2,40})['"]/g)].map((m) => m[1]),
+  ]);
+  const metaEv = new Set([...src.matchAll(/fbq\(\s*['"]track(?:Custom)?['"]\s*,\s*['"]([A-Za-z0-9_]{2,40})['"]/g)].map((m) => m[1]));
+  const ecommerce = /Shopify|WooCommerce/.test(platform) || ["purchase", "add_to_cart", "begin_checkout"].some((e) => ga4Ev.has(e));
+  const plan = ecommerce
+    ? [["view_item", "ViewContent", "Product viewed"], ["add_to_cart", "AddToCart", "Item added to cart"], ["begin_checkout", "InitiateCheckout", "Checkout started"], ["purchase", "Purchase", "Order completed (with value and currency)"]]
+    : [["generate_lead", "Lead", "Lead form submitted"], ["whatsapp_click", "Contact", "WhatsApp click"], ["phone_call_click", "Contact", "Click on a phone number"], ["booking_click", "Schedule", "Booking started"]];
+  const alias = { phone_call_click: /^(phone_call_click|click_to_call|call_click|phone_click|tel_click)$/, whatsapp_click: /^(whatsapp_click|whatsapp|wa_click)$/, booking_click: /^(booking_click|schedule|book_call|calendly_click|appointment)$/, generate_lead: /^(generate_lead|lead|form_submit|form_submission|contact_form|submit_lead_form)$/ };
+  const hit = (set, name) => [...set].some((e) => (alias[name] ? alias[name].test(e) : e === name));
+  const events = plan.map(([name, metaName, label]) => ({ name, label, ga4: hit(ga4Ev, name), meta: metaEv.has(metaName) || metaEv.has(name), metaName, ok: hit(ga4Ev, name) || metaEv.has(metaName) }));
+  const standard = new Set([...plan.map((p) => p[0]), "page_view", "gtm.js", "gtm.dom", "gtm.load", "gtm.click", "gtm.linkClick", "gtm.formSubmit", "gtm.historyChange", "gtm.scrollDepth", "gtm.timer", "gtm.video", "gtm.elementVisibility", "gtm.triggerGroup", "gtm.init", "gtm.init_consent", "default", "granted", "denied"]);
+  const custom = [...ga4Ev].filter((e) => !standard.has(e) && !/^gtm\./.test(e) && !/^(true|false|null|undefined|string|number|object|function|auto|none|gtag|config|set|js|get|consent|update|click|load|ready|submit|scroll|change|input|focus|blur|resize|text|url|path|host|href|name|value|type|id|class|class_name|tag|link|form|page|data|event|events|url_path|hostname)$/i.test(e) && /^[a-z][a-z0-9_]*$/.test(e) && e.length > 3).slice(0, 12);
+  const labels = uniq([...src.matchAll(/(?:"vtp_conversionLabel"\s*:\s*"([\w-]{6,})"|send_to['"]?\s*[:=]\s*['"]AW-\d+\/([\w-]{6,}))/g)].map((m) => m[1] || m[2]));
+  const missing = events.filter((e) => !e.ok);
+  const pvOnlyMeta = fb.length > 0 && metaEv.size === 0;
+  const issues = [];
+  const add = (level, title, text) => issues.push({ level, title, text });
+  if (!gtmIds.length) add("warn", "No Tag Manager container", "Tags may be hard-coded in the theme, which is harder to audit and change safely.");
+  if (!ga4.length && !ua.length) add("bad", "No Google Analytics found", "I found no GA4 ID in the page or the GTM container.");
+  if (ua.length && !ga4.length) add("bad", "Only legacy Universal Analytics", "Found " + ua[0] + ". Universal Analytics stopped processing data in 2023, so this tag collects nothing useful.");
+  if (ga4.length > 1) add("warn", "More than one GA4 ID", ga4.join(", ") + ". Sometimes intentional, but often it means duplicated page views or conversions.");
+  const hardGa4 = uniq([...html.matchAll(/googletagmanager\.com\/gtag\/js\?id=(G-[A-Z0-9]+)/g)].map((m) => m[1]));
+  if (hardGa4.some((g) => container.includes(g))) add("bad", "Possible double counting", "GA4 (" + hardGa4.find((g) => container.includes(g)) + ") is installed both in the page code and inside Tag Manager. Every event can be counted twice.");
+  if (ga4.length && missing.length === events.length) add("bad", "GA4 is installed but no conversion events found", "I could see none of: " + events.map((e) => e.name).join(", ") + ". Without them GA4 only records page views, and Google Ads has nothing to optimise on.");
+  if (aw.length && labels.length === 0) add("bad", "Google Ads tag without a conversion action", "The Ads ID " + aw[0] + " is present, but I found no conversion label. Smart Bidding may be learning from nothing.");
+  if (pvOnlyMeta) add("warn", "Meta Pixel with page views only", "The pixel loads, but I found no Lead, Purchase or AddToCart event calls.");
+  if (fb.length && !customGtm) add("info", "Meta Conversions API not visible", "I cannot see from outside whether CAPI also sends events. It protects you from browser and iOS losses.");
+  if ((aw.length || fb.length || has(/linkedin|tiktok/)) && !consentMode) add("bad", "No Consent Mode v2 signals", "Advertising tags are present, but I found no consent signals. For EEA, UK and some other traffic, Google can ignore audience and conversion data without them.");
+  if (ga4.length && !aw.length && !fb.length) add("info", "No ad conversion tags", "If you run ads, check that conversions reach Google Ads or Meta, not only GA4.");
+  const recommended = missing.slice(0, 4).map((e) => ({ name: e.name, label: e.label }));
+  if (!consentMode && (aw.length || fb.length)) recommended.push({ name: "consent_update", label: "Consent Mode v2" });
+  if (!customGtm && (aw.length || fb.length)) recommended.push({ name: "server_side", label: "Server-side tracking" });
+  return json({ ok: true, ...found, title: title.trim(), platform, cmp, tags, events, custom, conversionLabels: labels.length, issues, recommended, ecommerce,
     limits: "This reads only what is publicly visible in the page source and the published GTM container. Tags loaded after consent, behind logins, or on other pages can be missed, and a tag being present does not prove it fires correctly." });
 };
 
