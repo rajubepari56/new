@@ -27,7 +27,7 @@ await walk(join(root, "assets"), async (p) => {
 });
 
 // 2. bundle CSS (order matters: later files refine earlier ones)
-const parts = ["main", "home", "case", "motion"];
+const parts = ["main", "home", "case", "motion", "luxury"];
 let bundle = "";
 for (const n of parts) bundle += (await readFile(join(root, "assets/css", `${n}.css`), "utf8")) + "\n";
 await writeFile(join(root, "assets/css/site.css"), bundle);
@@ -35,7 +35,7 @@ await walk(root, async (p) => {
   if (extname(p) !== ".html") return;
   let h = await readFile(p, "utf8");
   if (!h.includes("/assets/css/main.css")) return;
-  h = h.replace(/<link rel="stylesheet" href="\/assets\/css\/(home|case|motion)\.css">\s*/g, "")
+  h = h.replace(/<link rel="stylesheet" href="\/assets\/css\/(home|case|motion|luxury)\.css">\s*/g, "")
        .replace('href="/assets/css/main.css"', 'href="/assets/css/site.css"');
   await writeFile(p, h);
 });

@@ -47,7 +47,7 @@ faqs:
         <figure class="h-console" aria-label="How a conversion travels from my client's website to GA4, Google Ads and Meta">
           <div class="h-console__bar"><div><b>Raju Bepari</b><span>Direct line &middot; UTC+6</span></div></div>
           <svg class="h-flow" id="h-flow" viewBox="0 0 360 470" role="img" aria-label="Signals page_view, generate_lead and purchase travel from the tracked website through Consent Mode v2, Web GTM and Server GTM to GA4, Google Ads and Meta CAPI. Real sales from the CRM flow back into Server GTM as crm_sale.">
-            <g fill="none" stroke="rgba(167,169,214,.32)" stroke-width="1.4"><path d="M180 50V90M180 130V170M180 210V250M180 290C180 340 56 340 56 396M180 290V396M180 290C180 340 304 340 304 396"/><path stroke-dasharray="4 4" stroke="rgba(52,168,83,.7)" d="M268 270H236"/></g>
+            <g fill="none" stroke="rgba(255,255,255,.32)" stroke-width="1.4"><path d="M180 50V90M180 130V170M180 210V250M180 290C180 340 56 340 56 396M180 290V396M180 290C180 340 304 340 304 396"/><path stroke-dasharray="4 4" stroke="rgba(52,168,83,.7)" d="M268 270H236"/></g>
             <g fill="none" stroke="none"><path id="ra" d="M180 50V290C180 340 56 340 56 396"/><path id="rb" d="M180 50V396"/><path id="rc" d="M180 50V290C180 340 304 340 304 396"/><path id="rd" d="M268 270H180V396"/></g>
             <g class="sig" data-r="ra" style="--c:#FBBC05"><circle class="sig__h" r="12"/><circle class="sig__m" r="7"/><circle class="sig__d" r="3.8"/><text x="14" y="4">page_view</text></g>
             <g class="sig" data-r="rb" style="--c:#4285F4"><circle class="sig__h" r="12"/><circle class="sig__m" r="7"/><circle class="sig__d" r="3.8"/><text x="14" y="4">generate_lead</text></g>
@@ -81,6 +81,33 @@ faqs:
     <div class="h-marq" aria-label="Platforms I work with">
       {% assign plat = "Google Ads,GA4,Google Tag Manager,Server-side GTM,Meta Ads,Shopify,WooCommerce,Wix,WordPress,Consent Mode v2,Conversions API,Looker Studio" | split: "," %}
       <ul class="h-marq__track">{% for p in plat %}<li>{{ p }}</li>{% endfor %}{% for p in plat %}<li aria-hidden="true">{{ p }}</li>{% endfor %}</ul>
+    </div>
+  </div>
+</section>
+
+<section class="h-sec" id="telemetry">
+  <div class="wrap h-sec__grid">
+    <div class="h-sec__rail"><span class="mono">00 / Live signal</span></div>
+    <div class="h-sec__body">
+      <h2 class="h-h2 reveal">What accurate tracking looks like, <em>live.</em></h2>
+      <p class="lead reveal">A simulated view of the signal I build for you: every conversion event checked, deduplicated and sent to Google Ads, GA4 and Meta, with a log of what happened to each one.</p>
+      <div class="lt" id="lt">
+        <div class="lt__panel reveal">
+          <div class="lt__bar"><span>Reported vs verified conversions</span><span class="lt__live"><i></i>Simulated</span></div>
+          <div class="lt__chart">
+            <div class="lt__k">Data match score</div>
+            <div class="lt__v"><span id="lt-score">&mdash;</span><small id="lt-delta"></small></div>
+            <svg id="lt-svg" viewBox="0 0 600 210" preserveAspectRatio="none" role="img" aria-label="Simulated chart: platform-reported conversions drifting from verified conversions, then converging after tracking is fixed"></svg>
+            <div class="lt__leg"><span><i style="background:#6B7280"></i>Platform reported</span><span><i style="background:#E6C36A"></i>Verified in CRM</span></div>
+          </div>
+          <div class="lt__kpis"><div><b id="lt-k1">&mdash;</b><span>Events / min</span></div><div><b id="lt-k2">&mdash;</b><span>Recovered</span></div><div><b id="lt-k3">&mdash;</b><span>Duplicates removed</span></div></div>
+        </div>
+        <div class="lt__panel reveal">
+          <div class="lt__bar"><span>Event log &middot; streaming</span><span class="lt__live"><i></i>Live demo</span></div>
+          <div class="lt__tw" tabindex="0" role="region" aria-label="Simulated event log, scrollable"><table><thead><tr><th>Time (UTC)</th><th>Event</th><th>Path</th><th>Sent to</th><th>Status</th><th>Detail</th></tr></thead><tbody id="lt-body"></tbody></table></div>
+          <div class="lt__foot">Simulated demonstration. Events, counts and scores are illustrative and are not client data.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
